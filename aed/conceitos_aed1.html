@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Conceitos básicos de Análise Exploratória de Dados | Análise Exploratória de Dados</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Conceitos básicos de Análise Exploratória de Dados | Análise Exploratória de Dados" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Conceitos básicos de Análise Exploratória de Dados | Análise Exploratória de Dados" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Victor Fossaluza e Gabriela Scarpini" />
+
+
+<meta name="date" content="2025-03-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="apresentacao_r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#apresentação"><i class="fa fa-check"></i><b>1.1</b> Apresentação</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#programa"><i class="fa fa-check"></i><b>1.2</b> Programa</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#bibliografia"><i class="fa fa-check"></i><b>1.3</b> Bibliografia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html"><i class="fa fa-check"></i><b>2</b> Conceitos básicos de Análise Exploratória de Dados</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-significa-algo-ser-aleatório"><i class="fa fa-check"></i><b>2.1</b> O que significa algo ser “aleatório”?</a></li>
+<li class="chapter" data-level="2.2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-é-probabilidade"><i class="fa fa-check"></i><b>2.2</b> O que é Probabilidade?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2.1</b> Interpretações de Probabilidade</a></li>
+<li class="chapter" data-level="2.2.2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#comentários-sobre-probabilidade-e-aleatoriedade"><i class="fa fa-check"></i><b>2.2.2</b> Comentários sobre Probabilidade e Aleatoriedade</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-é-estatística"><i class="fa fa-check"></i><b>2.3</b> O que é Estatística?</a></li>
+<li class="chapter" data-level="2.4" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#método-científico"><i class="fa fa-check"></i><b>2.4</b> Método Científico</a></li>
+<li class="chapter" data-level="2.5" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#população-x-amostra-probabilidade-x-estatística"><i class="fa fa-check"></i><b>2.5</b> População X Amostra, Probabilidade X Estatística</a></li>
+<li class="chapter" data-level="2.6" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#estatística-descritiva"><i class="fa fa-check"></i><b>2.6</b> Estatística Descritiva</a></li>
+<li class="chapter" data-level="2.7" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#inferência-estatística"><i class="fa fa-check"></i><b>2.7</b> Inferência Estatística</a></li>
+<li class="chapter" data-level="2.8" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#aprendizado-estatístico"><i class="fa fa-check"></i><b>2.8</b> Aprendizado Estatístico</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="apresentacao_r.html"><a href="apresentacao_r.html"><i class="fa fa-check"></i><b>3</b> Apresentação à linguagem R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="apresentacao_r.html"><a href="apresentacao_r.html#como-instalar"><i class="fa fa-check"></i><b>3.1</b> Como instalar</a></li>
+<li class="chapter" data-level="3.2" data-path="apresentacao_r.html"><a href="apresentacao_r.html#comparação-com-outras-linguagens-estatísticas"><i class="fa fa-check"></i><b>3.2</b> Comparação com outras linguagens estatísticas</a></li>
+<li class="chapter" data-level="3.3" data-path="apresentacao_r.html"><a href="apresentacao_r.html#introdução-ao-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Introdução ao RMarkdown</a></li>
+<li class="chapter" data-level="3.4" data-path="apresentacao_r.html"><a href="apresentacao_r.html#operadores-básicos"><i class="fa fa-check"></i><b>3.4</b> Operadores Básicos</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentacao_r.html"><a href="apresentacao_r.html#estrutura-de-dados-em-r"><i class="fa fa-check"></i><b>3.5</b> Estrutura de Dados em R</a></li>
+<li class="chapter" data-level="3.6" data-path="apresentacao_r.html"><a href="apresentacao_r.html#estruturas-de-controle"><i class="fa fa-check"></i><b>3.6</b> Estruturas de controle</a></li>
+<li class="chapter" data-level="3.7" data-path="apresentacao_r.html"><a href="apresentacao_r.html#funções"><i class="fa fa-check"></i><b>3.7</b> Funções</a></li>
+<li class="chapter" data-level="3.8" data-path="apresentacao_r.html"><a href="apresentacao_r.html#funções-básicas-e-pacotes"><i class="fa fa-check"></i><b>3.8</b> Funções Básicas e Pacotes</a></li>
+<li class="chapter" data-level="3.9" data-path="apresentacao_r.html"><a href="apresentacao_r.html#exercícios"><i class="fa fa-check"></i><b>3.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dados_4.html"><a href="dados_4.html"><i class="fa fa-check"></i><b>4</b> Dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados_4.html"><a href="dados_4.html#processos-de-obtenção-importação-organização-e-transformação"><i class="fa fa-check"></i><b>4.1</b> Processos de obtenção, importação, organização e transformação</a></li>
+<li class="chapter" data-level="4.2" data-path="dados_4.html"><a href="dados_4.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>4.2</b> Tipos de Variáveis</a></li>
+<li class="chapter" data-level="4.3" data-path="dados_4.html"><a href="dados_4.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.3</b> Tabelas de Frequências</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html"><i class="fa fa-check"></i><b>5</b> Medidas de uma variável</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-posição-ou-de-tendência-central"><i class="fa fa-check"></i><b>5.1</b> Medidas de posição ou de Tendência Central</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#média-aritmética"><i class="fa fa-check"></i><b>5.1.1</b> Média (Aritmética)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#mediana"><i class="fa fa-check"></i><b>5.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="5.1.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#moda"><i class="fa fa-check"></i><b>5.1.3</b> Moda</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>5.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#variância"><i class="fa fa-check"></i><b>5.2.1</b> Variância</a></li>
+<li class="chapter" data-level="5.2.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-padrão"><i class="fa fa-check"></i><b>5.2.2</b> Desvio padrão</a></li>
+<li class="chapter" data-level="5.2.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-médio-ou-absoluto"><i class="fa fa-check"></i><b>5.2.3</b> Desvio médio ou absoluto</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-ordem"><i class="fa fa-check"></i><b>5.3</b> Medidas de ordem</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#quartis-e-quantis"><i class="fa fa-check"></i><b>5.3.1</b> Quartis e quantis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#distância-ou-amplitude-interquartis"><i class="fa fa-check"></i><b>5.3.2</b> Distância (ou Amplitude) Interquartis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-mediano-absoluto"><i class="fa fa-check"></i><b>5.3.3</b> Desvio Mediano Absoluto</a></li>
+<li class="chapter" data-level="5.3.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#amplitude"><i class="fa fa-check"></i><b>5.3.4</b> Amplitude</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-assimetria"><i class="fa fa-check"></i><b>5.4</b> Medidas de assimetria</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-bowley"><i class="fa fa-check"></i><b>5.4.1</b> Coeficiente de Assimetria de Bowley</a></li>
+<li class="chapter" data-level="5.4.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-1"><i class="fa fa-check"></i><b>5.4.2</b> Coeficiente de Assimetria de Pearson 1</a></li>
+<li class="chapter" data-level="5.4.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-2"><i class="fa fa-check"></i><b>5.4.3</b> Coeficiente de Assimetria de Pearson 2</a></li>
+<li class="chapter" data-level="5.4.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson"><i class="fa fa-check"></i><b>5.4.4</b> Coeficiente de Assimetria de Fisher-Pearson</a></li>
+<li class="chapter" data-level="5.4.5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson-ajustado"><i class="fa fa-check"></i><b>5.4.5</b> Coeficiente de Assimetria de Fisher-Pearson ajustado</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#calculo-de-medidas-no-r"><i class="fa fa-check"></i><b>5.5</b> Calculo de medidas no R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html"><i class="fa fa-check"></i><b>6</b> Modelos Gráficos</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-barras"><i class="fa fa-check"></i><b>6.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="6.2" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>6.2</b> Gráfico de Setores (Pizza)</a></li>
+<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a></li>
+<li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
+<li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
+<li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
+<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-1"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="anaise_bi7.html"><a href="anaise_bi7.html"><i class="fa fa-check"></i><b>7</b> Análise bivariada</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="anaise_bi7.html"><a href="anaise_bi7.html#duas-variáveis-categóricas"><i class="fa fa-check"></i><b>7.1</b> Duas variáveis categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html"><i class="fa fa-check"></i><b>8</b> Medidas de duas variáveis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#tabela-de-contingência-de-frequências"><i class="fa fa-check"></i><b>8.1</b> Tabela de Contingência (de Frequências)</a></li>
+<li class="chapter" data-level="8.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#correlação-amostral"><i class="fa fa-check"></i><b>8.2</b> Correlação amostral</a></li>
+<li class="chapter" data-level="8.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#qui-quadrado-de-pearson"><i class="fa fa-check"></i><b>8.3</b> Qui-Quadrado de Pearson</a></li>
+<li class="chapter" data-level="8.4" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-de-associação-baseadas-no-qui-quadrado"><i class="fa fa-check"></i><b>8.4</b> Medidas de Associação baseadas no Qui-Quadrado</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-contingência-de-pearson"><i class="fa fa-check"></i><b>8.4.1</b> Coeficiente de Contingência de Pearson</a></li>
+<li class="chapter" data-level="8.4.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-tcschupov"><i class="fa fa-check"></i><b>8.4.2</b> Coeficiente de Tcschupov</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#outras-medidas-de-associação"><i class="fa fa-check"></i><b>8.5</b> Outras Medidas de Associação</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#risco-atribuível"><i class="fa fa-check"></i><b>8.5.1</b> Risco Atribuível</a></li>
+<li class="chapter" data-level="8.5.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#risco-relativo"><i class="fa fa-check"></i><b>8.5.2</b> Risco Relativo</a></li>
+<li class="chapter" data-level="8.5.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#razão-de-chances-odds-ratio"><i class="fa fa-check"></i><b>8.5.3</b> Razão de Chances (“Odds Ratio”)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-para-testes-de-diagnóstico"><i class="fa fa-check"></i><b>8.6</b> Medidas para Testes de Diagnóstico</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#sensibilidade"><i class="fa fa-check"></i><b>8.6.1</b> Sensibilidade</a></li>
+<li class="chapter" data-level="8.6.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#especificidade"><i class="fa fa-check"></i><b>8.6.2</b> Especificidade</a></li>
+<li class="chapter" data-level="8.6.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#falso-positivo"><i class="fa fa-check"></i><b>8.6.3</b> Falso Positivo</a></li>
+<li class="chapter" data-level="8.6.4" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#falso-negativo"><i class="fa fa-check"></i><b>8.6.4</b> Falso Negativo</a></li>
+<li class="chapter" data-level="8.6.5" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#valor-preditivo-positivo"><i class="fa fa-check"></i><b>8.6.5</b> Valor Preditivo Positivo</a></li>
+<li class="chapter" data-level="8.6.6" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#valor-preditivo-negativo"><i class="fa fa-check"></i><b>8.6.6</b> Valor Preditivo Negativo</a></li>
+<li class="chapter" data-level="8.6.7" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#acurácia"><i class="fa fa-check"></i><b>8.6.7</b> Acurácia</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>9</b> Respostas dos exercícios</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-3"><i class="fa fa-check"></i><b>9.1</b> Capítulo 3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html"><i class="fa fa-check"></i><b>10</b> Outros Gráficos (incompleto)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-de-bolhas"><i class="fa fa-check"></i><b>10.1</b> Gráfico de bolhas:</a></li>
+<li class="chapter" data-level="10.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#diferentes-gráficos-de-barras"><i class="fa fa-check"></i><b>10.2</b> Diferentes gráficos de barras</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-agrupadas"><i class="fa fa-check"></i><b>10.2.1</b> Barras agrupadas</a></li>
+<li class="chapter" data-level="10.2.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-empilhadas"><i class="fa fa-check"></i><b>10.2.2</b> Barras empilhadas</a></li>
+<li class="chapter" data-level="10.2.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-100-empilhadas"><i class="fa fa-check"></i><b>10.2.3</b> Barras 100% empilhadas</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-de-velocímetro"><i class="fa fa-check"></i><b>10.3</b> Gráfico de velocímetro</a></li>
+<li class="chapter" data-level="10.4" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-mosaíco"><i class="fa fa-check"></i><b>10.4</b> Gráfico mosaíco</a></li>
+<li class="chapter" data-level="10.5" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#nuvem-de-palavras"><i class="fa fa-check"></i><b>10.5</b> Nuvem de palavras</a></li>
+<li class="chapter" data-level="10.6" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#configurações-gráficas"><i class="fa fa-check"></i><b>10.6</b> Configurações gráficas</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#cor-de-fundo"><i class="fa fa-check"></i><b>10.6.1</b> Cor de fundo</a></li>
+<li class="chapter" data-level="10.6.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#imagem-de-fundo"><i class="fa fa-check"></i><b>10.6.2</b> Imagem de fundo</a></li>
+<li class="chapter" data-level="10.6.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#margens-gráficas"><i class="fa fa-check"></i><b>10.6.3</b> Margens gráficas</a></li>
+<li class="chapter" data-level="10.6.4" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#janelas-multiplas"><i class="fa fa-check"></i><b>10.6.4</b> Janelas multiplas</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#exercício"><i class="fa fa-check"></i><b>10.7</b> Exercício</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html"><i class="fa fa-check"></i><b>11</b> Regressão linear (incompleto)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html#estimar-a-e-b"><i class="fa fa-check"></i><b>11.1</b> Estimar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise Exploratória de Dados</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conceitos_aed1" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Conceitos básicos de Análise Exploratória de Dados<a href="conceitos_aed1.html#conceitos_aed1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="o-que-significa-algo-ser-aleatório" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> O que significa algo ser “aleatório”?<a href="conceitos_aed1.html#o-que-significa-algo-ser-aleatório" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Aleatório</strong> <em>(Google - Oxford Languages)</em><br />
+<em>(adjetivo)</em><br />
+</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>que depende das circunstâncias, do acaso; casual, fortuito, contingente.<br />
+</li>
+<li>(física) referente a fenômenos físicos para os quais as variáveis tomam valores segundo uma determinada lei de probabilidade (p.ex., o movimento browniano).</li>
+</ol>
+<ul>
+<li><strong>Experimento Aleatório</strong> <em>(The Concise Encyclopedia of Statistics, pp 430–433)</em></li>
+</ul>
+<p>Um experimento em que o resultado não é previsível com antecedência é chamado de experimento aleatório. Um experimento aleatório pode ser caracterizado da seguinte forma:<br />
+1. É possível descrever o conjunto de todos os resultados possíveis (chamado espaço amostral do experimento aleatório).<br />
+2. Não é possível prever o resultado com certeza.<br />
+3. É possível associar cada resultado possível a uma probabilidade de ocorrência.</p>
+<hr />
+</div>
+<div id="o-que-é-probabilidade" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> O que é Probabilidade?<a href="conceitos_aed1.html#o-que-é-probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Probabilidade</strong> <em>(Google - Oxford Languages)</em><br />
+<em>(substantivo feminino)</em><br />
+</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>perspectiva favorável de que algo venha a ocorrer; possibilidade, chance.
+“há pouca probabilidade de chuva”<br />
+</li>
+<li>grau de segurança com que se pode esperar a realização de um evento, determinado pela frequência relativa dos eventos do mesmo tipo numa série de tentativas.</li>
+</ol>
+<ul>
+<li><strong>Probabilidade</strong> <em>(The Concise Encyclopedia of Statistics, pp 430–433)</em></li>
+</ul>
+<p>Podemos definir a probabilidade de um evento usando as frequências relativas ou por meio de uma abordagem axiomática.</p>
+<p>Na primeira abordagem, supomos que um experimento aleatório é repetido muitas vezes nas mesmas condições. Para cada evento <span class="math inline">\(A\)</span> definido no espaço amostral <span class="math inline">\(\Omega\)</span>, definimos <span class="math inline">\(n_A\)</span> como o número de vezes que o evento <span class="math inline">\(A\)</span> ocorreu durante as primeiras <span class="math inline">\(n\)</span> repetições do experimento. Neste caso, a probabilidade do evento <span class="math inline">\(A\)</span>, denotada por <span class="math inline">\(P(A)\)</span>, é definido por:
+<span class="math display">\[P(A) = \lim_{n\rightarrow\infty} \frac{n_A}{n}~,\]</span></p>
+<p>o que significa que <span class="math inline">\(P(A)\)</span> é definido como o limite relativo ao número de vezes que o evento <span class="math inline">\(A\)</span> ocorreu relativo ao número total de repetições.</p>
+<p>Na segunda abordagem, para cada evento <span class="math inline">\(A\)</span>, aceitamos que existe uma probabilidade de <span class="math inline">\(A\)</span>, <span class="math inline">\(P(A)\)</span>, satisfazendo os três axiomas a seguir:<br />
+1. <span class="math inline">\(0\leq P(A)\leq 1\)</span>,<br />
+2. <span class="math inline">\(P(\Omega)=1\)</span>,<br />
+3. Para cada sequência de eventos mutuamente exclusivos <span class="math inline">\(A_1,A_2,\ldots\)</span> (isto é, eventos tais que <span class="math inline">\(A_i \cap A_j = \emptyset\)</span> se <span class="math inline">\(i \neq j\)</span>):
+<span class="math display">\[ P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(Ai)~.\]</span>
+—</p>
+<div id="interpretações-de-probabilidade" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Interpretações de Probabilidade<a href="conceitos_aed1.html#interpretações-de-probabilidade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Interpretação Clássica</strong> (De Moivre, Laplace)
+<ul>
+<li>baseia-se na equiprobabilidade dos resultados;</li>
+<li><span class="math inline">\(P(A) = \frac{|A|}{|\Omega|}\)</span>.</li>
+<li><strong>Exemplo:</strong> um lançamento de moeda, <span class="math inline">\(A\)</span> = “cara”, <span class="math inline">\(P(A) = \frac{1}{2}\)</span>.</li>
+</ul></li>
+</ul>
+<p><span class="math inline">\(~\)</span></p>
+<ul>
+<li><strong>Interpretação Frequentista</strong> (Venn, von Mises, Reichenbach, etc.)
+<ul>
+<li>quase unânime na primeira metade do século XX e ainda é a mais aceita;</li>
+<li>baseia-se na regularidade das frequências relativas (lei dos grandes números);</li>
+<li><span class="math inline">\(P(A) = lim \frac{A_n}{n}\)</span>, onde <span class="math inline">\(A_n\)</span> é o número de ocorrências de <span class="math inline">\(A\)</span> em <span class="math inline">\(n\)</span> realizações <em>idênticas e independentes</em> do experimento;</li>
+<li>Supõe que é possível repetir indefinidamente o experimento nas mesmas circustâncias.</li>
+<li><strong>Exemplo:</strong> um lançamento de moeda, <span class="math inline">\(A\)</span> = “cara”.</li>
+</ul></li>
+</ul>
+<p><img src="AED_files/figure-html/LGN-1.gif" style="display: block; margin: auto;" /></p>
+<p><span class="math inline">\(~\)</span></p>
+<ul>
+<li><strong>Interpretação Lógica</strong> (Keynes, Jeffreys, Carnap, etc.)
+<ul>
+<li>medida de “vínculo parcial” entre uma evidência e uma hipótese;</li>
+<li>baseia-se em relações objetivas entre proposições.</li>
+<li><strong>Exemplo:</strong> considere duas proposições: “até agora todos os lançamentos resultaram em cara” e “será realizado um novo lançamento”. Pode-se afirmar que “provavelmente o resultado do novo lançamento será cara”.</li>
+</ul></li>
+</ul>
+<!-- $~$  -->
+<ul>
+<li><strong>Interpretação Subjetivista</strong> (Ramsey, de Finetti, Savage, etc)
+<ul>
+<li>probabilidade como medida subjetiva de crença;</li>
+<li>baseada na experiência de cada indivíduo, portanto única.</li>
+<li><strong>Exemplo:</strong> suponha que Bruno lançou uma moeda 3 vezes e todos os resultados foram cara. Esse indivíduo, em posse dessa informação, pode acreditar que o resultado cara é mais provável que coroa. Contudo, quando pergunta sobre a probabilidade de cara ao seu colega Olavo, ignorante com relação a moeda, ele responde que é 1/2.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="comentários-sobre-probabilidade-e-aleatoriedade" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Comentários sobre Probabilidade e Aleatoriedade<a href="conceitos_aed1.html#comentários-sobre-probabilidade-e-aleatoriedade" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Exemplo da moeda. Aleatoriedade é uma característica (física) do lançamento da moeda?</p></li>
+<li><p>Exemplo das bolas na Urna. A “aleatoriedade” está em “chacoalhar” a urna? E se eu “embrulhar” as bolas e colocá-las em fila sobre a mesa? O experimento ainda é “aleatório”? Qual a “probabilidade” de selecionar uma bola verde?</p></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="o-que-é-estatística" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> O que é Estatística?<a href="conceitos_aed1.html#o-que-é-estatística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Estatística</strong> <em>(Google - Oxford Languages)</em><br />
+<em>(substantivo feminino)</em><br />
+</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>ramo da matemática que trata da coleta, da análise, da interpretação e da apresentação de massas de dados numéricos.<br />
+</li>
+<li>qualquer coleta de dados quantitativos.</li>
+</ol>
+<ul>
+<li><strong>Estatística</strong> <em>(The Concise Encyclopedia of Statistics, pp 518–520)</em></li>
+</ul>
+<p>A palavra estatística, derivada do latim, refere-se à noção de estado (status): “que é relativo ao estado”. Os governos têm uma grande necessidade de contar e medir numerosos eventos e atividades, como mudanças demográficas, nascimentos, tendências de imigração e emigração, mudanças nas taxas de emprego, negócios, etc.</p>
+<p>Nessa perspectiva, o termo “estatística” é usado para indicar um conjunto de dados disponíveis sobre um determinado fenômeno (por exemplo, estatísticas de desemprego).</p>
+<p>No sentido mais moderno e preciso da palavra, “estatística” é considerada uma disciplina que se preocupa com dados quantitativos. É constituído por um conjunto de técnicas de obtenção de conhecimento a partir de dados incompletos, de um rigoroso sistema científico de gestão de coleta de dados, da sua organização, análise e interpretação, quando é possível apresentá-los de forma numérica.</p>
+<p>Numa população de indivíduos, pode ser de interesse saber, em termos de teoria estatística, se um determinado indivíduo tem carro ou se fuma. Por outro lado, também pode ser de interesse saber quantos indivíduos têm automóvel e são fumantes, e se existe relação entre possuir automóvel e hábitos de tabagismo na população estudada.</p>
+<p>Gostaríamos de conhecer as características da população globalmente, sem nos preocuparmos com cada pessoa ou cada objeto da população.</p>
+<p>Distinguimos dois subconjuntos de técnicas: (1) aquelas que envolvem estatísticas descritivas e (2) aquelas que envolvem estatísticas inferenciais. O objetivo essencial da estatística descritiva é representar a informação em um formato compreensível e útil. A estatística inferencial, por outro lado, visa facilitar a generalização dessas informações ou, mais especificamente, fazer inferências (relativas a populações) com base em amostras dessas populações.</p>
+<ul>
+<li><strong>Estatístico</strong> <em>(segundo prof. Carlos Alberto de Bragança Pereira)</em></li>
+</ul>
+<p><em>“The Statistician is the Wizard who makes”scientific” statements about invisible states and quantities. However, contrary to the real wishes (or witches), he attaches uncertainties to his statements.”</em></p>
+<hr />
+</div>
+<div id="método-científico" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Método Científico<a href="conceitos_aed1.html#método-científico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Formulação de uma questão, teoria ou hipótese.<br />
+</li>
+<li>Coleta de informações: planejamento de um experimento para obtenção de dados ou apenas a observação de um fenômeno ou variáveis de interesse.<br />
+</li>
+<li>Conclusões (por vezes, parciais) baseadas nos dados obtidos anteriormente.<br />
+</li>
+<li>Se necessário, repetir (2) e (3) ou formular novas hipóteses.</li>
+</ol>
+<hr />
+</div>
+<div id="população-x-amostra-probabilidade-x-estatística" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> População X Amostra, Probabilidade X Estatística<a href="conceitos_aed1.html#população-x-amostra-probabilidade-x-estatística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p><em>População</em> é o conjunto de todos os elementos ou resultados possíveis.<br />
+</p></li>
+<li><p><em>Amostra</em> é um subconjunto da população.<br />
+</p></li>
+<li><p><em>Experimento</em> é “tornar visível o que antes era invisível”, por exemplo, observar uma amostra da população.<br />
+</p></li>
+<li><p><em>Probabilidade</em> é uma descrição matemática da incerteza, é bem especificada quando a população é conhecida.<br />
+</p></li>
+<li><p><em>Estatística</em> estuda a distribuição de probabilidades quando esta não está bem especificada (é desconhecida, ao menos parcialmente).</p>
+<ul>
+<li><strong>Modelo Probabilístico:</strong> <span class="math inline">\((\Omega, \mathcal{F}, \boldsymbol{P})\)</span>, onde <span class="math inline">\(\Omega\)</span> é o espaço amostral, <span class="math inline">\(\mathcal{F}\)</span> é uma coleção (<span class="math inline">\(\sigma\)</span>-álgebra) de subconjuntos de omega e <span class="math inline">\(\boldsymbol{P}\)</span> é uma medida de probabilidade (conhecida, fixada)<br />
+</li>
+<li><strong>Modelo Estatístico:</strong> simplificadamente, um modelo estatístico é uma forma probabilística de relacionar uma quantidade desconhecida de interesse (<em>parâmetro</em>) com os dados observados.<br />
+</li>
+<li><span class="math inline">\((\Omega, \mathcal{F}, \mathcal{P})\)</span>, onde <span class="math inline">\(\mathcal{P}\)</span> é uma família de distribuições de probabilidade. Na estatística, o objetivo é fazer afirmações sobre essa família.</li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="estatística-descritiva" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Estatística Descritiva<a href="conceitos_aed1.html#estatística-descritiva" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Conjunto de técnicas para visualização (redução) dos dados.<br />
+</li>
+<li>Análises e conclusões preliminares.<br />
+</li>
+<li>Fornece informações que auxiliam na especificações de um <em>modelo estatístico</em>.<br />
+</li>
+<li>Também utilizada para
+<ul>
+<li>Avaliação de modelos;<br />
+</li>
+<li>Interpretação de modelos complexos;<br />
+</li>
+<li>Comunicação dos resultados.</li>
+</ul></li>
+<li>Exemplo: medidas resumo, gráficos e tabelas.</li>
+</ul>
+<hr />
+</div>
+<div id="inferência-estatística" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Inferência Estatística<a href="conceitos_aed1.html#inferência-estatística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Generalizar resultados observados em uma amostra para a população de interesse.<br />
+</li>
+<li>Normalmente baseada em algumas suposições que são traduzidas em um <em>modelo estatístico</em>.<br />
+</li>
+<li>Principais objetivos: concluir se há relações entre variáveis, estimativas pontuais e intervalares e testes de hipóteses.<br />
+</li>
+<li>Como o objetivo é generalizar conclusões para a população, é usual ter uma grande preocupação com a verificação das suposições do modelo estatístico adotado.<br />
+</li>
+<li>Por vezes chamada de “análise confirmatória”.</li>
+</ul>
+<hr />
+</div>
+<div id="aprendizado-estatístico" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Aprendizado Estatístico<a href="conceitos_aed1.html#aprendizado-estatístico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Similarmente à inferência estatística, estuda relação entre variáveis mas tem como objetivo fazer predições para novas observações.<br />
+</li>
+<li>Como o objetivo é fazer predições, o foco é obter um modelo que “acerte” mais ou, em outras palavras, que minimize algum tipo de função de perda, dando menos atenção à suposições sobre o modelo probabilístico utilizado.<br />
+</li>
+<li>Na prática, o conjunto de dados é dividido em um <em>conjunto de treinamento</em> e um <em>conjunto de teste</em>. O primeiro é usado para a obtenção de modelos e o segundo para a sua avaliação. O modelo escolhido é aquele que “acerta mais” no conjunto de teste.<br />
+</li>
+<li>Também pode ser pensada como uma forma reproduzir o mecanismo gerador dos dados.</li>
+</ul>
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="apresentacao_r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/Cap2-conceitos.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["AED.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

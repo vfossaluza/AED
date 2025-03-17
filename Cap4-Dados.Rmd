@@ -1,0 +1,164 @@
+# Dados {#dados_4}
+
+## Processos de obtenção, importação, organização e transformação
+
+- **Obtenção**: experimentos controlados, estudos observacionais, etc.
+- **Importação**: armazenar (ou importar) os dados em um formato compatível com software utilizado, aqui utilizaremos o R.
+- **Organização**: colocar os dados em uma estrutura consistente. Normalmente, cada linha é a uma observação e cada coluna é uma variável.
+- **Transformação**: criar novas variáveis como função das variáveis existentes, restringir observações de interesse, calcular medidas resumo, etc.
+
+
+```{r dados_pixar, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+require(kableExtra)
+require(tibble)
+require(tidyverse)  
+filmes_pixar <- read.csv("./arquivos/filmes_pixar.csv")
+
+
+pixar_dados <- tibble(ordem_lancamento = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+                      filme = c("Toy Story", "Vida de inseto", "Toy Story 2", 
+                          "Monstros S. A.", "Procurando Nemo", "Os Incríveis", 
+                          "Carros", "Ratatouille", "WALL-E", "Up Altas Aventuras"),
+                      data_lancamento = as.Date(c("1995-11-22", "1998-11-25", "1999-11-24", 
+                             "2001-11-02", "2003-05-30", "2004-11-05", 
+                             "2006-06-09", "2007-06-29", "2008-06-27", 
+                             "2009-05-29")),
+                      duracao = c(81, 95, 92, 92, 100, 115, 117, 111, 98, 96),
+                      bilheteria_mundial = c(373554033, 363258859, 497374776, 
+                                             632316649, 871014978, 631606713, 
+                                             461983149, 623726085, 521311860, 
+                                             735099082),
+                      genero = c("Aventura", "Comédia", "Aventura", "Aventura", 
+                            "Comédia", "Ação", "Esporte", "Aventura", 
+                            "Ficção Científica", "Drama"))
+
+pixar_dados %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
+
+A tabela acima é uma versão reduzida do banco de dados "filmes_pixar", disponível para download **[aqui](filmes_pixar.csv)**. 
+Este banco de dados foi elaborado para servir de base na construção de tabelas e gráficos nesse e nos próximos capítulos. Já a versão reduzida será usada para facilitar os cálculos e a resolução de exemplos na lousa, durante a aula.
+
+---
+
+## Tipos de Variáveis 
+
+1. **Qualitativas:** atributos não numéricos
+   - *Nominal*   
+     * Nomes ou rótulos, sem uma relação de ordem   
+     * Exemplos: Sexo, Religião, Cor dos Olhos, Time de Futebol  
+   - *Ordinal*   
+     * As diferentes categorias podem ser colocados em ordem   
+     * Exemplos: Faixa Etária, Escolaridade, Classe Social  
+
+2. **Quantitativas:** atributos numéricos   
+   - *Discretas*   
+     * Assume uma quantidade enumerável de valores   
+     * Exemplos: Número de Filhos, Quantidade de Erros na Prova, Número de Livros Lidos em 2023 
+   - *Contínuas*  
+     * Assume uma quantidade não enumerável de valores   
+     * Exemplos: Altura, Pressão, Tempo  
+
+---
+
+## Tabelas de Frequências
+
+- Tabela contendo frequências absolutas e/ou relativas de cada categoria de uma *variável qualitativa*. 
+
+```{r tab_indicativa, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+require(dplyr)
+
+tab_genero <- filmes_pixar %>% 
+         group_by(genero) %>% 
+         summarise(Freq = n()) %>% 
+         mutate(FreqRel = round(Freq/sum(Freq), 3)) %>% 
+         rename(Gênero = genero)
+
+tab_genero %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+    bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) c("striped", "hold_position") 
+    else NULL) %>% 
+  row_spec(0, bold = TRUE,
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
+
+Pode-se afirmar que nesta amostra, o gênero predominante é aventura (34,7% dos filmes).
+
+- Para *variáveis qualitativas ordinais*, pode-se também considerar as frequências relativas acumuladas. 
+
+- Também é possível fazer tabela de frequências para *variáveis quantitativas discretas*. Para algumas variáveis, como a duração do filme, poucos valores se repetem. Nesses casos, é comum agrupar os valores dessas variáveis em classes e calcular a frequência de cada classe. 
+
+```{r tab_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab_duracao <- filmes_pixar %>%
+        mutate(Faixas_duração = factor(
+          case_when(duracao <= 90  ~ "80 |-- 90", duracao <= 100 ~ "90 |-- 100",
+          duracao <= 110 ~ "101 |-- 110", TRUE          ~ "111 |-- 120"),
+          levels = c("80 |-- 90", "90 |-- 100", "101 |-- 110", "111 |-- 120"), 
+          ordered = TRUE)) %>%
+        group_by(Faixas_duração) %>%
+        summarise(Freq = n()) %>%
+        mutate(FreqRel = round(Freq / sum(Freq), 3)) %>%
+        arrange(Faixas_duração)
+
+tab_duracao %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+    bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) c("striped", "hold_position") 
+    else NULL) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
+
+- Por fim, para *variáveis quantitativas contínuas*, também podemos usar  
+
+```{r tab_bilheteria, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab_bilheteria <- filmes_pixar %>%
+        mutate(Bilheteria_Mundial = ifelse(bilheteria_mundial <= 500000000, 
+              "300 milhões |-- 500 milhões", ifelse(bilheteria_mundial <= 700000000,                              "500 milhões |-- 700 milhões", ifelse(bilheteria_mundial <= 900000000, 
+              "700 milhões |-- 900 milhões", ifelse(bilheteria_mundial <= 1100000000, 
+              "900 milhões |-- 1.1 bilhão", "1.1 bilhão |-- 1.3 bilhão"))))) %>%
+        group_by(Bilheteria_Mundial) %>% 
+        summarise(Freq = n()) %>% 
+        mutate(FreqRel = Freq / sum(Freq),  
+              FreqRel = round(FreqRel, 3),  
+              FreqAcum = cumsum(FreqRel)) %>%
+        mutate(FreqAcum = ifelse(row_number() == n(), 1, FreqAcum)) 
+
+tab_bilheteria %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+    bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) c("striped", "hold_position") 
+    else NULL) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")  
+``` 
+
+- A quantidade e o tamanho das faixas é arbitrário. Contudo, um número muito pequeno de classes pode ocasionar perda de informação, enquanto um número muito grande de classes pode prejudicar o objetivo de resumir os dados.  
+
+- Por fim, as faixas podem ter tamanhos diferentes. No entanto, a análise dessas classes deve ser feito com cuidado. A escolha de classes com tamanhos diferentes normalmente só é feita quando há poucas observações em algum intervalo. 
+
+---

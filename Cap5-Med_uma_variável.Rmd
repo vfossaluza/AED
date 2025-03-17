@@ -1,0 +1,240 @@
+# Medidas de uma variável {#medidas_uma_variavel_5}
+
+
+## Medidas de posição ou de Tendência Central
+
+- Utilidadas para resumir variáveis quantitativas.  
+- Dão a ideia do lugar da reta estão concentrados os valores de uma variável. 
+
+
+### Média (Aritmética)
+
+- A medida mais utilizada é a **média**, definida por $$\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^n x_i = \dfrac{x_1+x_2+\ldots+x_n}{n}~.$$  
+  *Exemplo - Duração dos filmes da pixar: $\bar{x} = \frac{81+95+92+92+100+115+117+111+98+96+103+106+93+104+95+93+97+102+105+118+100+102+100}{23}=100.65$
+
+- Alternativamente, quando há empates (isto é, $n_1$ observações do valor $x_1$, $n_2$ observações do valor $x_2$, e assim por diante), podemos calcular a média por $$\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^k n_i~x_i = \sum_{i=1}^k f_i~x_i = \frac{n_1~x_1+n_2~x_2+\ldots+n_k~x_k}{n}~,$$ em que $k\leq n$ é a quantidade de valores diferentes assumidos pela variável $X$ e $\sum n_i = n$. Ainda pode-se considerar para o cálculo da média a frequência relativa $f_i = n_i/n$.  
+
+- Quando os dados estão agrupados em classes, podemos calcular um valor aproximado da média fazendo $$\displaystyle \bar{x} \approx \sum_{i=1}^k f_i~\bar{x}_i~,$$ em que $\bar{x}_i$ é o valor médio da *i*-ésima classe e $f_i$ é a frequência relativa daquela classe.  
+
+### Mediana 
+
+- A **mediana** é o valor central dos dados. Pode ser calculada por 
+
+$$
+\displaystyle md(x) = 
+\left\{
+  \begin{array}{ll}
+    x_{\left(\frac{n+1}{2}\right)} ,&  ~\text{se } n \text{ é ímpar} \\ 
+    \dfrac{x_{\left(\frac{n}{2}\right)}+x_{\left(\frac{n}{2}+1\right)}}{2} ,&  ~\text{se } n \text{ é par}
+  \end{array}
+\right.
+$$
+
+em que $x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}$, $x_{(1)}$ é o menor valor observado na amostra, $x_{(2)}$ é o segundo menor valor, $\ldots$, $x_{(n)}$ é o maior valor na amostra. $x_{(1)}, x_{(2)}, \ldots, x_{(n)}$ são chamados *estatísticas de ordem*.  
+  * Para a duração do filme: $md(x) = 1.725$
+  
+- **Observação:** a mediana é uma medida mais robusta que a média pois é menos afetada por valores extremos.
+
+
+### Moda 
+
+- A **moda** é o valor que mais frequente na amostra.  
+- Em alguns casos, pode existir mais de uma moda.  
+  * Para a duração do filme: $mo(x) = 100$
+  
+---
+
+## Medidas de Dispersão
+
+- Na maioria dos casos, somente as medidas de posição trazem pouca informação sobre a variável de interesse.  
+- Por exemplo, considere as seguintes amostras de tamanho 3: $(1,5,9)$, $(4,5,6)$ e $(5,5,5)$. Em todas elas, $\bar{x}=md(x)=5$. Contudo, na primeira os valores estão mais "espalhados", enquanto na última os valores estão mais "concentrados".  
+- Para descrever melhor esta diferença, podemos usar medidas que nos informem o quanto os dados estão "espalhados", ou como é a dispersão dos dados.  
+
+###	Variância
+
+- A variância é a média dos desvios ao quadrado das observações com relação à média,  dada por $$var(x) = \frac{1}{n}\sum_{i=1}^n \left(x_i - \bar{x}\right)^2.$$  
+  * No exemplo acima:  
+    1. para a Amostra 1: $\dfrac{(1-5)^2+(5-5)^2+(9-5)^2}{3}=\dfrac{16+0+16}{3}=10.666$;
+    2. para a Amostra 2: $\dfrac{(4-5)^2+(5-5)^2+(6-5)^2}{3}=\dfrac{1+0+1}{3}=0.666$;
+    3. para a Amostra 3: $\dfrac{(5-5)^2+(5-5)^2+(5-5)^2}{3}=0$.
+  * No exemplo da duração do filme: $var(x) = 73$
+
+###	Desvio padrão
+
+- A variância está em uma escala diferente da variável observada. Uma forma de contornar isso é calcular sua raiz. A medida resultante é chamada de desvio padrão: $dp(x) = \sqrt{var(x)}$     
+  * No exemplo acima:  
+    1. para a Amostra 1: $\sqrt{\dfrac{(1-5)^2+(5-5)^2+(9-5)^2}{3}}=\sqrt{32/3}=3.265986$;
+    2. para a Amostra 2: $\sqrt{\dfrac{(4-5)^2+(5-5)^2+(6-5)^2}{3}}=\sqrt{2/3}=0.8164966$;
+    3. para a Amostra 3: $\sqrt{\dfrac{(5-5)^2+(5-5)^2+(5-5)^2}{3}}=0$.
+  * No exemplo da duração do filme: $dp(x) = \sqrt{73}=8.54~m$
+
+###	Desvio médio ou absoluto
+
+- Outra medida de dispersão é o desvio médio (ou absoluto): $$dm(x) = \frac{1}{n}\sum_{i=1}^n \left|x_i - \bar{x}\right|.$$     
+  * No exemplo acima:  
+    1. para a Amostra 1: ${\dfrac{|1-5|+|5-5|+|9-5|}{3}}=\dfrac{8}{3} \approx 2.666$;
+    2. para a Amostra 2: ${\dfrac{|4-5|+|5-5|+|6-5|}{3}}=\dfrac{2}{3} \approx 0.666$;
+    3. para a Amostra 3: ${\dfrac{|5-5|+|5-5|+|5-5|}{3}}=0$.
+
+- O desvio médio, assim como o desvio padrão, representam "erros" médios ao aproximar os valores observados pela média.
+
+---
+
+## Medidas de ordem
+
+###	Quartis e quantis
+
+- Como vimos, a mediana é o valor que "divide ao meio" a amostra.  
+- De forma similar, podemos dividir a amostra em partes menores. Por exemplo, pode ser de interesse considerar os valores que dividem a amostra nos 5% menores valores, 10% menores, 20% e assim por diante.  
+- O *quantil* de ordem *p* ou *p*-quantil, $0 < p < 1$, é o valor $Q(p)$ tal que $100\cdot p~\%$ das
+observações sejam menores do que $Q(p)$.
+
+- Há diversas formas de definir os quantis amostrais (veja, por exemplo, a ajuda do R para a função *quantile*). Aqui, por simplicidade, vamos considerar a definição a seguir. 
+$$
+Q(p) =
+\left\{
+  \begin{array}{lll}
+    x_{(i)} & \text{se} & p = p_i = \frac{i - 0.5}{n}, \quad i = 1, \ldots, n \\
+    (1 - f_i) Q(p_i) + f_i Q(p_{i+1}) & \text{se} & p_i < p < p_{i+1} \\
+    x_{(1)} & \text{se} & 0 < p < p_1 \\
+    x_{(n)} & \text{se} & p_n < p < 1
+  \end{array}
+\right.
+$$
+
+          em que $f_i = \dfrac{p-p_i}{p_{i+1}-p_i}$.
+
+- Quando houver empates (valores iguais) na amostra, vamos considerar o maior $p_i$ entre as observações empatadas.
+          
+- Outros quantis podem ser calculados, como por exemplo,  
+  * $Q(0.5) = \left(1-\frac{0.5-0.45}{0.55-0.45}\right)Q(0.45)+\left(\frac{0.5-0.45}{0.55-0.45}\right)Q(0.55)=\frac{1}{2}\cdot 1.70 + \frac{1}{2}\cdot 1.75 = 1.725 = md(x)$
+  * $Q(0.83) = \left(1-\frac{0.83-0.75}{0.85-0.75}\right)Q(0.75)+\left(\frac{0.83-0.75}{0.85-0.75}\right)Q(0.85)=0.2\cdot 1.79 + 0.8\cdot 1.81 = 1.806$
+  * $Q(0.13) = \left(1-\frac{0.13-0.05}{0.25-0.05}\right)Q(0.05)+\left(\frac{0.13-0.05}{0.25-0.05}\right)Q(0.25)=0.6\cdot 1.50 + 0.4\cdot 1.60 = 1.54$
+  
+- Os quantis $Q(0.25)$, $Q(0.50)$ e $Q(0.75)$ são chamados de primeiro, segundo e terceiro **quartis** e são denotados por $q_1$, $q_2$ e $q_3$, respectivamente. Como já foi dito, $q_2 = md(x)$.  
+
+###	Distância (ou Amplitude) Interquartis
+
+- Outra medida de dispersão bastante utilizada é a *distância interquartis*, definida por $$d_Q = q_3 - q_1~.$$
+- A distância interquartis é a amplitude do intervalo que concentra 50% das observações centrais.  
+
+### Desvio Mediano Absoluto
+          
+- Como a mediana é uma medida mais robusta que a média, é possível estabelecer também uma medida de dispersão em termos de desvios em relação à mediana. Assim, defina o *desvio mediano absoluto* como $$dma(x) = md(|x_i - md(x)|)~.$$  
+
+### Amplitude
+
+- Distância entre o maior e o menos valor observado.
+$$\Delta = x_{(n)} - x_{(1)}$$
+  
+---
+
+## Medidas de assimetria 
+
+```{r assimetria_duracao, echo = FALSE, include = TRUE}
+require(ggplot2)
+
+hist <- filmes_pixar %>% 
+  ggplot() + theme_classic() + xlab("") +
+  ggtitle("Duração dos filmes da Pixar") +
+  geom_histogram(aes(duracao,after_stat(density)), 
+                 color="black", fill="deeppink", bins=5)
+
+box <- filmes_pixar %>% 
+  ggplot(aes(x="",y=duracao)) + theme_classic() + coord_flip() + 
+  xlab("") + ylab("") + 
+  geom_boxplot(color="black", fill="deeppink")  
+
+simA <- ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
+```
+
+```{r assimetria_bilheteria, echo = FALSE, include = TRUE}
+hist <- filmes_pixar %>% 
+  ggplot() + theme_classic() + xlab("") + 
+  ggtitle("Bilheteria Mundial dos filmes da Pixar") +
+  geom_histogram(aes(bilheteria_mundial,after_stat(density)), 
+                 color="black", fill="deeppink", bins=5)
+
+box <- filmes_pixar %>% 
+  ggplot(aes(x="",y=bilheteria_mundial)) + theme_classic() + coord_flip() + 
+  xlab("") + ylab("") + 
+  geom_boxplot(color="black", fill="deeppink")  
+
+simB <- ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
+```
+
+###	Coeficiente de Assimetria de Bowley
+
+$$B = \frac{(q_3-q_2)-(q_2-q_1)}{q_3-q_1} = \frac{(q_3-q_2)-(q_2-q_1)}{(q_3-q_2)+(q_2-q_1)} = \frac{q_3+q_1-2q_2}{q_3-q_1}$$
+
+###	Coeficiente de Assimetria de Pearson 1
+
+$$Sk_1 = \frac{\bar{x}-moda(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}$$
+  
+###	Coeficiente de Assimetria de Pearson 2
+
+$$Sk_2 = 3\cdot\frac{\bar{x}-md(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}$$
+  
+- Considere o ***k*-ésimo momento (central) amostral**, definido por $$m_k = \frac{1}{n}\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^k$$
+
+###	Coeficiente de Assimetria de Fisher-Pearson
+
+$$g_1 = m_3/m_2^{3/2}$$
+
+###	Coeficiente de Assimetria de Fisher-Pearson ajustado
+
+(pelo tamanho amostral)**:** $$g_2 = \frac{n\sqrt{n(n-1)}}{n-1}g1$$
+
+---
+
+## Calculo de medidas no R
+
+- Média: função mean()
+
+```{r media_5}
+media <- mean(c(10, 20, 30, 40, 50, 55, 60))
+```
+
+- Mediana: função median()
+
+```{r mediana_5}
+mediana <- median(c(10, 20, 30, 40, 50, 68))
+```
+
+- Moda: o R não possui uma função embutida para moda, porém podemos calcular dessa forma:
+
+```{r moda_5}
+dados <- c(1, 2, 2, 3, 3, 3, 4)
+
+frequencias <- table(dados)
+moda <- as.numeric(names(frequencias[frequencias == max(frequencias)]))
+```
+
+- Quartis: função quantile()
+
+```{r quartil_5}
+quartis <- quantile(c(10, 20, 30, 40, 50))
+```
+
+- Variância: função var()
+
+```{r var_5}
+dados <- c(10, 12, 23, 23, 16, 23, 21, 16)
+variancia <- var(dados)
+```
+
+- Desvio padrão: função sd()
+
+```{r dp_5}
+dados <- c(10, 12, 23, 23, 16, 23, 21, 16)
+desvio_padrao <- sd(dados)
+```
+
+- Desvio mediano absoluto: função´mad()
+
+```{r mad_5}
+dados <- c(10, 12, 23, 23, 16, 23, 21, 16)
+desvio_mediano_absoluto <- mad(dados)
+```
+
+---

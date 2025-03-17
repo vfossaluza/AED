@@ -1,0 +1,75 @@
+# Outros Gráficos (incompleto)
+
+---
+
+## Gráfico de bolhas:
+
+```{r}
+x <- c(10,20,15,20,30)
+y <- c( 1, 4, 5, 1, 5)
+z <- c(41,22,20,15,50)
+R <- c("A","A","A","A","B")
+C <- c(2,2,2,3,3)
+
+symbols(x=x,  y=y,
+        circles = z, 
+        inches = 0.35,
+        bg=C,
+        xlim=c(5,45),
+        ylim=c(0,6))
+
+text(x,y,R,cex=1.3)
+```
+
+---
+
+## Diferentes gráficos de barras
+
+### Barras agrupadas
+
+```{r}
+ano=c(rep(2022,12),rep(2023,12))
+mes=c(rep(1:12,2))
+vendas=rpois(24,15)
+m <- c('Jan','Fev','Mar','Abr','Mai','Jun',
+       'Jul','Ago','Set','Out','Nov','Dez')
+cores=c("deeppink3","pink")
+
+barplot(rbind(vendas[1:12],vendas[13:24]),
+        beside=T,names.arg = m, ylim=c(0,25),
+        col=cores,border=NA,ylab="Vendas")
+
+legend('topright',c('2022','2023'),
+       pch=15,col=cores,box.col=NA)
+```
+
+
+
+### Barras empilhadas
+
+### Barras 100% empilhadas
+
+---
+
+## Gráfico de velocímetro
+
+---
+
+## Gráfico mosaíco 
+
+---
+
+## Nuvem de palavras
+
+---
+
+## Configurações gráficas 
+
+### Cor de fundo
+### Imagem de fundo
+### Margens gráficas
+### Janelas multiplas 
+
+---
+
+## Exercício 

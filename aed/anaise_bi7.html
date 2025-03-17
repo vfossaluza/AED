@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Análise bivariada | Análise Exploratória de Dados</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Análise bivariada | Análise Exploratória de Dados" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Análise bivariada | Análise Exploratória de Dados" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Victor Fossaluza e Gabriela Scarpini" />
+
+
+<meta name="date" content="2025-03-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="modelos_graficos6.html"/>
+<link rel="next" href="medidas_duas_va.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#apresentação"><i class="fa fa-check"></i><b>1.1</b> Apresentação</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#programa"><i class="fa fa-check"></i><b>1.2</b> Programa</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#bibliografia"><i class="fa fa-check"></i><b>1.3</b> Bibliografia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html"><i class="fa fa-check"></i><b>2</b> Conceitos básicos de Análise Exploratória de Dados</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-significa-algo-ser-aleatório"><i class="fa fa-check"></i><b>2.1</b> O que significa algo ser “aleatório”?</a></li>
+<li class="chapter" data-level="2.2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-é-probabilidade"><i class="fa fa-check"></i><b>2.2</b> O que é Probabilidade?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2.1</b> Interpretações de Probabilidade</a></li>
+<li class="chapter" data-level="2.2.2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#comentários-sobre-probabilidade-e-aleatoriedade"><i class="fa fa-check"></i><b>2.2.2</b> Comentários sobre Probabilidade e Aleatoriedade</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-é-estatística"><i class="fa fa-check"></i><b>2.3</b> O que é Estatística?</a></li>
+<li class="chapter" data-level="2.4" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#método-científico"><i class="fa fa-check"></i><b>2.4</b> Método Científico</a></li>
+<li class="chapter" data-level="2.5" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#população-x-amostra-probabilidade-x-estatística"><i class="fa fa-check"></i><b>2.5</b> População X Amostra, Probabilidade X Estatística</a></li>
+<li class="chapter" data-level="2.6" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#estatística-descritiva"><i class="fa fa-check"></i><b>2.6</b> Estatística Descritiva</a></li>
+<li class="chapter" data-level="2.7" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#inferência-estatística"><i class="fa fa-check"></i><b>2.7</b> Inferência Estatística</a></li>
+<li class="chapter" data-level="2.8" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#aprendizado-estatístico"><i class="fa fa-check"></i><b>2.8</b> Aprendizado Estatístico</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="apresentacao_r.html"><a href="apresentacao_r.html"><i class="fa fa-check"></i><b>3</b> Apresentação à linguagem R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="apresentacao_r.html"><a href="apresentacao_r.html#como-instalar"><i class="fa fa-check"></i><b>3.1</b> Como instalar</a></li>
+<li class="chapter" data-level="3.2" data-path="apresentacao_r.html"><a href="apresentacao_r.html#comparação-com-outras-linguagens-estatísticas"><i class="fa fa-check"></i><b>3.2</b> Comparação com outras linguagens estatísticas</a></li>
+<li class="chapter" data-level="3.3" data-path="apresentacao_r.html"><a href="apresentacao_r.html#introdução-ao-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Introdução ao RMarkdown</a></li>
+<li class="chapter" data-level="3.4" data-path="apresentacao_r.html"><a href="apresentacao_r.html#operadores-básicos"><i class="fa fa-check"></i><b>3.4</b> Operadores Básicos</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentacao_r.html"><a href="apresentacao_r.html#estrutura-de-dados-em-r"><i class="fa fa-check"></i><b>3.5</b> Estrutura de Dados em R</a></li>
+<li class="chapter" data-level="3.6" data-path="apresentacao_r.html"><a href="apresentacao_r.html#estruturas-de-controle"><i class="fa fa-check"></i><b>3.6</b> Estruturas de controle</a></li>
+<li class="chapter" data-level="3.7" data-path="apresentacao_r.html"><a href="apresentacao_r.html#funções"><i class="fa fa-check"></i><b>3.7</b> Funções</a></li>
+<li class="chapter" data-level="3.8" data-path="apresentacao_r.html"><a href="apresentacao_r.html#funções-básicas-e-pacotes"><i class="fa fa-check"></i><b>3.8</b> Funções Básicas e Pacotes</a></li>
+<li class="chapter" data-level="3.9" data-path="apresentacao_r.html"><a href="apresentacao_r.html#exercícios"><i class="fa fa-check"></i><b>3.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dados_4.html"><a href="dados_4.html"><i class="fa fa-check"></i><b>4</b> Dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados_4.html"><a href="dados_4.html#processos-de-obtenção-importação-organização-e-transformação"><i class="fa fa-check"></i><b>4.1</b> Processos de obtenção, importação, organização e transformação</a></li>
+<li class="chapter" data-level="4.2" data-path="dados_4.html"><a href="dados_4.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>4.2</b> Tipos de Variáveis</a></li>
+<li class="chapter" data-level="4.3" data-path="dados_4.html"><a href="dados_4.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.3</b> Tabelas de Frequências</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html"><i class="fa fa-check"></i><b>5</b> Medidas de uma variável</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-posição-ou-de-tendência-central"><i class="fa fa-check"></i><b>5.1</b> Medidas de posição ou de Tendência Central</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#média-aritmética"><i class="fa fa-check"></i><b>5.1.1</b> Média (Aritmética)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#mediana"><i class="fa fa-check"></i><b>5.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="5.1.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#moda"><i class="fa fa-check"></i><b>5.1.3</b> Moda</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>5.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#variância"><i class="fa fa-check"></i><b>5.2.1</b> Variância</a></li>
+<li class="chapter" data-level="5.2.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-padrão"><i class="fa fa-check"></i><b>5.2.2</b> Desvio padrão</a></li>
+<li class="chapter" data-level="5.2.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-médio-ou-absoluto"><i class="fa fa-check"></i><b>5.2.3</b> Desvio médio ou absoluto</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-ordem"><i class="fa fa-check"></i><b>5.3</b> Medidas de ordem</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#quartis-e-quantis"><i class="fa fa-check"></i><b>5.3.1</b> Quartis e quantis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#distância-ou-amplitude-interquartis"><i class="fa fa-check"></i><b>5.3.2</b> Distância (ou Amplitude) Interquartis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-mediano-absoluto"><i class="fa fa-check"></i><b>5.3.3</b> Desvio Mediano Absoluto</a></li>
+<li class="chapter" data-level="5.3.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#amplitude"><i class="fa fa-check"></i><b>5.3.4</b> Amplitude</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-assimetria"><i class="fa fa-check"></i><b>5.4</b> Medidas de assimetria</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-bowley"><i class="fa fa-check"></i><b>5.4.1</b> Coeficiente de Assimetria de Bowley</a></li>
+<li class="chapter" data-level="5.4.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-1"><i class="fa fa-check"></i><b>5.4.2</b> Coeficiente de Assimetria de Pearson 1</a></li>
+<li class="chapter" data-level="5.4.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-2"><i class="fa fa-check"></i><b>5.4.3</b> Coeficiente de Assimetria de Pearson 2</a></li>
+<li class="chapter" data-level="5.4.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson"><i class="fa fa-check"></i><b>5.4.4</b> Coeficiente de Assimetria de Fisher-Pearson</a></li>
+<li class="chapter" data-level="5.4.5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson-ajustado"><i class="fa fa-check"></i><b>5.4.5</b> Coeficiente de Assimetria de Fisher-Pearson ajustado</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#calculo-de-medidas-no-r"><i class="fa fa-check"></i><b>5.5</b> Calculo de medidas no R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html"><i class="fa fa-check"></i><b>6</b> Modelos Gráficos</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-barras"><i class="fa fa-check"></i><b>6.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="6.2" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>6.2</b> Gráfico de Setores (Pizza)</a></li>
+<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a></li>
+<li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
+<li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
+<li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
+<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-1"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="anaise_bi7.html"><a href="anaise_bi7.html"><i class="fa fa-check"></i><b>7</b> Análise bivariada</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="anaise_bi7.html"><a href="anaise_bi7.html#duas-variáveis-categóricas"><i class="fa fa-check"></i><b>7.1</b> Duas variáveis categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html"><i class="fa fa-check"></i><b>8</b> Medidas de duas variáveis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#tabela-de-contingência-de-frequências"><i class="fa fa-check"></i><b>8.1</b> Tabela de Contingência (de Frequências)</a></li>
+<li class="chapter" data-level="8.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#correlação-amostral"><i class="fa fa-check"></i><b>8.2</b> Correlação amostral</a></li>
+<li class="chapter" data-level="8.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#qui-quadrado-de-pearson"><i class="fa fa-check"></i><b>8.3</b> Qui-Quadrado de Pearson</a></li>
+<li class="chapter" data-level="8.4" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-de-associação-baseadas-no-qui-quadrado"><i class="fa fa-check"></i><b>8.4</b> Medidas de Associação baseadas no Qui-Quadrado</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-contingência-de-pearson"><i class="fa fa-check"></i><b>8.4.1</b> Coeficiente de Contingência de Pearson</a></li>
+<li class="chapter" data-level="8.4.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-tcschupov"><i class="fa fa-check"></i><b>8.4.2</b> Coeficiente de Tcschupov</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#outras-medidas-de-associação"><i class="fa fa-check"></i><b>8.5</b> Outras Medidas de Associação</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#risco-atribuível"><i class="fa fa-check"></i><b>8.5.1</b> Risco Atribuível</a></li>
+<li class="chapter" data-level="8.5.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#risco-relativo"><i class="fa fa-check"></i><b>8.5.2</b> Risco Relativo</a></li>
+<li class="chapter" data-level="8.5.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#razão-de-chances-odds-ratio"><i class="fa fa-check"></i><b>8.5.3</b> Razão de Chances (“Odds Ratio”)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-para-testes-de-diagnóstico"><i class="fa fa-check"></i><b>8.6</b> Medidas para Testes de Diagnóstico</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#sensibilidade"><i class="fa fa-check"></i><b>8.6.1</b> Sensibilidade</a></li>
+<li class="chapter" data-level="8.6.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#especificidade"><i class="fa fa-check"></i><b>8.6.2</b> Especificidade</a></li>
+<li class="chapter" data-level="8.6.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#falso-positivo"><i class="fa fa-check"></i><b>8.6.3</b> Falso Positivo</a></li>
+<li class="chapter" data-level="8.6.4" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#falso-negativo"><i class="fa fa-check"></i><b>8.6.4</b> Falso Negativo</a></li>
+<li class="chapter" data-level="8.6.5" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#valor-preditivo-positivo"><i class="fa fa-check"></i><b>8.6.5</b> Valor Preditivo Positivo</a></li>
+<li class="chapter" data-level="8.6.6" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#valor-preditivo-negativo"><i class="fa fa-check"></i><b>8.6.6</b> Valor Preditivo Negativo</a></li>
+<li class="chapter" data-level="8.6.7" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#acurácia"><i class="fa fa-check"></i><b>8.6.7</b> Acurácia</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>9</b> Respostas dos exercícios</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-3"><i class="fa fa-check"></i><b>9.1</b> Capítulo 3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html"><i class="fa fa-check"></i><b>10</b> Outros Gráficos (incompleto)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-de-bolhas"><i class="fa fa-check"></i><b>10.1</b> Gráfico de bolhas:</a></li>
+<li class="chapter" data-level="10.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#diferentes-gráficos-de-barras"><i class="fa fa-check"></i><b>10.2</b> Diferentes gráficos de barras</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-agrupadas"><i class="fa fa-check"></i><b>10.2.1</b> Barras agrupadas</a></li>
+<li class="chapter" data-level="10.2.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-empilhadas"><i class="fa fa-check"></i><b>10.2.2</b> Barras empilhadas</a></li>
+<li class="chapter" data-level="10.2.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-100-empilhadas"><i class="fa fa-check"></i><b>10.2.3</b> Barras 100% empilhadas</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-de-velocímetro"><i class="fa fa-check"></i><b>10.3</b> Gráfico de velocímetro</a></li>
+<li class="chapter" data-level="10.4" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-mosaíco"><i class="fa fa-check"></i><b>10.4</b> Gráfico mosaíco</a></li>
+<li class="chapter" data-level="10.5" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#nuvem-de-palavras"><i class="fa fa-check"></i><b>10.5</b> Nuvem de palavras</a></li>
+<li class="chapter" data-level="10.6" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#configurações-gráficas"><i class="fa fa-check"></i><b>10.6</b> Configurações gráficas</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#cor-de-fundo"><i class="fa fa-check"></i><b>10.6.1</b> Cor de fundo</a></li>
+<li class="chapter" data-level="10.6.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#imagem-de-fundo"><i class="fa fa-check"></i><b>10.6.2</b> Imagem de fundo</a></li>
+<li class="chapter" data-level="10.6.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#margens-gráficas"><i class="fa fa-check"></i><b>10.6.3</b> Margens gráficas</a></li>
+<li class="chapter" data-level="10.6.4" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#janelas-multiplas"><i class="fa fa-check"></i><b>10.6.4</b> Janelas multiplas</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#exercício"><i class="fa fa-check"></i><b>10.7</b> Exercício</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html"><i class="fa fa-check"></i><b>11</b> Regressão linear (incompleto)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html#estimar-a-e-b"><i class="fa fa-check"></i><b>11.1</b> Estimar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise Exploratória de Dados</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anaise_bi7" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Análise bivariada<a href="anaise_bi7.html#anaise_bi7" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li><p>Considere que o interesse agora é estudar a relação entre variáveis. Se não há associação entre duas ou mais variáveis, dizemos que elas são independentes.</p></li>
+<li><p><strong>Exemplo:</strong> suponha que deseja-se estudar se a cor da roupa (1: clara, 0: escura) está associado com gostar de basquete (1: sim, 0: não). Perguntei para 10 alunos da turma e os dados estão apresentados abaixo</p></li>
+</ul>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="anaise_bi7.html#cb147-1" tabindex="-1"></a>dados_cap7 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Camisa=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb147-2"><a href="anaise_bi7.html#cb147-2" tabindex="-1"></a>                <span class="at">Basquete=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span></code></pre></div>
+<div id="duas-variáveis-categóricas" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Duas variáveis categóricas<a href="anaise_bi7.html#duas-variáveis-categóricas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Tabela de Contingência (de Frequências)</strong></p>
+<ul>
+<li>Para variáveis categóricas, vamos primeiramente considerar tabelas de frequências.</li>
+</ul>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="anaise_bi7.html#cb148-1" tabindex="-1"></a><span class="co"># R base</span></span>
+<span id="cb148-2"><a href="anaise_bi7.html#cb148-2" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">table</span>(dados_cap7<span class="sc">$</span>Camisa,dados_cap7<span class="sc">$</span>Basquete)</span>
+<span id="cb148-3"><a href="anaise_bi7.html#cb148-3" tabindex="-1"></a>tab1</span></code></pre></div>
+<pre><code>##    
+##     0 1
+##   0 4 1
+##   1 2 3</code></pre>
+<ul>
+<li><p>Lembre-se que podemos pensam em independência com relação à distribuição conjunta ou à distribuição condicional.</p></li>
+<li><p>Se o objetivo é estudar a distribuição conjunta, podemos considerar as frequências relativas ao tamanho total da amostra observada.</p></li>
+</ul>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="anaise_bi7.html#cb150-1" tabindex="-1"></a><span class="co"># Tidyverse</span></span>
+<span id="cb150-2"><a href="anaise_bi7.html#cb150-2" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span></code></pre></div>
+<pre><code>## Carregando pacotes exigidos: gtsummary</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="anaise_bi7.html#cb152-1" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb152-2"><a href="anaise_bi7.html#cb152-2" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div id="jhqqhfttnf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jhqqhfttnf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jhqqhfttnf thead, #jhqqhfttnf tbody, #jhqqhfttnf tfoot, #jhqqhfttnf tr, #jhqqhfttnf td, #jhqqhfttnf th {
+  border-style: none;
+}
+
+#jhqqhfttnf p {
+  margin: 0;
+  padding: 0;
+}
+
+#jhqqhfttnf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jhqqhfttnf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jhqqhfttnf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jhqqhfttnf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jhqqhfttnf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jhqqhfttnf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jhqqhfttnf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jhqqhfttnf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jhqqhfttnf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jhqqhfttnf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jhqqhfttnf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jhqqhfttnf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jhqqhfttnf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jhqqhfttnf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jhqqhfttnf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhqqhfttnf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jhqqhfttnf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jhqqhfttnf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jhqqhfttnf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhqqhfttnf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jhqqhfttnf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhqqhfttnf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jhqqhfttnf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhqqhfttnf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jhqqhfttnf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jhqqhfttnf .gt_left {
+  text-align: left;
+}
+
+#jhqqhfttnf .gt_center {
+  text-align: center;
+}
+
+#jhqqhfttnf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jhqqhfttnf .gt_font_normal {
+  font-weight: normal;
+}
+
+#jhqqhfttnf .gt_font_bold {
+  font-weight: bold;
+}
+
+#jhqqhfttnf .gt_font_italic {
+  font-style: italic;
+}
+
+#jhqqhfttnf .gt_super {
+  font-size: 65%;
+}
+
+#jhqqhfttnf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jhqqhfttnf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jhqqhfttnf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jhqqhfttnf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jhqqhfttnf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jhqqhfttnf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jhqqhfttnf .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id=""></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="&lt;strong&gt;Basquete&lt;/strong&gt;">
+        <span class="gt_column_spanner"><strong>Basquete</strong></span>
+      </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="&lt;strong&gt;Total&lt;/strong&gt;"><strong>Total</strong></th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="0">0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="1">1</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Camisa</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="stat_1" class="gt_row gt_center">4 (40%)</td>
+<td headers="stat_2" class="gt_row gt_center">1 (10%)</td>
+<td headers="stat_0" class="gt_row gt_center">5 (50%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="stat_1" class="gt_row gt_center">2 (20%)</td>
+<td headers="stat_2" class="gt_row gt_center">3 (30%)</td>
+<td headers="stat_0" class="gt_row gt_center">5 (50%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Total</td>
+<td headers="stat_1" class="gt_row gt_center">6 (60%)</td>
+<td headers="stat_2" class="gt_row gt_center">4 (40%)</td>
+<td headers="stat_0" class="gt_row gt_center">10 (100%)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<ul>
+<li>Se o objetivo é estudar a distribuição condicional, podemos considerar as frequências relativas ao total das linhas ou das colunas. Pelo desenho de nosso estudo, eu fixei o total de cada cor da camisa, então a tabela abaixo é construída com relação ao total das linhas.</li>
+</ul>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="anaise_bi7.html#cb153-1" tabindex="-1"></a><span class="co"># Tidyverse com porcentagens das linhas</span></span>
+<span id="cb153-2"><a href="anaise_bi7.html#cb153-2" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb153-3"><a href="anaise_bi7.html#cb153-3" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div id="krlqmbineh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#krlqmbineh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#krlqmbineh thead, #krlqmbineh tbody, #krlqmbineh tfoot, #krlqmbineh tr, #krlqmbineh td, #krlqmbineh th {
+  border-style: none;
+}
+
+#krlqmbineh p {
+  margin: 0;
+  padding: 0;
+}
+
+#krlqmbineh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#krlqmbineh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#krlqmbineh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#krlqmbineh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#krlqmbineh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#krlqmbineh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#krlqmbineh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#krlqmbineh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#krlqmbineh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#krlqmbineh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#krlqmbineh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#krlqmbineh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#krlqmbineh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#krlqmbineh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#krlqmbineh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krlqmbineh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#krlqmbineh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#krlqmbineh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#krlqmbineh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krlqmbineh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#krlqmbineh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krlqmbineh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#krlqmbineh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krlqmbineh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#krlqmbineh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#krlqmbineh .gt_left {
+  text-align: left;
+}
+
+#krlqmbineh .gt_center {
+  text-align: center;
+}
+
+#krlqmbineh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#krlqmbineh .gt_font_normal {
+  font-weight: normal;
+}
+
+#krlqmbineh .gt_font_bold {
+  font-weight: bold;
+}
+
+#krlqmbineh .gt_font_italic {
+  font-style: italic;
+}
+
+#krlqmbineh .gt_super {
+  font-size: 65%;
+}
+
+#krlqmbineh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#krlqmbineh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#krlqmbineh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#krlqmbineh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#krlqmbineh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#krlqmbineh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#krlqmbineh .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id=""></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="&lt;strong&gt;Basquete&lt;/strong&gt;">
+        <span class="gt_column_spanner"><strong>Basquete</strong></span>
+      </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="&lt;strong&gt;Total&lt;/strong&gt;"><strong>Total</strong></th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="0">0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="1">1</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Camisa</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    0</td>
+<td headers="stat_1" class="gt_row gt_center">4 (80%)</td>
+<td headers="stat_2" class="gt_row gt_center">1 (20%)</td>
+<td headers="stat_0" class="gt_row gt_center">5 (100%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    1</td>
+<td headers="stat_1" class="gt_row gt_center">2 (40%)</td>
+<td headers="stat_2" class="gt_row gt_center">3 (60%)</td>
+<td headers="stat_0" class="gt_row gt_center">5 (100%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Total</td>
+<td headers="stat_1" class="gt_row gt_center">6 (60%)</td>
+<td headers="stat_2" class="gt_row gt_center">4 (40%)</td>
+<td headers="stat_0" class="gt_row gt_center">10 (100%)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><strong>Correlação amostral</strong></p>
+<ul>
+<li><p>Podemos estimar a <span class="math inline">\(E[xY]\)</span> como <span class="math inline">\(\displaystyle \frac{1}{n}\sum_{i=1}^n x_i~y_i\)</span>.</p></li>
+<li><p>Assim, a <span class="math inline">\(COV(X,Y)\)</span> pode ser estimada por <span class="math inline">\(\displaystyle cov = \frac{1}{n}\sum_{i=1}^n x_i~y_i - \bar{x}~\bar{y}\)</span>.</p></li>
+<li><p>Analogamente, a correção amostral é <span class="math display">\[cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.\]</span></p></li>
+<li><p>No exemplo:</p></li>
+</ul>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="anaise_bi7.html#cb154-1" tabindex="-1"></a><span class="fu">cor</span>(dados_cap7<span class="sc">$</span>Camisa,dados_cap7<span class="sc">$</span>Basquete)</span></code></pre></div>
+<pre><code>## [1] 0.4082483</code></pre>
+<p><strong>Qui-Quadrado de Pearson</strong></p>
+<ul>
+<li><p>Sejam <span class="math inline">\(o_{ij}\)</span> as frequências observadas na <em>i</em>-ésima linha e <em>j</em>-ésima coluna da tabela, <span class="math inline">\(o_{i.}\)</span> o total observado na linha <em>i</em> e <span class="math inline">\(o_{.j}\)</span> o total observado na coluna <em>j</em>. Sob a hipótese de independência, espera que o valor observado em cada casela da tabela seja <span class="math inline">\(\displaystyle e_{ij} = \frac{o_{i.}~o_{.j}}{n}\)</span>.</p></li>
+<li><p>A estatística de Qui-Quadrado é dada por:
+<span class="math display">\[Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}~.\]</span></p></li>
+<li><p>No exemplo:</p></li>
+</ul>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="anaise_bi7.html#cb156-1" tabindex="-1"></a>chi2 <span class="ot">=</span> <span class="fu">chisq.test</span>(tab1)<span class="sc">$</span>statistic</span>
+<span id="cb156-2"><a href="anaise_bi7.html#cb156-2" tabindex="-1"></a>chi2</span></code></pre></div>
+<pre><code>## X-squared 
+## 0.4166667</code></pre>
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="modelos_graficos6.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="medidas_duas_va.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/Cap7-Análise_bivariada.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["AED.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

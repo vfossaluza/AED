@@ -1,0 +1,75 @@
+--- 
+title: "Análise Exploratória de Dados"
+author: "Victor Fossaluza e Gabriela Scarpini"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+always_allow_html: true
+---
+
+```{r Config, include=FALSE, echo=FALSE, }
+knitr::opts_chunk$set(echo=TRUE, fig.align = 'center', cache=TRUE)
+require(tidyverse)
+require(kableExtra)
+require(dplyr)
+require(webshot)
+```
+
+
+# Introdução {#intro}
+
+## Apresentação
+
+Esse material está sendo desenvolvido para apoiar as aulas de Análise Exploratória de Dados. O objetivo principal da apostila é auxiliar os estudantes na compreensão dos conceitos teóricos, com capítulos curtos e por meio de exercícios ao final de cada capítulo.
+
+---
+
+## Programa
+
+1. A profissão de Estatística. A Estatística como metodologia de todas as ciências experimentais. O mercado de trabalho. O perfil profissional do Estatístico. A Estatística acadêmica: pós-graduação e pesquisa.
+2. Apresentação de problemas reais analisados no CEA – Centro de Estatística Aplicada da USP, com ênfase na análise descritiva dos dados. Conclusões dos estudos.
+3. Estatística descritiva e inferência estatística, tipos de dados, bancos de dados, ordem de grandeza, precisão e arredondamento de dados quantitativos, proporções e porcentagens, taxas e números índices, sugestões para construção e apresentação de gráficos e tabelas.
+4. Representação gráfica e tabular da distribuição de dados: tabelas de frequências, gráficos de barras e do tipo “torta”, histogramas, densidade suavizada e função de distribuição empírica.
+5. Medidas-resumo: medidas de posição, de dispersão, de assimetria e curtose, gráficos do tipo boxplot.
+6. Modelos para distribuições de frequências: gráficos de probabilidade.
+7. Associação entre variáveis qualitativas: tabelas de contingência de dupla entrada, coeficientes de associação, sensibilidade e especificidade, risco relativo, razão de chances, tabelas de contingência de múltiplas entradas.
+8. Associação entre variáveis quantitativas: gráficos de dispersão, covariância, correlação linear, matriz de covariâncias, matriz de correlações.
+9. Associação entre uma variável quantitativa e uma variável qualitativa: homogeneidade de distribuições, gráficos de médias, gráficos de perfis.
+10. Outros tópicos: elaboração de relatórios técnicos, uso do aplicativo R, dashboards.
+
+---
+
+## Bibliografia
+
+- Damiani, A., Milz, B., Lente, C., Falbel, D., Correa, F., Trecenti, J., Luduvice, N., Lacerda, T., Amorim, W. Ciência de Dados em R, Curso-R [link](https://livro.curso-r.com/)
+
+- Peng, R.D. Exploratory Data Analysis with R, Leanpub. [link](https://bookdown.org/rdpeng/exdata/)
+
+- Mayer, F.P, Bonat, W.H., Zeviani, W.M., Krainski, E.T., Ribeiro Jr, P.J. Estatística Computacional com R. [link](http://cursos.leg.ufpr.br/ecr/index.html)
+
+- Grolemund, G. Wickham, H. R for Data Science. [link](https://r4ds.had.co.nz/index.html)
+
+-Chang, W. R Graphics Cookbook, 2nd edition. [link](Chang, W. R Graphics Cookbook, 2nd edition.)
+
+- Grolemund, G. Hands-On Programming with R. [link](https://jjallaire.github.io/hopr/)
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+---
+
+

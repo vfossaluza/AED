@@ -1,0 +1,569 @@
+# Apresentação à linguagem R {#apresentacao_r}
+
+  O R é uma linguagem de programação amplamente utilizada para análise de dados, cálculo estatísticos e visualização de dados. Além disso, o R tem uma enorme coleção de pacotes que ampliam suas funcionalidades, usaremos alguns durante o nosso estudo.
+O RStudio é uma interface gráfica para a linguagem de programação R. Ele torna o R mais fácil de usar e fornece algumas funcionalidades úteis.
+
+---
+
+## Como instalar
+
+  Para instalar o R e o R-Studio basta seguir as instruções [aqui](https://livro.curso-r.com/1-1-instalacao-do-r.html) e [aqui](https://livro.curso-r.com/1-2-instalacao-do-rstudio.html)
+
+---
+
+## Comparação com outras linguagens estatísticas
+
+Diferente de outras linguagens de programação, o R foi desenvolvido especificamente para a área de estatística, sendo usado na análise de dados e modelagem. Por isso, essa linguagem possui uma enorme quantidade de pacotes voltados para visualização e análise de dados (alguns exemplos são o ggplot2, dplyr, caret).
+
+---
+
+## Introdução ao RMarkdown
+
+Na disciplina de Análise Exploratória de Dados, usaremos somente o RMarkdown, uma ferramenta que nos permite escrever textos e executar códigos em R.
+
+Para criar um arquivo em RMarrkdown clique em *File > New File > R Markdown*. Preencha as informações iniciais, como o título do documento e o autor e por fim escolha o tipo de saída, como PDF, HTML ou Word. 
+
+- **Estrutura de um Arquivo RMarkdown**
+
+Um arquivo .Rmd tem a seguinte estrutura:
+
+1. Cabeçalho YAML, que define as configurações do documento.
+  ---
+  title: "Introdução ao RMarkdown"
+  author: "Seu Nome"
+  date: "__/__/____"
+  output: html_document
+  ---
+
+2. Texto formatado, que usa a sintaxe Markdown para formatação de texto, por exemplo:
+  - "# Título 1" para criar títulos de nível 1.
+  - Para destacar: *Texto em itálico* ou **Texto em negrito**.
+  
+3. Blocos de códigos (chunks), que são delimitados por três crases (```) e é onde você pode escrever e executar os comandos em R. Eles permitem integrar o código diretamente ao documento, gerando tabelas, gráficos, etc. Um atalho para cria-lo é com CTRL+ALT+I.
+
+```{r, nome_do_chunk}
+# seu código R.
+```
+
+---
+
+## Operadores Básicos
+
+- **Operadores de atribuição:**
+
+Em R usamos os operadores de atribuição para atribuir valores a variáveis. Para fazer isso podemos usar <-, -> e =.
+
+```{r atribuição}
+a <- 5 # armazena o valor 5 dentro da variável "a"
+a
+
+10 -> b # armazena o valor 10 dentro da variável "b"
+b
+
+c = 7 # armazena o valor 7 dentro da variável "c"
+c
+```
+
+Mesmo sendo possível usar diferentes operadores de atribuição, o padrão costuma ser feito com <-. Para isso, podemos usar o atalho ALT+-.
+
+---
+
+- **Operadores aritméticos:**
+
+Para realizar operações matemáticas básicas, usamos:
+
+```{r operações}
+# Adição: "+"
+resultado1 <- 7 + 3
+
+# Subtração: "-"
+resultado2 <- 50 - 5
+
+# Multiplicação: "*"
+resultado3 <- 6 * 7  # 42
+
+# Divisão: "/"
+resultado4 <- 17 / 3
+
+# Exponenciação: "^" ou "**"
+resultado5 <- 2 ^ 4 
+resultado6 <- 3 ** 2
+
+# Resto da divisão: "%%"
+resultado7 <- 10 %% 3 
+
+# Divisão inteira: "%/%"
+resultado8 <- 10 %/% 3
+```
+
+---
+
+- **Operadores de comparação:**
+
+Usamos os operadores de comparação para comparar dois valores, sendo retorado um valor lógico: TRUE ou FALSE, dependendo do resultado da comparação.
+
+```{r comparação}
+# Igualdade: "=="
+3 == 3 # retorna TRUE
+3 == 4 # retorna FALSE
+
+# Desigualdade: "!="
+8 != 7 # retorna TRUE
+9 != 9 # retorna FALSE
+
+# Maior que: ">"
+7 > 3 # retorna TRUE
+
+# Menor que: "<"
+7 < 3 # retorna FALSE
+
+# Maior ou igual: ">="
+8 >= 10 # retorna FALSE
+
+# Menor ou igua: "<="
+9 <= 9 # retorna TRUE
+```
+
+---
+
+- **Valores especiais**
+
+Os valores especiais são usados para representar situações atípicas ou condições especiais nos dados, como valores ausentes, infinitos ou indefinidos.
+
+1. NA (Not Available): O valor NA representa dados ausentes ou não disponíveis.
+
+```{r NA}
+a <- NA
+
+b <- c(1, 2, 3)
+b[4] # valor fora dos límites de um vetor também é NA
+
+# Verifica se o valor é NA
+is.na(a)
+is.na(b)
+
+```
+
+2. NaN (Not a Number): um tipo especial de NA, usado para representar resultados indefinidos de operações matemáticas, como divisões por zero.
+
+```{r NaN}
+c <- 0/0
+d <- log(-1)
+
+# Verifica se o valor é NaN
+is.nan(c)
+is.nan(d)
+```
+
+3. Inf e -Inf (Infinito): Inf e -Inf representam valores infinitos. 
+
+```{r inf}
+f <- 2 / 0
+g <- -1 / 0  
+
+# Verifica se o valor é Inf
+is.infinite(f)  
+```
+
+4. NULL: representa a ausência de um valor ou objeto. Diferente do NA, que representa um valor ausente dentro do de um vetor ou lista, NULL indica que o objeto não existe.
+Usamos normalmente para iniciar variáveis ou para remover elementos de listas.
+
+```{r null}
+h <- NULL
+
+# Verifica se o valor é null
+is.null(h)
+```
+
+---
+
+## Estrutura de Dados em R
+
+- **Vetores**
+
+Os vetores são uma estrutura de dados que armazena uma sequência de elementos, sendo todos do mesmo tipo (número, caracteres ou valores lógicos).
+
+- Vetor numérico:
+
+```{r vetor_númerico}
+n <- c(11, 22, 33, 44)
+
+n[2] # Valor no índice 2 do vetor
+
+# Valor do vetor em um subconjunto de índices
+n[c(1,3)]
+n[c(3,1,4,2)]
+n[1:3] # valores do vetor do índice 1 ao índice 3
+
+# Multiplicação por escalar (multiplica cada elemento)
+2*n
+
+# Soma com escalar (soma cada elemento)
+v <- n+1
+
+# Soma de Vetores (soma cada termo de n com o elemento de mesmo índice de v)
+n+v
+
+# Produto de Vetores (termo a termo)
+n*v
+
+# Produto Escalar (multiplica os dois vetores da mesma posição e soma os resultados dessas multiplicações)
+n%*%v
+
+# Quando somamos vetores de tamanhos diferentes repetimos os elementos até o tamanho do maior
+n - c(1,2)
+
+# Caso o tamanho de um deles naõ seja multiplo do outro, o R solta uma mensagem de erro
+c(1,2,3) - n
+```
+
+- Vetor de Caracteres:
+
+```{r vetor_caractere}
+Nomes = c("Letícia","Mariana","Guilherme","Viviane",
+          "Ana","Otávio","Eduardo")
+
+
+# Identificando o tipo de vetor
+typeof(Nomes)
+class(Nomes)
+```
+
+- Vetor de valores lógicos:
+
+```{r}
+Feminino = c(TRUE,TRUE,FALSE,TRUE, TRUE, FALSE, FALSE)
+
+# Identificando o tipo de vetor
+class(Feminino)
+
+# TRUE e FALSE são tratados como 1 e 0
+sum(Feminino)
+```
+
+---
+
+- **Matrizes** 
+
+Matrizes é uma estrutura de dados que permite armazenar os dados de uma forma bidimensional, com linhas e colunas. Todos os elementos precisam ser do mesmo tipo.
+
+```{r matrizes}
+M <- matrix(c(1, 0, 0, 2, 1, 0, 3, 4, 1), ncol=3)
+
+# Dimensção da Matriz M
+dim(M) # linha, coluna
+
+# Acessando um elemento da matriz
+M[1, 2] # elemento da linha 1 e da coluna 2
+M[1,] # primeira linha (vetor)
+M[,3] # última coluna (vetor)
+
+# Determinante
+det(M)
+
+# Matriz Inversa
+IM <- solve(M)
+
+# Produto de Matrizes
+M%*%IM
+```
+
+---
+
+- **Listas**
+
+Diferente dos vetores, as listas podem armazenar objetos de tipos diferentes, sendo muito mais flexíveis. 
+
+```{r listas}
+lista <- list(
+  nome = "Letícia",
+  notas = c(8, 10, 9, 7, 6, 8),
+  matriz = matrix(1:4, nrow = 2)
+)
+
+# Acessando elementos de uma lista
+lista[[3]] # usando o índice
+lista$notas # usando o nome
+lista[c("nome", "notas")]
+
+# Modificando elementos
+lista$notas <- c(8, 9)
+```
+
+---
+
+- **Fatores**
+
+No R, a estrutura de dados fatores podem ser usadas para representar os dados categóricos, ou seja, variáveis que assumem valores diferentes, como níveis, podendo ser ordenados ou não.
+
+```{r fatores}
+nivel_educacional <- factor(c("Fundamental", "Médio", "Superior"))
+
+satisfacao <- factor(c("baixa", "alta", "média"),
+                     levels = c("baixa", "média", "alta"), # indica os níveis
+                     ordered = TRUE) # indica que a ordem dos níveis importa
+```
+
+Para trabalhar com fatores podemos usar o pacote forcats, que nos fornece funções para criar, modificar e organizar fatores de forma eficiente, sendo possível reordenar níveis com base em valores associados, agrupar categorias raras, ordenar níveis com base em suas frequências e trabalhar com dados categóricos de forma mais eficaz. Ainda nesse capítulo, falaremos mais sobre a instalação e o uso de pacotes dentro do RMarkdown.
+
+---
+
+- **Data Frames**
+
+Os Data Frames são uma das estruturas mais usadas para armazenar os dados em formato de tabela.
+Cada coluna é um vetor de mesmo tamanho e pode ter tipos diferentes (números, caracteres, fatores, etc.).
+
+```{r data_frames}
+df <- data.frame(
+  nome = c("Mariana", "Juliana", "Isabela"),
+  idade = c(19, 8, 14),
+  altura = c(1.68, 1.50, 1.55)
+)
+
+# Acessando colunas
+df$nome
+
+# Acessando elementos usando colchetes - o primeiro indíce refere-se as linhas e o segundo a # as colunas
+df[, "idade"]  
+df[1, ]        
+df[1, "altura"] 
+
+```
+
+Por mais que possa parecer com a estrutura de listas, o data frame é uma tabela de dados em formato de linhas e colunas. Diferente de uma lista, as suas colunas devem ter o mesmo número de elementos.
+
+Também podemos manipular os data frames no R usando banco de dados.
+
+```{r data_frame_banco}
+# Carregando o banco de dados 'iris'
+data("iris")
+
+# Vendo o conteúdo do banco de dados
+# iris # tudo
+head(iris) # primeiros elementos
+tail(iris) # últimos elementos
+
+# Dimensões do banco de bados
+dim(iris) # primeiro as linhas, depois as colunas
+nrow(iris) # número de linhas
+ncol(iris) # número de colunas
+
+# Nome das variáveis (colunas)
+names(iris)
+colnames(iris)
+
+# Nome das variáveis (linhas)
+rownames(iris)
+```
+
+---
+
+## Estruturas de controle
+
+As estruturas de controles são "instruções" que nos permiter criar lógica nos programas e determinar como as operações e funções serão excecutadas. 
+
+
+- **Condicionais**
+
+As estruturas condicionais permitem executar blocos de código com base em condições lógicas. Elas verificam se determinada condição é verdadeira ou falsa e excecutam diferentes blocos do código com base no resultado.
+
+O comando *if* avalia se uma condição é verdadeira (TRUE), caso seja o bloco de código associado é excecutado.
+
+```{r if}
+# if (condição) {
+  # Código executado se a condição for TRUE
+# }
+
+# Exemplo
+a <- 10
+if (a > 5) {
+  print("a é maior que 5")
+}
+```
+
+Quando é necessário tratar tanto o caso que a condição é verdadeira, quanto o caso em que é falsa, utilizamos *if - else*.
+
+```{r if-else}
+# if (condição) {
+  # Código executado se a condição for TRUE
+# } else {
+  # Código executado se a condição for FALSE
+# }
+
+# Exemplo
+
+b <- 3
+if (b > 5) {
+  print("b é maior que 5")
+} else {
+  print("b é menor ou igual a 5")
+}
+```
+
+Quando temos mais de uma condição usamos *if - else if - else*. 
+
+```{r if-elseif-else}
+# if (condição1) {
+  # Código executado se condição1 for TRUE
+# } else if (condição2) {
+  # Código executado se condição1 for falsa e condição2 for TRUE
+# } else {
+  # Código executado se nenhuma das condições anteriores for TRUE
+# }
+
+# Exemplo
+c <- 0
+if (c > 0) {
+  print("c é positivo")
+} else if (c < 0) {
+  print("c é negativo")
+} else {
+  print("c é zero")
+}
+```
+
+Quando se trata de analisar vetores, podemos usar *ifelse*, que avalia cada elemento de vetor de maneira individual.
+
+```{r ifelse}
+# ifelse(condição, valor_se_verdadeiro, valor_se_falso)
+
+# Exemplo
+d <- c(-5, 0, 4, 9)
+resposta <- ifelse(d > 0, "positivo", "não positivo")
+print(resposta)
+```
+
+---
+
+- **Laços de repetição**
+
+Os laços de repetição (ou loops) em R nos permitem executar blocos de códigos múltipla vezes. Temos dois principais tipos: *for* e *while*.
+
+O *for* é um laço de iteração, usado para iterar sobre uma sequência, como vetores, listas, etc. 
+
+```{r for}
+# for (variável in sequência) {
+  # Código a ser executado
+# }
+
+# Exemplo
+for (i in 1:5) { 
+  print(paste("O quadrado de", i, "é", i^2))
+}
+```
+
+No exemplo acima a variável "i" assume o valor de cada número da sequência em cada iteração, ou seja, i assume a sequência de números de 1 a 5.
+
+O *while* é um laço condicional, ou seja, executa o bloco de código enquanto a condição determinada for verdadeira.
+
+```{r while}
+# while (condição) {
+  # Código a ser executado
+# }
+
+# Exemplo
+a <- 1
+while (a <= 5) {
+  print(a)
+  a <- a + 1
+}
+```
+
+O exemplo acima realiza uma contagem de 1 até 5. O valor da variável "a" começa em 1, a condição a <= 5 é verificada e enquanto ela for verdadeira o código dentro do laço é executado. A cada iteração o valor de x é impresso e incrementado 1. O loop finaliza assim que a se torna 6, ou seja, o momento em que a condição x<= 5 se torna falsa.
+
+É preciso tomar cuidado para que o *while* não se torne um loop infinito, ou seja, é necessário garantir que a condição imposta no *while* se torne falsa em algum momento.
+
+---
+
+## Funções
+
+As funções são blocos de código reutilizáveis que nos permitem executar tarefas específicas.
+A estrutura básica de uma função é:
+  - Nome da função;
+  - Argumentos (entrada que a função espera receber);
+  - Corpo da função (especifica o que a função faz);
+  - Valor de retorno (o que a função retorna após a execução).
+  
+```{r soma}
+soma <- function(a, b){
+  resultado <- a + b
+  return(resultado)
+  }
+
+# Testando a função 'soma'
+soma(7, 3)
+```
+
+Podemos criar funções utilizando estruturas de controle, para determinar o fluxo de execução do código.
+
+```{r fatorial}
+# Função que calcula o fatorial de um inteiro não negativo
+fatorial <- function(n){
+  if(n<0){
+    print("Número negativo! Digite um inteiro positivo!")
+    return()
+  }
+  f <- 1
+  while(n>1){
+    f <- f*n
+    n <- n-1
+  }
+  return(f)
+}
+
+# Testa a função 'fatorial'
+fatorial(4)
+# Teste para um número negativo
+fatorial(-1)
+```
+
+Podemos criar também função com valores padrões, atribuindo valores aos argumentos. Dessa forma, se o usuário não fornecer um valor ao chamar a função, o valor padrão é utilizado.
+
+```{r arg_padrao}
+subtracao <- function(a, b = 1) {
+  resultado <- a - b
+  return(resultado)
+}
+
+# Testando a função 'subtracao'
+subtracao(7, 2) # com os dois argumentos
+subtracao(5) # usando o argumento padrão para "b"
+```
+
+---
+
+## Funções Básicas e Pacotes
+
+As funções básicas são aquelas já incorporadas na linguagem, que não requerem pacotes adicionais. Alguns exemplos são:
+- 'mean()' para calcular a média de um vetor
+- 'sd()' para o desvio padrão.
+- 'sum()' para somar os elementos de um vetor.
+- 'prod()' – Multiplica todos os elementos de um vetor.
+
+Já os pacotes são coleções de funções que estendem a funcionalidade do R, permitindo a realização de análises mais específicas. Os pacotes que usaremos nessa apostila são: ggplot2, dplyr, tdyr, forcats, tibble
+
+Pacotes podem ser instalados usando `install.packages("nome_do_pacote")` e carregados com `library(nome_do_pacote)`.
+
+---
+
+## Exercícios
+
+1) Crie dois vetores de números inteiros: vetor1 e vetor2, ambos com a mesma quantidade de elementos. Depois realize as seguintes operações:
+  a. some os dois vetores.
+  b. subtraia o vetor 1 do vetor2.
+  c. multiplique os dois vetores, elemento por elemento.
+
+2) Crie duas matrizes de dimensões 3x3. Depois realize as seguintes operações:
+  a. some as duas matrizes.
+  b. subtraia a segunda matriz da primeira.
+  c. multiplique as duas matrizes.
+
+3. Crie um data.frame chamado alunos com três colunas: Nome, Idade e Nota. Preencha o data.frame com pelo menos 5 registros. Em seguida,  crie uma nova coluna chamada Aprovado, que será TRUE se a Nota for maior ou igual a 5 e FALSE caso contrário.
+
+4) Escreva uma função que retorna uma matriz "E" em que cada elemento é o valor "b" elevado a cada elemento da matriz M. Como padrão, b=e.
+
+5) Escreva uma função que recebe dois parâmetros: base e altura, e retorna a área de um triângulo.
+
+6) Escreva uma que recebe um vetor de números e retorna uma lista com a quantidade de números positivos e a quantidade de números negativos no vetor.
+
+---

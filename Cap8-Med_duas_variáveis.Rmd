@@ -1,0 +1,188 @@
+# Medidas de duas variáveis {#medidas_duas_va}
+
+##	Tabela de Contingência (de Frequências)
+
+- Para variáveis categóricas, vamos primeiramente considerar tabelas de frequências.
+
+```{r tabela_R_base7}
+# R base
+tab1 <- table(dados_cap7$Camisa,dados_cap7$Basquete)
+tab1
+```
+
+- Lembre-se que podemos pensam em independência com relação à distribuição conjunta ou à distribuição condicional.
+
+- Se o objetivo é estudar a distribuição conjunta, podemos considerar as frequências relativas ao tamanho total da amostra observada.
+
+```{r tab1}
+# Tidyverse
+require(gtsummary)
+dados_cap7 %>% tbl_cross(Camisa,Basquete,percent = "cell") %>% 
+  bold_labels()
+```
+
+- Se o objetivo é estudar a distribuição condicional, podemos considerar as frequências relativas ao total das linhas ou das colunas. Pelo desenho de nosso estudo, eu fixei o total de cada cor da camisa, então a tabela abaixo é construída com relação ao total das linhas.
+
+```{r tab2}
+# Tidyverse com porcentagens das linhas
+dados_cap7 %>% tbl_cross(Camisa,Basquete,percent = "row") %>% 
+  bold_labels()
+```
+
+##	Correlação amostral
+
+- Podemos estimar a $E[xY]$ como $\displaystyle \frac{1}{n}\sum_{i=1}^n x_i~y_i$.
+
+- Assim, a $COV(X,Y)$ pode ser estimada por $\displaystyle cov = \frac{1}{n}\sum_{i=1}^n x_i~y_i - \bar{x}~\bar{y}$.
+
+- Analogamente, a correção amostral é $$cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.$$
+
+- No exemplo:
+
+```{r cor}
+cor(dados_cap7$Camisa, dados_cap7$Basquete)
+```
+
+##	Qui-Quadrado de Pearson
+
+- Sejam $o_{ij}$ as frequências observadas na *i*-ésima linha e *j*-ésima coluna da tabela, $o_{i.}$ o total observado na linha *i* e $o_{.j}$ o total observado na coluna *j*. Sob a hipótese de independência, espera que o valor observado em cada casela da tabela seja $\displaystyle e_{ij} = \frac{o_{i.}~o_{.j}}{n}$.
+
+- A estatística de Qui-Quadrado é dada por:
+$$Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}~.$$
+- No exemplo: 
+
+```{r chi2_2, warning=FALSE}
+chi2 = chisq.test(tab1)$statistic
+chi2
+```
+
+---
+
+##	Medidas de Associação baseadas no Qui-Quadrado
+
+```{r dados_basq}
+require(gtsummary)
+dados_cap7 %>% tbl_cross(Camisa, Basquete, percent = "cell") %>%
+  bold_labels()
+```
+
+###	Coeficiente de Contingência de Pearson
+
+$$C = \sqrt{\frac{Q^2}{Q^2 + n}} \qquad 0\leq C\leq1$$
+
+No exemplo:  
+$$C = \sqrt{\frac{\frac{10}{6}}{\frac{10}{6} + 10}} = 0.791$$
+
+O Coeficiente de Contingência de Pearson é muito influenciado pelo número de linhas (\(l\)) e número de colunas (\(c\)).
+
+###	Coeficiente de Tcschupov
+
+$$T = \sqrt{\frac{Q^2/n}{(l - 1) (c - 1)}} \qquad 0\leq T\leq1$$
+
+No exemplo:
+
+$$T = \sqrt{\frac{\frac{1.66}{10}}{(2 - 1) (2 - 1)}} = 0.41$$
+
+---
+
+##	Outras Medidas de Associação
+
+- Considere um contexto em que deseja-se avalia a presença de um desfecho (ter um determinado cancer, gostar de basquete, etc) na presença de um fator de risco (fumar, usar roupa clara).
+
+```{r tab_risco}
+require(kableExtra)
+tibble('Fator de Risco' = c("Não", "Sim"), 
+       'Sem o Desfecho' = c("(1-q)", "(1-p)"), 
+       'Com o Desfecho' = c("q", "p")) %>% 
+  kbl(align = 'c', format = "html", booktabs = TRUE)%>% 
+  kable_styling(
+     bootstrap_options = c("striped","hover", "bordered", "condensed"), 
+     latex_options = c("striped"))
+```
+
+###	Risco Atribuível
+
+  - $RA = p - q$: é a diferença entre as probabilidades de ter a doença dado a presença do fator de risco e de ter a doença sem fator de risco.  
+  - No exemplo:
+  
+  $$RA = 	\frac{3}{5} - {1 \over 5} = \frac{2}{5}$$
+  
+###	Risco Relativo
+
+  - $RR = p/q$: é quantas vezes é mais provavél ter a doença tendo o fator de risco em relação a quem não tem.  
+  - No exemplo:
+  
+  $$RR = \frac{3/5}{1/5} = 3  $$
+
+###	Razão de Chances (“Odds Ratio”)
+
+  - Os termos probabilidade e chance são sinônimos mas, por convenção, usaremos a notação $3:2  ~``="~ \dfrac{3}{5}$, sendo que $3:2 = \dfrac{3/5}{2/5}$ denotará a chance e $\dfrac{3}{5}$ a probabilidade.  
+
+  
+  $$OR ~=~ \frac{p}{(1-p)} \div \frac{q}{(1-q)} ~=~  \frac{p(1-q)}{q(1-q)}$$  
+  - No exemplo:
+  
+  $$OR ~=~ \frac{3/5}{2/5} \div \frac{1/5}{4/5} ~=~ \frac{3}{2} \div {1 \over 4} ~=~ \frac{3}{2} ~.~  \frac{4}{1} =  6$$
+
+
+---
+
+##	Medidas para Testes de Diagnóstico
+
+Considere um teste para uma determinada doença, de modo que o resultado do teste pode ser 1: *Positivo* e 0: *Negativo* e o indivíduos podem estar 1: *Doente* ou 0: *Não Doente*.
+
+```{r dados_diag}
+require(gtsummary)
+
+dados <- tibble(Teste = c(1,1,1,1,1,0,0,0,0,0),
+                Doente = c(1,0,1,0,1,0,0,0,1,0))
+
+dados %>% tbl_cross(Teste, Doente, percent = "cell") %>%
+  bold_labels()
+```
+
+As medidas a seguir são bastante utilizadas no contexto de testes de diagnósticos: 
+
+###	Sensibilidade
+
+$S = P(Teste = 1 ~|~ Doente = 1)$  
+  * estimativa: $s = \dfrac{o_{22}}{o_{\bullet 2}}$  
+  * no exemplo: $s = \dfrac{3}{4}$ 
+
+###	Especificidade
+
+$E = P(Teste = 0 ~|~ Doente = 0)$  
+  - estimativa: $e = \dfrac{o_{11}}{o_{\bullet 1}}$  
+  - no exemplo: $e = \dfrac{4}{6}$  
+
+###	Falso Positivo
+
+$FP = P(Teste = 1 ~|~ Doente = 0)$  
+  - estimativa: $fp = \dfrac{o_{21}}{o_{\bullet 1}}$  
+  - no exemplo: $fp = \dfrac{2}{6}$  
+
+###	Falso Negativo 
+
+$FN = P(Teste = 0 ~|~ Doente = 1)$  
+  - estimativa: $fn = \dfrac{o_{12}}{o_{\bullet 2}}$  
+  - no exemplo: $fn = \dfrac{1}{4}$  
+
+###	Valor Preditivo Positivo
+
+$VPP=P(Doente=1~|~Teste=1)$  
+  - estimativa: $vpp = \dfrac{o_{22}}{o_{2 \bullet}}$  
+  - no exemplo: $vpp = \dfrac{3}{5}$ 
+
+### Valor Preditivo Negativo
+
+$VPN = P(Doente=0~|~Teste=0)$  
+  - estimativa: $vpn = \dfrac{o_{11}}{o_{1 \bullet}}$  
+  - no exemplo: $vpn = \dfrac{4}{5}$
+
+###	Acurácia
+
+$AC = P\left[(\text{Teste}=0, \text{Doente} = 0) \cup (\text{Teste}=1, \text{Doente} = 1)\right]$
+  - estimativa: $ac = \dfrac{o_{11}+o_{22}}{n}$  
+  - no exemplo: $ac = \dfrac{3+4}{10} = \dfrac{7}{10}$ 
+
+---

@@ -1,0 +1,361 @@
+# Modelos Gráficos {#modelos_graficos6}
+
+## Gráfico de Barras
+
+- O gráfico de barras é adequado para variáveis qualitativas (nominais ou ordinais) e também para variáveis quantitativas discretas.
+
+```{r dados_cap6, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+require(kableExtra)
+
+tab_genero <- filmes_pixar %>% 
+      group_by(genero) %>% 
+      summarise(Freq = n()) %>% 
+      mutate(FreqRel = Freq/sum(Freq)) %>% 
+      rename(Gênero = genero)
+
+tab_duracao <- filmes_pixar %>%
+  mutate(Faixa_duracao = cut(duracao, 
+                             breaks = seq(floor(min(duracao)), ceiling(max(duracao)), by = 5), 
+                             include.lowest = TRUE)) %>%
+  group_by(Faixa_duracao) %>%
+  summarise(Freq = n()) %>%
+  mutate(FreqRel = Freq / sum(Freq)) %>%
+  arrange(Faixa_duracao)
+
+
+tab1_bilheteria <- filmes_pixar %>%
+       mutate(Bilheteria_Mundial = ifelse(bilheteria_mundial <= 500000000, 
+          "300 milhões |-- 500 milhões", ifelse(bilheteria_mundial <= 700000000,                              "500 milhões |-- 700 milhões", ifelse(bilheteria_mundial <= 900000000, 
+          "700 milhões |-- 900 milhões", ifelse(bilheteria_mundial <= 1100000000, 
+          "900 milhões |-- 1.1 bilhão", "1.1 bilhão |-- 1.3 bilhão"))))) %>%
+        group_by(Bilheteria_Mundial) %>% 
+        summarise(Freq = n()) %>% 
+        mutate(FreqRel = Freq/sum(Freq),
+                delta = c(0.10, 0.10, 0.10, 0.10, 0.10), Dens = FreqRel/delta)
+
+tab2_bilheteria <- filmes_pixar %>%
+        mutate(Bilheteria_Mundial = ifelse(bilheteria_mundial <= 500000000, 
+            "300 milhões |-- 500 milhões", ifelse(bilheteria_mundial <= 700000000,                              "500 milhões |-- 700 milhões", ifelse(bilheteria_mundial <= 900000000, 
+            "700 milhões |-- 900 milhões", ifelse(bilheteria_mundial <= 1100000000, 
+            "900 milhões |-- 1.1 bilhão", "1.1 bilhão |-- 1.3 bilhão"))))) %>%
+        group_by(Bilheteria_Mundial) %>% 
+        summarise(Freq = n()) %>% 
+        mutate(FreqRel = Freq/sum(Freq),
+                delta = c(0.20, 0.10, 0.10, 0.10, 0.10), Dens = FreqRel/delta)
+```
+
+- **Exemplo 1: Variável Qualitativa Nominal** (Gênero de filme)
+
+```{r barras_genero, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab_genero %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+
+graf_genero_f <- filmes_pixar %>% 
+  ggplot() + theme_bw() + xlab("genero") + ylab("Freqûencia") +
+  geom_bar(aes(x = genero, fill= genero)) + 
+  scale_fill_manual("genero", values = c("Aventura" = "deeppink", 
+                   "Comédia" = "magenta", "Ação" = "coral2", 
+                   "Esporte" = "seagreen1", "Drama" = "turquoise3", 
+                   "Musical" = "maroon3", "Ficção Científica" = "royalblue"))
+
+graf_genero_p <- tab_genero %>% 
+  ggplot() + theme_bw() + xlab("genero") + ylab("Proporção") +
+  geom_bar(aes(x= Gênero, fill= Gênero, y=FreqRel), stat="identity") + 
+  scale_fill_manual("genero", values = c("Aventura" = "deeppink", 
+                    "Comédia" = "magenta", "Ação" = "coral2", 
+                    "Esporte" = "seagreen1", "Drama" = "turquoise3", 
+                    "Musical" = "maroon3", "Ficção Científica" = "royalblue"))
+
+# ggpubr::ggarrange(graf_genero_f,graf_genero_p, legend="none")
+ggpubr::ggarrange(graf_genero_f, graf_genero_p, legend = "none", ncol = 1)
+```
+
+- **Exemplo 2: Variável Quantitativa** (duração do filme)
+
+```{r barras_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab_duracao %>%
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+
+tab_duracao %>% 
+  ggplot() + theme_bw() + xlab("Duração do filme") + ylab("Proporção") +
+  geom_bar(aes(x= Faixa_duracao, y= FreqRel), fill="deeppink", stat="identity")
+```
+
+---
+
+## Gráfico de Setores (Pizza)
+
+
+- Pode ser utilizado para variáveis qualitativas.
+
+```{r pizza1, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+pizza_genero <- tab_genero %>% 
+  mutate(Porc = scales::percent(FreqRel)) %>% 
+  ggplot(aes(x = "", y = FreqRel, fill = Gênero)) +
+  geom_col(color = "white") + 
+  geom_label(aes(label = Porc), #color = c(1, "white", "white"),
+        position = position_stack(vjust = 0.5),
+        show.legend = FALSE) + guides(fill = guide_legend(title = "")) +
+        scale_fill_manual("Gênero dos filmes", values =c("Aventura" = "deeppink", 
+                        "Comédia" = "magenta", "Ação" = "coral2", 
+                        "Esporte" = "seagreen1", "Drama" = "turquoise3", 
+                        "Musical" = "maroon3", "Ficção Científica" = "royalblue1")) +
+  coord_polar(theta = "y") + ggtitle("Gênero dos filmes") +
+  theme_void() + theme(legend.position="bottom", plot.title = element_text(hjust = 0.5))
+
+ggpubr::ggarrange(pizza_genero)
+```
+
+- Por que deve ser evitado?  
+  * Quando as frequências são muito pequenas (abaixo de 5%, por exemplo), as fatias se tornam de difícil visualização.  
+  * Dependem do uso de cores. Isso pode dificultar a escolha de cores que sejam suficientemente contrastantes para uma melhor visualização. Isso pode ser ainda mais prejudicado dependendo do dispotitivo que for visualizar o gráfico (se a impressão ou o monitor for de baixa qualidade, por exemplo). Por fim, isso pode dificultar a visualização por pessoas que tem dificuldades em enxergar cores (cerca de 8% da população masculina é daltônica, por exemplo).  
+  * A comparação direta entre dois gráficos de pizza é bem mais difícil que em gráficos de barras. No segundo é bem mais facil visualizar diferenças, se esse for seu objetivo.  
+  * Ainda assim, podem ser utilizados em casos específicos onde os problemas anteriores não ocorrem (quando há poucas categorias, nenhuma delas com frequencias muito baixas e as diferenças são muito evidentes ou o objetivo não é fazer comparações).  
+  
+---
+
+## Histograma
+
+- Adequado para variáveis quantitativas (contínuas).  
+- Apesar de ser parecido com o gráfico de barras, no histograma as bases dos retângulos são proporcionais aos intervalos das classes e as áreas de cada retângulo devem ser proporcionais às frequências de cada classe.
+
+```{r hist_bilheteria1, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab1_bilheteria %>% select(Bilheteria_Mundial,Freq,FreqRel) %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+
+filmes_pixar %>% ggplot() + theme_bw() +
+  geom_histogram(aes(bilheteria_mundial), color="black", fill="deeppink", 
+                 breaks= c(300000000, 500000000, 700000000, 900000000, 1100000000, 1300000000))
+```
+
+- Quando as faixas tem tamanhos diferentes, não é adequado usar as frequências absolutas ou relativas no eixo y pois a área do gráfico correspondente pode dar a impressão de que as frequências são maiores do que efetivamente foi observado. É possível ver isso no gráfico a seguir.  
+- Neste caso, o ideal é utilizar a *densidade de frequência* no eixo y, dada por $d_i = \frac{f_i}{\delta_i}$, onde $\delta_i$ é o comprimento da faixa.
+
+```{r hist_bilheteria2, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab2_bilheteria %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+
+#hist_bilheteria_c <- 
+filmes_pixar %>% ggplot() + theme_bw() +
+  geom_histogram(aes(bilheteria_mundial), color="black", fill="deeppink", 
+                 breaks= c(300000000, 500000000, 700000000, 900000000, 1100000000, 1300000000))
+
+#hist_bilheteria_m <- 
+filmes_pixar %>% ggplot() + theme_bw() +
+  geom_histogram(aes(bilheteria_mundial,after_stat(density)), 
+                 color="black", fill="deeppink", 
+                 breaks= c(300000000, 500000000, 700000000, 900000000, 1100000000, 1300000000))
+
+#ggpubr::ggarrange(hist_bilheteria_c, hist_bilheteria_m, ncol=1)
+```
+
+- Note que desta forma, a área total do histograma é igual a 1.
+
+---
+
+## Ramos e Folhas
+
+- Similar a um histograma mas com menos perda de informação.
+
+```{r stemleaf_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tibble(duracao = sort(filmes_pixar$duracao)) %>%
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+
+stem(filmes_pixar$duracao)
+```
+
+```{r stemleaf_bilheteria, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab1_bilheteria %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+
+stem(filmes_pixar$bilheteria_mundial / 1e9) 
+```
+
+- Não é adequado quando temos grandes bancos de dados e não tem o mesmo efeito visual de um boxplot.
+
+---
+
+## Box-Plot
+
+- Utilizado para representar graficamente os quartis, além dos valores mínimo e máximo.  
+
+```{r boxplot_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+filmes_pixar %>% ggplot() + theme_bw() + 
+  geom_boxplot(aes(y=duracao), color="black", fill="deeppink") 
+```
+
+- No retângulo estão representados os quartis $q_1$, $q_2$ e $q_3$.  
+- A reta acima do retângulo se estende até o valor máximo observado, desde que esse não seja maior que $q_3 + 1.5 \cdot d_q$.    
+- Do mesmo modo, a reta abaixo do retângulo do retângulo se estende até o mínimo, desde que esse não seja menor que $q_1 - 1.5 \cdot d_q$.  
+- Se houver valores que excedam os limites acima propostos, a reta acima (abaixo) do retângulo vai até o maior (menor) valor menor (maior) que $q_3 + 1.5 \cdot d_q$ $\left(q_1 - 1.5 \cdot d_q\right)$.   
+- Os valores fora destes limites serão representados por asteriscos e são chamados de *outliers* (ou *valores atípicos*)  
+
+- É possivel incluir os pontos observados no boxplot para não ter perda de informação.
+
+```{r boxplot_P_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+filmes_pixar %>% ggplot(aes(x="",y=duracao)) + theme_bw() + 
+  geom_boxplot(color="black", fill="deeppink") + 
+  ggbeeswarm::geom_beeswarm(cex=3,size=3,method = "center")
+  #geom_dotplot(binaxis= "y",stackdir = "center",fill = 1,dotsize = 0.8,stackratio=2)
+  #geom_jitter(color="black", size=1, alpha=0.9)
+```
+
+---
+
+## Gráficos e simetria
+
+```{r simetria, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+set.seed(13)
+
+simul <- tibble(y = rnorm(150,2.5,1))
+lim = c(min(simul$y),max(simul$y))
+
+hist <- simul %>% ggplot() + theme_classic() + xlab("") + xlim(lim[1],lim[2]) + 
+  ggtitle("Simetria") +
+  geom_histogram(aes(y,after_stat(density)), 
+                 color="black", fill="deeppink", bins=8)
+
+box <- simul %>% ggplot(aes(x="",y=y)) + 
+  theme_classic() + coord_flip() + xlab("") + ylab("") + ylim(lim[1],lim[2]) +
+  geom_boxplot(color="black", fill="deeppink")  
+  #ggbeeswarm::geom_beeswarm(cex=1,size=1,method = "center")
+
+ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
+```
+
+```{r assimetriaD, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+set.seed(13)
+
+simul <- tibble(y = rgamma(150,2.5,1))
+lim = c(min(simul$y),max(simul$y))
+
+hist <- simul %>% ggplot() + theme_classic() + xlab("") + xlim(lim[1],lim[2]) +
+  ggtitle("Assimetria à Direita") +
+  geom_histogram(aes(y,after_stat(density)), 
+                 color="black", fill="deeppink", bins=10)
+
+box <- simul %>% ggplot(aes(x="",y=y)) + 
+  theme_classic() + coord_flip() + xlab("") + ylab("") + ylim(lim[1],lim[2]) +
+  geom_boxplot(color="black", fill="deeppink")  
+  #ggbeeswarm::geom_beeswarm(cex=1,size=1,method = "center")
+
+ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
+```
+
+```{r assimetriaE, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+simul <- lim[2]-simul+lim[1]
+lim = c(min(simul$y),max(simul$y))
+
+hist <- simul %>% ggplot() + theme_classic() + xlab("") + xlim(lim[1],lim[2]) +
+  ggtitle("Assimetria à Esquerda") +
+  geom_histogram(aes(y,after_stat(density)), 
+                 color="black", fill="deeppink", bins=10)
+
+box <- simul %>% ggplot(aes(x="",y=y)) + 
+  theme_classic() + coord_flip() + xlab("") + ylab("") + ylim(lim[1],lim[2]) +
+  geom_boxplot(color="black", fill="deeppink")  
+  #ggbeeswarm::geom_beeswarm(cex=1,size=1,method = "center")
+
+ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
+```
+
+- Os quartis são medidas de posição que auxiliam na avaliação da simetria dos dados. Para uma distribuição aproximadamente **simétrica**, espera-se que
+  * $q_2 - x(1) ~\approx~ x(n)-q_2$ ,  
+  * $q_2 - q_1 ~\approx~ q_3-q_2$ ,  
+  * $q_1 - x(1) ~\approx~ x(n)-q_3$ .  
+
+- A distribiuição dos dados é dita **assimétrica à direita** se as diferenças entre os quantis situados a direita da mediana e a mediana são maiores que as diferenças entre a mediana e os quantis situados à esquerda da mediana. Se o contrário ocorre, dizemos que a distribuição é **assimétrica à esquerda**.
+
+- Além disso, se uma distribuição é aproximadamente simétrica,
+  * $q_2-x_{(i)} ~\approx~ x_{(n+1-i)}-q_2$ , $i=1,\ldots,\lfloor(n+1)/2\rfloor$ , em que $\lfloor y \rfloor$ é o maior inteiro menor ou igual a $y$.
+  
+- Assim, defina $u_i = q_2-x_{(i)}$ e $v_i = x_{(n+1-i)}-q_2$, para $i=1,\ldots,\lfloor(n+1)/2\rfloor$. Então,  
+  * Se a distribuição é simetrica, espera-se que $u_i \approx v_i$ ;
+  * Se a distribuição é assimetrica à direira, espera-se que $u_i \leq v_i$ ; 
+  * Se a distribuição é assimetrica à esquerda, espera-se que $u_i \geq v_i$.  
+  
+- Uma forma de fazer essa avaliação é fazer um gráfico dos pares $(u_i,v_i)$.
+
+```{r graf_simetria, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tibble(u = 100.6522 - sort(filmes_pixar$duracao)[1:5],
+       v = sort(filmes_pixar$duracao,decreasing=TRUE)[1:5] - 100.6522) %>% 
+  ggplot() + theme_bw() + 
+  geom_point(aes(x=u,y=v)) + 
+  geom_line(aes(x=u,y=u))
+```
+
+---
+
+## Exercícios
+
+1. Escolha um banco de dados de sua preferência no R ou na internet contendo pelo menos duas variáveis quantitativas (preferencialmente contínuas). Crie um arquivo de RMarkdown e faça:
+a. um histograma
+b. um boxplot
+
+---

@@ -1,0 +1,93 @@
+# Respostas dos exercícios
+
+---
+
+## Capítulo 3
+
+- **Exercício 1**
+
+```{r cap3_ex1}
+vetor1 <- c(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+vetor2 <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+soma <- vetor1 + vetor2
+subtracao <- vetor1 - vetor2
+multiplicacao <- vetor1 * vetor2
+```
+
+- **Exercício 2**
+
+```{r cap3_ex2}
+matriz1 <- matrix(1:4, nrow = 2, ncol = 2)
+matriz2 <- matrix(5:8, nrow = 2, ncol = 2)
+
+soma <- matriz1 + matriz2
+subtracao <- matriz1 - matriz2
+multiplicacao <- matriz1 %*% matriz2
+```
+
+- **Exercício 3**
+
+```{r cap3_ex3}
+alunos <- data.frame(
+  Nome = c("Letícia", "Mariana", "Ana", "Otávio", "Ricardo"),
+  Idade = c(17, 18, 16, 17, 19),
+  Nota = c(8.5, 6.2, 4.3, 2.0, 5.5)
+)
+
+alunos$Aprovado <- alunos$Nota >= 6
+print(alunos)
+```
+
+
+- **Exercício 4**
+
+```{r cap3_ex4}
+exponencial <- function(M, b=exp(1)) {
+  lc <- dim(M) # vetor com número de linhas e colunas de M
+  E <- M # inicializa a matriz E que será retornada pela função
+  i <- 1 # Inicializa i que irá percorrer as linhas
+  while(i<=lc[1]){
+    j <- 1 # inicializa j que irá percorrer as colunas
+    while(j<=lc[2]){
+      E[i,j] <- b^M[i,j] # calcula os elementos da matriz E
+      j <- j + 1 # atualiza j
+    }
+    i <- i + 1 # atualiza i
+  }
+  return(E)
+}
+
+# Testa a função 'exponencial'
+M
+exponencial(M,2)  
+exponencial(M)
+```
+
+- **Exercício 5**
+
+```{r cap3_ex5}
+calcula_area <- function(base, altura) {
+  return((base * altura) / 2)
+}
+
+# Testa a função 'calcula_area'
+calcula_area(15, 3)
+```
+
+- **Exercício 6**
+
+```{r cap3_ex6}
+conta_pos_neg <- function(vetor) {
+  pos <- sum(vetor > 0)
+  neg <- sum(vetor < 0)
+  return(list(positivos = pos, negativos = neg))
+}
+
+# Testa a função 'conta_pos_neg'
+vetor <- c(-10, 7, 4, -8, -15, 3, -5, 7, 0, 1, -2)
+resultado <- conta_pos_neg(vetor)
+print(resultado)
+```
+
+---

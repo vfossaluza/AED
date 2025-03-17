@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Medidas de uma variável | Análise Exploratória de Dados</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Medidas de uma variável | Análise Exploratória de Dados" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Medidas de uma variável | Análise Exploratória de Dados" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Victor Fossaluza e Gabriela Scarpini" />
+
+
+<meta name="date" content="2025-03-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dados_4.html"/>
+<link rel="next" href="modelos_graficos6.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#apresentação"><i class="fa fa-check"></i><b>1.1</b> Apresentação</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#programa"><i class="fa fa-check"></i><b>1.2</b> Programa</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#bibliografia"><i class="fa fa-check"></i><b>1.3</b> Bibliografia</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html"><i class="fa fa-check"></i><b>2</b> Conceitos básicos de Análise Exploratória de Dados</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-significa-algo-ser-aleatório"><i class="fa fa-check"></i><b>2.1</b> O que significa algo ser “aleatório”?</a></li>
+<li class="chapter" data-level="2.2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-é-probabilidade"><i class="fa fa-check"></i><b>2.2</b> O que é Probabilidade?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2.1</b> Interpretações de Probabilidade</a></li>
+<li class="chapter" data-level="2.2.2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#comentários-sobre-probabilidade-e-aleatoriedade"><i class="fa fa-check"></i><b>2.2.2</b> Comentários sobre Probabilidade e Aleatoriedade</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-é-estatística"><i class="fa fa-check"></i><b>2.3</b> O que é Estatística?</a></li>
+<li class="chapter" data-level="2.4" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#método-científico"><i class="fa fa-check"></i><b>2.4</b> Método Científico</a></li>
+<li class="chapter" data-level="2.5" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#população-x-amostra-probabilidade-x-estatística"><i class="fa fa-check"></i><b>2.5</b> População X Amostra, Probabilidade X Estatística</a></li>
+<li class="chapter" data-level="2.6" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#estatística-descritiva"><i class="fa fa-check"></i><b>2.6</b> Estatística Descritiva</a></li>
+<li class="chapter" data-level="2.7" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#inferência-estatística"><i class="fa fa-check"></i><b>2.7</b> Inferência Estatística</a></li>
+<li class="chapter" data-level="2.8" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#aprendizado-estatístico"><i class="fa fa-check"></i><b>2.8</b> Aprendizado Estatístico</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="apresentacao_r.html"><a href="apresentacao_r.html"><i class="fa fa-check"></i><b>3</b> Apresentação à linguagem R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="apresentacao_r.html"><a href="apresentacao_r.html#como-instalar"><i class="fa fa-check"></i><b>3.1</b> Como instalar</a></li>
+<li class="chapter" data-level="3.2" data-path="apresentacao_r.html"><a href="apresentacao_r.html#comparação-com-outras-linguagens-estatísticas"><i class="fa fa-check"></i><b>3.2</b> Comparação com outras linguagens estatísticas</a></li>
+<li class="chapter" data-level="3.3" data-path="apresentacao_r.html"><a href="apresentacao_r.html#introdução-ao-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Introdução ao RMarkdown</a></li>
+<li class="chapter" data-level="3.4" data-path="apresentacao_r.html"><a href="apresentacao_r.html#operadores-básicos"><i class="fa fa-check"></i><b>3.4</b> Operadores Básicos</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentacao_r.html"><a href="apresentacao_r.html#estrutura-de-dados-em-r"><i class="fa fa-check"></i><b>3.5</b> Estrutura de Dados em R</a></li>
+<li class="chapter" data-level="3.6" data-path="apresentacao_r.html"><a href="apresentacao_r.html#estruturas-de-controle"><i class="fa fa-check"></i><b>3.6</b> Estruturas de controle</a></li>
+<li class="chapter" data-level="3.7" data-path="apresentacao_r.html"><a href="apresentacao_r.html#funções"><i class="fa fa-check"></i><b>3.7</b> Funções</a></li>
+<li class="chapter" data-level="3.8" data-path="apresentacao_r.html"><a href="apresentacao_r.html#funções-básicas-e-pacotes"><i class="fa fa-check"></i><b>3.8</b> Funções Básicas e Pacotes</a></li>
+<li class="chapter" data-level="3.9" data-path="apresentacao_r.html"><a href="apresentacao_r.html#exercícios"><i class="fa fa-check"></i><b>3.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dados_4.html"><a href="dados_4.html"><i class="fa fa-check"></i><b>4</b> Dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados_4.html"><a href="dados_4.html#processos-de-obtenção-importação-organização-e-transformação"><i class="fa fa-check"></i><b>4.1</b> Processos de obtenção, importação, organização e transformação</a></li>
+<li class="chapter" data-level="4.2" data-path="dados_4.html"><a href="dados_4.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>4.2</b> Tipos de Variáveis</a></li>
+<li class="chapter" data-level="4.3" data-path="dados_4.html"><a href="dados_4.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.3</b> Tabelas de Frequências</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html"><i class="fa fa-check"></i><b>5</b> Medidas de uma variável</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-posição-ou-de-tendência-central"><i class="fa fa-check"></i><b>5.1</b> Medidas de posição ou de Tendência Central</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#média-aritmética"><i class="fa fa-check"></i><b>5.1.1</b> Média (Aritmética)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#mediana"><i class="fa fa-check"></i><b>5.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="5.1.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#moda"><i class="fa fa-check"></i><b>5.1.3</b> Moda</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>5.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#variância"><i class="fa fa-check"></i><b>5.2.1</b> Variância</a></li>
+<li class="chapter" data-level="5.2.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-padrão"><i class="fa fa-check"></i><b>5.2.2</b> Desvio padrão</a></li>
+<li class="chapter" data-level="5.2.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-médio-ou-absoluto"><i class="fa fa-check"></i><b>5.2.3</b> Desvio médio ou absoluto</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-ordem"><i class="fa fa-check"></i><b>5.3</b> Medidas de ordem</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#quartis-e-quantis"><i class="fa fa-check"></i><b>5.3.1</b> Quartis e quantis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#distância-ou-amplitude-interquartis"><i class="fa fa-check"></i><b>5.3.2</b> Distância (ou Amplitude) Interquartis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-mediano-absoluto"><i class="fa fa-check"></i><b>5.3.3</b> Desvio Mediano Absoluto</a></li>
+<li class="chapter" data-level="5.3.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#amplitude"><i class="fa fa-check"></i><b>5.3.4</b> Amplitude</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-assimetria"><i class="fa fa-check"></i><b>5.4</b> Medidas de assimetria</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-bowley"><i class="fa fa-check"></i><b>5.4.1</b> Coeficiente de Assimetria de Bowley</a></li>
+<li class="chapter" data-level="5.4.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-1"><i class="fa fa-check"></i><b>5.4.2</b> Coeficiente de Assimetria de Pearson 1</a></li>
+<li class="chapter" data-level="5.4.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-2"><i class="fa fa-check"></i><b>5.4.3</b> Coeficiente de Assimetria de Pearson 2</a></li>
+<li class="chapter" data-level="5.4.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson"><i class="fa fa-check"></i><b>5.4.4</b> Coeficiente de Assimetria de Fisher-Pearson</a></li>
+<li class="chapter" data-level="5.4.5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson-ajustado"><i class="fa fa-check"></i><b>5.4.5</b> Coeficiente de Assimetria de Fisher-Pearson ajustado</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#calculo-de-medidas-no-r"><i class="fa fa-check"></i><b>5.5</b> Calculo de medidas no R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html"><i class="fa fa-check"></i><b>6</b> Modelos Gráficos</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-barras"><i class="fa fa-check"></i><b>6.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="6.2" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>6.2</b> Gráfico de Setores (Pizza)</a></li>
+<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a></li>
+<li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
+<li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
+<li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
+<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-1"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="anaise_bi7.html"><a href="anaise_bi7.html"><i class="fa fa-check"></i><b>7</b> Análise bivariada</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="anaise_bi7.html"><a href="anaise_bi7.html#duas-variáveis-categóricas"><i class="fa fa-check"></i><b>7.1</b> Duas variáveis categóricas</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html"><i class="fa fa-check"></i><b>8</b> Medidas de duas variáveis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#tabela-de-contingência-de-frequências"><i class="fa fa-check"></i><b>8.1</b> Tabela de Contingência (de Frequências)</a></li>
+<li class="chapter" data-level="8.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#correlação-amostral"><i class="fa fa-check"></i><b>8.2</b> Correlação amostral</a></li>
+<li class="chapter" data-level="8.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#qui-quadrado-de-pearson"><i class="fa fa-check"></i><b>8.3</b> Qui-Quadrado de Pearson</a></li>
+<li class="chapter" data-level="8.4" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-de-associação-baseadas-no-qui-quadrado"><i class="fa fa-check"></i><b>8.4</b> Medidas de Associação baseadas no Qui-Quadrado</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-contingência-de-pearson"><i class="fa fa-check"></i><b>8.4.1</b> Coeficiente de Contingência de Pearson</a></li>
+<li class="chapter" data-level="8.4.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-tcschupov"><i class="fa fa-check"></i><b>8.4.2</b> Coeficiente de Tcschupov</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#outras-medidas-de-associação"><i class="fa fa-check"></i><b>8.5</b> Outras Medidas de Associação</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#risco-atribuível"><i class="fa fa-check"></i><b>8.5.1</b> Risco Atribuível</a></li>
+<li class="chapter" data-level="8.5.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#risco-relativo"><i class="fa fa-check"></i><b>8.5.2</b> Risco Relativo</a></li>
+<li class="chapter" data-level="8.5.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#razão-de-chances-odds-ratio"><i class="fa fa-check"></i><b>8.5.3</b> Razão de Chances (“Odds Ratio”)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-para-testes-de-diagnóstico"><i class="fa fa-check"></i><b>8.6</b> Medidas para Testes de Diagnóstico</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#sensibilidade"><i class="fa fa-check"></i><b>8.6.1</b> Sensibilidade</a></li>
+<li class="chapter" data-level="8.6.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#especificidade"><i class="fa fa-check"></i><b>8.6.2</b> Especificidade</a></li>
+<li class="chapter" data-level="8.6.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#falso-positivo"><i class="fa fa-check"></i><b>8.6.3</b> Falso Positivo</a></li>
+<li class="chapter" data-level="8.6.4" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#falso-negativo"><i class="fa fa-check"></i><b>8.6.4</b> Falso Negativo</a></li>
+<li class="chapter" data-level="8.6.5" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#valor-preditivo-positivo"><i class="fa fa-check"></i><b>8.6.5</b> Valor Preditivo Positivo</a></li>
+<li class="chapter" data-level="8.6.6" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#valor-preditivo-negativo"><i class="fa fa-check"></i><b>8.6.6</b> Valor Preditivo Negativo</a></li>
+<li class="chapter" data-level="8.6.7" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#acurácia"><i class="fa fa-check"></i><b>8.6.7</b> Acurácia</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>9</b> Respostas dos exercícios</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-3"><i class="fa fa-check"></i><b>9.1</b> Capítulo 3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html"><i class="fa fa-check"></i><b>10</b> Outros Gráficos (incompleto)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-de-bolhas"><i class="fa fa-check"></i><b>10.1</b> Gráfico de bolhas:</a></li>
+<li class="chapter" data-level="10.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#diferentes-gráficos-de-barras"><i class="fa fa-check"></i><b>10.2</b> Diferentes gráficos de barras</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-agrupadas"><i class="fa fa-check"></i><b>10.2.1</b> Barras agrupadas</a></li>
+<li class="chapter" data-level="10.2.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-empilhadas"><i class="fa fa-check"></i><b>10.2.2</b> Barras empilhadas</a></li>
+<li class="chapter" data-level="10.2.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#barras-100-empilhadas"><i class="fa fa-check"></i><b>10.2.3</b> Barras 100% empilhadas</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-de-velocímetro"><i class="fa fa-check"></i><b>10.3</b> Gráfico de velocímetro</a></li>
+<li class="chapter" data-level="10.4" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#gráfico-mosaíco"><i class="fa fa-check"></i><b>10.4</b> Gráfico mosaíco</a></li>
+<li class="chapter" data-level="10.5" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#nuvem-de-palavras"><i class="fa fa-check"></i><b>10.5</b> Nuvem de palavras</a></li>
+<li class="chapter" data-level="10.6" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#configurações-gráficas"><i class="fa fa-check"></i><b>10.6</b> Configurações gráficas</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#cor-de-fundo"><i class="fa fa-check"></i><b>10.6.1</b> Cor de fundo</a></li>
+<li class="chapter" data-level="10.6.2" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#imagem-de-fundo"><i class="fa fa-check"></i><b>10.6.2</b> Imagem de fundo</a></li>
+<li class="chapter" data-level="10.6.3" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#margens-gráficas"><i class="fa fa-check"></i><b>10.6.3</b> Margens gráficas</a></li>
+<li class="chapter" data-level="10.6.4" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#janelas-multiplas"><i class="fa fa-check"></i><b>10.6.4</b> Janelas multiplas</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html#exercício"><i class="fa fa-check"></i><b>10.7</b> Exercício</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html"><i class="fa fa-check"></i><b>11</b> Regressão linear (incompleto)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html#estimar-a-e-b"><i class="fa fa-check"></i><b>11.1</b> Estimar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise Exploratória de Dados</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="medidas_uma_variavel_5" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Medidas de uma variável<a href="medidas_uma_variavel_5.html#medidas_uma_variavel_5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="medidas-de-posição-ou-de-tendência-central" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Medidas de posição ou de Tendência Central<a href="medidas_uma_variavel_5.html#medidas-de-posição-ou-de-tendência-central" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Utilidadas para resumir variáveis quantitativas.<br />
+</li>
+<li>Dão a ideia do lugar da reta estão concentrados os valores de uma variável.</li>
+</ul>
+<div id="média-aritmética" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Média (Aritmética)<a href="medidas_uma_variavel_5.html#média-aritmética" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>A medida mais utilizada é a <strong>média</strong>, definida por <span class="math display">\[\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^n x_i = \dfrac{x_1+x_2+\ldots+x_n}{n}~.\]</span><br />
+*Exemplo - Duração dos filmes da pixar: <span class="math inline">\(\bar{x} = \frac{81+95+92+92+100+115+117+111+98+96+103+106+93+104+95+93+97+102+105+118+100+102+100}{23}=100.65\)</span></p></li>
+<li><p>Alternativamente, quando há empates (isto é, <span class="math inline">\(n_1\)</span> observações do valor <span class="math inline">\(x_1\)</span>, <span class="math inline">\(n_2\)</span> observações do valor <span class="math inline">\(x_2\)</span>, e assim por diante), podemos calcular a média por <span class="math display">\[\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^k n_i~x_i = \sum_{i=1}^k f_i~x_i = \frac{n_1~x_1+n_2~x_2+\ldots+n_k~x_k}{n}~,\]</span> em que <span class="math inline">\(k\leq n\)</span> é a quantidade de valores diferentes assumidos pela variável <span class="math inline">\(X\)</span> e <span class="math inline">\(\sum n_i = n\)</span>. Ainda pode-se considerar para o cálculo da média a frequência relativa <span class="math inline">\(f_i = n_i/n\)</span>.</p></li>
+<li><p>Quando os dados estão agrupados em classes, podemos calcular um valor aproximado da média fazendo <span class="math display">\[\displaystyle \bar{x} \approx \sum_{i=1}^k f_i~\bar{x}_i~,\]</span> em que <span class="math inline">\(\bar{x}_i\)</span> é o valor médio da <em>i</em>-ésima classe e <span class="math inline">\(f_i\)</span> é a frequência relativa daquela classe.</p></li>
+</ul>
+</div>
+<div id="mediana" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Mediana<a href="medidas_uma_variavel_5.html#mediana" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A <strong>mediana</strong> é o valor central dos dados. Pode ser calculada por</li>
+</ul>
+<p><span class="math display">\[
+\displaystyle md(x) =
+\left\{
+  \begin{array}{ll}
+    x_{\left(\frac{n+1}{2}\right)} ,&amp;  ~\text{se } n \text{ é ímpar} \\
+    \dfrac{x_{\left(\frac{n}{2}\right)}+x_{\left(\frac{n}{2}+1\right)}}{2} ,&amp;  ~\text{se } n \text{ é par}
+  \end{array}
+\right.
+\]</span></p>
+<p>em que <span class="math inline">\(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\)</span>, <span class="math inline">\(x_{(1)}\)</span> é o menor valor observado na amostra, <span class="math inline">\(x_{(2)}\)</span> é o segundo menor valor, <span class="math inline">\(\ldots\)</span>, <span class="math inline">\(x_{(n)}\)</span> é o maior valor na amostra. <span class="math inline">\(x_{(1)}, x_{(2)}, \ldots, x_{(n)}\)</span> são chamados <em>estatísticas de ordem</em>.<br />
+* Para a duração do filme: <span class="math inline">\(md(x) = 1.725\)</span></p>
+<ul>
+<li><strong>Observação:</strong> a mediana é uma medida mais robusta que a média pois é menos afetada por valores extremos.</li>
+</ul>
+</div>
+<div id="moda" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Moda<a href="medidas_uma_variavel_5.html#moda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A <strong>moda</strong> é o valor que mais frequente na amostra.<br />
+</li>
+<li>Em alguns casos, pode existir mais de uma moda.
+<ul>
+<li>Para a duração do filme: <span class="math inline">\(mo(x) = 100\)</span></li>
+</ul></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="medidas-de-dispersão" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Medidas de Dispersão<a href="medidas_uma_variavel_5.html#medidas-de-dispersão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Na maioria dos casos, somente as medidas de posição trazem pouca informação sobre a variável de interesse.<br />
+</li>
+<li>Por exemplo, considere as seguintes amostras de tamanho 3: <span class="math inline">\((1,5,9)\)</span>, <span class="math inline">\((4,5,6)\)</span> e <span class="math inline">\((5,5,5)\)</span>. Em todas elas, <span class="math inline">\(\bar{x}=md(x)=5\)</span>. Contudo, na primeira os valores estão mais “espalhados”, enquanto na última os valores estão mais “concentrados”.<br />
+</li>
+<li>Para descrever melhor esta diferença, podemos usar medidas que nos informem o quanto os dados estão “espalhados”, ou como é a dispersão dos dados.</li>
+</ul>
+<div id="variância" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Variância<a href="medidas_uma_variavel_5.html#variância" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A variância é a média dos desvios ao quadrado das observações com relação à média, dada por <span class="math display">\[var(x) = \frac{1}{n}\sum_{i=1}^n \left(x_i - \bar{x}\right)^2.\]</span>
+<ul>
+<li>No exemplo acima:
+<ol style="list-style-type: decimal">
+<li>para a Amostra 1: <span class="math inline">\(\dfrac{(1-5)^2+(5-5)^2+(9-5)^2}{3}=\dfrac{16+0+16}{3}=10.666\)</span>;</li>
+<li>para a Amostra 2: <span class="math inline">\(\dfrac{(4-5)^2+(5-5)^2+(6-5)^2}{3}=\dfrac{1+0+1}{3}=0.666\)</span>;</li>
+<li>para a Amostra 3: <span class="math inline">\(\dfrac{(5-5)^2+(5-5)^2+(5-5)^2}{3}=0\)</span>.</li>
+</ol></li>
+<li>No exemplo da duração do filme: <span class="math inline">\(var(x) = 73\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="desvio-padrão" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Desvio padrão<a href="medidas_uma_variavel_5.html#desvio-padrão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>A variância está em uma escala diferente da variável observada. Uma forma de contornar isso é calcular sua raiz. A medida resultante é chamada de desvio padrão: <span class="math inline">\(dp(x) = \sqrt{var(x)}\)</span>
+<ul>
+<li>No exemplo acima:
+<ol style="list-style-type: decimal">
+<li>para a Amostra 1: <span class="math inline">\(\sqrt{\dfrac{(1-5)^2+(5-5)^2+(9-5)^2}{3}}=\sqrt{32/3}=3.265986\)</span>;</li>
+<li>para a Amostra 2: <span class="math inline">\(\sqrt{\dfrac{(4-5)^2+(5-5)^2+(6-5)^2}{3}}=\sqrt{2/3}=0.8164966\)</span>;</li>
+<li>para a Amostra 3: <span class="math inline">\(\sqrt{\dfrac{(5-5)^2+(5-5)^2+(5-5)^2}{3}}=0\)</span>.</li>
+</ol></li>
+<li>No exemplo da duração do filme: <span class="math inline">\(dp(x) = \sqrt{73}=8.54~m\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="desvio-médio-ou-absoluto" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Desvio médio ou absoluto<a href="medidas_uma_variavel_5.html#desvio-médio-ou-absoluto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Outra medida de dispersão é o desvio médio (ou absoluto): <span class="math display">\[dm(x) = \frac{1}{n}\sum_{i=1}^n \left|x_i - \bar{x}\right|.\]</span>
+<ul>
+<li>No exemplo acima:
+<ol style="list-style-type: decimal">
+<li>para a Amostra 1: <span class="math inline">\({\dfrac{|1-5|+|5-5|+|9-5|}{3}}=\dfrac{8}{3} \approx 2.666\)</span>;</li>
+<li>para a Amostra 2: <span class="math inline">\({\dfrac{|4-5|+|5-5|+|6-5|}{3}}=\dfrac{2}{3} \approx 0.666\)</span>;</li>
+<li>para a Amostra 3: <span class="math inline">\({\dfrac{|5-5|+|5-5|+|5-5|}{3}}=0\)</span>.</li>
+</ol></li>
+</ul></li>
+<li>O desvio médio, assim como o desvio padrão, representam “erros” médios ao aproximar os valores observados pela média.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="medidas-de-ordem" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Medidas de ordem<a href="medidas_uma_variavel_5.html#medidas-de-ordem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="quartis-e-quantis" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Quartis e quantis<a href="medidas_uma_variavel_5.html#quartis-e-quantis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Como vimos, a mediana é o valor que “divide ao meio” a amostra.<br />
+</p></li>
+<li><p>De forma similar, podemos dividir a amostra em partes menores. Por exemplo, pode ser de interesse considerar os valores que dividem a amostra nos 5% menores valores, 10% menores, 20% e assim por diante.<br />
+</p></li>
+<li><p>O <em>quantil</em> de ordem <em>p</em> ou <em>p</em>-quantil, <span class="math inline">\(0 &lt; p &lt; 1\)</span>, é o valor <span class="math inline">\(Q(p)\)</span> tal que <span class="math inline">\(100\cdot p~\%\)</span> das
+observações sejam menores do que <span class="math inline">\(Q(p)\)</span>.</p></li>
+<li><p>Há diversas formas de definir os quantis amostrais (veja, por exemplo, a ajuda do R para a função <em>quantile</em>). Aqui, por simplicidade, vamos considerar a definição a seguir.
+<span class="math display">\[
+Q(p) =
+\left\{
+\begin{array}{lll}
+  x_{(i)} &amp; \text{se} &amp; p = p_i = \frac{i - 0.5}{n}, \quad i = 1, \ldots, n \\
+  (1 - f_i) Q(p_i) + f_i Q(p_{i+1}) &amp; \text{se} &amp; p_i &lt; p &lt; p_{i+1} \\
+  x_{(1)} &amp; \text{se} &amp; 0 &lt; p &lt; p_1 \\
+  x_{(n)} &amp; \text{se} &amp; p_n &lt; p &lt; 1
+\end{array}
+\right.
+\]</span></p>
+<pre><code>    em que $f_i = \dfrac{p-p_i}{p_{i+1}-p_i}$.</code></pre></li>
+<li><p>Quando houver empates (valores iguais) na amostra, vamos considerar o maior <span class="math inline">\(p_i\)</span> entre as observações empatadas.</p></li>
+<li><p>Outros quantis podem ser calculados, como por exemplo,</p>
+<ul>
+<li><span class="math inline">\(Q(0.5) = \left(1-\frac{0.5-0.45}{0.55-0.45}\right)Q(0.45)+\left(\frac{0.5-0.45}{0.55-0.45}\right)Q(0.55)=\frac{1}{2}\cdot 1.70 + \frac{1}{2}\cdot 1.75 = 1.725 = md(x)\)</span></li>
+<li><span class="math inline">\(Q(0.83) = \left(1-\frac{0.83-0.75}{0.85-0.75}\right)Q(0.75)+\left(\frac{0.83-0.75}{0.85-0.75}\right)Q(0.85)=0.2\cdot 1.79 + 0.8\cdot 1.81 = 1.806\)</span></li>
+<li><span class="math inline">\(Q(0.13) = \left(1-\frac{0.13-0.05}{0.25-0.05}\right)Q(0.05)+\left(\frac{0.13-0.05}{0.25-0.05}\right)Q(0.25)=0.6\cdot 1.50 + 0.4\cdot 1.60 = 1.54\)</span></li>
+</ul></li>
+<li><p>Os quantis <span class="math inline">\(Q(0.25)\)</span>, <span class="math inline">\(Q(0.50)\)</span> e <span class="math inline">\(Q(0.75)\)</span> são chamados de primeiro, segundo e terceiro <strong>quartis</strong> e são denotados por <span class="math inline">\(q_1\)</span>, <span class="math inline">\(q_2\)</span> e <span class="math inline">\(q_3\)</span>, respectivamente. Como já foi dito, <span class="math inline">\(q_2 = md(x)\)</span>.</p></li>
+</ul>
+</div>
+<div id="distância-ou-amplitude-interquartis" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Distância (ou Amplitude) Interquartis<a href="medidas_uma_variavel_5.html#distância-ou-amplitude-interquartis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Outra medida de dispersão bastante utilizada é a <em>distância interquartis</em>, definida por <span class="math display">\[d_Q = q_3 - q_1~.\]</span></li>
+<li>A distância interquartis é a amplitude do intervalo que concentra 50% das observações centrais.</li>
+</ul>
+</div>
+<div id="desvio-mediano-absoluto" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Desvio Mediano Absoluto<a href="medidas_uma_variavel_5.html#desvio-mediano-absoluto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Como a mediana é uma medida mais robusta que a média, é possível estabelecer também uma medida de dispersão em termos de desvios em relação à mediana. Assim, defina o <em>desvio mediano absoluto</em> como <span class="math display">\[dma(x) = md(|x_i - md(x)|)~.\]</span></li>
+</ul>
+</div>
+<div id="amplitude" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Amplitude<a href="medidas_uma_variavel_5.html#amplitude" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Distância entre o maior e o menos valor observado.
+<span class="math display">\[\Delta = x_{(n)} - x_{(1)}\]</span></li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="medidas-de-assimetria" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Medidas de assimetria<a href="medidas_uma_variavel_5.html#medidas-de-assimetria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="coeficiente-de-assimetria-de-bowley" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Coeficiente de Assimetria de Bowley<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-bowley" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[B = \frac{(q_3-q_2)-(q_2-q_1)}{q_3-q_1} = \frac{(q_3-q_2)-(q_2-q_1)}{(q_3-q_2)+(q_2-q_1)} = \frac{q_3+q_1-2q_2}{q_3-q_1}\]</span></p>
+</div>
+<div id="coeficiente-de-assimetria-de-pearson-1" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Coeficiente de Assimetria de Pearson 1<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[Sk_1 = \frac{\bar{x}-moda(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}\]</span></p>
+</div>
+<div id="coeficiente-de-assimetria-de-pearson-2" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> Coeficiente de Assimetria de Pearson 2<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[Sk_2 = 3\cdot\frac{\bar{x}-md(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}\]</span></p>
+<ul>
+<li>Considere o <strong><em>k</em>-ésimo momento (central) amostral</strong>, definido por <span class="math display">\[m_k = \frac{1}{n}\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^k\]</span></li>
+</ul>
+</div>
+<div id="coeficiente-de-assimetria-de-fisher-pearson" class="section level3 hasAnchor" number="5.4.4">
+<h3><span class="header-section-number">5.4.4</span> Coeficiente de Assimetria de Fisher-Pearson<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[g_1 = m_3/m_2^{3/2}\]</span></p>
+</div>
+<div id="coeficiente-de-assimetria-de-fisher-pearson-ajustado" class="section level3 hasAnchor" number="5.4.5">
+<h3><span class="header-section-number">5.4.5</span> Coeficiente de Assimetria de Fisher-Pearson ajustado<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson-ajustado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>(pelo tamanho amostral)<strong>:</strong> <span class="math display">\[g_2 = \frac{n\sqrt{n(n-1)}}{n-1}g1\]</span></p>
+<hr />
+</div>
+</div>
+<div id="calculo-de-medidas-no-r" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Calculo de medidas no R<a href="medidas_uma_variavel_5.html#calculo-de-medidas-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Média: função mean()</li>
+</ul>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="medidas_uma_variavel_5.html#cb138-1" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>))</span></code></pre></div>
+<ul>
+<li>Mediana: função median()</li>
+</ul>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="medidas_uma_variavel_5.html#cb139-1" tabindex="-1"></a>mediana <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">68</span>))</span></code></pre></div>
+<ul>
+<li>Moda: o R não possui uma função embutida para moda, porém podemos calcular dessa forma:</li>
+</ul>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="medidas_uma_variavel_5.html#cb140-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb140-2"><a href="medidas_uma_variavel_5.html#cb140-2" tabindex="-1"></a></span>
+<span id="cb140-3"><a href="medidas_uma_variavel_5.html#cb140-3" tabindex="-1"></a>frequencias <span class="ot">&lt;-</span> <span class="fu">table</span>(dados)</span>
+<span id="cb140-4"><a href="medidas_uma_variavel_5.html#cb140-4" tabindex="-1"></a>moda <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(frequencias[frequencias <span class="sc">==</span> <span class="fu">max</span>(frequencias)]))</span></code></pre></div>
+<ul>
+<li>Quartis: função quantile()</li>
+</ul>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="medidas_uma_variavel_5.html#cb141-1" tabindex="-1"></a>quartis <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>))</span></code></pre></div>
+<ul>
+<li>Variância: função var()</li>
+</ul>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="medidas_uma_variavel_5.html#cb142-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
+<span id="cb142-2"><a href="medidas_uma_variavel_5.html#cb142-2" tabindex="-1"></a>variancia <span class="ot">&lt;-</span> <span class="fu">var</span>(dados)</span></code></pre></div>
+<ul>
+<li>Desvio padrão: função sd()</li>
+</ul>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="medidas_uma_variavel_5.html#cb143-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
+<span id="cb143-2"><a href="medidas_uma_variavel_5.html#cb143-2" tabindex="-1"></a>desvio_padrao <span class="ot">&lt;-</span> <span class="fu">sd</span>(dados)</span></code></pre></div>
+<ul>
+<li>Desvio mediano absoluto: função´mad()</li>
+</ul>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="medidas_uma_variavel_5.html#cb144-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
+<span id="cb144-2"><a href="medidas_uma_variavel_5.html#cb144-2" tabindex="-1"></a>desvio_mediano_absoluto <span class="ot">&lt;-</span> <span class="fu">mad</span>(dados)</span></code></pre></div>
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dados_4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos_graficos6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/Cap5-Med_uma_variável.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["AED.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
