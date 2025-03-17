@@ -1,4 +1,4 @@
-output_dir: "aed"
+output_dir: "docs"
 book_filename: "AED"
 delete_merged_file: true
 language: 
