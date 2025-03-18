@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Victor Fossaluza e Gabriela Scarpini" />
 
 
-<meta name="date" content="2025-03-17" />
+<meta name="date" content="2025-03-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,17 +314,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Considere que o interesse agora é estudar a relação entre variáveis. Se não há associação entre duas ou mais variáveis, dizemos que elas são independentes.</p></li>
 <li><p><strong>Exemplo:</strong> suponha que deseja-se estudar se a cor da roupa (1: clara, 0: escura) está associado com gostar de basquete (1: sim, 0: não). Perguntei para 10 alunos da turma e os dados estão apresentados abaixo</p></li>
 </ul>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="anaise_bi7.html#cb147-1" tabindex="-1"></a>dados_cap7 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Camisa=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb147-2"><a href="anaise_bi7.html#cb147-2" tabindex="-1"></a>                <span class="at">Basquete=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="anaise_bi7.html#cb148-1" tabindex="-1"></a>dados_cap7 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Camisa=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb148-2"><a href="anaise_bi7.html#cb148-2" tabindex="-1"></a>                <span class="at">Basquete=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span></code></pre></div>
 <div id="duas-variáveis-categóricas" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Duas variáveis categóricas<a href="anaise_bi7.html#duas-variáveis-categóricas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Tabela de Contingência (de Frequências)</strong></p>
 <ul>
 <li>Para variáveis categóricas, vamos primeiramente considerar tabelas de frequências.</li>
 </ul>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="anaise_bi7.html#cb148-1" tabindex="-1"></a><span class="co"># R base</span></span>
-<span id="cb148-2"><a href="anaise_bi7.html#cb148-2" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">table</span>(dados_cap7<span class="sc">$</span>Camisa,dados_cap7<span class="sc">$</span>Basquete)</span>
-<span id="cb148-3"><a href="anaise_bi7.html#cb148-3" tabindex="-1"></a>tab1</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="anaise_bi7.html#cb149-1" tabindex="-1"></a><span class="co"># R base</span></span>
+<span id="cb149-2"><a href="anaise_bi7.html#cb149-2" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">table</span>(dados_cap7<span class="sc">$</span>Camisa,dados_cap7<span class="sc">$</span>Basquete)</span>
+<span id="cb149-3"><a href="anaise_bi7.html#cb149-3" tabindex="-1"></a>tab1</span></code></pre></div>
 <pre><code>##    
 ##     0 1
 ##   0 4 1
@@ -333,11 +333,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Lembre-se que podemos pensam em independência com relação à distribuição conjunta ou à distribuição condicional.</p></li>
 <li><p>Se o objetivo é estudar a distribuição conjunta, podemos considerar as frequências relativas ao tamanho total da amostra observada.</p></li>
 </ul>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="anaise_bi7.html#cb150-1" tabindex="-1"></a><span class="co"># Tidyverse</span></span>
-<span id="cb150-2"><a href="anaise_bi7.html#cb150-2" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="anaise_bi7.html#cb151-1" tabindex="-1"></a><span class="co"># Tidyverse</span></span>
+<span id="cb151-2"><a href="anaise_bi7.html#cb151-2" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span></code></pre></div>
 <pre><code>## Carregando pacotes exigidos: gtsummary</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="anaise_bi7.html#cb152-1" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb152-2"><a href="anaise_bi7.html#cb152-2" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="anaise_bi7.html#cb153-1" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb153-2"><a href="anaise_bi7.html#cb153-2" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
 <div id="jhqqhfttnf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#jhqqhfttnf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -817,9 +817,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Se o objetivo é estudar a distribuição condicional, podemos considerar as frequências relativas ao total das linhas ou das colunas. Pelo desenho de nosso estudo, eu fixei o total de cada cor da camisa, então a tabela abaixo é construída com relação ao total das linhas.</li>
 </ul>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="anaise_bi7.html#cb153-1" tabindex="-1"></a><span class="co"># Tidyverse com porcentagens das linhas</span></span>
-<span id="cb153-2"><a href="anaise_bi7.html#cb153-2" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb153-3"><a href="anaise_bi7.html#cb153-3" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="anaise_bi7.html#cb154-1" tabindex="-1"></a><span class="co"># Tidyverse com porcentagens das linhas</span></span>
+<span id="cb154-2"><a href="anaise_bi7.html#cb154-2" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb154-3"><a href="anaise_bi7.html#cb154-3" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
 <div id="krlqmbineh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#krlqmbineh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1303,7 +1303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Analogamente, a correção amostral é <span class="math display">\[cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.\]</span></p></li>
 <li><p>No exemplo:</p></li>
 </ul>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="anaise_bi7.html#cb154-1" tabindex="-1"></a><span class="fu">cor</span>(dados_cap7<span class="sc">$</span>Camisa,dados_cap7<span class="sc">$</span>Basquete)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="anaise_bi7.html#cb155-1" tabindex="-1"></a><span class="fu">cor</span>(dados_cap7<span class="sc">$</span>Camisa,dados_cap7<span class="sc">$</span>Basquete)</span></code></pre></div>
 <pre><code>## [1] 0.4082483</code></pre>
 <p><strong>Qui-Quadrado de Pearson</strong></p>
 <ul>
@@ -1312,8 +1312,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}~.\]</span></p></li>
 <li><p>No exemplo:</p></li>
 </ul>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="anaise_bi7.html#cb156-1" tabindex="-1"></a>chi2 <span class="ot">=</span> <span class="fu">chisq.test</span>(tab1)<span class="sc">$</span>statistic</span>
-<span id="cb156-2"><a href="anaise_bi7.html#cb156-2" tabindex="-1"></a>chi2</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="anaise_bi7.html#cb157-1" tabindex="-1"></a>chi2 <span class="ot">=</span> <span class="fu">chisq.test</span>(tab1)<span class="sc">$</span>statistic</span>
+<span id="cb157-2"><a href="anaise_bi7.html#cb157-2" tabindex="-1"></a>chi2</span></code></pre></div>
 <pre><code>## X-squared 
 ## 0.4166667</code></pre>
 <hr />
