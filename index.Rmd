@@ -60,9 +60,9 @@ Comentários e correções podem ser enviadas para [gabi.scarpini@usp.br](gabi.s
 
 - Mayer, F.P, Bonat, W.H., Zeviani, W.M., Krainski, E.T., Ribeiro Jr, P.J. Estatística Computacional com R. [link](http://cursos.leg.ufpr.br/ecr/index.html)
 
-- Grolemund, G. Wickham, H. R for Data Science. [link](https://r4ds.had.co.nz/index.html)
+- Wickham, H. Çetinkaya-Rundel, M. Grolemund, G. R para Ciência de Dados (2ed). [link](https://pt.r4ds.hadley.nz/)
 
--Chang, W. R Graphics Cookbook, 2nd edition. [link](Chang, W. R Graphics Cookbook, 2nd edition.)
+- Chang, W. R Graphics Cookbook, 2nd edition. [link](Chang, W. R Graphics Cookbook, 2nd edition.)
 
 - Grolemund, G. Hands-On Programming with R. [link](https://jjallaire.github.io/hopr/)
 
