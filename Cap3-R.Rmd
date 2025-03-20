@@ -28,12 +28,14 @@ Para criar um arquivo em RMarrkdown clique em *File > New File > R Markdown*. Pr
 Um arquivo .Rmd tem a seguinte estrutura:
 
 1. Cabeçalho YAML, que define as configurações do documento.
-  ---
-  title: "Introdução ao RMarkdown"
-  author: "Seu Nome"
-  date: "__/__/____"
-  output: html_document
-  ---
+```{r yaml, eval = FALSE}
+title: "Introdução ao RMarkdown"
+author: "Seu Nome"
+date: "18/03/2025"
+output: html_document
+```
+
+
 
 2. Texto formatado, que usa a sintaxe Markdown para formatação de texto, por exemplo:
   - "# Título 1" para criar títulos de nível 1.

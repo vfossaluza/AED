@@ -29,7 +29,11 @@ require(webshot)
 
 ## Apresentação
 
-Esse material está sendo desenvolvido para apoiar as aulas de Análise Exploratória de Dados. O objetivo principal da apostila é auxiliar os estudantes na compreensão dos conceitos teóricos, com capítulos curtos e por meio de exercícios ao final de cada capítulo.
+Esse material está em fase inicial de desenvolvimento e será utilizado para apoiar as aulas de MAE0111 - Análise Exploratória de Dados. 
+
+O objetivo principal da apostila é funcionar como um resumo e auxiliar os estudantes na compreensão dos conceitos teóricos, com capítulos curtos e por meio de exercícios ao final de cada capítulo.
+
+Comentários e correções podem ser enviadas para [gabi.scarpini@usp.br](gabi.scarpini@usp.br).
 
 ---
 

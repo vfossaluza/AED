@@ -109,6 +109,19 @@
 \usepackage{lmodern}    
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkGreen,
+    urlcolor=DarkRed,
+    citecolor=DarkGreen
+%    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+% \usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=DarkGreen,bookmarksopen=true,pdfnewwindow]{hyperref} % links coloridos
+    
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -139,7 +152,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Victor Fossaluza e Gabriela Scarpini}
-\date{2025-03-17}
+\date{2025-03-18}
 
 \begin{document}
 \maketitle
@@ -154,7 +167,11 @@
 \hypertarget{apresentauxe7uxe3o}{%
 \section{Apresentação}\label{apresentauxe7uxe3o}}
 
-Esse material está sendo desenvolvido para apoiar as aulas de Análise Exploratória de Dados. O objetivo principal da apostila é auxiliar os estudantes na compreensão dos conceitos teóricos, com capítulos curtos e por meio de exercícios ao final de cada capítulo.
+Esse material está em fase inicial de desenvolvimento e será utilizado para apoiar as aulas de MAE0111 - Análise Exploratória de Dados.
+
+O objetivo principal da apostila é funcionar como um resumo e auxiliar os estudantes na compreensão dos conceitos teóricos, com capítulos curtos e por meio de exercícios ao final de cada capítulo.
+
+Comentários e correções podem ser enviadas para \url{gabi.scarpini@usp.br}.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -573,18 +590,21 @@ Para criar um arquivo em RMarrkdown clique em \emph{File \textgreater{} New File
 
 Um arquivo .Rmd tem a seguinte estrutura:
 
-\begin{longtable}[]{@{}r@{}}
-\toprule\noalign{}
-Cabeçalho YAML, que define as configurações do documento. \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-title: ``Introdução ao RMarkdown'' \\
-author: ``Seu Nome'' \\
-date: ``\textbf{/}/\_\_\_\_'' \\
-output: html\_document \\
-\end{longtable}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Cabeçalho YAML, que define as configurações do documento.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{title}\SpecialCharTok{:} \StringTok{"Introdução ao RMarkdown"}
+\NormalTok{author}\SpecialCharTok{:} \StringTok{"Seu Nome"}
+\NormalTok{date}\SpecialCharTok{:} \StringTok{"18/03/2025"}
+\NormalTok{output}\SpecialCharTok{:}\NormalTok{ html\_document}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
