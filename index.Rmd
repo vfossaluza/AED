@@ -1,6 +1,6 @@
 --- 
 title: "Análise Exploratória de Dados"
-author: "Victor Fossaluza e Gabriela Scarpini"
+author: "Gabriela Scarpini e Victor Fossaluza"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -60,12 +60,45 @@ Comentários e correções podem ser enviadas para [gabi.scarpini@usp.br](gabi.s
 
 - Mayer, F.P, Bonat, W.H., Zeviani, W.M., Krainski, E.T., Ribeiro Jr, P.J. Estatística Computacional com R. [link](http://cursos.leg.ufpr.br/ecr/index.html)
 
-- Grolemund, G. Wickham, H. R for Data Science. [link](https://r4ds.had.co.nz/index.html)
+- Grolemund, G. Wickham, H. R for Data Science. [link](https://r4ds.hadley.nz/) (versão em português: [link](https://pt.r4ds.hadley.nz/))
 
--Chang, W. R Graphics Cookbook, 2nd edition. [link](Chang, W. R Graphics Cookbook, 2nd edition.)
+- Chang, W. R Graphics Cookbook, 2nd edition. [link](Chang, W. R Graphics Cookbook, 2nd edition.)
 
 - Grolemund, G. Hands-On Programming with R. [link](https://jjallaire.github.io/hopr/)
 
+---
+
+## Bibliografia Jupiterweb
+
+- Morettin, P. A., Bussab, W. O. (2017). Estatística Básica. 9a edição. Saraiva Educação SA.
+
+- Wickham, H., Grolemund, G. (2017). R for data science: import, tidy, transform, visualize, and model data, O’Reilly Media, Inc. [link](https://r4ds.hadley.nz/)
+
+- Tukey,J. W. (1977). Exploratory Data Analysis. Reading: Addison Wesley.
+
+- Cairo, A. (2016). The truthful art: Data, charts, and maps for communication. New Riders.
+
+- Tufte, E. R. (1983). The Visual Display of Quantitative Information, Cheshire: Graphics Press.
+
+- Few, S. (2012). Show Me the Numbers: Designing Tables and Graphs to Enlighten, 2a ed. Analytics Press.
+
+---
+
+## Bibliografia Complementar
+
+- Relatórios do CEA – Centro de Estatística Aplicada – USP.
+
+- Magalhães, M. N, de Lima, A. C. P. (2015). Noções de Probabilidade e Estatística. 7a edição. Editora da Universidade de São Paulo.
+
+- Murteira, B. F. J., Black, G. H. J.. (1983). Análise Exploratória de Dados - Estatística Descritiva, Lisboa: McGraw Hill.
+
+- Wexler, S., Shaffer, J., & Cotgreave, A. (2017). The big book of dashboards: visualizing your data using real-world business scenarios. John Wiley & Sons.
+
+- ChambersJ. M., ClevelandW. S., Tukey, P. A.. (1983). Graphical Methods for Data Analysis. Boston: Duxbury Press.
+
+- W. M. Cleveland. (1993). Visualizing Data, Summit, New Jersey: Hobart Press.
+
+- W. M. Cleveland. (1994). The Elements of Graphing Data, Summit: Hobart Press.
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
