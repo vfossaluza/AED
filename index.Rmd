@@ -100,12 +100,12 @@ Comentários e correções podem ser enviadas para [gabi.scarpini@usp.br](gabi.s
 
 - W. M. Cleveland. (1994). The Elements of Graphing Data, Summit: Hobart Press.
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+<!-- ```{r include=FALSE} -->
+<!-- # automatically create a bib database for R packages -->
+<!-- knitr::write_bib(c( -->
+<!--   .packages(), 'bookdown', 'knitr', 'rmarkdown' -->
+<!-- ), 'packages.bib') -->
+<!-- ``` -->
 
 ---
 

@@ -119,9 +119,6 @@
 %    pdftitle={Overleaf Example},
     pdfpagemode=FullScreen,
     }
-\usepackage[usenames,svgnames,dvipsnames]{xcolor}
-% \usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=DarkGreen,bookmarksopen=true,pdfnewwindow]{hyperref} % links coloridos
-    
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -141,18 +138,18 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
   pdftitle={Análise Exploratória de Dados},
-  pdfauthor={Victor Fossaluza e Gabriela Scarpini},
+  pdfauthor={Gabriela Scarpini e Victor Fossaluza},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{Análise Exploratória de Dados}
-\author{Victor Fossaluza e Gabriela Scarpini}
-\date{2025-03-18}
+\author{Gabriela Scarpini e Victor Fossaluza}
+\date{2025-03-24}
 
 \begin{document}
 \maketitle
@@ -161,11 +158,9 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{intro}{%
-\chapter{Introdução}\label{intro}}
+\chapter{Introdução}\label{intro}
 
-\hypertarget{apresentauxe7uxe3o}{%
-\section{Apresentação}\label{apresentauxe7uxe3o}}
+\section{Apresentação}\label{apresentauxe7uxe3o}
 
 Esse material está em fase inicial de desenvolvimento e será utilizado para apoiar as aulas de MAE0111 - Análise Exploratória de Dados.
 
@@ -175,8 +170,7 @@ Comentários e correções podem ser enviadas para \url{gabi.scarpini@usp.br}.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{programa}{%
-\section{Programa}\label{programa}}
+\section{Programa}\label{programa}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -205,8 +199,7 @@ Comentários e correções podem ser enviadas para \url{gabi.scarpini@usp.br}.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{bibliografia}{%
-\section{Bibliografia}\label{bibliografia}}
+\section{Bibliografia}\label{bibliografia}
 
 \begin{itemize}
 \item
@@ -216,24 +209,58 @@ Comentários e correções podem ser enviadas para \url{gabi.scarpini@usp.br}.
 \item
   Mayer, F.P, Bonat, W.H., Zeviani, W.M., Krainski, E.T., Ribeiro Jr, P.J. Estatística Computacional com R. \href{http://cursos.leg.ufpr.br/ecr/index.html}{link}
 \item
-  Grolemund, G. Wickham, H. R for Data Science. \href{https://r4ds.had.co.nz/index.html}{link}
-\end{itemize}
-
--Chang, W. R Graphics Cookbook, 2nd edition. \href{Chang,\%20W.\%20R\%20Graphics\%20Cookbook,\%202nd\%20edition.}{link}
-
-\begin{itemize}
-\tightlist
+  Grolemund, G. Wickham, H. R for Data Science. \href{https://r4ds.hadley.nz/}{link} (versão em português: \href{https://pt.r4ds.hadley.nz/}{link})
+\item
+  Chang, W. R Graphics Cookbook, 2nd edition. \href{Chang,\%20W.\%20R\%20Graphics\%20Cookbook,\%202nd\%20edition.}{link}
 \item
   Grolemund, G. Hands-On Programming with R. \href{https://jjallaire.github.io/hopr/}{link}
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{conceitos_aed1}{%
-\chapter{Conceitos básicos de Análise Exploratória de Dados}\label{conceitos_aed1}}
+\section{Bibliografia Jupiterweb}\label{bibliografia-jupiterweb}
 
-\hypertarget{o-que-significa-algo-ser-aleatuxf3rio}{%
-\section{O que significa algo ser ``aleatório''?}\label{o-que-significa-algo-ser-aleatuxf3rio}}
+\begin{itemize}
+\item
+  Morettin, P. A., Bussab, W. O. (2017). Estatística Básica. 9a edição. Saraiva Educação SA.
+\item
+  Wickham, H., Grolemund, G. (2017). R for data science: import, tidy, transform, visualize, and model data, O'Reilly Media, Inc.~\href{https://r4ds.hadley.nz/}{link}
+\item
+  Tukey,J. W. (1977). Exploratory Data Analysis. Reading: Addison Wesley.
+\item
+  Cairo, A. (2016). The truthful art: Data, charts, and maps for communication. New Riders.
+\item
+  Tufte, E. R. (1983). The Visual Display of Quantitative Information, Cheshire: Graphics Press.
+\item
+  Few, S. (2012). Show Me the Numbers: Designing Tables and Graphs to Enlighten, 2a ed.~Analytics Press.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Bibliografia Complementar}\label{bibliografia-complementar}
+
+\begin{itemize}
+\item
+  Relatórios do CEA -- Centro de Estatística Aplicada -- USP.
+\item
+  Magalhães, M. N, de Lima, A. C. P. (2015). Noções de Probabilidade e Estatística. 7a edição. Editora da Universidade de São Paulo.
+\item
+  Murteira, B. F. J., Black, G. H. J.. (1983). Análise Exploratória de Dados - Estatística Descritiva, Lisboa: McGraw Hill.
+\item
+  Wexler, S., Shaffer, J., \& Cotgreave, A. (2017). The big book of dashboards: visualizing your data using real-world business scenarios. John Wiley \& Sons.
+\item
+  ChambersJ. M., ClevelandW. S., Tukey, P. A.. (1983). Graphical Methods for Data Analysis. Boston: Duxbury Press.
+\item
+  W. M. Cleveland. (1993). Visualizing Data, Summit, New Jersey: Hobart Press.
+\item
+  W. M. Cleveland. (1994). The Elements of Graphing Data, Summit: Hobart Press.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\chapter{Conceitos básicos de Análise Exploratória de Dados}\label{conceitos_aed1}
+
+\section{O que significa algo ser ``aleatório''?}\label{o-que-significa-algo-ser-aleatuxf3rio}
 
 \begin{itemize}
 \tightlist
@@ -264,8 +291,7 @@ Um experimento em que o resultado não é previsível com antecedência é chama
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-que-uxe9-probabilidade}{%
-\section{O que é Probabilidade?}\label{o-que-uxe9-probabilidade}}
+\section{O que é Probabilidade?}\label{o-que-uxe9-probabilidade}
 
 \begin{itemize}
 \tightlist
@@ -304,8 +330,7 @@ Na segunda abordagem, para cada evento \(A\), aceitamos que existe uma probabili
 \[ P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(Ai)~.\]
 ---
 
-\hypertarget{interpretauxe7uxf5es-de-probabilidade}{%
-\subsection{Interpretações de Probabilidade}\label{interpretauxe7uxf5es-de-probabilidade}}
+\subsection{Interpretações de Probabilidade}\label{interpretauxe7uxf5es-de-probabilidade}
 
 \begin{itemize}
 \tightlist
@@ -383,8 +408,7 @@ Na segunda abordagem, para cada evento \(A\), aceitamos que existe uma probabili
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{comentuxe1rios-sobre-probabilidade-e-aleatoriedade}{%
-\subsection{Comentários sobre Probabilidade e Aleatoriedade}\label{comentuxe1rios-sobre-probabilidade-e-aleatoriedade}}
+\subsection{Comentários sobre Probabilidade e Aleatoriedade}\label{comentuxe1rios-sobre-probabilidade-e-aleatoriedade}
 
 \begin{itemize}
 \item
@@ -395,8 +419,7 @@ Na segunda abordagem, para cada evento \(A\), aceitamos que existe uma probabili
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-que-uxe9-estatuxedstica}{%
-\section{O que é Estatística?}\label{o-que-uxe9-estatuxedstica}}
+\section{O que é Estatística?}\label{o-que-uxe9-estatuxedstica}
 
 \begin{itemize}
 \tightlist
@@ -442,8 +465,7 @@ Distinguimos dois subconjuntos de técnicas: (1) aquelas que envolvem estatísti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{muxe9todo-cientuxedfico}{%
-\section{Método Científico}\label{muxe9todo-cientuxedfico}}
+\section{Método Científico}\label{muxe9todo-cientuxedfico}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -460,8 +482,7 @@ Distinguimos dois subconjuntos de técnicas: (1) aquelas que envolvem estatísti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{populauxe7uxe3o-x-amostra-probabilidade-x-estatuxedstica}{%
-\section{População X Amostra, Probabilidade X Estatística}\label{populauxe7uxe3o-x-amostra-probabilidade-x-estatuxedstica}}
+\section{População X Amostra, Probabilidade X Estatística}\label{populauxe7uxe3o-x-amostra-probabilidade-x-estatuxedstica}
 
 \begin{itemize}
 \item
@@ -488,8 +509,7 @@ Distinguimos dois subconjuntos de técnicas: (1) aquelas que envolvem estatísti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estatuxedstica-descritiva}{%
-\section{Estatística Descritiva}\label{estatuxedstica-descritiva}}
+\section{Estatística Descritiva}\label{estatuxedstica-descritiva}
 
 \begin{itemize}
 \tightlist
@@ -517,8 +537,7 @@ Distinguimos dois subconjuntos de técnicas: (1) aquelas que envolvem estatísti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{inferuxeancia-estatuxedstica}{%
-\section{Inferência Estatística}\label{inferuxeancia-estatuxedstica}}
+\section{Inferência Estatística}\label{inferuxeancia-estatuxedstica}
 
 \begin{itemize}
 \tightlist
@@ -536,8 +555,7 @@ Distinguimos dois subconjuntos de técnicas: (1) aquelas que envolvem estatísti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{aprendizado-estatuxedstico}{%
-\section{Aprendizado Estatístico}\label{aprendizado-estatuxedstico}}
+\section{Aprendizado Estatístico}\label{aprendizado-estatuxedstico}
 
 \begin{itemize}
 \tightlist
@@ -553,30 +571,26 @@ Distinguimos dois subconjuntos de técnicas: (1) aquelas que envolvem estatísti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{apresentacao_r}{%
-\chapter{Apresentação à linguagem R}\label{apresentacao_r}}
+\chapter{Apresentação à linguagem R}\label{apresentacao_r}
 
 O R é uma linguagem de programação amplamente utilizada para análise de dados, cálculo estatísticos e visualização de dados. Além disso, o R tem uma enorme coleção de pacotes que ampliam suas funcionalidades, usaremos alguns durante o nosso estudo.
 O RStudio é uma interface gráfica para a linguagem de programação R. Ele torna o R mais fácil de usar e fornece algumas funcionalidades úteis.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{como-instalar}{%
-\section{Como instalar}\label{como-instalar}}
+\section{Como instalar}\label{como-instalar}
 
 Para instalar o R e o R-Studio basta seguir as instruções \href{https://livro.curso-r.com/1-1-instalacao-do-r.html}{aqui} e \href{https://livro.curso-r.com/1-2-instalacao-do-rstudio.html}{aqui}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{comparauxe7uxe3o-com-outras-linguagens-estatuxedsticas}{%
-\section{Comparação com outras linguagens estatísticas}\label{comparauxe7uxe3o-com-outras-linguagens-estatuxedsticas}}
+\section{Comparação com outras linguagens estatísticas}\label{comparauxe7uxe3o-com-outras-linguagens-estatuxedsticas}
 
 Diferente de outras linguagens de programação, o R foi desenvolvido especificamente para a área de estatística, sendo usado na análise de dados e modelagem. Por isso, essa linguagem possui uma enorme quantidade de pacotes voltados para visualização e análise de dados (alguns exemplos são o ggplot2, dplyr, caret).
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{introduuxe7uxe3o-ao-rmarkdown}{%
-\section{Introdução ao RMarkdown}\label{introduuxe7uxe3o-ao-rmarkdown}}
+\section{Introdução ao RMarkdown}\label{introduuxe7uxe3o-ao-rmarkdown}
 
 Na disciplina de Análise Exploratória de Dados, usaremos somente o RMarkdown, uma ferramenta que nos permite escrever textos e executar códigos em R.
 
@@ -638,8 +652,7 @@ Um arquivo .Rmd tem a seguinte estrutura:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{operadores-buxe1sicos}{%
-\section{Operadores Básicos}\label{operadores-buxe1sicos}}
+\section{Operadores Básicos}\label{operadores-buxe1sicos}
 
 \begin{itemize}
 \tightlist
@@ -953,8 +966,7 @@ Os valores especiais são usados para representar situações atípicas ou condi
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estrutura-de-dados-em-r}{%
-\section{Estrutura de Dados em R}\label{estrutura-de-dados-em-r}}
+\section{Estrutura de Dados em R}\label{estrutura-de-dados-em-r}
 
 \begin{itemize}
 \tightlist
@@ -1491,8 +1503,7 @@ Também podemos manipular os data frames no R usando banco de dados.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estruturas-de-controle}{%
-\section{Estruturas de controle}\label{estruturas-de-controle}}
+\section{Estruturas de controle}\label{estruturas-de-controle}
 
 As estruturas de controles são ``instruções'' que nos permiter criar lógica nos programas e determinar como as operações e funções serão excecutadas.
 
@@ -1660,8 +1671,7 @@ O exemplo acima realiza uma contagem de 1 até 5. O valor da variável ``a'' com
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{funuxe7uxf5es}{%
-\section{Funções}\label{funuxe7uxf5es}}
+\section{Funções}\label{funuxe7uxf5es}
 
 As funções são blocos de código reutilizáveis que nos permitem executar tarefas específicas.
 A estrutura básica de uma função é:
@@ -1758,8 +1768,7 @@ Podemos criar também função com valores padrões, atribuindo valores aos argu
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{funuxe7uxf5es-buxe1sicas-e-pacotes}{%
-\section{Funções Básicas e Pacotes}\label{funuxe7uxf5es-buxe1sicas-e-pacotes}}
+\section{Funções Básicas e Pacotes}\label{funuxe7uxf5es-buxe1sicas-e-pacotes}
 
 As funções básicas são aquelas já incorporadas na linguagem, que não requerem pacotes adicionais. Alguns exemplos são:
 - `mean()' para calcular a média de um vetor
@@ -1773,8 +1782,7 @@ Pacotes podem ser instalados usando \texttt{install.packages("nome\_do\_pacote")
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{exercuxedcios}{%
-\section{Exercícios}\label{exercuxedcios}}
+\section{Exercícios}\label{exercuxedcios}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1834,11 +1842,9 @@ Pacotes podem ser instalados usando \texttt{install.packages("nome\_do\_pacote")
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{dados_4}{%
-\chapter{Dados}\label{dados_4}}
+\chapter{Dados}\label{dados_4}
 
-\hypertarget{processos-de-obtenuxe7uxe3o-importauxe7uxe3o-organizauxe7uxe3o-e-transformauxe7uxe3o}{%
-\section{Processos de obtenção, importação, organização e transformação}\label{processos-de-obtenuxe7uxe3o-importauxe7uxe3o-organizauxe7uxe3o-e-transformauxe7uxe3o}}
+\section{Processos de obtenção, importação, organização e transformação}\label{processos-de-obtenuxe7uxe3o-importauxe7uxe3o-organizauxe7uxe3o-e-transformauxe7uxe3o}
 
 \begin{itemize}
 \tightlist
@@ -1881,8 +1887,7 @@ Este banco de dados foi elaborado para servir de base na construção de tabelas
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{tipos-de-variuxe1veis}{%
-\section{Tipos de Variáveis}\label{tipos-de-variuxe1veis}}
+\section{Tipos de Variáveis}\label{tipos-de-variuxe1veis}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1943,8 +1948,7 @@ Este banco de dados foi elaborado para servir de base na construção de tabelas
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{tabelas-de-frequuxeancias}{%
-\section{Tabelas de Frequências}\label{tabelas-de-frequuxeancias}}
+\section{Tabelas de Frequências}\label{tabelas-de-frequuxeancias}
 
 \begin{itemize}
 \tightlist
@@ -2023,11 +2027,9 @@ Pode-se afirmar que nesta amostra, o gênero predominante é aventura (34,7\% do
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{medidas_uma_variavel_5}{%
-\chapter{Medidas de uma variável}\label{medidas_uma_variavel_5}}
+\chapter{Medidas de uma variável}\label{medidas_uma_variavel_5}
 
-\hypertarget{medidas-de-posiuxe7uxe3o-ou-de-tenduxeancia-central}{%
-\section{Medidas de posição ou de Tendência Central}\label{medidas-de-posiuxe7uxe3o-ou-de-tenduxeancia-central}}
+\section{Medidas de posição ou de Tendência Central}\label{medidas-de-posiuxe7uxe3o-ou-de-tenduxeancia-central}
 
 \begin{itemize}
 \tightlist
@@ -2037,8 +2039,7 @@ Pode-se afirmar que nesta amostra, o gênero predominante é aventura (34,7\% do
   Dão a ideia do lugar da reta estão concentrados os valores de uma variável.
 \end{itemize}
 
-\hypertarget{muxe9dia-aritmuxe9tica}{%
-\subsection{Média (Aritmética)}\label{muxe9dia-aritmuxe9tica}}
+\subsection{Média (Aritmética)}\label{muxe9dia-aritmuxe9tica}
 
 \begin{itemize}
 \item
@@ -2050,8 +2051,7 @@ Pode-se afirmar que nesta amostra, o gênero predominante é aventura (34,7\% do
   Quando os dados estão agrupados em classes, podemos calcular um valor aproximado da média fazendo \[\displaystyle \bar{x} \approx \sum_{i=1}^k f_i~\bar{x}_i~,\] em que \(\bar{x}_i\) é o valor médio da \emph{i}-ésima classe e \(f_i\) é a frequência relativa daquela classe.
 \end{itemize}
 
-\hypertarget{mediana}{%
-\subsection{Mediana}\label{mediana}}
+\subsection{Mediana}\label{mediana}
 
 \begin{itemize}
 \tightlist
@@ -2078,8 +2078,7 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   \textbf{Observação:} a mediana é uma medida mais robusta que a média pois é menos afetada por valores extremos.
 \end{itemize}
 
-\hypertarget{moda}{%
-\subsection{Moda}\label{moda}}
+\subsection{Moda}\label{moda}
 
 \begin{itemize}
 \tightlist
@@ -2097,8 +2096,7 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{medidas-de-dispersuxe3o}{%
-\section{Medidas de Dispersão}\label{medidas-de-dispersuxe3o}}
+\section{Medidas de Dispersão}\label{medidas-de-dispersuxe3o}
 
 \begin{itemize}
 \tightlist
@@ -2110,8 +2108,7 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   Para descrever melhor esta diferença, podemos usar medidas que nos informem o quanto os dados estão ``espalhados'', ou como é a dispersão dos dados.
 \end{itemize}
 
-\hypertarget{variuxe2ncia}{%
-\subsection{Variância}\label{variuxe2ncia}}
+\subsection{Variância}\label{variuxe2ncia}
 
 \begin{itemize}
 \tightlist
@@ -2138,8 +2135,7 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   \end{itemize}
 \end{itemize}
 
-\hypertarget{desvio-padruxe3o}{%
-\subsection{Desvio padrão}\label{desvio-padruxe3o}}
+\subsection{Desvio padrão}\label{desvio-padruxe3o}
 
 \begin{itemize}
 \tightlist
@@ -2166,8 +2162,7 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   \end{itemize}
 \end{itemize}
 
-\hypertarget{desvio-muxe9dio-ou-absoluto}{%
-\subsection{Desvio médio ou absoluto}\label{desvio-muxe9dio-ou-absoluto}}
+\subsection{Desvio médio ou absoluto}\label{desvio-muxe9dio-ou-absoluto}
 
 \begin{itemize}
 \tightlist
@@ -2196,11 +2191,9 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{medidas-de-ordem}{%
-\section{Medidas de ordem}\label{medidas-de-ordem}}
+\section{Medidas de ordem}\label{medidas-de-ordem}
 
-\hypertarget{quartis-e-quantis}{%
-\subsection{Quartis e quantis}\label{quartis-e-quantis}}
+\subsection{Quartis e quantis}\label{quartis-e-quantis}
 
 \begin{itemize}
 \item
@@ -2245,8 +2238,7 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   Os quantis \(Q(0.25)\), \(Q(0.50)\) e \(Q(0.75)\) são chamados de primeiro, segundo e terceiro \textbf{quartis} e são denotados por \(q_1\), \(q_2\) e \(q_3\), respectivamente. Como já foi dito, \(q_2 = md(x)\).
 \end{itemize}
 
-\hypertarget{distuxe2ncia-ou-amplitude-interquartis}{%
-\subsection{Distância (ou Amplitude) Interquartis}\label{distuxe2ncia-ou-amplitude-interquartis}}
+\subsection{Distância (ou Amplitude) Interquartis}\label{distuxe2ncia-ou-amplitude-interquartis}
 
 \begin{itemize}
 \tightlist
@@ -2256,8 +2248,7 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   A distância interquartis é a amplitude do intervalo que concentra 50\% das observações centrais.
 \end{itemize}
 
-\hypertarget{desvio-mediano-absoluto}{%
-\subsection{Desvio Mediano Absoluto}\label{desvio-mediano-absoluto}}
+\subsection{Desvio Mediano Absoluto}\label{desvio-mediano-absoluto}
 
 \begin{itemize}
 \tightlist
@@ -2265,8 +2256,7 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   Como a mediana é uma medida mais robusta que a média, é possível estabelecer também uma medida de dispersão em termos de desvios em relação à mediana. Assim, defina o \emph{desvio mediano absoluto} como \[dma(x) = md(|x_i - md(x)|)~.\]
 \end{itemize}
 
-\hypertarget{amplitude}{%
-\subsection{Amplitude}\label{amplitude}}
+\subsection{Amplitude}\label{amplitude}
 
 \begin{itemize}
 \tightlist
@@ -2277,21 +2267,17 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{medidas-de-assimetria}{%
-\section{Medidas de assimetria}\label{medidas-de-assimetria}}
+\section{Medidas de assimetria}\label{medidas-de-assimetria}
 
-\hypertarget{coeficiente-de-assimetria-de-bowley}{%
-\subsection{Coeficiente de Assimetria de Bowley}\label{coeficiente-de-assimetria-de-bowley}}
+\subsection{Coeficiente de Assimetria de Bowley}\label{coeficiente-de-assimetria-de-bowley}
 
 \[B = \frac{(q_3-q_2)-(q_2-q_1)}{q_3-q_1} = \frac{(q_3-q_2)-(q_2-q_1)}{(q_3-q_2)+(q_2-q_1)} = \frac{q_3+q_1-2q_2}{q_3-q_1}\]
 
-\hypertarget{coeficiente-de-assimetria-de-pearson-1}{%
-\subsection{Coeficiente de Assimetria de Pearson 1}\label{coeficiente-de-assimetria-de-pearson-1}}
+\subsection{Coeficiente de Assimetria de Pearson 1}\label{coeficiente-de-assimetria-de-pearson-1}
 
 \[Sk_1 = \frac{\bar{x}-moda(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}\]
 
-\hypertarget{coeficiente-de-assimetria-de-pearson-2}{%
-\subsection{Coeficiente de Assimetria de Pearson 2}\label{coeficiente-de-assimetria-de-pearson-2}}
+\subsection{Coeficiente de Assimetria de Pearson 2}\label{coeficiente-de-assimetria-de-pearson-2}
 
 \[Sk_2 = 3\cdot\frac{\bar{x}-md(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}\]
 
@@ -2301,20 +2287,17 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   Considere o \textbf{\emph{k}-ésimo momento (central) amostral}, definido por \[m_k = \frac{1}{n}\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^k\]
 \end{itemize}
 
-\hypertarget{coeficiente-de-assimetria-de-fisher-pearson}{%
-\subsection{Coeficiente de Assimetria de Fisher-Pearson}\label{coeficiente-de-assimetria-de-fisher-pearson}}
+\subsection{Coeficiente de Assimetria de Fisher-Pearson}\label{coeficiente-de-assimetria-de-fisher-pearson}
 
 \[g_1 = m_3/m_2^{3/2}\]
 
-\hypertarget{coeficiente-de-assimetria-de-fisher-pearson-ajustado}{%
-\subsection{Coeficiente de Assimetria de Fisher-Pearson ajustado}\label{coeficiente-de-assimetria-de-fisher-pearson-ajustado}}
+\subsection{Coeficiente de Assimetria de Fisher-Pearson ajustado}\label{coeficiente-de-assimetria-de-fisher-pearson-ajustado}
 
 (pelo tamanho amostral)\textbf{:} \[g_2 = \frac{n\sqrt{n(n-1)}}{n-1}g1\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{calculo-de-medidas-no-r}{%
-\section{Calculo de medidas no R}\label{calculo-de-medidas-no-r}}
+\section{Calculo de medidas no R}\label{calculo-de-medidas-no-r}
 
 \begin{itemize}
 \tightlist
@@ -2408,11 +2391,9 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{modelos_graficos6}{%
-\chapter{Modelos Gráficos}\label{modelos_graficos6}}
+\chapter{Modelos Gráficos}\label{modelos_graficos6}
 
-\hypertarget{gruxe1fico-de-barras}{%
-\section{Gráfico de Barras}\label{gruxe1fico-de-barras}}
+\section{Gráfico de Barras}\label{gruxe1fico-de-barras}
 
 \begin{itemize}
 \item
@@ -2475,8 +2456,7 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{gruxe1fico-de-setores-pizza}{%
-\section{Gráfico de Setores (Pizza)}\label{gruxe1fico-de-setores-pizza}}
+\section{Gráfico de Setores (Pizza)}\label{gruxe1fico-de-setores-pizza}
 
 \begin{itemize}
 \tightlist
@@ -2506,8 +2486,7 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{histograma}{%
-\section{Histograma}\label{histograma}}
+\section{Histograma}\label{histograma}
 
 \begin{itemize}
 \tightlist
@@ -2575,8 +2554,7 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{ramos-e-folhas}{%
-\section{Ramos e Folhas}\label{ramos-e-folhas}}
+\section{Ramos e Folhas}\label{ramos-e-folhas}
 
 \begin{itemize}
 \tightlist
@@ -2669,8 +2647,7 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{box-plot}{%
-\section{Box-Plot}\label{box-plot}}
+\section{Box-Plot}\label{box-plot}
 
 \begin{itemize}
 \tightlist
@@ -2699,8 +2676,7 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{gruxe1ficos-e-simetria}{%
-\section{Gráficos e simetria}\label{gruxe1ficos-e-simetria}}
+\section{Gráficos e simetria}\label{gruxe1ficos-e-simetria}
 
 \begin{center}\includegraphics{AED_files/figure-latex/simetria-1} \end{center}
 
@@ -2751,8 +2727,7 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{exercuxedcios-1}{%
-\section{Exercícios}\label{exercuxedcios-1}}
+\section{Exercícios}\label{exercuxedcios-1}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2772,8 +2747,7 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{anaise_bi7}{%
-\chapter{Análise bivariada}\label{anaise_bi7}}
+\chapter{Análise bivariada}\label{anaise_bi7}
 
 \begin{itemize}
 \item
@@ -2789,8 +2763,7 @@ Ficção Científica & 1 & 0.0434783\\
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{duas-variuxe1veis-categuxf3ricas}{%
-\section{Duas variáveis categóricas}\label{duas-variuxe1veis-categuxf3ricas}}
+\section{Duas variáveis categóricas}\label{duas-variuxe1veis-categuxf3ricas}
 
 \textbf{Tabela de Contingência (de Frequências)}
 
@@ -2943,11 +2916,9 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{medidas_duas_va}{%
-\chapter{Medidas de duas variáveis}\label{medidas_duas_va}}
+\chapter{Medidas de duas variáveis}\label{medidas_duas_va}
 
-\hypertarget{tabela-de-continguxeancia-de-frequuxeancias}{%
-\section{Tabela de Contingência (de Frequências)}\label{tabela-de-continguxeancia-de-frequuxeancias}}
+\section{Tabela de Contingência (de Frequências)}\label{tabela-de-continguxeancia-de-frequuxeancias}
 
 \begin{itemize}
 \tightlist
@@ -3040,8 +3011,7 @@ Ficção Científica & 1 & 0.0434783\\
 \hline
 \end{tabular}
 
-\hypertarget{correlauxe7uxe3o-amostral}{%
-\section{Correlação amostral}\label{correlauxe7uxe3o-amostral}}
+\section{Correlação amostral}\label{correlauxe7uxe3o-amostral}
 
 \begin{itemize}
 \item
@@ -3064,8 +3034,7 @@ Ficção Científica & 1 & 0.0434783\\
 ## [1] 0.4082483
 \end{verbatim}
 
-\hypertarget{qui-quadrado-de-pearson}{%
-\section{Qui-Quadrado de Pearson}\label{qui-quadrado-de-pearson}}
+\section{Qui-Quadrado de Pearson}\label{qui-quadrado-de-pearson}
 
 \begin{itemize}
 \item
@@ -3091,8 +3060,7 @@ Ficção Científica & 1 & 0.0434783\\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{medidas-de-associauxe7uxe3o-baseadas-no-qui-quadrado}{%
-\section{Medidas de Associação baseadas no Qui-Quadrado}\label{medidas-de-associauxe7uxe3o-baseadas-no-qui-quadrado}}
+\section{Medidas de Associação baseadas no Qui-Quadrado}\label{medidas-de-associauxe7uxe3o-baseadas-no-qui-quadrado}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3122,8 +3090,7 @@ Ficção Científica & 1 & 0.0434783\\
 \hline
 \end{tabular}
 
-\hypertarget{coeficiente-de-continguxeancia-de-pearson}{%
-\subsection{Coeficiente de Contingência de Pearson}\label{coeficiente-de-continguxeancia-de-pearson}}
+\subsection{Coeficiente de Contingência de Pearson}\label{coeficiente-de-continguxeancia-de-pearson}
 
 \[C = \sqrt{\frac{Q^2}{Q^2 + n}} \qquad 0\leq C\leq1\]
 
@@ -3132,8 +3099,7 @@ No exemplo:\\
 
 O Coeficiente de Contingência de Pearson é muito influenciado pelo número de linhas (\(l\)) e número de colunas (\(c\)).
 
-\hypertarget{coeficiente-de-tcschupov}{%
-\subsection{Coeficiente de Tcschupov}\label{coeficiente-de-tcschupov}}
+\subsection{Coeficiente de Tcschupov}\label{coeficiente-de-tcschupov}
 
 \[T = \sqrt{\frac{Q^2/n}{(l - 1) (c - 1)}} \qquad 0\leq T\leq1\]
 
@@ -3143,8 +3109,7 @@ No exemplo:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{outras-medidas-de-associauxe7uxe3o}{%
-\section{Outras Medidas de Associação}\label{outras-medidas-de-associauxe7uxe3o}}
+\section{Outras Medidas de Associação}\label{outras-medidas-de-associauxe7uxe3o}
 
 \begin{itemize}
 \tightlist
@@ -3183,8 +3148,7 @@ Sim
 
 p
 
-\hypertarget{risco-atribuuxedvel}{%
-\subsection{Risco Atribuível}\label{risco-atribuuxedvel}}
+\subsection{Risco Atribuível}\label{risco-atribuuxedvel}
 
 \begin{itemize}
 \tightlist
@@ -3196,8 +3160,7 @@ p
 
 \[RA =    \frac{3}{5} - {1 \over 5} = \frac{2}{5}\]
 
-\hypertarget{risco-relativo}{%
-\subsection{Risco Relativo}\label{risco-relativo}}
+\subsection{Risco Relativo}\label{risco-relativo}
 
 \begin{itemize}
 \tightlist
@@ -3209,13 +3172,12 @@ p
 
 \[RR = \frac{3/5}{1/5} = 3  \]
 
-\hypertarget{razuxe3o-de-chances-odds-ratio}{%
-\subsection{Razão de Chances (``Odds Ratio'')}\label{razuxe3o-de-chances-odds-ratio}}
+\subsection{Razão de Chances (``Odds Ratio'')}\label{razuxe3o-de-chances-odds-ratio}
 
 \begin{itemize}
 \tightlist
 \item
-  Os termos probabilidade e chance são sinônimos mas, por convenção, usaremos a notação \(3:2 ~``="~ \dfrac{3}{5}\), sendo que \(3:2 = \dfrac{3/5}{2/5}\) denotará a chance e \(\dfrac{3}{5}\) a probabilidade.
+  Os termos probabilidade e chance são sinônimos mas, por convenção, usaremos a notação \(3:2  ~``="~ \dfrac{3}{5}\), sendo que \(3:2 = \dfrac{3/5}{2/5}\) denotará a chance e \(\dfrac{3}{5}\) a probabilidade.
 \end{itemize}
 
 \[OR ~=~ \frac{p}{(1-p)} \div \frac{q}{(1-q)} ~=~  \frac{p(1-q)}{q(1-q)}\]\\
@@ -3225,8 +3187,7 @@ p
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{medidas-para-testes-de-diagnuxf3stico}{%
-\section{Medidas para Testes de Diagnóstico}\label{medidas-para-testes-de-diagnuxf3stico}}
+\section{Medidas para Testes de Diagnóstico}\label{medidas-para-testes-de-diagnuxf3stico}
 
 Considere um teste para uma determinada doença, de modo que o resultado do teste pode ser 1: \emph{Positivo} e 0: \emph{Negativo} e o indivíduos podem estar 1: \emph{Doente} ou 0: \emph{Não Doente}.
 
@@ -3264,50 +3225,43 @@ Considere um teste para uma determinada doença, de modo que o resultado do test
 
 As medidas a seguir são bastante utilizadas no contexto de testes de diagnósticos:
 
-\hypertarget{sensibilidade}{%
-\subsection{Sensibilidade}\label{sensibilidade}}
+\subsection{Sensibilidade}\label{sensibilidade}
 
 \(S = P(Teste = 1 ~|~ Doente = 1)\)\\
 * estimativa: \(s = \dfrac{o_{22}}{o_{\bullet 2}}\)\\
 * no exemplo: \(s = \dfrac{3}{4}\)
 
-\hypertarget{especificidade}{%
-\subsection{Especificidade}\label{especificidade}}
+\subsection{Especificidade}\label{especificidade}
 
 \(E = P(Teste = 0 ~|~ Doente = 0)\)\\
 - estimativa: \(e = \dfrac{o_{11}}{o_{\bullet 1}}\)\\
 - no exemplo: \(e = \dfrac{4}{6}\)
 
-\hypertarget{falso-positivo}{%
-\subsection{Falso Positivo}\label{falso-positivo}}
+\subsection{Falso Positivo}\label{falso-positivo}
 
 \(FP = P(Teste = 1 ~|~ Doente = 0)\)\\
 - estimativa: \(fp = \dfrac{o_{21}}{o_{\bullet 1}}\)\\
 - no exemplo: \(fp = \dfrac{2}{6}\)
 
-\hypertarget{falso-negativo}{%
-\subsection{Falso Negativo}\label{falso-negativo}}
+\subsection{Falso Negativo}\label{falso-negativo}
 
 \(FN = P(Teste = 0 ~|~ Doente = 1)\)\\
 - estimativa: \(fn = \dfrac{o_{12}}{o_{\bullet 2}}\)\\
 - no exemplo: \(fn = \dfrac{1}{4}\)
 
-\hypertarget{valor-preditivo-positivo}{%
-\subsection{Valor Preditivo Positivo}\label{valor-preditivo-positivo}}
+\subsection{Valor Preditivo Positivo}\label{valor-preditivo-positivo}
 
 \(VPP=P(Doente=1~|~Teste=1)\)\\
 - estimativa: \(vpp = \dfrac{o_{22}}{o_{2 \bullet}}\)\\
 - no exemplo: \(vpp = \dfrac{3}{5}\)
 
-\hypertarget{valor-preditivo-negativo}{%
-\subsection{Valor Preditivo Negativo}\label{valor-preditivo-negativo}}
+\subsection{Valor Preditivo Negativo}\label{valor-preditivo-negativo}
 
 \(VPN = P(Doente=0~|~Teste=0)\)\\
 - estimativa: \(vpn = \dfrac{o_{11}}{o_{1 \bullet}}\)\\
 - no exemplo: \(vpn = \dfrac{4}{5}\)
 
-\hypertarget{acuruxe1cia}{%
-\subsection{Acurácia}\label{acuruxe1cia}}
+\subsection{Acurácia}\label{acuruxe1cia}
 
 \(AC = P\left[(\text{Teste}=0, \text{Doente} = 0) \cup (\text{Teste}=1, \text{Doente} = 1)\right]\)
 - estimativa: \(ac = \dfrac{o_{11}+o_{22}}{n}\)\\
@@ -3315,13 +3269,11 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{respostas-dos-exercuxedcios}{%
-\chapter{Respostas dos exercícios}\label{respostas-dos-exercuxedcios}}
+\chapter{Respostas dos exercícios}\label{respostas-dos-exercuxedcios}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{capuxedtulo-3}{%
-\section{Capítulo 3}\label{capuxedtulo-3}}
+\section{Capítulo 3}\label{capuxedtulo-3}
 
 \begin{itemize}
 \tightlist
@@ -3498,13 +3450,11 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{outros-gruxe1ficos-incompleto}{%
-\chapter{Outros Gráficos (incompleto)}\label{outros-gruxe1ficos-incompleto}}
+\chapter{Outros Gráficos (incompleto)}\label{outros-gruxe1ficos-incompleto}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{gruxe1fico-de-bolhas}{%
-\section{Gráfico de bolhas:}\label{gruxe1fico-de-bolhas}}
+\section{Gráfico de bolhas:}\label{gruxe1fico-de-bolhas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3525,15 +3475,13 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{AED_files/figure-latex/unnamed-chunk-3-1} \end{center}
+\begin{center}\includegraphics{AED_files/figure-latex/unnamed-chunk-2-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{diferentes-gruxe1ficos-de-barras}{%
-\section{Diferentes gráficos de barras}\label{diferentes-gruxe1ficos-de-barras}}
+\section{Diferentes gráficos de barras}\label{diferentes-gruxe1ficos-de-barras}
 
-\hypertarget{barras-agrupadas}{%
-\subsection{Barras agrupadas}\label{barras-agrupadas}}
+\subsection{Barras agrupadas}\label{barras-agrupadas}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3553,53 +3501,41 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{AED_files/figure-latex/unnamed-chunk-4-1} \end{center}
+\begin{center}\includegraphics{AED_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
-\hypertarget{barras-empilhadas}{%
-\subsection{Barras empilhadas}\label{barras-empilhadas}}
+\subsection{Barras empilhadas}\label{barras-empilhadas}
 
-\hypertarget{barras-100-empilhadas}{%
-\subsection{Barras 100\% empilhadas}\label{barras-100-empilhadas}}
+\subsection{Barras 100\% empilhadas}\label{barras-100-empilhadas}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{gruxe1fico-de-velocuxedmetro}{%
-\section{Gráfico de velocímetro}\label{gruxe1fico-de-velocuxedmetro}}
+\section{Gráfico de velocímetro}\label{gruxe1fico-de-velocuxedmetro}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{gruxe1fico-mosauxedco}{%
-\section{Gráfico mosaíco}\label{gruxe1fico-mosauxedco}}
+\section{Gráfico mosaíco}\label{gruxe1fico-mosauxedco}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{nuvem-de-palavras}{%
-\section{Nuvem de palavras}\label{nuvem-de-palavras}}
+\section{Nuvem de palavras}\label{nuvem-de-palavras}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{configurauxe7uxf5es-gruxe1ficas}{%
-\section{Configurações gráficas}\label{configurauxe7uxf5es-gruxe1ficas}}
+\section{Configurações gráficas}\label{configurauxe7uxf5es-gruxe1ficas}
 
-\hypertarget{cor-de-fundo}{%
-\subsection{Cor de fundo}\label{cor-de-fundo}}
+\subsection{Cor de fundo}\label{cor-de-fundo}
 
-\hypertarget{imagem-de-fundo}{%
-\subsection{Imagem de fundo}\label{imagem-de-fundo}}
+\subsection{Imagem de fundo}\label{imagem-de-fundo}
 
-\hypertarget{margens-gruxe1ficas}{%
-\subsection{Margens gráficas}\label{margens-gruxe1ficas}}
+\subsection{Margens gráficas}\label{margens-gruxe1ficas}
 
-\hypertarget{janelas-multiplas}{%
-\subsection{Janelas multiplas}\label{janelas-multiplas}}
+\subsection{Janelas multiplas}\label{janelas-multiplas}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{exercuxedcio}{%
-\section{Exercício}\label{exercuxedcio}}
+\section{Exercício}\label{exercuxedcio}
 
-\hypertarget{regressuxe3o-linear-incompleto}{%
-\chapter{Regressão linear (incompleto)}\label{regressuxe3o-linear-incompleto}}
+\chapter{Regressão linear (incompleto)}\label{regressuxe3o-linear-incompleto}
 
 A regressão linear modela a relação entre duas variáveis quantitativas, onde uma variável é considerada dependente e a outra é independente. O objetivo principal é estabelecer uma equação linear que descreva como a variável dependente (\(Y\)) se comporta em função da variável independente.
 
@@ -3643,8 +3579,7 @@ Agora, para conseguir estimar esse valor esperado do peso de uma pessoa, com bas
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estimar-a-e-b}{%
-\section{\texorpdfstring{Estimar \(a\) e \(b\)}{Estimar a e b}}\label{estimar-a-e-b}}
+\section{\texorpdfstring{Estimar \(a\) e \(b\)}{Estimar a e b}}\label{estimar-a-e-b}
 
 Para estimar os coeficientes usamos o método dos mínimos quadrados
 
