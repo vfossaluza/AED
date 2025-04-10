@@ -39,9 +39,11 @@ output: html_document
 
 2. Texto formatado, que usa a sintaxe Markdown para formatação de texto, por exemplo:
   - "# Título 1" para criar títulos de nível 1.
-  - Para destacar: *Texto em itálico* ou **Texto em negrito**.
+  - Para destacar: *`*Texto em itálico*`* ou **`**Texto em negrito**`**.
   
-3. Blocos de códigos (chunks), que são delimitados por três crases (```) e é onde você pode escrever e executar os comandos em R. Eles permitem integrar o código diretamente ao documento, gerando tabelas, gráficos, etc. Um atalho para cria-lo é com CTRL+ALT+I.
+3. Blocos de códigos (chunks), que são delimitados por três crases (```) e é onde você pode escrever e executar os comandos em R. Eles permitem integrar o código diretamente ao documento, gerando tabelas, gráficos, etc. 
+Para cria-lo basta escrever as três crases 
+Um atalho para cria-lo é com CTRL+ALT+I.
 
 ```{r, nome_do_chunk}
 # seu código R.
