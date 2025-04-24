@@ -60,7 +60,9 @@ tab_genero %>%
   row_spec(0, bold = TRUE, 
            color = if (knitr::is_latex_output()) "black" else "white", 
            background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
 
+```{r graf_genero, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 graf_genero_f <- filmes_pixar %>% 
   ggplot() + theme_bw() + xlab("genero") + ylab("Freqûencia") +
   geom_bar(aes(x = genero, fill= genero)) + 
@@ -81,6 +83,7 @@ graf_genero_p <- tab_genero %>%
 ggpubr::ggarrange(graf_genero_f, graf_genero_p, legend = "none", ncol = 1)
 ```
 
+
 - **Exemplo 2: Variável Quantitativa** (duração do filme)
 
 ```{r barras_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
@@ -97,10 +100,12 @@ tab_duracao %>%
   row_spec(0, bold = TRUE, 
            color = if (knitr::is_latex_output()) "black" else "white", 
            background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
 
+```{r graf_duracao, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 tab_duracao %>% 
   ggplot() + theme_bw() + xlab("Duração do filme") + ylab("Proporção") +
-  geom_bar(aes(x= Faixa_duracao, y= FreqRel), fill="deeppink", stat="identity")
+  geom_bar(aes(x= Faixa_duracao, y= FreqRel), fill="royalblue", stat="identity")
 ```
 
 ---
@@ -110,7 +115,7 @@ tab_duracao %>%
 
 - Pode ser utilizado para variáveis qualitativas.
 
-```{r pizza1, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r pizza1, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 pizza_genero <- tab_genero %>% 
   mutate(Porc = scales::percent(FreqRel)) %>% 
   ggplot(aes(x = "", y = FreqRel, fill = Gênero)) +
@@ -123,7 +128,8 @@ pizza_genero <- tab_genero %>%
                         "Esporte" = "seagreen1", "Drama" = "turquoise3", 
                         "Musical" = "maroon3", "Ficção Científica" = "royalblue1")) +
   coord_polar(theta = "y") + ggtitle("Gênero dos filmes") +
-  theme_void() + theme(legend.position="bottom", plot.title = element_text(hjust = 0.5))
+  theme_void() + theme(legend.position="bottom", 
+                       plot.title = element_text(hjust = 0.5))
 
 ggpubr::ggarrange(pizza_genero)
 ```
@@ -141,7 +147,7 @@ ggpubr::ggarrange(pizza_genero)
 - Adequado para variáveis quantitativas (contínuas).  
 - Apesar de ser parecido com o gráfico de barras, no histograma as bases dos retângulos são proporcionais aos intervalos das classes e as áreas de cada retângulo devem ser proporcionais às frequências de cada classe.
 
-```{r hist_bilheteria1, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r tab_bilheteria2, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
 tab1_bilheteria %>% select(Bilheteria_Mundial,Freq,FreqRel) %>% 
   kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
       booktabs = TRUE) %>% 
@@ -155,16 +161,20 @@ tab1_bilheteria %>% select(Bilheteria_Mundial,Freq,FreqRel) %>%
   row_spec(0, bold = TRUE, 
            color = if (knitr::is_latex_output()) "black" else "white", 
            background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
-
-filmes_pixar %>% ggplot() + theme_bw() +
-  geom_histogram(aes(bilheteria_mundial), color="black", fill="deeppink", 
-                 breaks= c(300000000, 500000000, 700000000, 900000000, 1100000000, 1300000000))
 ```
+
+```{r hist_bilheteria1, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
+filmes_pixar %>% ggplot() + theme_bw() +
+  geom_histogram(aes(bilheteria_mundial), color="black", fill="royalblue", 
+                 breaks= c(300000000, 500000000, 700000000, 900000000, 
+                           1100000000, 1300000000))
+```
+
 
 - Quando as faixas tem tamanhos diferentes, não é adequado usar as frequências absolutas ou relativas no eixo y pois a área do gráfico correspondente pode dar a impressão de que as frequências são maiores do que efetivamente foi observado. É possível ver isso no gráfico a seguir.  
 - Neste caso, o ideal é utilizar a *densidade de frequência* no eixo y, dada por $d_i = \frac{f_i}{\delta_i}$, onde $\delta_i$ é o comprimento da faixa.
 
-```{r hist_bilheteria2, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r tab2_bilheteria, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
 tab2_bilheteria %>% 
   kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
       booktabs = TRUE) %>% 
@@ -178,20 +188,25 @@ tab2_bilheteria %>%
   row_spec(0, bold = TRUE, 
            color = if (knitr::is_latex_output()) "black" else "white", 
            background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
 
+```{r hist_bilheteria2, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 #hist_bilheteria_c <- 
 filmes_pixar %>% ggplot() + theme_bw() +
-  geom_histogram(aes(bilheteria_mundial), color="black", fill="deeppink", 
-                 breaks= c(300000000, 500000000, 700000000, 900000000, 1100000000, 1300000000))
+  geom_histogram(aes(bilheteria_mundial), color="black", fill="royalblue", 
+                 breaks= c(300000000, 500000000, 700000000, 900000000, 
+                           1100000000, 1300000000))
 
 #hist_bilheteria_m <- 
 filmes_pixar %>% ggplot() + theme_bw() +
   geom_histogram(aes(bilheteria_mundial,after_stat(density)), 
-                 color="black", fill="deeppink", 
-                 breaks= c(300000000, 500000000, 700000000, 900000000, 1100000000, 1300000000))
+                 color="black", fill="royalblue", 
+                 breaks= c(300000000, 500000000, 700000000, 900000000, 
+                           1100000000, 1300000000))
 
 #ggpubr::ggarrange(hist_bilheteria_c, hist_bilheteria_m, ncol=1)
 ```
+
 
 - Note que desta forma, a área total do histograma é igual a 1.
 
@@ -201,7 +216,7 @@ filmes_pixar %>% ggplot() + theme_bw() +
 
 - Similar a um histograma mas com menos perda de informação.
 
-```{r stemleaf_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r tab_duracao_steam, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
 tibble(duracao = sort(filmes_pixar$duracao)) %>%
   kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
       booktabs = TRUE) %>% 
@@ -215,11 +230,14 @@ tibble(duracao = sort(filmes_pixar$duracao)) %>%
   row_spec(0, bold = TRUE, 
            color = if (knitr::is_latex_output()) "black" else "white", 
            background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
 
+```{r stemleaf_duracao, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 stem(filmes_pixar$duracao)
 ```
 
-```{r stemleaf_bilheteria, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+
+```{r tab_bilheteria_steam, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
 tab1_bilheteria %>% 
   kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
       booktabs = TRUE) %>% 
@@ -233,9 +251,12 @@ tab1_bilheteria %>%
   row_spec(0, bold = TRUE, 
            color = if (knitr::is_latex_output()) "black" else "white", 
            background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
 
+```{r stemleaf_bilheteria, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 stem(filmes_pixar$bilheteria_mundial / 1e9) 
 ```
+
 
 - Não é adequado quando temos grandes bancos de dados e não tem o mesmo efeito visual de um boxplot.
 
@@ -245,9 +266,9 @@ stem(filmes_pixar$bilheteria_mundial / 1e9)
 
 - Utilizado para representar graficamente os quartis, além dos valores mínimo e máximo.  
 
-```{r boxplot_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r boxplot_duracao, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 filmes_pixar %>% ggplot() + theme_bw() + 
-  geom_boxplot(aes(y=duracao), color="black", fill="deeppink") 
+  geom_boxplot(aes(y=duracao), color="black", fill="royalblue") 
 ```
 
 - No retângulo estão representados os quartis $q_1$, $q_2$ e $q_3$.  
@@ -258,9 +279,9 @@ filmes_pixar %>% ggplot() + theme_bw() +
 
 - É possivel incluir os pontos observados no boxplot para não ter perda de informação.
 
-```{r boxplot_P_duracao, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r boxplot_P_duracao, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 filmes_pixar %>% ggplot(aes(x="",y=duracao)) + theme_bw() + 
-  geom_boxplot(color="black", fill="deeppink") + 
+  geom_boxplot(color="black", fill="royalblue") + 
   ggbeeswarm::geom_beeswarm(cex=3,size=3,method = "center")
   #geom_dotplot(binaxis= "y",stackdir = "center",fill = 1,dotsize = 0.8,stackratio=2)
   #geom_jitter(color="black", size=1, alpha=0.9)
@@ -270,7 +291,7 @@ filmes_pixar %>% ggplot(aes(x="",y=duracao)) + theme_bw() +
 
 ## Gráficos e simetria
 
-```{r simetria, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r simetria, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 set.seed(13)
 
 simul <- tibble(y = rnorm(150,2.5,1))
@@ -279,17 +300,17 @@ lim = c(min(simul$y),max(simul$y))
 hist <- simul %>% ggplot() + theme_classic() + xlab("") + xlim(lim[1],lim[2]) + 
   ggtitle("Simetria") +
   geom_histogram(aes(y,after_stat(density)), 
-                 color="black", fill="deeppink", bins=8)
+                 color="black", fill="royalblue", bins=8)
 
 box <- simul %>% ggplot(aes(x="",y=y)) + 
   theme_classic() + coord_flip() + xlab("") + ylab("") + ylim(lim[1],lim[2]) +
-  geom_boxplot(color="black", fill="deeppink")  
+  geom_boxplot(color="black", fill="royalblue")  
   #ggbeeswarm::geom_beeswarm(cex=1,size=1,method = "center")
 
 ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
 ```
 
-```{r assimetriaD, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r assimetriaD, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 set.seed(13)
 
 simul <- tibble(y = rgamma(150,2.5,1))
@@ -298,28 +319,28 @@ lim = c(min(simul$y),max(simul$y))
 hist <- simul %>% ggplot() + theme_classic() + xlab("") + xlim(lim[1],lim[2]) +
   ggtitle("Assimetria à Direita") +
   geom_histogram(aes(y,after_stat(density)), 
-                 color="black", fill="deeppink", bins=10)
+                 color="black", fill="royalblue", bins=10)
 
 box <- simul %>% ggplot(aes(x="",y=y)) + 
   theme_classic() + coord_flip() + xlab("") + ylab("") + ylim(lim[1],lim[2]) +
-  geom_boxplot(color="black", fill="deeppink")  
+  geom_boxplot(color="black", fill="royalblue")  
   #ggbeeswarm::geom_beeswarm(cex=1,size=1,method = "center")
 
 ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
 ```
 
-```{r assimetriaE, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r assimetriaE, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 simul <- lim[2]-simul+lim[1]
 lim = c(min(simul$y),max(simul$y))
 
 hist <- simul %>% ggplot() + theme_classic() + xlab("") + xlim(lim[1],lim[2]) +
   ggtitle("Assimetria à Esquerda") +
   geom_histogram(aes(y,after_stat(density)), 
-                 color="black", fill="deeppink", bins=10)
+                 color="black", fill="royalblue", bins=10)
 
 box <- simul %>% ggplot(aes(x="",y=y)) + 
   theme_classic() + coord_flip() + xlab("") + ylab("") + ylim(lim[1],lim[2]) +
-  geom_boxplot(color="black", fill="deeppink")  
+  geom_boxplot(color="black", fill="royalblue")  
   #ggbeeswarm::geom_beeswarm(cex=1,size=1,method = "center")
 
 ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
@@ -342,7 +363,7 @@ ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
   
 - Uma forma de fazer essa avaliação é fazer um gráfico dos pares $(u_i,v_i)$.
 
-```{r graf_simetria, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+```{r graf_simetria, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
 tibble(u = 100.6522 - sort(filmes_pixar$duracao)[1:5],
        v = sort(filmes_pixar$duracao,decreasing=TRUE)[1:5] - 100.6522) %>% 
   ggplot() + theme_bw() + 

@@ -47,7 +47,7 @@ pixar_dados %>%
            background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
 ```
 
-A tabela acima é uma versão reduzida do banco de dados "filmes_pixar", disponível para download **[aqui](filmes_pixar.csv)**. 
+A tabela acima é uma versão reduzida do banco de dados "filmes_pixar", disponível para download **[aqui](./arquivos/filmes_pixar.csv)**. 
 Este banco de dados foi elaborado para servir de base na construção de tabelas e gráficos nesse e nos próximos capítulos. Já a versão reduzida será usada para facilitar os cálculos e a resolução de exemplos na lousa, durante a aula.
 
 ---

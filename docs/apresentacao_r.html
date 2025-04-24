@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Apresentação à linguagem R | Análise Exploratória de Dados" />
   <meta property="og:type" content="book" />
@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-03-24" />
+<meta name="date" content="2025-04-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -345,12 +345,26 @@ O RStudio é uma interface gráfica para a linguagem de programação R. Ele tor
 </ol>
 <ul>
 <li>“# Título 1” para criar títulos de nível 1.</li>
-<li>Para destacar: <em>Texto em itálico</em> ou <strong>Texto em negrito</strong>.</li>
+<li>Para destacar: ‘<em>’</em>Texto em itálico<em>’</em>’ ou ‘<strong>’</strong>Texto em negrito<strong>’</strong>’.</li>
+<li>Para criar listas não ordenadas (com marcadores): use - ou * antes dos itens. Já para listas ordenadas (numeradas): use números seguidos de ponto.</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
-<li>Blocos de códigos (chunks), que são delimitados por três crases (```) e é onde você pode escrever e executar os comandos em R. Eles permitem integrar o código diretamente ao documento, gerando tabelas, gráficos, etc. Um atalho para cria-lo é com CTRL+ALT+I.</li>
+<li>Blocos de códigos (chunks), que são delimitados por três crases (```) e é onde você pode escrever e executar os comandos em R. Eles permitem integrar o código diretamente ao documento, gerando tabelas, gráficos, etc.
+Para cria-lo basta escrever as três crases
+Um atalho para cria-lo é com CTRL+ALT+I.</li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="apresentacao_r.html#cb2-1" tabindex="-1"></a><span class="co"># seu código R.</span></span></code></pre></div>
+<ul>
+<li><strong>Equações Matemáticas no RMarkdown:</strong></li>
+</ul>
+<p>É possível fazer equações matemáticas em R Markdown usando a sintaxe do LaTeX. Existem duas formas principais:</p>
+<ol style="list-style-type: decimal">
+<li>Equações em linha: use cifrões simples <code>$...$</code> para inserir fórmulas no meio do texto.</li>
+<li>Equações destacadas (em bloco): use dois cifrões <code>$$...$$</code> para centralizar a equação.</li>
+</ol>
+<p>Para mais informações sobre o R Markdown, acesse a cheatsheet oficial diretamente pelo RStudio.
+Basta ir em Help &gt; Cheatsheets &gt; R Markdown Cheat Sheet.
+Lá você encontra um resumo com os principais comandos de formatação, código, tabelas, gráficos e equações.</p>
 <hr />
 </div>
 <div id="operadores-básicos" class="section level2 hasAnchor" number="3.4">

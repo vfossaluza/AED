@@ -133,6 +133,8 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
+\usepackage{caption}
+\usepackage{anyfontsize}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -149,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-03-24}
+\date{2025-04-24}
 
 \begin{document}
 \maketitle
@@ -633,7 +635,9 @@ Um arquivo .Rmd tem a seguinte estrutura:
 \item
   ``\# Título 1'' para criar títulos de nível 1.
 \item
-  Para destacar: \emph{Texto em itálico} ou \textbf{Texto em negrito}.
+  Para destacar: `\emph{'}Texto em itálico\emph{'}' ou `\textbf{'}Texto em negrito\textbf{'}'.
+\item
+  Para criar listas não ordenadas (com marcadores): use - ou * antes dos itens. Já para listas ordenadas (numeradas): use números seguidos de ponto.
 \end{itemize}
 
 \begin{enumerate}
@@ -641,7 +645,9 @@ Um arquivo .Rmd tem a seguinte estrutura:
 \setcounter{enumi}{2}
 \tightlist
 \item
-  Blocos de códigos (chunks), que são delimitados por três crases (```) e é onde você pode escrever e executar os comandos em R. Eles permitem integrar o código diretamente ao documento, gerando tabelas, gráficos, etc. Um atalho para cria-lo é com CTRL+ALT+I.
+  Blocos de códigos (chunks), que são delimitados por três crases (```) e é onde você pode escrever e executar os comandos em R. Eles permitem integrar o código diretamente ao documento, gerando tabelas, gráficos, etc.
+  Para cria-lo basta escrever as três crases
+  Um atalho para cria-lo é com CTRL+ALT+I.
 \end{enumerate}
 
 \begin{Shaded}
@@ -649,6 +655,27 @@ Um arquivo .Rmd tem a seguinte estrutura:
 \CommentTok{\# seu código R.}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Equações Matemáticas no RMarkdown:}
+\end{itemize}
+
+É possível fazer equações matemáticas em R Markdown usando a sintaxe do LaTeX. Existem duas formas principais:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Equações em linha: use cifrões simples \texttt{\$...\$} para inserir fórmulas no meio do texto.
+\item
+  Equações destacadas (em bloco): use dois cifrões \texttt{\$\$...\$\$} para centralizar a equação.
+\end{enumerate}
+
+Para mais informações sobre o R Markdown, acesse a cheatsheet oficial diretamente pelo RStudio.
+Basta ir em Help \textgreater{} Cheatsheets \textgreater{} R Markdown Cheat Sheet.
+Lá você encontra um resumo com os principais comandos de formatação, código, tabelas, gráficos e equações.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -1882,7 +1909,7 @@ Pacotes podem ser instalados usando \texttt{install.packages("nome\_do\_pacote")
 \endgroup{}
 \end{table}
 
-A tabela acima é uma versão reduzida do banco de dados ``filmes\_pixar'', disponível para download \textbf{\href{filmes_pixar.csv}{aqui}}.
+A tabela acima é uma versão reduzida do banco de dados ``filmes\_pixar'', disponível para download \textbf{\href{./arquivos/filmes_pixar.csv}{aqui}}.
 Este banco de dados foi elaborado para servir de base na construção de tabelas e gráficos nesse e nos próximos capítulos. Já a versão reduzida será usada para facilitar os cálculos e a resolução de exemplos na lousa, durante a aula.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -2423,7 +2450,30 @@ Ficção Científica & 1 & 0.0434783\\
 \endgroup{}
 \end{table}
 
-\begin{center}\includegraphics{AED_files/figure-latex/barras_genero-1} \end{center}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{graf\_genero\_f }\OtherTok{\textless{}{-}}\NormalTok{ filmes\_pixar }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"genero"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Freqûencia"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ genero, }\AttributeTok{fill=}\NormalTok{ genero)) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\StringTok{"genero"}\NormalTok{, }\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Aventura"} \OtherTok{=} \StringTok{"deeppink"}\NormalTok{, }
+                   \StringTok{"Comédia"} \OtherTok{=} \StringTok{"magenta"}\NormalTok{, }\StringTok{"Ação"} \OtherTok{=} \StringTok{"coral2"}\NormalTok{, }
+                   \StringTok{"Esporte"} \OtherTok{=} \StringTok{"seagreen1"}\NormalTok{, }\StringTok{"Drama"} \OtherTok{=} \StringTok{"turquoise3"}\NormalTok{, }
+                   \StringTok{"Musical"} \OtherTok{=} \StringTok{"maroon3"}\NormalTok{, }\StringTok{"Ficção Científica"} \OtherTok{=} \StringTok{"royalblue"}\NormalTok{))}
+
+\NormalTok{graf\_genero\_p }\OtherTok{\textless{}{-}}\NormalTok{ tab\_genero }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"genero"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Proporção"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ Gênero, }\AttributeTok{fill=}\NormalTok{ Gênero, }\AttributeTok{y=}\NormalTok{FreqRel), }\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\StringTok{"genero"}\NormalTok{, }\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Aventura"} \OtherTok{=} \StringTok{"deeppink"}\NormalTok{, }
+                    \StringTok{"Comédia"} \OtherTok{=} \StringTok{"magenta"}\NormalTok{, }\StringTok{"Ação"} \OtherTok{=} \StringTok{"coral2"}\NormalTok{, }
+                    \StringTok{"Esporte"} \OtherTok{=} \StringTok{"seagreen1"}\NormalTok{, }\StringTok{"Drama"} \OtherTok{=} \StringTok{"turquoise3"}\NormalTok{, }
+                    \StringTok{"Musical"} \OtherTok{=} \StringTok{"maroon3"}\NormalTok{, }\StringTok{"Ficção Científica"} \OtherTok{=} \StringTok{"royalblue"}\NormalTok{))}
+
+\CommentTok{\# ggpubr::ggarrange(graf\_genero\_f,graf\_genero\_p, legend="none")}
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(graf\_genero\_f, graf\_genero\_p, }\AttributeTok{legend =} \StringTok{"none"}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/graf_genero-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -2452,7 +2502,15 @@ Ficção Científica & 1 & 0.0434783\\
 \endgroup{}
 \end{table}
 
-\begin{center}\includegraphics{AED_files/figure-latex/barras_duracao-1} \end{center}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab\_duracao }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Duração do filme"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Proporção"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ Faixa\_duracao, }\AttributeTok{y=}\NormalTok{ FreqRel), }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{, }\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/graf_duracao-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -2463,6 +2521,27 @@ Ficção Científica & 1 & 0.0434783\\
 \item
   Pode ser utilizado para variáveis qualitativas.
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pizza\_genero }\OtherTok{\textless{}{-}}\NormalTok{ tab\_genero }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Porc =}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{percent}\NormalTok{(FreqRel)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =}\NormalTok{ FreqRel, }\AttributeTok{fill =}\NormalTok{ Gênero)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_col}\NormalTok{(}\AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_label}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =}\NormalTok{ Porc), }\CommentTok{\#color = c(1, "white", "white"),}
+        \AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{),}
+        \AttributeTok{show.legend =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{guides}\NormalTok{(}\AttributeTok{fill =} \FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{title =} \StringTok{""}\NormalTok{)) }\SpecialCharTok{+}
+        \FunctionTok{scale\_fill\_manual}\NormalTok{(}\StringTok{"Gênero dos filmes"}\NormalTok{, }\AttributeTok{values =}\FunctionTok{c}\NormalTok{(}\StringTok{"Aventura"} \OtherTok{=} \StringTok{"deeppink"}\NormalTok{, }
+                        \StringTok{"Comédia"} \OtherTok{=} \StringTok{"magenta"}\NormalTok{, }\StringTok{"Ação"} \OtherTok{=} \StringTok{"coral2"}\NormalTok{, }
+                        \StringTok{"Esporte"} \OtherTok{=} \StringTok{"seagreen1"}\NormalTok{, }\StringTok{"Drama"} \OtherTok{=} \StringTok{"turquoise3"}\NormalTok{, }
+                        \StringTok{"Musical"} \OtherTok{=} \StringTok{"maroon3"}\NormalTok{, }\StringTok{"Ficção Científica"} \OtherTok{=} \StringTok{"royalblue1"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{coord\_polar}\NormalTok{(}\AttributeTok{theta =} \StringTok{"y"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Gênero dos filmes"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_void}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position=}\StringTok{"bottom"}\NormalTok{, }
+                       \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(pizza\_genero)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{center}\includegraphics{AED_files/figure-latex/pizza1-1} \end{center}
 
@@ -2514,6 +2593,15 @@ Ficção Científica & 1 & 0.0434783\\
 \endgroup{}
 \end{table}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{filmes\_pixar }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(bilheteria\_mundial), }\AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{, }
+                 \AttributeTok{breaks=} \FunctionTok{c}\NormalTok{(}\DecValTok{300000000}\NormalTok{, }\DecValTok{500000000}\NormalTok{, }\DecValTok{700000000}\NormalTok{, }\DecValTok{900000000}\NormalTok{, }
+                           \DecValTok{1100000000}\NormalTok{, }\DecValTok{1300000000}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{AED_files/figure-latex/hist_bilheteria1-1} \end{center}
 
 \begin{itemize}
@@ -2542,9 +2630,36 @@ Ficção Científica & 1 & 0.0434783\\
 \endgroup{}
 \end{table}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hist\_bilheteria\_c \textless{}{-} }
+\NormalTok{filmes\_pixar }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(bilheteria\_mundial), }\AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{, }
+                 \AttributeTok{breaks=} \FunctionTok{c}\NormalTok{(}\DecValTok{300000000}\NormalTok{, }\DecValTok{500000000}\NormalTok{, }\DecValTok{700000000}\NormalTok{, }\DecValTok{900000000}\NormalTok{, }
+                           \DecValTok{1100000000}\NormalTok{, }\DecValTok{1300000000}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{AED_files/figure-latex/hist_bilheteria2-1} \end{center}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#hist\_bilheteria\_m \textless{}{-} }
+\NormalTok{filmes\_pixar }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(bilheteria\_mundial,}\FunctionTok{after\_stat}\NormalTok{(density)), }
+                 \AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{, }
+                 \AttributeTok{breaks=} \FunctionTok{c}\NormalTok{(}\DecValTok{300000000}\NormalTok{, }\DecValTok{500000000}\NormalTok{, }\DecValTok{700000000}\NormalTok{, }\DecValTok{900000000}\NormalTok{, }
+                           \DecValTok{1100000000}\NormalTok{, }\DecValTok{1300000000}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{AED_files/figure-latex/hist_bilheteria2-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#ggpubr::ggarrange(hist\_bilheteria\_c, hist\_bilheteria\_m, ncol=1)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{itemize}
 \tightlist
@@ -2602,6 +2717,12 @@ Ficção Científica & 1 & 0.0434783\\
 \endgroup{}
 \end{table}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{stem}\NormalTok{(filmes\_pixar}\SpecialCharTok{$}\NormalTok{duracao)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 ## 
 ##   The decimal point is 1 digit(s) to the right of the |
@@ -2630,6 +2751,12 @@ Ficção Científica & 1 & 0.0434783\\
 \endgroup{}
 \end{table}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{stem}\NormalTok{(filmes\_pixar}\SpecialCharTok{$}\NormalTok{bilheteria\_mundial }\SpecialCharTok{/} \FloatTok{1e9}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 ## 
 ##   The decimal point is at the |
@@ -2655,6 +2782,13 @@ Ficção Científica & 1 & 0.0434783\\
   Utilizado para representar graficamente os quartis, além dos valores mínimo e máximo.
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{filmes\_pixar }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{duracao), }\AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{AED_files/figure-latex/boxplot_duracao-1} \end{center}
 
 \begin{itemize}
@@ -2672,15 +2806,91 @@ Ficção Científica & 1 & 0.0434783\\
   É possivel incluir os pontos observados no boxplot para não ter perda de informação.
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{filmes\_pixar }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{,}\AttributeTok{y=}\NormalTok{duracao)) }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{  ggbeeswarm}\SpecialCharTok{::}\FunctionTok{geom\_beeswarm}\NormalTok{(}\AttributeTok{cex=}\DecValTok{3}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{,}\AttributeTok{method =} \StringTok{"center"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{AED_files/figure-latex/boxplot_P_duracao-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{\#geom\_dotplot(binaxis= "y",stackdir = "center",fill = 1,dotsize = 0.8,stackratio=2)}
+  \CommentTok{\#geom\_jitter(color="black", size=1, alpha=0.9)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \section{Gráficos e simetria}\label{gruxe1ficos-e-simetria}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{13}\NormalTok{)}
+
+\NormalTok{simul }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{y =} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{150}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{lim }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(simul}\SpecialCharTok{$}\NormalTok{y),}\FunctionTok{max}\NormalTok{(simul}\SpecialCharTok{$}\NormalTok{y))}
+
+\NormalTok{hist }\OtherTok{\textless{}{-}}\NormalTok{ simul }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(lim[}\DecValTok{1}\NormalTok{],lim[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{+} 
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Simetria"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(y,}\FunctionTok{after\_stat}\NormalTok{(density)), }
+                 \AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{, }\AttributeTok{bins=}\DecValTok{8}\NormalTok{)}
+
+\NormalTok{box }\OtherTok{\textless{}{-}}\NormalTok{ simul }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{,}\AttributeTok{y=}\NormalTok{y)) }\SpecialCharTok{+} 
+  \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylim}\NormalTok{(lim[}\DecValTok{1}\NormalTok{],lim[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{)  }
+  \CommentTok{\#ggbeeswarm::geom\_beeswarm(cex=1,size=1,method = "center")}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(hist, box, }\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{nrow=}\DecValTok{2}\NormalTok{, }\AttributeTok{align =} \StringTok{"v"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{AED_files/figure-latex/simetria-1} \end{center}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{13}\NormalTok{)}
+
+\NormalTok{simul }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{y =} \FunctionTok{rgamma}\NormalTok{(}\DecValTok{150}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\NormalTok{lim }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(simul}\SpecialCharTok{$}\NormalTok{y),}\FunctionTok{max}\NormalTok{(simul}\SpecialCharTok{$}\NormalTok{y))}
+
+\NormalTok{hist }\OtherTok{\textless{}{-}}\NormalTok{ simul }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(lim[}\DecValTok{1}\NormalTok{],lim[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Assimetria à Direita"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(y,}\FunctionTok{after\_stat}\NormalTok{(density)), }
+                 \AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{, }\AttributeTok{bins=}\DecValTok{10}\NormalTok{)}
+
+\NormalTok{box }\OtherTok{\textless{}{-}}\NormalTok{ simul }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{,}\AttributeTok{y=}\NormalTok{y)) }\SpecialCharTok{+} 
+  \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylim}\NormalTok{(lim[}\DecValTok{1}\NormalTok{],lim[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{)  }
+  \CommentTok{\#ggbeeswarm::geom\_beeswarm(cex=1,size=1,method = "center")}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(hist, box, }\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{nrow=}\DecValTok{2}\NormalTok{, }\AttributeTok{align =} \StringTok{"v"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{center}\includegraphics{AED_files/figure-latex/assimetriaD-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{simul }\OtherTok{\textless{}{-}}\NormalTok{ lim[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{{-}}\NormalTok{simul}\SpecialCharTok{+}\NormalTok{lim[}\DecValTok{1}\NormalTok{]}
+\NormalTok{lim }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(simul}\SpecialCharTok{$}\NormalTok{y),}\FunctionTok{max}\NormalTok{(simul}\SpecialCharTok{$}\NormalTok{y))}
+
+\NormalTok{hist }\OtherTok{\textless{}{-}}\NormalTok{ simul }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(lim[}\DecValTok{1}\NormalTok{],lim[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Assimetria à Esquerda"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(y,}\FunctionTok{after\_stat}\NormalTok{(density)), }
+                 \AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{, }\AttributeTok{bins=}\DecValTok{10}\NormalTok{)}
+
+\NormalTok{box }\OtherTok{\textless{}{-}}\NormalTok{ simul }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\StringTok{""}\NormalTok{,}\AttributeTok{y=}\NormalTok{y)) }\SpecialCharTok{+} 
+  \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{coord\_flip}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylim}\NormalTok{(lim[}\DecValTok{1}\NormalTok{],lim[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{color=}\StringTok{"black"}\NormalTok{, }\AttributeTok{fill=}\StringTok{"royalblue"}\NormalTok{)  }
+  \CommentTok{\#ggbeeswarm::geom\_beeswarm(cex=1,size=1,method = "center")}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(hist, box, }\AttributeTok{heights =} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{nrow=}\DecValTok{2}\NormalTok{, }\AttributeTok{align =} \StringTok{"v"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{center}\includegraphics{AED_files/figure-latex/assimetriaE-1} \end{center}
 
@@ -2722,6 +2932,16 @@ Ficção Científica & 1 & 0.0434783\\
 \item
   Uma forma de fazer essa avaliação é fazer um gráfico dos pares \((u_i,v_i)\).
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tibble}\NormalTok{(}\AttributeTok{u =} \FloatTok{100.6522} \SpecialCharTok{{-}} \FunctionTok{sort}\NormalTok{(filmes\_pixar}\SpecialCharTok{$}\NormalTok{duracao)[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{],}
+       \AttributeTok{v =} \FunctionTok{sort}\NormalTok{(filmes\_pixar}\SpecialCharTok{$}\NormalTok{duracao,}\AttributeTok{decreasing=}\ConstantTok{TRUE}\NormalTok{)[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{] }\SpecialCharTok{{-}} \FloatTok{100.6522}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{u,}\AttributeTok{y=}\NormalTok{v)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{u,}\AttributeTok{y=}\NormalTok{u))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{center}\includegraphics{AED_files/figure-latex/graf_simetria-1} \end{center}
 
@@ -2813,25 +3033,21 @@ Ficção Científica & 1 & 0.0434783\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Table printed with `knitr::kable()`, not {gt}. Learn why at
-## https://www.danieldsjoberg.com/gtsummary/articles/rmarkdown.html
-## To suppress this message, include `message = FALSE` in code chunk header.
-\end{verbatim}
-
-\begin{tabular}{l|c|c|c}
-\hline
- & 0 & 1 & **Total**\\
-\hline
-\_\_Camisa\_\_ &  &  & \\
-\hline
-0 & 4 (40\%) & 1 (10\%) & 5 (50\%)\\
-\hline
-1 & 2 (20\%) & 3 (30\%) & 5 (50\%)\\
-\hline
-\_\_Total\_\_ & 6 (60\%) & 4 (40\%) & 10 (100\%)\\
-\hline
-\end{tabular}
+\begin{table}[t]
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Basquete}} &  \\ 
+\cmidrule(lr){2-3}
+ & 0 & 1 & \textbf{Total} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Camisa} &  &  &  \\ 
+    0 & 4 (40\%) & 1 (10\%) & 5 (50\%) \\ 
+    1 & 2 (20\%) & 3 (30\%) & 5 (50\%) \\ 
+{\bfseries Total} & 6 (60\%) & 4 (40\%) & 10 (100\%) \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \begin{itemize}
 \tightlist
@@ -2847,25 +3063,21 @@ Ficção Científica & 1 & 0.0434783\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Table printed with `knitr::kable()`, not {gt}. Learn why at
-## https://www.danieldsjoberg.com/gtsummary/articles/rmarkdown.html
-## To suppress this message, include `message = FALSE` in code chunk header.
-\end{verbatim}
-
-\begin{tabular}{l|c|c|c}
-\hline
- & 0 & 1 & **Total**\\
-\hline
-\_\_Camisa\_\_ &  &  & \\
-\hline
-0 & 4 (80\%) & 1 (20\%) & 5 (100\%)\\
-\hline
-1 & 2 (40\%) & 3 (60\%) & 5 (100\%)\\
-\hline
-\_\_Total\_\_ & 6 (60\%) & 4 (40\%) & 10 (100\%)\\
-\hline
-\end{tabular}
+\begin{table}[t]
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Basquete}} &  \\ 
+\cmidrule(lr){2-3}
+ & 0 & 1 & \textbf{Total} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Camisa} &  &  &  \\ 
+    0 & 4 (80\%) & 1 (20\%) & 5 (100\%) \\ 
+    1 & 2 (40\%) & 3 (60\%) & 5 (100\%) \\ 
+{\bfseries Total} & 6 (60\%) & 4 (40\%) & 10 (100\%) \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \textbf{Correlação amostral}
 
@@ -2957,25 +3169,21 @@ Ficção Científica & 1 & 0.0434783\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Table printed with `knitr::kable()`, not {gt}. Learn why at
-## https://www.danieldsjoberg.com/gtsummary/articles/rmarkdown.html
-## To suppress this message, include `message = FALSE` in code chunk header.
-\end{verbatim}
-
-\begin{tabular}{l|c|c|c}
-\hline
- & 0 & 1 & **Total**\\
-\hline
-\_\_Camisa\_\_ &  &  & \\
-\hline
-0 & 4 (40\%) & 1 (10\%) & 5 (50\%)\\
-\hline
-1 & 2 (20\%) & 3 (30\%) & 5 (50\%)\\
-\hline
-\_\_Total\_\_ & 6 (60\%) & 4 (40\%) & 10 (100\%)\\
-\hline
-\end{tabular}
+\begin{table}[t]
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Basquete}} &  \\ 
+\cmidrule(lr){2-3}
+ & 0 & 1 & \textbf{Total} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Camisa} &  &  &  \\ 
+    0 & 4 (40\%) & 1 (10\%) & 5 (50\%) \\ 
+    1 & 2 (20\%) & 3 (30\%) & 5 (50\%) \\ 
+{\bfseries Total} & 6 (60\%) & 4 (40\%) & 10 (100\%) \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \begin{itemize}
 \tightlist
@@ -2991,25 +3199,21 @@ Ficção Científica & 1 & 0.0434783\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Table printed with `knitr::kable()`, not {gt}. Learn why at
-## https://www.danieldsjoberg.com/gtsummary/articles/rmarkdown.html
-## To suppress this message, include `message = FALSE` in code chunk header.
-\end{verbatim}
-
-\begin{tabular}{l|c|c|c}
-\hline
- & 0 & 1 & **Total**\\
-\hline
-\_\_Camisa\_\_ &  &  & \\
-\hline
-0 & 4 (80\%) & 1 (20\%) & 5 (100\%)\\
-\hline
-1 & 2 (40\%) & 3 (60\%) & 5 (100\%)\\
-\hline
-\_\_Total\_\_ & 6 (60\%) & 4 (40\%) & 10 (100\%)\\
-\hline
-\end{tabular}
+\begin{table}[t]
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Basquete}} &  \\ 
+\cmidrule(lr){2-3}
+ & 0 & 1 & \textbf{Total} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Camisa} &  &  &  \\ 
+    0 & 4 (80\%) & 1 (20\%) & 5 (100\%) \\ 
+    1 & 2 (40\%) & 3 (60\%) & 5 (100\%) \\ 
+{\bfseries Total} & 6 (60\%) & 4 (40\%) & 10 (100\%) \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \section{Correlação amostral}\label{correlauxe7uxe3o-amostral}
 
@@ -3070,25 +3274,21 @@ Ficção Científica & 1 & 0.0434783\\
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Table printed with `knitr::kable()`, not {gt}. Learn why at
-## https://www.danieldsjoberg.com/gtsummary/articles/rmarkdown.html
-## To suppress this message, include `message = FALSE` in code chunk header.
-\end{verbatim}
-
-\begin{tabular}{l|c|c|c}
-\hline
- & 0 & 1 & **Total**\\
-\hline
-\_\_Camisa\_\_ &  &  & \\
-\hline
-0 & 4 (40\%) & 1 (10\%) & 5 (50\%)\\
-\hline
-1 & 2 (20\%) & 3 (30\%) & 5 (50\%)\\
-\hline
-\_\_Total\_\_ & 6 (60\%) & 4 (40\%) & 10 (100\%)\\
-\hline
-\end{tabular}
+\begin{table}[t]
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Basquete}} &  \\ 
+\cmidrule(lr){2-3}
+ & 0 & 1 & \textbf{Total} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Camisa} &  &  &  \\ 
+    0 & 4 (40\%) & 1 (10\%) & 5 (50\%) \\ 
+    1 & 2 (20\%) & 3 (30\%) & 5 (50\%) \\ 
+{\bfseries Total} & 6 (60\%) & 4 (40\%) & 10 (100\%) \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
 
 \subsection{Coeficiente de Contingência de Pearson}\label{coeficiente-de-continguxeancia-de-pearson}
 
@@ -3203,25 +3403,21 @@ Considere um teste para uma determinada doença, de modo que o resultado do test
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## Table printed with `knitr::kable()`, not {gt}. Learn why at
-## https://www.danieldsjoberg.com/gtsummary/articles/rmarkdown.html
-## To suppress this message, include `message = FALSE` in code chunk header.
-\end{verbatim}
-
-\begin{tabular}{l|c|c|c}
-\hline
- & 0 & 1 & **Total**\\
-\hline
-\_\_Teste\_\_ &  &  & \\
-\hline
-0 & 4 (40\%) & 1 (10\%) & 5 (50\%)\\
-\hline
-1 & 2 (20\%) & 3 (30\%) & 5 (50\%)\\
-\hline
-\_\_Total\_\_ & 6 (60\%) & 4 (40\%) & 10 (100\%)\\
-\hline
-\end{tabular}
+\begin{table}[t]
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Doente}} &  \\ 
+\cmidrule(lr){2-3}
+ & 0 & 1 & \textbf{Total} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Teste} &  &  &  \\ 
+    0 & 4 (40\%) & 1 (10\%) & 5 (50\%) \\ 
+    1 & 2 (20\%) & 3 (30\%) & 5 (50\%) \\ 
+{\bfseries Total} & 6 (60\%) & 4 (40\%) & 10 (100\%) \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
 
 As medidas a seguir são bastante utilizadas no contexto de testes de diagnósticos:
 

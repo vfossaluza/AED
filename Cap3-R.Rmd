@@ -35,11 +35,10 @@ date: "18/03/2025"
 output: html_document
 ```
 
-
-
 2. Texto formatado, que usa a sintaxe Markdown para formatação de texto, por exemplo:
   - "# Título 1" para criar títulos de nível 1.
-  - Para destacar: '*`*Texto em itálico*'*' ou '**'**Texto em negrito**'**'.
+  - Para destacar: '*'*Texto em itálico*'*' ou '**'**Texto em negrito**'**'.
+  - Para criar listas não ordenadas (com marcadores): use - ou * antes dos itens. Já para listas ordenadas (numeradas): use números seguidos de ponto.
   
 3. Blocos de códigos (chunks), que são delimitados por três crases (```) e é onde você pode escrever e executar os comandos em R. Eles permitem integrar o código diretamente ao documento, gerando tabelas, gráficos, etc. 
 Para cria-lo basta escrever as três crases 
@@ -48,6 +47,18 @@ Um atalho para cria-lo é com CTRL+ALT+I.
 ```{r, nome_do_chunk}
 # seu código R.
 ```
+
+- **Equações Matemáticas no RMarkdown:**
+
+É possível fazer equações matemáticas em R Markdown usando a sintaxe do LaTeX. Existem duas formas principais:
+
+1. Equações em linha: use cifrões simples `$...$` para inserir fórmulas no meio do texto.
+2. Equações destacadas (em bloco): use dois cifrões `$$...$$` para centralizar a equação.
+
+
+Para mais informações sobre o R Markdown, acesse a cheatsheet oficial diretamente pelo RStudio.
+Basta ir em Help > Cheatsheets > R Markdown Cheat Sheet.
+Lá você encontra um resumo com os principais comandos de formatação, código, tabelas, gráficos e equações.
 
 ---
 
