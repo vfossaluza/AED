@@ -24,13 +24,16 @@ pixar_dados <- tibble(ordem_lancamento = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
                              "2006-06-09", "2007-06-29", "2008-06-27", 
                              "2009-05-29")),
                       duracao = c(81, 95, 92, 92, 100, 115, 117, 111, 98, 96),
-                      bilheteria_mundial = c(373554033, 363258859, 497374776, 
-                                             632316649, 871014978, 631606713, 
-                                             461983149, 623726085, 521311860, 
-                                             735099082),
+                      bilheteria_mundial_mi = c(373, 363, 497, 632, 871, 631, 
+                                             461, 623, 521, 735),
                       genero = c("Aventura", "Comédia", "Aventura", "Aventura", 
                             "Comédia", "Ação", "Esporte", "Aventura", 
                             "Ficção Científica", "Drama"))
+
+pixar_dados <- pixar_dados %>%  
+  rename('Ordem Lançamento' = ordem_lancamento, 'Filme' = filme ,
+         'Data' = data_lancamento, 'Duração' = duracao, 
+          'Bilheteria (Milhões)' = bilheteria_mundial_mi, 'Gênero' = genero)
 
 pixar_dados %>% 
   kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 

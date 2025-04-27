@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-04-24" />
+<meta name="date" content="2025-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -224,7 +224,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-barras"><i class="fa fa-check"></i><b>6.1</b> Gráfico de Barras</a></li>
 <li class="chapter" data-level="6.2" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>6.2</b> Gráfico de Setores (Pizza)</a></li>
-<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a></li>
+<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#números-de-faixas-e-largura"><i class="fa fa-check"></i><b>6.3.1</b> Números de faixas e largura</a></li>
+</ul></li>
 <li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
 <li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
 <li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
@@ -784,7 +787,38 @@ Dens
 <ul>
 <li>Note que desta forma, a área total do histograma é igual a 1.</li>
 </ul>
+<div id="números-de-faixas-e-largura" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Números de faixas e largura<a href="modelos_graficos6.html#números-de-faixas-e-largura" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para construir um histograma, não existe um número correto de faixas, e diferentes larguras podem revelar diferentes aspectos dos dados. Faixas mais largas ajudam a reduzir o ruído onde há poucos dados, enquanto faixas mais estreitas aumentam a precisão onde há muitos dados. Existem diferentes métodos para fazer essa escolha, alguns exemplos são:</p>
+<p><strong>Fórmula de Sturges:</strong></p>
+<p>Uma opção simples é usar a <em>Fórmula de Sturges</em>, que calcula o número de faixas a partir do tamanho da amostra:</p>
+<p><span class="math display">\[
+k = \lceil \log_2 n \rceil + 1
+\]</span>
+Esse é o método padrão usado pelo R base. Como esse método calcula o número de faixas com base no tamanho da amostra <span class="math inline">\(n\)</span>, ela pode ter um desempenho ruim quando <span class="math inline">\(n &lt; 30\)</span>, pois gera poucas faixas, o que dificulta a visualização de tendências. Para grandes conjunto de dados, ela pode superestimar a largura das faixas, gerando um histogramas execivamente suavizado. Além disso, pode não funcionar bem para dados que não seguem uma distribuição normal.</p>
+<p><strong>Regra de Referência Normal de Scoot:</strong></p>
+<p>Outra método é a <em>Regra de Referência Normal de Scott</em>, que busca minimizar o erro na estimativa da densidade. Ela define a largura <span class="math inline">\(h\)</span> das faixas como:</p>
+<p><span class="math display">\[
+h = \frac{3,49 \cdot \text{desvio padrão}}{\sqrt[3]{n}}
+\]</span></p>
+<p>Essa abordagem é melhor para dados com variabilidade semelhante à de uma distribuição normal.</p>
+<p><strong>Regra de Freedman-Diaconis:</strong></p>
+<p>Outro exemplo é a regra de Freedman–Diaconis, que é mais robusta a dados assimétricos ou com outliers, usando o intervalo interquartil (IQR) no lugar do desvio padrão, ele define a largura <span class="math inline">\(h\)</span> das faixas como:</p>
+<p><span class="math display">\[
+h = 2 \cdot \frac{\text{IQR}(x)}{\sqrt[3]{n}}
+\]</span></p>
+<p>Ela se adapta melhor a distribuições que não são tão bem comportadas.</p>
+<p><strong>Exemplo no R:</strong></p>
+<p>Para criar um histograma no R usando o número de faixas (ou largura das faixas) usando a fórmula desejada, é possível calcular o valor manualmente e depois passá-lo para o argumento breaks da função <em>hist()</em>.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modelos_graficos6.html#cb153-1" tabindex="-1"></a><span class="co"># Exemplo usando a fórmula de Sturges:</span></span>
+<span id="cb153-2"><a href="modelos_graficos6.html#cb153-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(dados)  <span class="co"># Tamanho da amostra</span></span>
+<span id="cb153-3"><a href="modelos_graficos6.html#cb153-3" tabindex="-1"></a>k_sturges <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="fu">log2</span>(n)  <span class="co"># Fórmula de Sturges</span></span>
+<span id="cb153-4"><a href="modelos_graficos6.html#cb153-4" tabindex="-1"></a></span>
+<span id="cb153-5"><a href="modelos_graficos6.html#cb153-5" tabindex="-1"></a><span class="fu">hist</span>(dados, <span class="at">breaks =</span> k_sturges)</span></code></pre></div>
+<p>Além disso, também é possível usar um número de faixas diretamente, colocando o valor de breaks como um número inteiro.</p>
+<p>Assim, dependendo do tipo de dado e do objetivo da análise, podemos escolher o método mais adequado para definir o número de faixas no histograma. Para encontrar outros métodos e fórmulas, basta acessar o site <strong><a href="https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width">aqui</a></strong>.</p>
 <hr />
+</div>
 </div>
 <div id="ramos-e-folhas" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Ramos e Folhas<a href="modelos_graficos6.html#ramos-e-folhas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -917,7 +951,7 @@ duracao
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modelos_graficos6.html#cb153-1" tabindex="-1"></a><span class="fu">stem</span>(filmes_pixar<span class="sc">$</span>duracao)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="modelos_graficos6.html#cb154-1" tabindex="-1"></a><span class="fu">stem</span>(filmes_pixar<span class="sc">$</span>duracao)</span></code></pre></div>
 <pre><code>## 
 ##   The decimal point is 1 digit(s) to the right of the |
 ## 
@@ -1033,7 +1067,7 @@ Dens
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="modelos_graficos6.html#cb155-1" tabindex="-1"></a><span class="fu">stem</span>(filmes_pixar<span class="sc">$</span>bilheteria_mundial <span class="sc">/</span> <span class="fl">1e9</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="modelos_graficos6.html#cb156-1" tabindex="-1"></a><span class="fu">stem</span>(filmes_pixar<span class="sc">$</span>bilheteria_mundial <span class="sc">/</span> <span class="fl">1e9</span>) </span></code></pre></div>
 <pre><code>## 
 ##   The decimal point is at the |
 ## 
@@ -1050,8 +1084,8 @@ Dens
 <ul>
 <li>Utilizado para representar graficamente os quartis, além dos valores mínimo e máximo.</li>
 </ul>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="modelos_graficos6.html#cb157-1" tabindex="-1"></a>filmes_pixar <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb157-2"><a href="modelos_graficos6.html#cb157-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>duracao), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modelos_graficos6.html#cb158-1" tabindex="-1"></a>filmes_pixar <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb158-2"><a href="modelos_graficos6.html#cb158-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">y=</span>duracao), <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>) </span></code></pre></div>
 <p><img src="AED_files/figure-html/boxplot_duracao-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
 <li><p>No retângulo estão representados os quartis <span class="math inline">\(q_1\)</span>, <span class="math inline">\(q_2\)</span> e <span class="math inline">\(q_3\)</span>.<br />
@@ -1065,42 +1099,25 @@ Dens
 <li><p>Os valores fora destes limites serão representados por asteriscos e são chamados de <em>outliers</em> (ou <em>valores atípicos</em>)</p></li>
 <li><p>É possivel incluir os pontos observados no boxplot para não ter perda de informação.</p></li>
 </ul>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modelos_graficos6.html#cb158-1" tabindex="-1"></a>filmes_pixar <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span>duracao)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb158-2"><a href="modelos_graficos6.html#cb158-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb158-3"><a href="modelos_graficos6.html#cb158-3" tabindex="-1"></a>  ggbeeswarm<span class="sc">::</span><span class="fu">geom_beeswarm</span>(<span class="at">cex=</span><span class="dv">3</span>,<span class="at">size=</span><span class="dv">3</span>,<span class="at">method =</span> <span class="st">&quot;center&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="modelos_graficos6.html#cb159-1" tabindex="-1"></a>filmes_pixar <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span>duracao)) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb159-2"><a href="modelos_graficos6.html#cb159-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb159-3"><a href="modelos_graficos6.html#cb159-3" tabindex="-1"></a>  ggbeeswarm<span class="sc">::</span><span class="fu">geom_beeswarm</span>(<span class="at">cex=</span><span class="dv">3</span>,<span class="at">size=</span><span class="dv">3</span>,<span class="at">method =</span> <span class="st">&quot;center&quot;</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/boxplot_P_duracao-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="modelos_graficos6.html#cb159-1" tabindex="-1"></a>  <span class="co">#geom_dotplot(binaxis= &quot;y&quot;,stackdir = &quot;center&quot;,fill = 1,dotsize = 0.8,stackratio=2)</span></span>
-<span id="cb159-2"><a href="modelos_graficos6.html#cb159-2" tabindex="-1"></a>  <span class="co">#geom_jitter(color=&quot;black&quot;, size=1, alpha=0.9)</span></span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="modelos_graficos6.html#cb160-1" tabindex="-1"></a>  <span class="co">#geom_dotplot(binaxis= &quot;y&quot;,stackdir = &quot;center&quot;,fill = 1,dotsize = 0.8,stackratio=2)</span></span>
+<span id="cb160-2"><a href="modelos_graficos6.html#cb160-2" tabindex="-1"></a>  <span class="co">#geom_jitter(color=&quot;black&quot;, size=1, alpha=0.9)</span></span></code></pre></div>
 <hr />
 </div>
 <div id="gráficos-e-simetria" class="section level2 hasAnchor" number="6.6">
 <h2><span class="header-section-number">6.6</span> Gráficos e simetria<a href="modelos_graficos6.html#gráficos-e-simetria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="modelos_graficos6.html#cb160-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13</span>)</span>
-<span id="cb160-2"><a href="modelos_graficos6.html#cb160-2" tabindex="-1"></a></span>
-<span id="cb160-3"><a href="modelos_graficos6.html#cb160-3" tabindex="-1"></a>simul <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">150</span>,<span class="fl">2.5</span>,<span class="dv">1</span>))</span>
-<span id="cb160-4"><a href="modelos_graficos6.html#cb160-4" tabindex="-1"></a>lim <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">min</span>(simul<span class="sc">$</span>y),<span class="fu">max</span>(simul<span class="sc">$</span>y))</span>
-<span id="cb160-5"><a href="modelos_graficos6.html#cb160-5" tabindex="-1"></a></span>
-<span id="cb160-6"><a href="modelos_graficos6.html#cb160-6" tabindex="-1"></a>hist <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span> </span>
-<span id="cb160-7"><a href="modelos_graficos6.html#cb160-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Simetria&quot;</span>) <span class="sc">+</span></span>
-<span id="cb160-8"><a href="modelos_graficos6.html#cb160-8" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(y,<span class="fu">after_stat</span>(density)), </span>
-<span id="cb160-9"><a href="modelos_graficos6.html#cb160-9" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>, <span class="at">bins=</span><span class="dv">8</span>)</span>
-<span id="cb160-10"><a href="modelos_graficos6.html#cb160-10" tabindex="-1"></a></span>
-<span id="cb160-11"><a href="modelos_graficos6.html#cb160-11" tabindex="-1"></a>box <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span>y)) <span class="sc">+</span> </span>
-<span id="cb160-12"><a href="modelos_graficos6.html#cb160-12" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb160-13"><a href="modelos_graficos6.html#cb160-13" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>)  </span>
-<span id="cb160-14"><a href="modelos_graficos6.html#cb160-14" tabindex="-1"></a>  <span class="co">#ggbeeswarm::geom_beeswarm(cex=1,size=1,method = &quot;center&quot;)</span></span>
-<span id="cb160-15"><a href="modelos_graficos6.html#cb160-15" tabindex="-1"></a></span>
-<span id="cb160-16"><a href="modelos_graficos6.html#cb160-16" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(hist, box, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">align =</span> <span class="st">&quot;v&quot;</span>)</span></code></pre></div>
-<p><img src="AED_files/figure-html/simetria-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="modelos_graficos6.html#cb161-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13</span>)</span>
 <span id="cb161-2"><a href="modelos_graficos6.html#cb161-2" tabindex="-1"></a></span>
-<span id="cb161-3"><a href="modelos_graficos6.html#cb161-3" tabindex="-1"></a>simul <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fu">rgamma</span>(<span class="dv">150</span>,<span class="fl">2.5</span>,<span class="dv">1</span>))</span>
+<span id="cb161-3"><a href="modelos_graficos6.html#cb161-3" tabindex="-1"></a>simul <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">150</span>,<span class="fl">2.5</span>,<span class="dv">1</span>))</span>
 <span id="cb161-4"><a href="modelos_graficos6.html#cb161-4" tabindex="-1"></a>lim <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">min</span>(simul<span class="sc">$</span>y),<span class="fu">max</span>(simul<span class="sc">$</span>y))</span>
 <span id="cb161-5"><a href="modelos_graficos6.html#cb161-5" tabindex="-1"></a></span>
-<span id="cb161-6"><a href="modelos_graficos6.html#cb161-6" tabindex="-1"></a>hist <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb161-7"><a href="modelos_graficos6.html#cb161-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Assimetria à Direita&quot;</span>) <span class="sc">+</span></span>
+<span id="cb161-6"><a href="modelos_graficos6.html#cb161-6" tabindex="-1"></a>hist <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span> </span>
+<span id="cb161-7"><a href="modelos_graficos6.html#cb161-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Simetria&quot;</span>) <span class="sc">+</span></span>
 <span id="cb161-8"><a href="modelos_graficos6.html#cb161-8" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(y,<span class="fu">after_stat</span>(density)), </span>
-<span id="cb161-9"><a href="modelos_graficos6.html#cb161-9" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>, <span class="at">bins=</span><span class="dv">10</span>)</span>
+<span id="cb161-9"><a href="modelos_graficos6.html#cb161-9" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>, <span class="at">bins=</span><span class="dv">8</span>)</span>
 <span id="cb161-10"><a href="modelos_graficos6.html#cb161-10" tabindex="-1"></a></span>
 <span id="cb161-11"><a href="modelos_graficos6.html#cb161-11" tabindex="-1"></a>box <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span>y)) <span class="sc">+</span> </span>
 <span id="cb161-12"><a href="modelos_graficos6.html#cb161-12" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
@@ -1108,21 +1125,38 @@ Dens
 <span id="cb161-14"><a href="modelos_graficos6.html#cb161-14" tabindex="-1"></a>  <span class="co">#ggbeeswarm::geom_beeswarm(cex=1,size=1,method = &quot;center&quot;)</span></span>
 <span id="cb161-15"><a href="modelos_graficos6.html#cb161-15" tabindex="-1"></a></span>
 <span id="cb161-16"><a href="modelos_graficos6.html#cb161-16" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(hist, box, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">align =</span> <span class="st">&quot;v&quot;</span>)</span></code></pre></div>
+<p><img src="AED_files/figure-html/simetria-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="modelos_graficos6.html#cb162-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13</span>)</span>
+<span id="cb162-2"><a href="modelos_graficos6.html#cb162-2" tabindex="-1"></a></span>
+<span id="cb162-3"><a href="modelos_graficos6.html#cb162-3" tabindex="-1"></a>simul <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fu">rgamma</span>(<span class="dv">150</span>,<span class="fl">2.5</span>,<span class="dv">1</span>))</span>
+<span id="cb162-4"><a href="modelos_graficos6.html#cb162-4" tabindex="-1"></a>lim <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">min</span>(simul<span class="sc">$</span>y),<span class="fu">max</span>(simul<span class="sc">$</span>y))</span>
+<span id="cb162-5"><a href="modelos_graficos6.html#cb162-5" tabindex="-1"></a></span>
+<span id="cb162-6"><a href="modelos_graficos6.html#cb162-6" tabindex="-1"></a>hist <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb162-7"><a href="modelos_graficos6.html#cb162-7" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Assimetria à Direita&quot;</span>) <span class="sc">+</span></span>
+<span id="cb162-8"><a href="modelos_graficos6.html#cb162-8" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(y,<span class="fu">after_stat</span>(density)), </span>
+<span id="cb162-9"><a href="modelos_graficos6.html#cb162-9" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>, <span class="at">bins=</span><span class="dv">10</span>)</span>
+<span id="cb162-10"><a href="modelos_graficos6.html#cb162-10" tabindex="-1"></a></span>
+<span id="cb162-11"><a href="modelos_graficos6.html#cb162-11" tabindex="-1"></a>box <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span>y)) <span class="sc">+</span> </span>
+<span id="cb162-12"><a href="modelos_graficos6.html#cb162-12" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb162-13"><a href="modelos_graficos6.html#cb162-13" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>)  </span>
+<span id="cb162-14"><a href="modelos_graficos6.html#cb162-14" tabindex="-1"></a>  <span class="co">#ggbeeswarm::geom_beeswarm(cex=1,size=1,method = &quot;center&quot;)</span></span>
+<span id="cb162-15"><a href="modelos_graficos6.html#cb162-15" tabindex="-1"></a></span>
+<span id="cb162-16"><a href="modelos_graficos6.html#cb162-16" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(hist, box, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">align =</span> <span class="st">&quot;v&quot;</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/assimetriaD-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="modelos_graficos6.html#cb162-1" tabindex="-1"></a>simul <span class="ot">&lt;-</span> lim[<span class="dv">2</span>]<span class="sc">-</span>simul<span class="sc">+</span>lim[<span class="dv">1</span>]</span>
-<span id="cb162-2"><a href="modelos_graficos6.html#cb162-2" tabindex="-1"></a>lim <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">min</span>(simul<span class="sc">$</span>y),<span class="fu">max</span>(simul<span class="sc">$</span>y))</span>
-<span id="cb162-3"><a href="modelos_graficos6.html#cb162-3" tabindex="-1"></a></span>
-<span id="cb162-4"><a href="modelos_graficos6.html#cb162-4" tabindex="-1"></a>hist <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb162-5"><a href="modelos_graficos6.html#cb162-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Assimetria à Esquerda&quot;</span>) <span class="sc">+</span></span>
-<span id="cb162-6"><a href="modelos_graficos6.html#cb162-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(y,<span class="fu">after_stat</span>(density)), </span>
-<span id="cb162-7"><a href="modelos_graficos6.html#cb162-7" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>, <span class="at">bins=</span><span class="dv">10</span>)</span>
-<span id="cb162-8"><a href="modelos_graficos6.html#cb162-8" tabindex="-1"></a></span>
-<span id="cb162-9"><a href="modelos_graficos6.html#cb162-9" tabindex="-1"></a>box <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span>y)) <span class="sc">+</span> </span>
-<span id="cb162-10"><a href="modelos_graficos6.html#cb162-10" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb162-11"><a href="modelos_graficos6.html#cb162-11" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>)  </span>
-<span id="cb162-12"><a href="modelos_graficos6.html#cb162-12" tabindex="-1"></a>  <span class="co">#ggbeeswarm::geom_beeswarm(cex=1,size=1,method = &quot;center&quot;)</span></span>
-<span id="cb162-13"><a href="modelos_graficos6.html#cb162-13" tabindex="-1"></a></span>
-<span id="cb162-14"><a href="modelos_graficos6.html#cb162-14" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(hist, box, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">align =</span> <span class="st">&quot;v&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="modelos_graficos6.html#cb163-1" tabindex="-1"></a>simul <span class="ot">&lt;-</span> lim[<span class="dv">2</span>]<span class="sc">-</span>simul<span class="sc">+</span>lim[<span class="dv">1</span>]</span>
+<span id="cb163-2"><a href="modelos_graficos6.html#cb163-2" tabindex="-1"></a>lim <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">min</span>(simul<span class="sc">$</span>y),<span class="fu">max</span>(simul<span class="sc">$</span>y))</span>
+<span id="cb163-3"><a href="modelos_graficos6.html#cb163-3" tabindex="-1"></a></span>
+<span id="cb163-4"><a href="modelos_graficos6.html#cb163-4" tabindex="-1"></a>hist <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb163-5"><a href="modelos_graficos6.html#cb163-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Assimetria à Esquerda&quot;</span>) <span class="sc">+</span></span>
+<span id="cb163-6"><a href="modelos_graficos6.html#cb163-6" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(y,<span class="fu">after_stat</span>(density)), </span>
+<span id="cb163-7"><a href="modelos_graficos6.html#cb163-7" tabindex="-1"></a>                 <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>, <span class="at">bins=</span><span class="dv">10</span>)</span>
+<span id="cb163-8"><a href="modelos_graficos6.html#cb163-8" tabindex="-1"></a></span>
+<span id="cb163-9"><a href="modelos_graficos6.html#cb163-9" tabindex="-1"></a>box <span class="ot">&lt;-</span> simul <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">&quot;&quot;</span>,<span class="at">y=</span>y)) <span class="sc">+</span> </span>
+<span id="cb163-10"><a href="modelos_graficos6.html#cb163-10" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylim</span>(lim[<span class="dv">1</span>],lim[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb163-11"><a href="modelos_graficos6.html#cb163-11" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">fill=</span><span class="st">&quot;royalblue&quot;</span>)  </span>
+<span id="cb163-12"><a href="modelos_graficos6.html#cb163-12" tabindex="-1"></a>  <span class="co">#ggbeeswarm::geom_beeswarm(cex=1,size=1,method = &quot;center&quot;)</span></span>
+<span id="cb163-13"><a href="modelos_graficos6.html#cb163-13" tabindex="-1"></a></span>
+<span id="cb163-14"><a href="modelos_graficos6.html#cb163-14" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(hist, box, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">align =</span> <span class="st">&quot;v&quot;</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/assimetriaE-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
 <li><p>Os quartis são medidas de posição que auxiliam na avaliação da simetria dos dados. Para uma distribuição aproximadamente <strong>simétrica</strong>, espera-se que</p>
@@ -1146,11 +1180,11 @@ Dens
 </ul></li>
 <li><p>Uma forma de fazer essa avaliação é fazer um gráfico dos pares <span class="math inline">\((u_i,v_i)\)</span>.</p></li>
 </ul>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="modelos_graficos6.html#cb163-1" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">u =</span> <span class="fl">100.6522</span> <span class="sc">-</span> <span class="fu">sort</span>(filmes_pixar<span class="sc">$</span>duracao)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
-<span id="cb163-2"><a href="modelos_graficos6.html#cb163-2" tabindex="-1"></a>       <span class="at">v =</span> <span class="fu">sort</span>(filmes_pixar<span class="sc">$</span>duracao,<span class="at">decreasing=</span><span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">-</span> <span class="fl">100.6522</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb163-3"><a href="modelos_graficos6.html#cb163-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb163-4"><a href="modelos_graficos6.html#cb163-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>u,<span class="at">y=</span>v)) <span class="sc">+</span> </span>
-<span id="cb163-5"><a href="modelos_graficos6.html#cb163-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>u,<span class="at">y=</span>u))</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="modelos_graficos6.html#cb164-1" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">u =</span> <span class="fl">100.6522</span> <span class="sc">-</span> <span class="fu">sort</span>(filmes_pixar<span class="sc">$</span>duracao)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb164-2"><a href="modelos_graficos6.html#cb164-2" tabindex="-1"></a>       <span class="at">v =</span> <span class="fu">sort</span>(filmes_pixar<span class="sc">$</span>duracao,<span class="at">decreasing=</span><span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="sc">-</span> <span class="fl">100.6522</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb164-3"><a href="modelos_graficos6.html#cb164-3" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb164-4"><a href="modelos_graficos6.html#cb164-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>u,<span class="at">y=</span>v)) <span class="sc">+</span> </span>
+<span id="cb164-5"><a href="modelos_graficos6.html#cb164-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>u,<span class="at">y=</span>u))</span></code></pre></div>
 <p><img src="AED_files/figure-html/graf_simetria-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>

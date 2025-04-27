@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-04-24}
+\date{2025-04-27}
 
 \begin{document}
 \maketitle
@@ -1891,19 +1891,19 @@ Pacotes podem ser instalados usando \texttt{install.packages("nome\_do\_pacote")
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{cccccc}
 \toprule
-\cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{ordem\_lancamento}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{filme}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{data\_lancamento}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{duracao}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{bilheteria\_mundial}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{genero}}}\\
+\cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Ordem Lançamento}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Filme}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Data}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Duração}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Bilheteria (Milhões)}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Gênero}}}\\
 \midrule
-\cellcolor{gray!10}{1} & \cellcolor{gray!10}{Toy Story} & \cellcolor{gray!10}{1995-11-22} & \cellcolor{gray!10}{81} & \cellcolor{gray!10}{373554033} & \cellcolor{gray!10}{Aventura}\\
-2 & Vida de inseto & 1998-11-25 & 95 & 363258859 & Comédia\\
-\cellcolor{gray!10}{3} & \cellcolor{gray!10}{Toy Story 2} & \cellcolor{gray!10}{1999-11-24} & \cellcolor{gray!10}{92} & \cellcolor{gray!10}{497374776} & \cellcolor{gray!10}{Aventura}\\
-4 & Monstros S. A. & 2001-11-02 & 92 & 632316649 & Aventura\\
-\cellcolor{gray!10}{5} & \cellcolor{gray!10}{Procurando Nemo} & \cellcolor{gray!10}{2003-05-30} & \cellcolor{gray!10}{100} & \cellcolor{gray!10}{871014978} & \cellcolor{gray!10}{Comédia}\\
+\cellcolor{gray!10}{1} & \cellcolor{gray!10}{Toy Story} & \cellcolor{gray!10}{1995-11-22} & \cellcolor{gray!10}{81} & \cellcolor{gray!10}{373} & \cellcolor{gray!10}{Aventura}\\
+2 & Vida de inseto & 1998-11-25 & 95 & 363 & Comédia\\
+\cellcolor{gray!10}{3} & \cellcolor{gray!10}{Toy Story 2} & \cellcolor{gray!10}{1999-11-24} & \cellcolor{gray!10}{92} & \cellcolor{gray!10}{497} & \cellcolor{gray!10}{Aventura}\\
+4 & Monstros S. A. & 2001-11-02 & 92 & 632 & Aventura\\
+\cellcolor{gray!10}{5} & \cellcolor{gray!10}{Procurando Nemo} & \cellcolor{gray!10}{2003-05-30} & \cellcolor{gray!10}{100} & \cellcolor{gray!10}{871} & \cellcolor{gray!10}{Comédia}\\
 \addlinespace
-6 & Os Incríveis & 2004-11-05 & 115 & 631606713 & Ação\\
-\cellcolor{gray!10}{7} & \cellcolor{gray!10}{Carros} & \cellcolor{gray!10}{2006-06-09} & \cellcolor{gray!10}{117} & \cellcolor{gray!10}{461983149} & \cellcolor{gray!10}{Esporte}\\
-8 & Ratatouille & 2007-06-29 & 111 & 623726085 & Aventura\\
-\cellcolor{gray!10}{9} & \cellcolor{gray!10}{WALL-E} & \cellcolor{gray!10}{2008-06-27} & \cellcolor{gray!10}{98} & \cellcolor{gray!10}{521311860} & \cellcolor{gray!10}{Ficção Científica}\\
-10 & Up Altas Aventuras & 2009-05-29 & 96 & 735099082 & Drama\\
+6 & Os Incríveis & 2004-11-05 & 115 & 631 & Ação\\
+\cellcolor{gray!10}{7} & \cellcolor{gray!10}{Carros} & \cellcolor{gray!10}{2006-06-09} & \cellcolor{gray!10}{117} & \cellcolor{gray!10}{461} & \cellcolor{gray!10}{Esporte}\\
+8 & Ratatouille & 2007-06-29 & 111 & 623 & Aventura\\
+\cellcolor{gray!10}{9} & \cellcolor{gray!10}{WALL-E} & \cellcolor{gray!10}{2008-06-27} & \cellcolor{gray!10}{98} & \cellcolor{gray!10}{521} & \cellcolor{gray!10}{Ficção Científica}\\
+10 & Up Altas Aventuras & 2009-05-29 & 96 & 735 & Drama\\
 \bottomrule
 \end{tabular}}
 \endgroup{}
@@ -2666,6 +2666,57 @@ Ficção Científica & 1 & 0.0434783\\
 \item
   Note que desta forma, a área total do histograma é igual a 1.
 \end{itemize}
+
+\subsection{Números de faixas e largura}\label{nuxfameros-de-faixas-e-largura}
+
+Para construir um histograma, não existe um número correto de faixas, e diferentes larguras podem revelar diferentes aspectos dos dados. Faixas mais largas ajudam a reduzir o ruído onde há poucos dados, enquanto faixas mais estreitas aumentam a precisão onde há muitos dados. Existem diferentes métodos para fazer essa escolha, alguns exemplos são:
+
+\textbf{Fórmula de Sturges:}
+
+Uma opção simples é usar a \emph{Fórmula de Sturges}, que calcula o número de faixas a partir do tamanho da amostra:
+
+\[
+k = \lceil \log_2 n \rceil + 1
+\]
+Esse é o método padrão usado pelo R base. Como esse método calcula o número de faixas com base no tamanho da amostra \(n\), ela pode ter um desempenho ruim quando \(n < 30\), pois gera poucas faixas, o que dificulta a visualização de tendências. Para grandes conjunto de dados, ela pode superestimar a largura das faixas, gerando um histogramas execivamente suavizado. Além disso, pode não funcionar bem para dados que não seguem uma distribuição normal.
+
+\textbf{Regra de Referência Normal de Scoot:}
+
+Outra método é a \emph{Regra de Referência Normal de Scott}, que busca minimizar o erro na estimativa da densidade. Ela define a largura \(h\) das faixas como:
+
+\[
+h = \frac{3,49 \cdot \text{desvio padrão}}{\sqrt[3]{n}}
+\]
+
+Essa abordagem é melhor para dados com variabilidade semelhante à de uma distribuição normal.
+
+\textbf{Regra de Freedman-Diaconis:}
+
+Outro exemplo é a regra de Freedman--Diaconis, que é mais robusta a dados assimétricos ou com outliers, usando o intervalo interquartil (IQR) no lugar do desvio padrão, ele define a largura \(h\) das faixas como:
+
+\[
+h = 2 \cdot \frac{\text{IQR}(x)}{\sqrt[3]{n}}
+\]
+
+Ela se adapta melhor a distribuições que não são tão bem comportadas.
+
+\textbf{Exemplo no R:}
+
+Para criar um histograma no R usando o número de faixas (ou largura das faixas) usando a fórmula desejada, é possível calcular o valor manualmente e depois passá-lo para o argumento breaks da função \emph{hist()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Exemplo usando a fórmula de Sturges:}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(dados)  }\CommentTok{\# Tamanho da amostra}
+\NormalTok{k\_sturges }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{+} \FunctionTok{log2}\NormalTok{(n)  }\CommentTok{\# Fórmula de Sturges}
+
+\FunctionTok{hist}\NormalTok{(dados, }\AttributeTok{breaks =}\NormalTok{ k\_sturges)}
+\end{Highlighting}
+\end{Shaded}
+
+Além disso, também é possível usar um número de faixas diretamente, colocando o valor de breaks como um número inteiro.
+
+Assim, dependendo do tipo de dado e do objetivo da análise, podemos escolher o método mais adequado para definir o número de faixas no histograma. Para encontrar outros métodos e fórmulas, basta acessar o site \textbf{\href{https://en.wikipedia.org/wiki/Histogram\#Number_of_bins_and_width}{aqui}}.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 

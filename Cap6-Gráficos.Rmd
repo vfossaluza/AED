@@ -6,6 +6,7 @@
 
 ```{r dados_cap6, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
 require(kableExtra)
+require(dplyr)
 
 tab_genero <- filmes_pixar %>% 
       group_by(genero) %>% 
@@ -209,6 +210,55 @@ filmes_pixar %>% ggplot() + theme_bw() +
 
 
 - Note que desta forma, a área total do histograma é igual a 1.
+
+### Números de faixas e largura
+
+Para construir um histograma, não existe um número correto de faixas, e diferentes larguras podem revelar diferentes aspectos dos dados. Faixas mais largas ajudam a reduzir o ruído onde há poucos dados, enquanto faixas mais estreitas aumentam a precisão onde há muitos dados. Existem diferentes métodos para fazer essa escolha, alguns exemplos são:
+
+**Fórmula de Sturges:**
+
+Uma opção simples é usar a *Fórmula de Sturges*, que calcula o número de faixas a partir do tamanho da amostra:
+
+$$
+k = \lceil \log_2 n \rceil + 1
+$$
+Esse é o método padrão usado pelo R base. Como esse método calcula o número de faixas com base no tamanho da amostra $n$, ela pode ter um desempenho ruim quando $n < 30$, pois gera poucas faixas, o que dificulta a visualização de tendências. Para grandes conjunto de dados, ela pode superestimar a largura das faixas, gerando um histogramas execivamente suavizado. Além disso, pode não funcionar bem para dados que não seguem uma distribuição normal.
+
+**Regra de Referência Normal de Scoot:**
+
+Outra método é a *Regra de Referência Normal de Scott*, que busca minimizar o erro na estimativa da densidade. Ela define a largura $h$ das faixas como:
+
+$$
+h = \frac{3,49 \cdot \text{desvio padrão}}{\sqrt[3]{n}}
+$$
+
+Essa abordagem é melhor para dados com variabilidade semelhante à de uma distribuição normal.
+
+**Regra de Freedman-Diaconis:**
+
+Outro exemplo é a regra de Freedman–Diaconis, que é mais robusta a dados assimétricos ou com outliers, usando o intervalo interquartil (IQR) no lugar do desvio padrão, ele define a largura $h$ das faixas como:
+
+$$
+h = 2 \cdot \frac{\text{IQR}(x)}{\sqrt[3]{n}}
+$$
+
+Ela se adapta melhor a distribuições que não são tão bem comportadas.
+
+**Exemplo no R:**
+
+Para criar um histograma no R usando o número de faixas (ou largura das faixas) usando a fórmula desejada, é possível calcular o valor manualmente e depois passá-lo para o argumento breaks da função *hist()*.
+
+```{r ex_sturges, eval = FALSE}
+# Exemplo usando a fórmula de Sturges:
+n <- length(dados)  # Tamanho da amostra
+k_sturges <- 1 + log2(n)  # Fórmula de Sturges
+
+hist(dados, breaks = k_sturges)
+```
+
+Além disso, também é possível usar um número de faixas diretamente, colocando o valor de breaks como um número inteiro.
+
+Assim, dependendo do tipo de dado e do objetivo da análise, podemos escolher o método mais adequado para definir o número de faixas no histograma. Para encontrar outros métodos e fórmulas, basta acessar o site **[aqui](https://en.wikipedia.org/wiki/Histogram#Number_of_bins_and_width)**.
 
 ---
 

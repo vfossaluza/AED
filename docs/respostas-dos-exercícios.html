@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-04-24" />
+<meta name="date" content="2025-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -224,7 +224,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-barras"><i class="fa fa-check"></i><b>6.1</b> Gráfico de Barras</a></li>
 <li class="chapter" data-level="6.2" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>6.2</b> Gráfico de Setores (Pizza)</a></li>
-<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a></li>
+<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#números-de-faixas-e-largura"><i class="fa fa-check"></i><b>6.3.1</b> Números de faixas e largura</a></li>
+</ul></li>
 <li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
 <li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
 <li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
@@ -318,32 +321,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Exercício 1</strong></li>
 </ul>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="respostas-dos-exercícios.html#cb186-1" tabindex="-1"></a>vetor1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb186-2"><a href="respostas-dos-exercícios.html#cb186-2" tabindex="-1"></a>vetor2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
-<span id="cb186-3"><a href="respostas-dos-exercícios.html#cb186-3" tabindex="-1"></a></span>
-<span id="cb186-4"><a href="respostas-dos-exercícios.html#cb186-4" tabindex="-1"></a>soma <span class="ot">&lt;-</span> vetor1 <span class="sc">+</span> vetor2</span>
-<span id="cb186-5"><a href="respostas-dos-exercícios.html#cb186-5" tabindex="-1"></a>subtracao <span class="ot">&lt;-</span> vetor1 <span class="sc">-</span> vetor2</span>
-<span id="cb186-6"><a href="respostas-dos-exercícios.html#cb186-6" tabindex="-1"></a>multiplicacao <span class="ot">&lt;-</span> vetor1 <span class="sc">*</span> vetor2</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="respostas-dos-exercícios.html#cb187-1" tabindex="-1"></a>vetor1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb187-2"><a href="respostas-dos-exercícios.html#cb187-2" tabindex="-1"></a>vetor2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb187-3"><a href="respostas-dos-exercícios.html#cb187-3" tabindex="-1"></a></span>
+<span id="cb187-4"><a href="respostas-dos-exercícios.html#cb187-4" tabindex="-1"></a>soma <span class="ot">&lt;-</span> vetor1 <span class="sc">+</span> vetor2</span>
+<span id="cb187-5"><a href="respostas-dos-exercícios.html#cb187-5" tabindex="-1"></a>subtracao <span class="ot">&lt;-</span> vetor1 <span class="sc">-</span> vetor2</span>
+<span id="cb187-6"><a href="respostas-dos-exercícios.html#cb187-6" tabindex="-1"></a>multiplicacao <span class="ot">&lt;-</span> vetor1 <span class="sc">*</span> vetor2</span></code></pre></div>
 <ul>
 <li><strong>Exercício 2</strong></li>
 </ul>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="respostas-dos-exercícios.html#cb187-1" tabindex="-1"></a>matriz1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb187-2"><a href="respostas-dos-exercícios.html#cb187-2" tabindex="-1"></a>matriz2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb187-3"><a href="respostas-dos-exercícios.html#cb187-3" tabindex="-1"></a></span>
-<span id="cb187-4"><a href="respostas-dos-exercícios.html#cb187-4" tabindex="-1"></a>soma <span class="ot">&lt;-</span> matriz1 <span class="sc">+</span> matriz2</span>
-<span id="cb187-5"><a href="respostas-dos-exercícios.html#cb187-5" tabindex="-1"></a>subtracao <span class="ot">&lt;-</span> matriz1 <span class="sc">-</span> matriz2</span>
-<span id="cb187-6"><a href="respostas-dos-exercícios.html#cb187-6" tabindex="-1"></a>multiplicacao <span class="ot">&lt;-</span> matriz1 <span class="sc">%*%</span> matriz2</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="respostas-dos-exercícios.html#cb188-1" tabindex="-1"></a>matriz1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb188-2"><a href="respostas-dos-exercícios.html#cb188-2" tabindex="-1"></a>matriz2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb188-3"><a href="respostas-dos-exercícios.html#cb188-3" tabindex="-1"></a></span>
+<span id="cb188-4"><a href="respostas-dos-exercícios.html#cb188-4" tabindex="-1"></a>soma <span class="ot">&lt;-</span> matriz1 <span class="sc">+</span> matriz2</span>
+<span id="cb188-5"><a href="respostas-dos-exercícios.html#cb188-5" tabindex="-1"></a>subtracao <span class="ot">&lt;-</span> matriz1 <span class="sc">-</span> matriz2</span>
+<span id="cb188-6"><a href="respostas-dos-exercícios.html#cb188-6" tabindex="-1"></a>multiplicacao <span class="ot">&lt;-</span> matriz1 <span class="sc">%*%</span> matriz2</span></code></pre></div>
 <ul>
 <li><strong>Exercício 3</strong></li>
 </ul>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="respostas-dos-exercícios.html#cb188-1" tabindex="-1"></a>alunos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb188-2"><a href="respostas-dos-exercícios.html#cb188-2" tabindex="-1"></a>  <span class="at">Nome =</span> <span class="fu">c</span>(<span class="st">&quot;Letícia&quot;</span>, <span class="st">&quot;Mariana&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Otávio&quot;</span>, <span class="st">&quot;Ricardo&quot;</span>),</span>
-<span id="cb188-3"><a href="respostas-dos-exercícios.html#cb188-3" tabindex="-1"></a>  <span class="at">Idade =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">19</span>),</span>
-<span id="cb188-4"><a href="respostas-dos-exercícios.html#cb188-4" tabindex="-1"></a>  <span class="at">Nota =</span> <span class="fu">c</span>(<span class="fl">8.5</span>, <span class="fl">6.2</span>, <span class="fl">4.3</span>, <span class="fl">2.0</span>, <span class="fl">5.5</span>)</span>
-<span id="cb188-5"><a href="respostas-dos-exercícios.html#cb188-5" tabindex="-1"></a>)</span>
-<span id="cb188-6"><a href="respostas-dos-exercícios.html#cb188-6" tabindex="-1"></a></span>
-<span id="cb188-7"><a href="respostas-dos-exercícios.html#cb188-7" tabindex="-1"></a>alunos<span class="sc">$</span>Aprovado <span class="ot">&lt;-</span> alunos<span class="sc">$</span>Nota <span class="sc">&gt;=</span> <span class="dv">6</span></span>
-<span id="cb188-8"><a href="respostas-dos-exercícios.html#cb188-8" tabindex="-1"></a><span class="fu">print</span>(alunos)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="respostas-dos-exercícios.html#cb189-1" tabindex="-1"></a>alunos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb189-2"><a href="respostas-dos-exercícios.html#cb189-2" tabindex="-1"></a>  <span class="at">Nome =</span> <span class="fu">c</span>(<span class="st">&quot;Letícia&quot;</span>, <span class="st">&quot;Mariana&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Otávio&quot;</span>, <span class="st">&quot;Ricardo&quot;</span>),</span>
+<span id="cb189-3"><a href="respostas-dos-exercícios.html#cb189-3" tabindex="-1"></a>  <span class="at">Idade =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">19</span>),</span>
+<span id="cb189-4"><a href="respostas-dos-exercícios.html#cb189-4" tabindex="-1"></a>  <span class="at">Nota =</span> <span class="fu">c</span>(<span class="fl">8.5</span>, <span class="fl">6.2</span>, <span class="fl">4.3</span>, <span class="fl">2.0</span>, <span class="fl">5.5</span>)</span>
+<span id="cb189-5"><a href="respostas-dos-exercícios.html#cb189-5" tabindex="-1"></a>)</span>
+<span id="cb189-6"><a href="respostas-dos-exercícios.html#cb189-6" tabindex="-1"></a></span>
+<span id="cb189-7"><a href="respostas-dos-exercícios.html#cb189-7" tabindex="-1"></a>alunos<span class="sc">$</span>Aprovado <span class="ot">&lt;-</span> alunos<span class="sc">$</span>Nota <span class="sc">&gt;=</span> <span class="dv">6</span></span>
+<span id="cb189-8"><a href="respostas-dos-exercícios.html#cb189-8" tabindex="-1"></a><span class="fu">print</span>(alunos)</span></code></pre></div>
 <pre><code>##      Nome Idade Nota Aprovado
 ## 1 Letícia    17  8.5     TRUE
 ## 2 Mariana    18  6.2     TRUE
@@ -353,33 +356,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Exercício 4</strong></li>
 </ul>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="respostas-dos-exercícios.html#cb190-1" tabindex="-1"></a>exponencial <span class="ot">&lt;-</span> <span class="cf">function</span>(M, <span class="at">b=</span><span class="fu">exp</span>(<span class="dv">1</span>)) {</span>
-<span id="cb190-2"><a href="respostas-dos-exercícios.html#cb190-2" tabindex="-1"></a>  lc <span class="ot">&lt;-</span> <span class="fu">dim</span>(M) <span class="co"># vetor com número de linhas e colunas de M</span></span>
-<span id="cb190-3"><a href="respostas-dos-exercícios.html#cb190-3" tabindex="-1"></a>  E <span class="ot">&lt;-</span> M <span class="co"># inicializa a matriz E que será retornada pela função</span></span>
-<span id="cb190-4"><a href="respostas-dos-exercícios.html#cb190-4" tabindex="-1"></a>  i <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Inicializa i que irá percorrer as linhas</span></span>
-<span id="cb190-5"><a href="respostas-dos-exercícios.html#cb190-5" tabindex="-1"></a>  <span class="cf">while</span>(i<span class="sc">&lt;=</span>lc[<span class="dv">1</span>]){</span>
-<span id="cb190-6"><a href="respostas-dos-exercícios.html#cb190-6" tabindex="-1"></a>    j <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># inicializa j que irá percorrer as colunas</span></span>
-<span id="cb190-7"><a href="respostas-dos-exercícios.html#cb190-7" tabindex="-1"></a>    <span class="cf">while</span>(j<span class="sc">&lt;=</span>lc[<span class="dv">2</span>]){</span>
-<span id="cb190-8"><a href="respostas-dos-exercícios.html#cb190-8" tabindex="-1"></a>      E[i,j] <span class="ot">&lt;-</span> b<span class="sc">^</span>M[i,j] <span class="co"># calcula os elementos da matriz E</span></span>
-<span id="cb190-9"><a href="respostas-dos-exercícios.html#cb190-9" tabindex="-1"></a>      j <span class="ot">&lt;-</span> j <span class="sc">+</span> <span class="dv">1</span> <span class="co"># atualiza j</span></span>
-<span id="cb190-10"><a href="respostas-dos-exercícios.html#cb190-10" tabindex="-1"></a>    }</span>
-<span id="cb190-11"><a href="respostas-dos-exercícios.html#cb190-11" tabindex="-1"></a>    i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span> <span class="co"># atualiza i</span></span>
-<span id="cb190-12"><a href="respostas-dos-exercícios.html#cb190-12" tabindex="-1"></a>  }</span>
-<span id="cb190-13"><a href="respostas-dos-exercícios.html#cb190-13" tabindex="-1"></a>  <span class="fu">return</span>(E)</span>
-<span id="cb190-14"><a href="respostas-dos-exercícios.html#cb190-14" tabindex="-1"></a>}</span>
-<span id="cb190-15"><a href="respostas-dos-exercícios.html#cb190-15" tabindex="-1"></a></span>
-<span id="cb190-16"><a href="respostas-dos-exercícios.html#cb190-16" tabindex="-1"></a><span class="co"># Testa a função &#39;exponencial&#39;</span></span>
-<span id="cb190-17"><a href="respostas-dos-exercícios.html#cb190-17" tabindex="-1"></a>M</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="respostas-dos-exercícios.html#cb191-1" tabindex="-1"></a>exponencial <span class="ot">&lt;-</span> <span class="cf">function</span>(M, <span class="at">b=</span><span class="fu">exp</span>(<span class="dv">1</span>)) {</span>
+<span id="cb191-2"><a href="respostas-dos-exercícios.html#cb191-2" tabindex="-1"></a>  lc <span class="ot">&lt;-</span> <span class="fu">dim</span>(M) <span class="co"># vetor com número de linhas e colunas de M</span></span>
+<span id="cb191-3"><a href="respostas-dos-exercícios.html#cb191-3" tabindex="-1"></a>  E <span class="ot">&lt;-</span> M <span class="co"># inicializa a matriz E que será retornada pela função</span></span>
+<span id="cb191-4"><a href="respostas-dos-exercícios.html#cb191-4" tabindex="-1"></a>  i <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Inicializa i que irá percorrer as linhas</span></span>
+<span id="cb191-5"><a href="respostas-dos-exercícios.html#cb191-5" tabindex="-1"></a>  <span class="cf">while</span>(i<span class="sc">&lt;=</span>lc[<span class="dv">1</span>]){</span>
+<span id="cb191-6"><a href="respostas-dos-exercícios.html#cb191-6" tabindex="-1"></a>    j <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># inicializa j que irá percorrer as colunas</span></span>
+<span id="cb191-7"><a href="respostas-dos-exercícios.html#cb191-7" tabindex="-1"></a>    <span class="cf">while</span>(j<span class="sc">&lt;=</span>lc[<span class="dv">2</span>]){</span>
+<span id="cb191-8"><a href="respostas-dos-exercícios.html#cb191-8" tabindex="-1"></a>      E[i,j] <span class="ot">&lt;-</span> b<span class="sc">^</span>M[i,j] <span class="co"># calcula os elementos da matriz E</span></span>
+<span id="cb191-9"><a href="respostas-dos-exercícios.html#cb191-9" tabindex="-1"></a>      j <span class="ot">&lt;-</span> j <span class="sc">+</span> <span class="dv">1</span> <span class="co"># atualiza j</span></span>
+<span id="cb191-10"><a href="respostas-dos-exercícios.html#cb191-10" tabindex="-1"></a>    }</span>
+<span id="cb191-11"><a href="respostas-dos-exercícios.html#cb191-11" tabindex="-1"></a>    i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span> <span class="co"># atualiza i</span></span>
+<span id="cb191-12"><a href="respostas-dos-exercícios.html#cb191-12" tabindex="-1"></a>  }</span>
+<span id="cb191-13"><a href="respostas-dos-exercícios.html#cb191-13" tabindex="-1"></a>  <span class="fu">return</span>(E)</span>
+<span id="cb191-14"><a href="respostas-dos-exercícios.html#cb191-14" tabindex="-1"></a>}</span>
+<span id="cb191-15"><a href="respostas-dos-exercícios.html#cb191-15" tabindex="-1"></a></span>
+<span id="cb191-16"><a href="respostas-dos-exercícios.html#cb191-16" tabindex="-1"></a><span class="co"># Testa a função &#39;exponencial&#39;</span></span>
+<span id="cb191-17"><a href="respostas-dos-exercícios.html#cb191-17" tabindex="-1"></a>M</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]    0    1    4
 ## [3,]    0    0    1</code></pre>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="respostas-dos-exercícios.html#cb192-1" tabindex="-1"></a><span class="fu">exponencial</span>(M,<span class="dv">2</span>)  </span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="respostas-dos-exercícios.html#cb193-1" tabindex="-1"></a><span class="fu">exponencial</span>(M,<span class="dv">2</span>)  </span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    2    4    8
 ## [2,]    1    2   16
 ## [3,]    1    1    2</code></pre>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="respostas-dos-exercícios.html#cb194-1" tabindex="-1"></a><span class="fu">exponencial</span>(M)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="respostas-dos-exercícios.html#cb195-1" tabindex="-1"></a><span class="fu">exponencial</span>(M)</span></code></pre></div>
 <pre><code>##          [,1]     [,2]      [,3]
 ## [1,] 2.718282 7.389056 20.085537
 ## [2,] 1.000000 2.718282 54.598150
@@ -387,26 +390,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Exercício 5</strong></li>
 </ul>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="respostas-dos-exercícios.html#cb196-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(base, altura) {</span>
-<span id="cb196-2"><a href="respostas-dos-exercícios.html#cb196-2" tabindex="-1"></a>  <span class="fu">return</span>((base <span class="sc">*</span> altura) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb196-3"><a href="respostas-dos-exercícios.html#cb196-3" tabindex="-1"></a>}</span>
-<span id="cb196-4"><a href="respostas-dos-exercícios.html#cb196-4" tabindex="-1"></a></span>
-<span id="cb196-5"><a href="respostas-dos-exercícios.html#cb196-5" tabindex="-1"></a><span class="co"># Testa a função &#39;calcula_area&#39;</span></span>
-<span id="cb196-6"><a href="respostas-dos-exercícios.html#cb196-6" tabindex="-1"></a><span class="fu">calcula_area</span>(<span class="dv">15</span>, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="respostas-dos-exercícios.html#cb197-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(base, altura) {</span>
+<span id="cb197-2"><a href="respostas-dos-exercícios.html#cb197-2" tabindex="-1"></a>  <span class="fu">return</span>((base <span class="sc">*</span> altura) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb197-3"><a href="respostas-dos-exercícios.html#cb197-3" tabindex="-1"></a>}</span>
+<span id="cb197-4"><a href="respostas-dos-exercícios.html#cb197-4" tabindex="-1"></a></span>
+<span id="cb197-5"><a href="respostas-dos-exercícios.html#cb197-5" tabindex="-1"></a><span class="co"># Testa a função &#39;calcula_area&#39;</span></span>
+<span id="cb197-6"><a href="respostas-dos-exercícios.html#cb197-6" tabindex="-1"></a><span class="fu">calcula_area</span>(<span class="dv">15</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 22.5</code></pre>
 <ul>
 <li><strong>Exercício 6</strong></li>
 </ul>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="respostas-dos-exercícios.html#cb198-1" tabindex="-1"></a>conta_pos_neg <span class="ot">&lt;-</span> <span class="cf">function</span>(vetor) {</span>
-<span id="cb198-2"><a href="respostas-dos-exercícios.html#cb198-2" tabindex="-1"></a>  pos <span class="ot">&lt;-</span> <span class="fu">sum</span>(vetor <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb198-3"><a href="respostas-dos-exercícios.html#cb198-3" tabindex="-1"></a>  neg <span class="ot">&lt;-</span> <span class="fu">sum</span>(vetor <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
-<span id="cb198-4"><a href="respostas-dos-exercícios.html#cb198-4" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">positivos =</span> pos, <span class="at">negativos =</span> neg))</span>
-<span id="cb198-5"><a href="respostas-dos-exercícios.html#cb198-5" tabindex="-1"></a>}</span>
-<span id="cb198-6"><a href="respostas-dos-exercícios.html#cb198-6" tabindex="-1"></a></span>
-<span id="cb198-7"><a href="respostas-dos-exercícios.html#cb198-7" tabindex="-1"></a><span class="co"># Testa a função &#39;conta_pos_neg&#39;</span></span>
-<span id="cb198-8"><a href="respostas-dos-exercícios.html#cb198-8" tabindex="-1"></a>vetor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb198-9"><a href="respostas-dos-exercícios.html#cb198-9" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">conta_pos_neg</span>(vetor)</span>
-<span id="cb198-10"><a href="respostas-dos-exercícios.html#cb198-10" tabindex="-1"></a><span class="fu">print</span>(resultado)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="respostas-dos-exercícios.html#cb199-1" tabindex="-1"></a>conta_pos_neg <span class="ot">&lt;-</span> <span class="cf">function</span>(vetor) {</span>
+<span id="cb199-2"><a href="respostas-dos-exercícios.html#cb199-2" tabindex="-1"></a>  pos <span class="ot">&lt;-</span> <span class="fu">sum</span>(vetor <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb199-3"><a href="respostas-dos-exercícios.html#cb199-3" tabindex="-1"></a>  neg <span class="ot">&lt;-</span> <span class="fu">sum</span>(vetor <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
+<span id="cb199-4"><a href="respostas-dos-exercícios.html#cb199-4" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">positivos =</span> pos, <span class="at">negativos =</span> neg))</span>
+<span id="cb199-5"><a href="respostas-dos-exercícios.html#cb199-5" tabindex="-1"></a>}</span>
+<span id="cb199-6"><a href="respostas-dos-exercícios.html#cb199-6" tabindex="-1"></a></span>
+<span id="cb199-7"><a href="respostas-dos-exercícios.html#cb199-7" tabindex="-1"></a><span class="co"># Testa a função &#39;conta_pos_neg&#39;</span></span>
+<span id="cb199-8"><a href="respostas-dos-exercícios.html#cb199-8" tabindex="-1"></a>vetor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb199-9"><a href="respostas-dos-exercícios.html#cb199-9" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">conta_pos_neg</span>(vetor)</span>
+<span id="cb199-10"><a href="respostas-dos-exercícios.html#cb199-10" tabindex="-1"></a><span class="fu">print</span>(resultado)</span></code></pre></div>
 <pre><code>## $positivos
 ## [1] 5
 ## 

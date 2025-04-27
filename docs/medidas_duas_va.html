@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-04-24" />
+<meta name="date" content="2025-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -224,7 +224,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-barras"><i class="fa fa-check"></i><b>6.1</b> Gráfico de Barras</a></li>
 <li class="chapter" data-level="6.2" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>6.2</b> Gráfico de Setores (Pizza)</a></li>
-<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a></li>
+<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#números-de-faixas-e-largura"><i class="fa fa-check"></i><b>6.3.1</b> Números de faixas e largura</a></li>
+</ul></li>
 <li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
 <li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
 <li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
@@ -317,9 +320,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Para variáveis categóricas, vamos primeiramente considerar tabelas de frequências.</li>
 </ul>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="medidas_duas_va.html#cb175-1" tabindex="-1"></a><span class="co"># R base</span></span>
-<span id="cb175-2"><a href="medidas_duas_va.html#cb175-2" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">table</span>(dados_cap7<span class="sc">$</span>Camisa,dados_cap7<span class="sc">$</span>Basquete)</span>
-<span id="cb175-3"><a href="medidas_duas_va.html#cb175-3" tabindex="-1"></a>tab1</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="medidas_duas_va.html#cb176-1" tabindex="-1"></a><span class="co"># R base</span></span>
+<span id="cb176-2"><a href="medidas_duas_va.html#cb176-2" tabindex="-1"></a>tab1 <span class="ot">&lt;-</span> <span class="fu">table</span>(dados_cap7<span class="sc">$</span>Camisa,dados_cap7<span class="sc">$</span>Basquete)</span>
+<span id="cb176-3"><a href="medidas_duas_va.html#cb176-3" tabindex="-1"></a>tab1</span></code></pre></div>
 <pre><code>##    
 ##     0 1
 ##   0 4 1
@@ -328,10 +331,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Lembre-se que podemos pensam em independência com relação à distribuição conjunta ou à distribuição condicional.</p></li>
 <li><p>Se o objetivo é estudar a distribuição conjunta, podemos considerar as frequências relativas ao tamanho total da amostra observada.</p></li>
 </ul>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="medidas_duas_va.html#cb177-1" tabindex="-1"></a><span class="co"># Tidyverse</span></span>
-<span id="cb177-2"><a href="medidas_duas_va.html#cb177-2" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span>
-<span id="cb177-3"><a href="medidas_duas_va.html#cb177-3" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb177-4"><a href="medidas_duas_va.html#cb177-4" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="medidas_duas_va.html#cb178-1" tabindex="-1"></a><span class="co"># Tidyverse</span></span>
+<span id="cb178-2"><a href="medidas_duas_va.html#cb178-2" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span>
+<span id="cb178-3"><a href="medidas_duas_va.html#cb178-3" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb178-4"><a href="medidas_duas_va.html#cb178-4" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
 <div id="oyqusyucmm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#oyqusyucmm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -820,9 +823,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Se o objetivo é estudar a distribuição condicional, podemos considerar as frequências relativas ao total das linhas ou das colunas. Pelo desenho de nosso estudo, eu fixei o total de cada cor da camisa, então a tabela abaixo é construída com relação ao total das linhas.</li>
 </ul>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="medidas_duas_va.html#cb178-1" tabindex="-1"></a><span class="co"># Tidyverse com porcentagens das linhas</span></span>
-<span id="cb178-2"><a href="medidas_duas_va.html#cb178-2" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb178-3"><a href="medidas_duas_va.html#cb178-3" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="medidas_duas_va.html#cb179-1" tabindex="-1"></a><span class="co"># Tidyverse com porcentagens das linhas</span></span>
+<span id="cb179-2"><a href="medidas_duas_va.html#cb179-2" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa,Basquete,<span class="at">percent =</span> <span class="st">&quot;row&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb179-3"><a href="medidas_duas_va.html#cb179-3" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
 <div id="iwjloqvhxu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#iwjloqvhxu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1317,7 +1320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Analogamente, a correção amostral é <span class="math display">\[cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.\]</span></p></li>
 <li><p>No exemplo:</p></li>
 </ul>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="medidas_duas_va.html#cb179-1" tabindex="-1"></a><span class="fu">cor</span>(dados_cap7<span class="sc">$</span>Camisa, dados_cap7<span class="sc">$</span>Basquete)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="medidas_duas_va.html#cb180-1" tabindex="-1"></a><span class="fu">cor</span>(dados_cap7<span class="sc">$</span>Camisa, dados_cap7<span class="sc">$</span>Basquete)</span></code></pre></div>
 <pre><code>## [1] 0.4082483</code></pre>
 </div>
 <div id="qui-quadrado-de-pearson" class="section level2 hasAnchor" number="8.3">
@@ -1328,17 +1331,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}~.\]</span></p></li>
 <li><p>No exemplo:</p></li>
 </ul>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="medidas_duas_va.html#cb181-1" tabindex="-1"></a>chi2 <span class="ot">=</span> <span class="fu">chisq.test</span>(tab1)<span class="sc">$</span>statistic</span>
-<span id="cb181-2"><a href="medidas_duas_va.html#cb181-2" tabindex="-1"></a>chi2</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="medidas_duas_va.html#cb182-1" tabindex="-1"></a>chi2 <span class="ot">=</span> <span class="fu">chisq.test</span>(tab1)<span class="sc">$</span>statistic</span>
+<span id="cb182-2"><a href="medidas_duas_va.html#cb182-2" tabindex="-1"></a>chi2</span></code></pre></div>
 <pre><code>## X-squared 
 ## 0.4166667</code></pre>
 <hr />
 </div>
 <div id="medidas-de-associação-baseadas-no-qui-quadrado" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Medidas de Associação baseadas no Qui-Quadrado<a href="medidas_duas_va.html#medidas-de-associação-baseadas-no-qui-quadrado" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="medidas_duas_va.html#cb183-1" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span>
-<span id="cb183-2"><a href="medidas_duas_va.html#cb183-2" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa, Basquete, <span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb183-3"><a href="medidas_duas_va.html#cb183-3" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="medidas_duas_va.html#cb184-1" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span>
+<span id="cb184-2"><a href="medidas_duas_va.html#cb184-2" tabindex="-1"></a>dados_cap7 <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Camisa, Basquete, <span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb184-3"><a href="medidas_duas_va.html#cb184-3" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
 <div id="canrfmxelc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#canrfmxelc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1844,14 +1847,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Considere um contexto em que deseja-se avalia a presença de um desfecho (ter um determinado cancer, gostar de basquete, etc) na presença de um fator de risco (fumar, usar roupa clara).</li>
 </ul>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="medidas_duas_va.html#cb184-1" tabindex="-1"></a><span class="fu">require</span>(kableExtra)</span>
-<span id="cb184-2"><a href="medidas_duas_va.html#cb184-2" tabindex="-1"></a><span class="fu">tibble</span>(<span class="st">&#39;Fator de Risco&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Não&quot;</span>, <span class="st">&quot;Sim&quot;</span>), </span>
-<span id="cb184-3"><a href="medidas_duas_va.html#cb184-3" tabindex="-1"></a>       <span class="st">&#39;Sem o Desfecho&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;(1-q)&quot;</span>, <span class="st">&quot;(1-p)&quot;</span>), </span>
-<span id="cb184-4"><a href="medidas_duas_va.html#cb184-4" tabindex="-1"></a>       <span class="st">&#39;Com o Desfecho&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;q&quot;</span>, <span class="st">&quot;p&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb184-5"><a href="medidas_duas_va.html#cb184-5" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">align =</span> <span class="st">&#39;c&#39;</span>, <span class="at">format =</span> <span class="st">&quot;html&quot;</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span> </span>
-<span id="cb184-6"><a href="medidas_duas_va.html#cb184-6" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
-<span id="cb184-7"><a href="medidas_duas_va.html#cb184-7" tabindex="-1"></a>     <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>,<span class="st">&quot;hover&quot;</span>, <span class="st">&quot;bordered&quot;</span>, <span class="st">&quot;condensed&quot;</span>), </span>
-<span id="cb184-8"><a href="medidas_duas_va.html#cb184-8" tabindex="-1"></a>     <span class="at">latex_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="medidas_duas_va.html#cb185-1" tabindex="-1"></a><span class="fu">require</span>(kableExtra)</span>
+<span id="cb185-2"><a href="medidas_duas_va.html#cb185-2" tabindex="-1"></a><span class="fu">tibble</span>(<span class="st">&#39;Fator de Risco&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Não&quot;</span>, <span class="st">&quot;Sim&quot;</span>), </span>
+<span id="cb185-3"><a href="medidas_duas_va.html#cb185-3" tabindex="-1"></a>       <span class="st">&#39;Sem o Desfecho&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;(1-q)&quot;</span>, <span class="st">&quot;(1-p)&quot;</span>), </span>
+<span id="cb185-4"><a href="medidas_duas_va.html#cb185-4" tabindex="-1"></a>       <span class="st">&#39;Com o Desfecho&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;q&quot;</span>, <span class="st">&quot;p&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb185-5"><a href="medidas_duas_va.html#cb185-5" tabindex="-1"></a>  <span class="fu">kbl</span>(<span class="at">align =</span> <span class="st">&#39;c&#39;</span>, <span class="at">format =</span> <span class="st">&quot;html&quot;</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb185-6"><a href="medidas_duas_va.html#cb185-6" tabindex="-1"></a>  <span class="fu">kable_styling</span>(</span>
+<span id="cb185-7"><a href="medidas_duas_va.html#cb185-7" tabindex="-1"></a>     <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>,<span class="st">&quot;hover&quot;</span>, <span class="st">&quot;bordered&quot;</span>, <span class="st">&quot;condensed&quot;</span>), </span>
+<span id="cb185-8"><a href="medidas_duas_va.html#cb185-8" tabindex="-1"></a>     <span class="at">latex_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>))</span></code></pre></div>
 <table class="table table-striped table-hover table-bordered table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1923,13 +1926,13 @@ p
 <div id="medidas-para-testes-de-diagnóstico" class="section level2 hasAnchor" number="8.6">
 <h2><span class="header-section-number">8.6</span> Medidas para Testes de Diagnóstico<a href="medidas_duas_va.html#medidas-para-testes-de-diagnóstico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Considere um teste para uma determinada doença, de modo que o resultado do teste pode ser 1: <em>Positivo</em> e 0: <em>Negativo</em> e o indivíduos podem estar 1: <em>Doente</em> ou 0: <em>Não Doente</em>.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="medidas_duas_va.html#cb185-1" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span>
-<span id="cb185-2"><a href="medidas_duas_va.html#cb185-2" tabindex="-1"></a></span>
-<span id="cb185-3"><a href="medidas_duas_va.html#cb185-3" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Teste =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb185-4"><a href="medidas_duas_va.html#cb185-4" tabindex="-1"></a>                <span class="at">Doente =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
-<span id="cb185-5"><a href="medidas_duas_va.html#cb185-5" tabindex="-1"></a></span>
-<span id="cb185-6"><a href="medidas_duas_va.html#cb185-6" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Teste, Doente, <span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb185-7"><a href="medidas_duas_va.html#cb185-7" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="medidas_duas_va.html#cb186-1" tabindex="-1"></a><span class="fu">require</span>(gtsummary)</span>
+<span id="cb186-2"><a href="medidas_duas_va.html#cb186-2" tabindex="-1"></a></span>
+<span id="cb186-3"><a href="medidas_duas_va.html#cb186-3" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Teste =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb186-4"><a href="medidas_duas_va.html#cb186-4" tabindex="-1"></a>                <span class="at">Doente =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>))</span>
+<span id="cb186-5"><a href="medidas_duas_va.html#cb186-5" tabindex="-1"></a></span>
+<span id="cb186-6"><a href="medidas_duas_va.html#cb186-6" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> <span class="fu">tbl_cross</span>(Teste, Doente, <span class="at">percent =</span> <span class="st">&quot;cell&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb186-7"><a href="medidas_duas_va.html#cb186-7" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
 <div id="qvdbymrhgs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#qvdbymrhgs table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
