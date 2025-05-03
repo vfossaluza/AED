@@ -250,6 +250,28 @@ dados %>%
 
 O exemplo acima resulta em uma tabela mostrando, para cada gênero, a média de salário das pessoas maiores de 18 anos. Ou seja, primeiro filtramos (*filter*) apenas as pessoas com idade acima de 18, agrupamos (*group_by*) os dados por gênero e resume (*summarise*) calculando a média dos salários de cada grupo.
 
+Outra coisa que o pacote dplyr permite fazer é combinar duas tabelas com base em uma ou mais colunas em comum, o nome disso é *join*. Os principais tipos de join são:
+
+- inner_join() - mantém apenas as linhas que aparecem nas duas tabelas.
+- left_join() → mantém todas as linhas da tabela da esquerda, preenchendo com NA o que não casar na direita.
+- right_join - mantém todas as linhas da tabela da direita.
+- full_join - mantém todas as linhas das duas tabelas.
+
+Um exemplo:
+
+```{r ex_join}
+library(dplyr)
+
+clientes <- tibble(cliente_id = c(1, 2, 3),
+                   nome = c("Victor", "Letícia", "Mariana"))
+
+compras <- tibble(cliente_id = c(1, 2, 4),
+                  valor = c(10, 20, 30))
+
+# Juntar apenas quem aparece nos dois
+inner_join(clientes, compras, by = "cliente_id")
+```
+
 
 **O pacote Stringr**
 

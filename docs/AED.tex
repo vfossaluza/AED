@@ -2196,6 +2196,45 @@ Exemplo:
 
 O exemplo acima resulta em uma tabela mostrando, para cada gênero, a média de salário das pessoas maiores de 18 anos. Ou seja, primeiro filtramos (\emph{filter}) apenas as pessoas com idade acima de 18, agrupamos (\emph{group\_by}) os dados por gênero e resume (\emph{summarise}) calculando a média dos salários de cada grupo.
 
+Outra coisa que o pacote dplyr permite fazer é combinar duas tabelas com base em uma ou mais colunas em comum, o nome disso é \emph{join}. Os principais tipos de join são:
+
+\begin{itemize}
+\tightlist
+\item
+  inner\_join() - mantém apenas as linhas que aparecem nas duas tabelas.
+\item
+  left\_join() → mantém todas as linhas da tabela da esquerda, preenchendo com NA o que não casar na direita.
+\item
+  right\_join - mantém todas as linhas da tabela da direita.
+\item
+  full\_join - mantém todas as linhas das duas tabelas.
+\end{itemize}
+
+Um exemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+
+\NormalTok{clientes }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{cliente\_id =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+                   \AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Victor"}\NormalTok{, }\StringTok{"Letícia"}\NormalTok{, }\StringTok{"Mariana"}\NormalTok{))}
+
+\NormalTok{compras }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{cliente\_id =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{),}
+                  \AttributeTok{valor =} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{30}\NormalTok{))}
+
+\CommentTok{\# Juntar apenas quem aparece nos dois}
+\FunctionTok{inner\_join}\NormalTok{(clientes, compras, }\AttributeTok{by =} \StringTok{"cliente\_id"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   cliente_id nome    valor
+##        <dbl> <chr>   <dbl>
+## 1          1 Victor     10
+## 2          2 Letícia    20
+\end{verbatim}
+
 \textbf{O pacote Stringr}
 
 O stringr é um pacote dentro do \emph{tidyverse} voltado a maipulação de textos. Suas principais funções são:

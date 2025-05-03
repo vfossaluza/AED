@@ -917,6 +917,29 @@ FreqAcum
 <span id="cb150-4"><a href="dados_4.html#cb150-4" tabindex="-1"></a>  <span class="fu">group_by</span>(genero) <span class="sc">%&gt;%</span> </span>
 <span id="cb150-5"><a href="dados_4.html#cb150-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_salario =</span> <span class="fu">mean</span>(salario))</span></code></pre></div>
 <p>O exemplo acima resulta em uma tabela mostrando, para cada gênero, a média de salário das pessoas maiores de 18 anos. Ou seja, primeiro filtramos (<em>filter</em>) apenas as pessoas com idade acima de 18, agrupamos (<em>group_by</em>) os dados por gênero e resume (<em>summarise</em>) calculando a média dos salários de cada grupo.</p>
+<p>Outra coisa que o pacote dplyr permite fazer é combinar duas tabelas com base em uma ou mais colunas em comum, o nome disso é <em>join</em>. Os principais tipos de join são:</p>
+<ul>
+<li>inner_join() - mantém apenas as linhas que aparecem nas duas tabelas.</li>
+<li>left_join() → mantém todas as linhas da tabela da esquerda, preenchendo com NA o que não casar na direita.</li>
+<li>right_join - mantém todas as linhas da tabela da direita.</li>
+<li>full_join - mantém todas as linhas das duas tabelas.</li>
+</ul>
+<p>Um exemplo:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="dados_4.html#cb151-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb151-2"><a href="dados_4.html#cb151-2" tabindex="-1"></a></span>
+<span id="cb151-3"><a href="dados_4.html#cb151-3" tabindex="-1"></a>clientes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cliente_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb151-4"><a href="dados_4.html#cb151-4" tabindex="-1"></a>                   <span class="at">nome =</span> <span class="fu">c</span>(<span class="st">&quot;Victor&quot;</span>, <span class="st">&quot;Letícia&quot;</span>, <span class="st">&quot;Mariana&quot;</span>))</span>
+<span id="cb151-5"><a href="dados_4.html#cb151-5" tabindex="-1"></a></span>
+<span id="cb151-6"><a href="dados_4.html#cb151-6" tabindex="-1"></a>compras <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cliente_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>),</span>
+<span id="cb151-7"><a href="dados_4.html#cb151-7" tabindex="-1"></a>                  <span class="at">valor =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>))</span>
+<span id="cb151-8"><a href="dados_4.html#cb151-8" tabindex="-1"></a></span>
+<span id="cb151-9"><a href="dados_4.html#cb151-9" tabindex="-1"></a><span class="co"># Juntar apenas quem aparece nos dois</span></span>
+<span id="cb151-10"><a href="dados_4.html#cb151-10" tabindex="-1"></a><span class="fu">inner_join</span>(clientes, compras, <span class="at">by =</span> <span class="st">&quot;cliente_id&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   cliente_id nome    valor
+##        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1          1 Victor     10
+## 2          2 Letícia    20</code></pre>
 <p><strong>O pacote Stringr</strong></p>
 <p>O stringr é um pacote dentro do <em>tidyverse</em> voltado a maipulação de textos. Suas principais funções são:</p>
 <ul>
@@ -928,10 +951,10 @@ FreqAcum
 <li>str_to_lower() / str_to_upper() Converte texto para minúsculas / maiúsculas.</li>
 </ul>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="dados_4.html#cb151-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb151-2"><a href="dados_4.html#cb151-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Bruno&quot;</span>, <span class="st">&quot;Clara&quot;</span>, <span class="st">&quot;Bernardo&quot;</span>))</span>
-<span id="cb151-3"><a href="dados_4.html#cb151-3" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
-<span id="cb151-4"><a href="dados_4.html#cb151-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comeca_com_B =</span> <span class="fu">str_detect</span>(nome, <span class="st">&quot;^B&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dados_4.html#cb153-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb153-2"><a href="dados_4.html#cb153-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Bruno&quot;</span>, <span class="st">&quot;Clara&quot;</span>, <span class="st">&quot;Bernardo&quot;</span>))</span>
+<span id="cb153-3"><a href="dados_4.html#cb153-3" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
+<span id="cb153-4"><a href="dados_4.html#cb153-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comeca_com_B =</span> <span class="fu">str_detect</span>(nome, <span class="st">&quot;^B&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 2
 ##   nome     comeca_com_B
 ##   &lt;chr&gt;    &lt;lgl&gt;       
@@ -951,10 +974,10 @@ FreqAcum
 <li>month() - extrai o mês.</li>
 <li>year() - extrai o ano.</li>
 </ul>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dados_4.html#cb153-1" tabindex="-1"></a><span class="co"># Data e hora (editados pela última vez)</span></span>
-<span id="cb153-2"><a href="dados_4.html#cb153-2" tabindex="-1"></a><span class="fu">today</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="dados_4.html#cb155-1" tabindex="-1"></a><span class="co"># Data e hora (editados pela última vez)</span></span>
+<span id="cb155-2"><a href="dados_4.html#cb155-2" tabindex="-1"></a><span class="fu">today</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;2025-05-03&quot;</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="dados_4.html#cb155-1" tabindex="-1"></a><span class="fu">hour</span>(<span class="fu">now</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="dados_4.html#cb157-1" tabindex="-1"></a><span class="fu">hour</span>(<span class="fu">now</span>())</span></code></pre></div>
 <pre><code>## [1] 16</code></pre>
 <p><strong>O pacote Forcats</strong></p>
 <p>O forcats é um pacote do <em>tidyverse</em> especializado em manipular variáveis fator no R, suas principais servem para alterar a ordem e modificar os níveis de um fator.</p>
