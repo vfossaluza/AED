@@ -165,3 +165,141 @@ tab_bilheteria %>%
 - Por fim, as faixas podem ter tamanhos diferentes. No entanto, a análise dessas classes deve ser feito com cuidado. A escolha de classes com tamanhos diferentes normalmente só é feita quando há poucas observações em algum intervalo. 
 
 ---
+
+## Manipulação de Dados usando o tidyverse
+
+Manipulação de dados no R envolve transformar, filtrar, organizar e resumir conjuntos de dados para prepará-los para análise. Um conceito importante para obtenção de uma base analítica é o data tidying, ou arrumação de dados. Uma base é considerada *tidy* se:
+
+  - Cada linha da base representa uma observação.
+  - Cada coluna da base representa uma variável.
+
+A base de dados analítica é estruturada de tal forma que pode ser colocada diretamente em ambientes de modelagem estatística ou de visualização. Isso é a base do *tidyverse*. 
+
+Embora o R base permita com que você faça o tratamento e manipulação de dados, o conjunto de pacotes *tidyverse* torna tudo mais rápido e eficiente. Os pacotes principais são:
+
+**Tibble**
+
+O tibble é uma estrutura de dados dentro do R, sendo uma uma versão mais atualizada do data.frame, criado dentro do conjunto de pacotes do *tidyverse*. 
+
+Ele é mais completo, mais legível e menos propenso a erros do que o data.frame, uma vez que não converte automaticamente strings em fatores e permite colunas com tipos de dados mais complexos (como listas e funções). Além disso, o tibble se encaixa devidamente com outros pacotes do tidyverse.
+
+Para transformar um data.frame já existente em tibble:
+
+```{r ex_tible, eval = FALSE}
+library(tibble)
+exemplo_tibble <- as_tibble(meu_dataframe)
+```
+
+Ou então, basta criá-lo diretamente
+
+```{r ex_tibble2}
+meu_tibble <- tibble(
+  x = 1:4,
+  y = c("a", "b", "c", "d"),
+  z = x^2
+)
+```
+
+**O operador pipe**
+
+O *%>%* (pipe) é um operador do pacote *magrittr* que torna a escrita e leitura dos códigos mais compreensíveis. Uma vez que usa o valor resultante da expressão do lado esquerdo como primeiro argumento da função do lado direito. Por exemplo:
+
+```{r ex_pipe, eval = FALSE}
+# As duas linhas representam a mesma coisa
+f(x, y)
+x %>% f(y)
+```
+
+
+```{r sqrt1}
+# Raiz quadrada sem o pipe
+x <- c(5, 3, 1, 0, 4, 2, 1)
+sqrt(sum(x))
+```
+
+```{r sqrt2}
+# Raiz quadrada com o pipe
+library(magrittr)
+x <- c(5, 3, 1, 0, 4, 2, 1)
+x %>% sum() %>% sqrt()
+```
+
+
+**O pacote dplyr**
+
+O dplyr é o pacote mais comum para manipulação de dados no R. Suas principais funções são:
+
+- select() - seleciona colunas
+- arrange() - ordena a base
+- filter() - filtra linhas
+- mutate() - cria/modifica colunas
+- group_by() - agrupa a base
+- summarise() - sumariza a base
+
+Todas essas funçõees tem como entrada e como saída uma tibble. Além disso, o dplyr facilida o uso do operador *pipe*.
+
+Exemplo:
+
+```{r ex_dplyr, eval = FALSE}
+library(dbplyr)
+dados %>% 
+  filter(idade > 18) %>% 
+  group_by(genero) %>% 
+  summarise(media_salario = mean(salario))
+```
+
+O exemplo acima resulta em uma tabela mostrando, para cada gênero, a média de salário das pessoas maiores de 18 anos. Ou seja, primeiro filtramos (*filter*) apenas as pessoas com idade acima de 18, agrupamos (*group_by*) os dados por gênero e resume (*summarise*) calculando a média dos salários de cada grupo.
+
+
+**O pacote Stringr**
+
+O stringr é um pacote dentro do *tidyverse* voltado a maipulação de textos. Suas principais funções são:
+
+- str_detect() - Verifica se um padrão existe em uma string (retorna TRUE/FALSE).
+- str_subset() - Filtra strings que contêm determinado padrão.
+- str_split()	- Divide strings com base em um delimitador.
+- str_length() - Retorna o número de caracteres da string.
+- str_trim()	Remove espaços em branco no início e no fim.
+- str_to_lower() / str_to_upper()	Converte texto para minúsculas / maiúsculas.
+
+Exemplo:
+
+```{r ex_stringr}
+library(tidyverse)
+dados <- tibble(nome = c("Ana", "Bruno", "Clara", "Bernardo"))
+dados %>%
+  mutate(comeca_com_B = str_detect(nome, "^B"))
+```
+
+O exemplo abaxio cria uma coluna que retorna *TRUE* se o nome começa com B e *FALSE* caso contrário.
+
+
+**O pacote lubridate**
+
+O lubridate é um pacote usado para tratar de objetos da classe dadas. Suas principais funções são:
+
+- second() - extrai os segundos.
+- minute() - extrai os minutos.
+- hour() - extrai a hora.
+- wday() - extrai o dia da semana.
+- mday() - extrai o dia do mês.
+- month() - extrai o mês.
+- year() - extrai o ano.
+
+```{r ex_lubridade}
+# Data e hora (editados pela última vez)
+today()
+hour(now())
+```
+
+
+**O pacote Forcats**
+
+O forcats é um pacote do *tidyverse* especializado em manipular variáveis fator no R, suas principais servem para alterar a ordem e modificar os níveis de um fator. 
+
+Algumas funções são:
+- fct_relevel() - reordena níveis manualmente, movendo um ou mais para frente.
+- fct_reorder() - reordena níveis de um fator com base em outra variável .
+- fct_infreq() - ordena os níveis do fator pela frequência (do mais comum ao menos comum).
+- fct_recode() - renomeia os níveis.
+- fct_count() - conta as observações por nível.

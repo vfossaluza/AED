@@ -222,7 +222,7 @@ Uma opção simples é usar a *Fórmula de Sturges*, que calcula o número de fa
 $$
 k = \lceil \log_2 n \rceil + 1
 $$
-Esse é o método padrão usado pelo R base. Como esse método calcula o número de faixas com base no tamanho da amostra $n$, ela pode ter um desempenho ruim quando $n < 30$, pois gera poucas faixas, o que dificulta a visualização de tendências. Para grandes conjunto de dados, ela pode superestimar a largura das faixas, gerando um histogramas execivamente suavizado. Além disso, pode não funcionar bem para dados que não seguem uma distribuição normal.
+Esse é o método padrão usado pelo R base. Como esse método calcula o número de faixas com base no tamanho da amostra $n$, ela pode ter um desempenho ruim quando $n < 30$, pois gera poucas faixas, o que dificulta a visualização de tendências. Para grandes conjunto de dados, ela pode superestimar a largura das faixas, gerando um histogramas execivamente suavizado. Além disso, pode não funcionar bem para dados que não seguem uma distribuição simétrica.
 
 **Regra de Referência Normal de Scoot:**
 
@@ -232,7 +232,7 @@ $$
 h = \frac{3,49 \cdot \text{desvio padrão}}{\sqrt[3]{n}}
 $$
 
-Essa abordagem é melhor para dados com variabilidade semelhante à de uma distribuição normal.
+Essa abordagem é melhor para dados com variabilidade semelhante à de uma distribuição simétrica.
 
 **Regra de Freedman-Diaconis:**
 
