@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-05-03" />
+<meta name="date" content="2025-05-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,6 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="dados_4.html"><a href="dados_4.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>4.2</b> Tipos de Variáveis</a></li>
 <li class="chapter" data-level="4.3" data-path="dados_4.html"><a href="dados_4.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.3</b> Tabelas de Frequências</a></li>
 <li class="chapter" data-level="4.4" data-path="dados_4.html"><a href="dados_4.html#manipulação-de-dados-usando-o-tidyverse"><i class="fa fa-check"></i><b>4.4</b> Manipulação de Dados usando o tidyverse</a></li>
+<li class="chapter" data-level="4.5" data-path="dados_4.html"><a href="dados_4.html#exercícios-1"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html"><i class="fa fa-check"></i><b>5</b> Medidas de uma variável</a>
 <ul>
@@ -232,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
 <li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
 <li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
-<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-1"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
+<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-2"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="anaise_bi7.html"><a href="anaise_bi7.html"><i class="fa fa-check"></i><b>7</b> Análise bivariada</a>
 <ul>
@@ -268,6 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>9</b> Respostas dos exercícios</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-3"><i class="fa fa-check"></i><b>9.1</b> Capítulo 3</a></li>
+<li class="chapter" data-level="9.2" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-4"><i class="fa fa-check"></i><b>9.2</b> Capítulo 4</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html"><i class="fa fa-check"></i><b>10</b> Outros Gráficos (incompleto)</a>
 <ul>
@@ -322,32 +324,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Exercício 1</strong></li>
 </ul>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="respostas-dos-exercícios.html#cb208-1" tabindex="-1"></a>vetor1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb208-2"><a href="respostas-dos-exercícios.html#cb208-2" tabindex="-1"></a>vetor2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
-<span id="cb208-3"><a href="respostas-dos-exercícios.html#cb208-3" tabindex="-1"></a></span>
-<span id="cb208-4"><a href="respostas-dos-exercícios.html#cb208-4" tabindex="-1"></a>soma <span class="ot">&lt;-</span> vetor1 <span class="sc">+</span> vetor2</span>
-<span id="cb208-5"><a href="respostas-dos-exercícios.html#cb208-5" tabindex="-1"></a>subtracao <span class="ot">&lt;-</span> vetor1 <span class="sc">-</span> vetor2</span>
-<span id="cb208-6"><a href="respostas-dos-exercícios.html#cb208-6" tabindex="-1"></a>multiplicacao <span class="ot">&lt;-</span> vetor1 <span class="sc">*</span> vetor2</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="respostas-dos-exercícios.html#cb206-1" tabindex="-1"></a>vetor1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb206-2"><a href="respostas-dos-exercícios.html#cb206-2" tabindex="-1"></a>vetor2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb206-3"><a href="respostas-dos-exercícios.html#cb206-3" tabindex="-1"></a></span>
+<span id="cb206-4"><a href="respostas-dos-exercícios.html#cb206-4" tabindex="-1"></a>soma <span class="ot">&lt;-</span> vetor1 <span class="sc">+</span> vetor2</span>
+<span id="cb206-5"><a href="respostas-dos-exercícios.html#cb206-5" tabindex="-1"></a>subtracao <span class="ot">&lt;-</span> vetor1 <span class="sc">-</span> vetor2</span>
+<span id="cb206-6"><a href="respostas-dos-exercícios.html#cb206-6" tabindex="-1"></a>multiplicacao <span class="ot">&lt;-</span> vetor1 <span class="sc">*</span> vetor2</span></code></pre></div>
 <ul>
 <li><strong>Exercício 2</strong></li>
 </ul>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="respostas-dos-exercícios.html#cb209-1" tabindex="-1"></a>matriz1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb209-2"><a href="respostas-dos-exercícios.html#cb209-2" tabindex="-1"></a>matriz2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb209-3"><a href="respostas-dos-exercícios.html#cb209-3" tabindex="-1"></a></span>
-<span id="cb209-4"><a href="respostas-dos-exercícios.html#cb209-4" tabindex="-1"></a>soma <span class="ot">&lt;-</span> matriz1 <span class="sc">+</span> matriz2</span>
-<span id="cb209-5"><a href="respostas-dos-exercícios.html#cb209-5" tabindex="-1"></a>subtracao <span class="ot">&lt;-</span> matriz1 <span class="sc">-</span> matriz2</span>
-<span id="cb209-6"><a href="respostas-dos-exercícios.html#cb209-6" tabindex="-1"></a>multiplicacao <span class="ot">&lt;-</span> matriz1 <span class="sc">%*%</span> matriz2</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="respostas-dos-exercícios.html#cb207-1" tabindex="-1"></a>matriz1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb207-2"><a href="respostas-dos-exercícios.html#cb207-2" tabindex="-1"></a>matriz2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb207-3"><a href="respostas-dos-exercícios.html#cb207-3" tabindex="-1"></a></span>
+<span id="cb207-4"><a href="respostas-dos-exercícios.html#cb207-4" tabindex="-1"></a>soma <span class="ot">&lt;-</span> matriz1 <span class="sc">+</span> matriz2</span>
+<span id="cb207-5"><a href="respostas-dos-exercícios.html#cb207-5" tabindex="-1"></a>subtracao <span class="ot">&lt;-</span> matriz1 <span class="sc">-</span> matriz2</span>
+<span id="cb207-6"><a href="respostas-dos-exercícios.html#cb207-6" tabindex="-1"></a>multiplicacao <span class="ot">&lt;-</span> matriz1 <span class="sc">%*%</span> matriz2</span></code></pre></div>
 <ul>
 <li><strong>Exercício 3</strong></li>
 </ul>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="respostas-dos-exercícios.html#cb210-1" tabindex="-1"></a>alunos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb210-2"><a href="respostas-dos-exercícios.html#cb210-2" tabindex="-1"></a>  <span class="at">Nome =</span> <span class="fu">c</span>(<span class="st">&quot;Letícia&quot;</span>, <span class="st">&quot;Mariana&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Otávio&quot;</span>, <span class="st">&quot;Ricardo&quot;</span>),</span>
-<span id="cb210-3"><a href="respostas-dos-exercícios.html#cb210-3" tabindex="-1"></a>  <span class="at">Idade =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">19</span>),</span>
-<span id="cb210-4"><a href="respostas-dos-exercícios.html#cb210-4" tabindex="-1"></a>  <span class="at">Nota =</span> <span class="fu">c</span>(<span class="fl">8.5</span>, <span class="fl">6.2</span>, <span class="fl">4.3</span>, <span class="fl">2.0</span>, <span class="fl">5.5</span>)</span>
-<span id="cb210-5"><a href="respostas-dos-exercícios.html#cb210-5" tabindex="-1"></a>)</span>
-<span id="cb210-6"><a href="respostas-dos-exercícios.html#cb210-6" tabindex="-1"></a></span>
-<span id="cb210-7"><a href="respostas-dos-exercícios.html#cb210-7" tabindex="-1"></a>alunos<span class="sc">$</span>Aprovado <span class="ot">&lt;-</span> alunos<span class="sc">$</span>Nota <span class="sc">&gt;=</span> <span class="dv">6</span></span>
-<span id="cb210-8"><a href="respostas-dos-exercícios.html#cb210-8" tabindex="-1"></a><span class="fu">print</span>(alunos)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="respostas-dos-exercícios.html#cb208-1" tabindex="-1"></a>alunos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb208-2"><a href="respostas-dos-exercícios.html#cb208-2" tabindex="-1"></a>  <span class="at">Nome =</span> <span class="fu">c</span>(<span class="st">&quot;Letícia&quot;</span>, <span class="st">&quot;Mariana&quot;</span>, <span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Otávio&quot;</span>, <span class="st">&quot;Ricardo&quot;</span>),</span>
+<span id="cb208-3"><a href="respostas-dos-exercícios.html#cb208-3" tabindex="-1"></a>  <span class="at">Idade =</span> <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">19</span>),</span>
+<span id="cb208-4"><a href="respostas-dos-exercícios.html#cb208-4" tabindex="-1"></a>  <span class="at">Nota =</span> <span class="fu">c</span>(<span class="fl">8.5</span>, <span class="fl">6.2</span>, <span class="fl">4.3</span>, <span class="fl">2.0</span>, <span class="fl">5.5</span>)</span>
+<span id="cb208-5"><a href="respostas-dos-exercícios.html#cb208-5" tabindex="-1"></a>)</span>
+<span id="cb208-6"><a href="respostas-dos-exercícios.html#cb208-6" tabindex="-1"></a></span>
+<span id="cb208-7"><a href="respostas-dos-exercícios.html#cb208-7" tabindex="-1"></a>alunos<span class="sc">$</span>Aprovado <span class="ot">&lt;-</span> alunos<span class="sc">$</span>Nota <span class="sc">&gt;=</span> <span class="dv">6</span></span>
+<span id="cb208-8"><a href="respostas-dos-exercícios.html#cb208-8" tabindex="-1"></a><span class="fu">print</span>(alunos)</span></code></pre></div>
 <pre><code>##      Nome Idade Nota Aprovado
 ## 1 Letícia    17  8.5     TRUE
 ## 2 Mariana    18  6.2     TRUE
@@ -357,33 +359,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Exercício 4</strong></li>
 </ul>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="respostas-dos-exercícios.html#cb212-1" tabindex="-1"></a>exponencial <span class="ot">&lt;-</span> <span class="cf">function</span>(M, <span class="at">b=</span><span class="fu">exp</span>(<span class="dv">1</span>)) {</span>
-<span id="cb212-2"><a href="respostas-dos-exercícios.html#cb212-2" tabindex="-1"></a>  lc <span class="ot">&lt;-</span> <span class="fu">dim</span>(M) <span class="co"># vetor com número de linhas e colunas de M</span></span>
-<span id="cb212-3"><a href="respostas-dos-exercícios.html#cb212-3" tabindex="-1"></a>  E <span class="ot">&lt;-</span> M <span class="co"># inicializa a matriz E que será retornada pela função</span></span>
-<span id="cb212-4"><a href="respostas-dos-exercícios.html#cb212-4" tabindex="-1"></a>  i <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Inicializa i que irá percorrer as linhas</span></span>
-<span id="cb212-5"><a href="respostas-dos-exercícios.html#cb212-5" tabindex="-1"></a>  <span class="cf">while</span>(i<span class="sc">&lt;=</span>lc[<span class="dv">1</span>]){</span>
-<span id="cb212-6"><a href="respostas-dos-exercícios.html#cb212-6" tabindex="-1"></a>    j <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># inicializa j que irá percorrer as colunas</span></span>
-<span id="cb212-7"><a href="respostas-dos-exercícios.html#cb212-7" tabindex="-1"></a>    <span class="cf">while</span>(j<span class="sc">&lt;=</span>lc[<span class="dv">2</span>]){</span>
-<span id="cb212-8"><a href="respostas-dos-exercícios.html#cb212-8" tabindex="-1"></a>      E[i,j] <span class="ot">&lt;-</span> b<span class="sc">^</span>M[i,j] <span class="co"># calcula os elementos da matriz E</span></span>
-<span id="cb212-9"><a href="respostas-dos-exercícios.html#cb212-9" tabindex="-1"></a>      j <span class="ot">&lt;-</span> j <span class="sc">+</span> <span class="dv">1</span> <span class="co"># atualiza j</span></span>
-<span id="cb212-10"><a href="respostas-dos-exercícios.html#cb212-10" tabindex="-1"></a>    }</span>
-<span id="cb212-11"><a href="respostas-dos-exercícios.html#cb212-11" tabindex="-1"></a>    i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span> <span class="co"># atualiza i</span></span>
-<span id="cb212-12"><a href="respostas-dos-exercícios.html#cb212-12" tabindex="-1"></a>  }</span>
-<span id="cb212-13"><a href="respostas-dos-exercícios.html#cb212-13" tabindex="-1"></a>  <span class="fu">return</span>(E)</span>
-<span id="cb212-14"><a href="respostas-dos-exercícios.html#cb212-14" tabindex="-1"></a>}</span>
-<span id="cb212-15"><a href="respostas-dos-exercícios.html#cb212-15" tabindex="-1"></a></span>
-<span id="cb212-16"><a href="respostas-dos-exercícios.html#cb212-16" tabindex="-1"></a><span class="co"># Testa a função &#39;exponencial&#39;</span></span>
-<span id="cb212-17"><a href="respostas-dos-exercícios.html#cb212-17" tabindex="-1"></a>M</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="respostas-dos-exercícios.html#cb210-1" tabindex="-1"></a>exponencial <span class="ot">&lt;-</span> <span class="cf">function</span>(M, <span class="at">b=</span><span class="fu">exp</span>(<span class="dv">1</span>)) {</span>
+<span id="cb210-2"><a href="respostas-dos-exercícios.html#cb210-2" tabindex="-1"></a>  lc <span class="ot">&lt;-</span> <span class="fu">dim</span>(M) <span class="co"># vetor com número de linhas e colunas de M</span></span>
+<span id="cb210-3"><a href="respostas-dos-exercícios.html#cb210-3" tabindex="-1"></a>  E <span class="ot">&lt;-</span> M <span class="co"># inicializa a matriz E que será retornada pela função</span></span>
+<span id="cb210-4"><a href="respostas-dos-exercícios.html#cb210-4" tabindex="-1"></a>  i <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># Inicializa i que irá percorrer as linhas</span></span>
+<span id="cb210-5"><a href="respostas-dos-exercícios.html#cb210-5" tabindex="-1"></a>  <span class="cf">while</span>(i<span class="sc">&lt;=</span>lc[<span class="dv">1</span>]){</span>
+<span id="cb210-6"><a href="respostas-dos-exercícios.html#cb210-6" tabindex="-1"></a>    j <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># inicializa j que irá percorrer as colunas</span></span>
+<span id="cb210-7"><a href="respostas-dos-exercícios.html#cb210-7" tabindex="-1"></a>    <span class="cf">while</span>(j<span class="sc">&lt;=</span>lc[<span class="dv">2</span>]){</span>
+<span id="cb210-8"><a href="respostas-dos-exercícios.html#cb210-8" tabindex="-1"></a>      E[i,j] <span class="ot">&lt;-</span> b<span class="sc">^</span>M[i,j] <span class="co"># calcula os elementos da matriz E</span></span>
+<span id="cb210-9"><a href="respostas-dos-exercícios.html#cb210-9" tabindex="-1"></a>      j <span class="ot">&lt;-</span> j <span class="sc">+</span> <span class="dv">1</span> <span class="co"># atualiza j</span></span>
+<span id="cb210-10"><a href="respostas-dos-exercícios.html#cb210-10" tabindex="-1"></a>    }</span>
+<span id="cb210-11"><a href="respostas-dos-exercícios.html#cb210-11" tabindex="-1"></a>    i <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span> <span class="co"># atualiza i</span></span>
+<span id="cb210-12"><a href="respostas-dos-exercícios.html#cb210-12" tabindex="-1"></a>  }</span>
+<span id="cb210-13"><a href="respostas-dos-exercícios.html#cb210-13" tabindex="-1"></a>  <span class="fu">return</span>(E)</span>
+<span id="cb210-14"><a href="respostas-dos-exercícios.html#cb210-14" tabindex="-1"></a>}</span>
+<span id="cb210-15"><a href="respostas-dos-exercícios.html#cb210-15" tabindex="-1"></a></span>
+<span id="cb210-16"><a href="respostas-dos-exercícios.html#cb210-16" tabindex="-1"></a><span class="co"># Testa a função &#39;exponencial&#39;</span></span>
+<span id="cb210-17"><a href="respostas-dos-exercícios.html#cb210-17" tabindex="-1"></a>M</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]    0    1    4
 ## [3,]    0    0    1</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="respostas-dos-exercícios.html#cb214-1" tabindex="-1"></a><span class="fu">exponencial</span>(M,<span class="dv">2</span>)  </span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="respostas-dos-exercícios.html#cb212-1" tabindex="-1"></a><span class="fu">exponencial</span>(M,<span class="dv">2</span>)  </span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    2    4    8
 ## [2,]    1    2   16
 ## [3,]    1    1    2</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="respostas-dos-exercícios.html#cb216-1" tabindex="-1"></a><span class="fu">exponencial</span>(M)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="respostas-dos-exercícios.html#cb214-1" tabindex="-1"></a><span class="fu">exponencial</span>(M)</span></code></pre></div>
 <pre><code>##          [,1]     [,2]      [,3]
 ## [1,] 2.718282 7.389056 20.085537
 ## [2,] 1.000000 2.718282 54.598150
@@ -391,32 +393,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><strong>Exercício 5</strong></li>
 </ul>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="respostas-dos-exercícios.html#cb218-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(base, altura) {</span>
-<span id="cb218-2"><a href="respostas-dos-exercícios.html#cb218-2" tabindex="-1"></a>  <span class="fu">return</span>((base <span class="sc">*</span> altura) <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb218-3"><a href="respostas-dos-exercícios.html#cb218-3" tabindex="-1"></a>}</span>
-<span id="cb218-4"><a href="respostas-dos-exercícios.html#cb218-4" tabindex="-1"></a></span>
-<span id="cb218-5"><a href="respostas-dos-exercícios.html#cb218-5" tabindex="-1"></a><span class="co"># Testa a função &#39;calcula_area&#39;</span></span>
-<span id="cb218-6"><a href="respostas-dos-exercícios.html#cb218-6" tabindex="-1"></a><span class="fu">calcula_area</span>(<span class="dv">15</span>, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="respostas-dos-exercícios.html#cb216-1" tabindex="-1"></a>calcula_area <span class="ot">&lt;-</span> <span class="cf">function</span>(base, altura) {</span>
+<span id="cb216-2"><a href="respostas-dos-exercícios.html#cb216-2" tabindex="-1"></a>  <span class="fu">return</span>((base <span class="sc">*</span> altura) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb216-3"><a href="respostas-dos-exercícios.html#cb216-3" tabindex="-1"></a>}</span>
+<span id="cb216-4"><a href="respostas-dos-exercícios.html#cb216-4" tabindex="-1"></a></span>
+<span id="cb216-5"><a href="respostas-dos-exercícios.html#cb216-5" tabindex="-1"></a><span class="co"># Testa a função &#39;calcula_area&#39;</span></span>
+<span id="cb216-6"><a href="respostas-dos-exercícios.html#cb216-6" tabindex="-1"></a><span class="fu">calcula_area</span>(<span class="dv">15</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 22.5</code></pre>
 <ul>
 <li><strong>Exercício 6</strong></li>
 </ul>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="respostas-dos-exercícios.html#cb220-1" tabindex="-1"></a>conta_pos_neg <span class="ot">&lt;-</span> <span class="cf">function</span>(vetor) {</span>
-<span id="cb220-2"><a href="respostas-dos-exercícios.html#cb220-2" tabindex="-1"></a>  pos <span class="ot">&lt;-</span> <span class="fu">sum</span>(vetor <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb220-3"><a href="respostas-dos-exercícios.html#cb220-3" tabindex="-1"></a>  neg <span class="ot">&lt;-</span> <span class="fu">sum</span>(vetor <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
-<span id="cb220-4"><a href="respostas-dos-exercícios.html#cb220-4" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">positivos =</span> pos, <span class="at">negativos =</span> neg))</span>
-<span id="cb220-5"><a href="respostas-dos-exercícios.html#cb220-5" tabindex="-1"></a>}</span>
-<span id="cb220-6"><a href="respostas-dos-exercícios.html#cb220-6" tabindex="-1"></a></span>
-<span id="cb220-7"><a href="respostas-dos-exercícios.html#cb220-7" tabindex="-1"></a><span class="co"># Testa a função &#39;conta_pos_neg&#39;</span></span>
-<span id="cb220-8"><a href="respostas-dos-exercícios.html#cb220-8" tabindex="-1"></a>vetor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb220-9"><a href="respostas-dos-exercícios.html#cb220-9" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">conta_pos_neg</span>(vetor)</span>
-<span id="cb220-10"><a href="respostas-dos-exercícios.html#cb220-10" tabindex="-1"></a><span class="fu">print</span>(resultado)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="respostas-dos-exercícios.html#cb218-1" tabindex="-1"></a>conta_pos_neg <span class="ot">&lt;-</span> <span class="cf">function</span>(vetor) {</span>
+<span id="cb218-2"><a href="respostas-dos-exercícios.html#cb218-2" tabindex="-1"></a>  pos <span class="ot">&lt;-</span> <span class="fu">sum</span>(vetor <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb218-3"><a href="respostas-dos-exercícios.html#cb218-3" tabindex="-1"></a>  neg <span class="ot">&lt;-</span> <span class="fu">sum</span>(vetor <span class="sc">&lt;</span> <span class="dv">0</span>)</span>
+<span id="cb218-4"><a href="respostas-dos-exercícios.html#cb218-4" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">positivos =</span> pos, <span class="at">negativos =</span> neg))</span>
+<span id="cb218-5"><a href="respostas-dos-exercícios.html#cb218-5" tabindex="-1"></a>}</span>
+<span id="cb218-6"><a href="respostas-dos-exercícios.html#cb218-6" tabindex="-1"></a></span>
+<span id="cb218-7"><a href="respostas-dos-exercícios.html#cb218-7" tabindex="-1"></a><span class="co"># Testa a função &#39;conta_pos_neg&#39;</span></span>
+<span id="cb218-8"><a href="respostas-dos-exercícios.html#cb218-8" tabindex="-1"></a>vetor <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">15</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb218-9"><a href="respostas-dos-exercícios.html#cb218-9" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">conta_pos_neg</span>(vetor)</span>
+<span id="cb218-10"><a href="respostas-dos-exercícios.html#cb218-10" tabindex="-1"></a><span class="fu">print</span>(resultado)</span></code></pre></div>
 <pre><code>## $positivos
 ## [1] 5
 ## 
 ## $negativos
 ## [1] 5</code></pre>
 <hr />
+</div>
+<div id="capítulo-4" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Capítulo 4<a href="respostas-dos-exercícios.html#capítulo-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Exercício 1</strong></li>
+</ul>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="respostas-dos-exercícios.html#cb220-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># Carregue o pacote</span></span>
+<span id="cb220-2"><a href="respostas-dos-exercícios.html#cb220-2" tabindex="-1"></a></span>
+<span id="cb220-3"><a href="respostas-dos-exercícios.html#cb220-3" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb220-4"><a href="respostas-dos-exercícios.html#cb220-4" tabindex="-1"></a>  <span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span> <span class="co"># Item a</span></span>
+<span id="cb220-5"><a href="respostas-dos-exercícios.html#cb220-5" tabindex="-1"></a>  <span class="fu">select</span>(mpg, hp, wt) <span class="sc">%&gt;%</span> <span class="co"># Item b</span></span>
+<span id="cb220-6"><a href="respostas-dos-exercícios.html#cb220-6" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mpg)) <span class="co"># Item c</span></span></code></pre></div>
+<pre><code>##                 mpg  hp    wt
+## Hornet 4 Drive 21.4 110 3.215
+## Mazda RX4      21.0 110 2.620
+## Mazda RX4 Wag  21.0 110 2.875
+## Ferrari Dino   19.7 175 2.770
+## Merc 280       19.2 123 3.440
+## Valiant        18.1 105 3.460
+## Merc 280C      17.8 123 3.440</code></pre>
+<ul>
+<li><strong>Exercício 2</strong></li>
+</ul>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="respostas-dos-exercícios.html#cb222-1" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb222-2"><a href="respostas-dos-exercícios.html#cb222-2" tabindex="-1"></a></span>
+<span id="cb222-3"><a href="respostas-dos-exercícios.html#cb222-3" tabindex="-1"></a>nomes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Mariana Silva&quot;</span>, <span class="st">&quot;Mateus Souza&quot;</span>, <span class="st">&quot;Letícia Dias&quot;</span>, <span class="st">&quot;Guilherme Almeida&quot;</span>, </span>
+<span id="cb222-4"><a href="respostas-dos-exercícios.html#cb222-4" tabindex="-1"></a>           <span class="st">&quot;Yasmin Santos&quot;</span>)</span>
+<span id="cb222-5"><a href="respostas-dos-exercícios.html#cb222-5" tabindex="-1"></a></span>
+<span id="cb222-6"><a href="respostas-dos-exercícios.html#cb222-6" tabindex="-1"></a><span class="co"># Separando o nome e sobrenome</span></span>
+<span id="cb222-7"><a href="respostas-dos-exercícios.html#cb222-7" tabindex="-1"></a>nomes_sobrenomes <span class="ot">&lt;-</span> <span class="fu">str_split</span>(nomes, <span class="st">&quot; &quot;</span>)</span>
+<span id="cb222-8"><a href="respostas-dos-exercícios.html#cb222-8" tabindex="-1"></a></span>
+<span id="cb222-9"><a href="respostas-dos-exercícios.html#cb222-9" tabindex="-1"></a><span class="fu">print</span>(nomes_sobrenomes)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Mariana&quot; &quot;Silva&quot;  
+## 
+## [[2]]
+## [1] &quot;Mateus&quot; &quot;Souza&quot; 
+## 
+## [[3]]
+## [1] &quot;Letícia&quot; &quot;Dias&quot;   
+## 
+## [[4]]
+## [1] &quot;Guilherme&quot; &quot;Almeida&quot;  
+## 
+## [[5]]
+## [1] &quot;Yasmin&quot; &quot;Santos&quot;</code></pre>
+<ul>
+<li><strong>Exercício 3:</strong></li>
+</ul>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="respostas-dos-exercícios.html#cb224-1" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb224-2"><a href="respostas-dos-exercícios.html#cb224-2" tabindex="-1"></a></span>
+<span id="cb224-3"><a href="respostas-dos-exercícios.html#cb224-3" tabindex="-1"></a><span class="co"># Criando o fator</span></span>
+<span id="cb224-4"><a href="respostas-dos-exercícios.html#cb224-4" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;rosa&quot;</span>, <span class="st">&quot;vermelho&quot;</span>, <span class="st">&quot;azul&quot;</span>, <span class="st">&quot;amarelo&quot;</span>, <span class="st">&quot;rosa&quot;</span>, <span class="st">&quot;verde&quot;</span>, <span class="st">&quot;azul&quot;</span>, <span class="st">&quot;rosa&quot;</span>))</span>
+<span id="cb224-5"><a href="respostas-dos-exercícios.html#cb224-5" tabindex="-1"></a></span>
+<span id="cb224-6"><a href="respostas-dos-exercícios.html#cb224-6" tabindex="-1"></a><span class="co"># (a) Reordenar os níveis para que a cor mais frequente venha primeiro</span></span>
+<span id="cb224-7"><a href="respostas-dos-exercícios.html#cb224-7" tabindex="-1"></a>cores_reordenadas <span class="ot">&lt;-</span> <span class="fu">fct_infreq</span>(cores)</span>
+<span id="cb224-8"><a href="respostas-dos-exercícios.html#cb224-8" tabindex="-1"></a><span class="fu">levels</span>(cores_reordenadas)</span></code></pre></div>
+<pre><code>## [1] &quot;rosa&quot;     &quot;azul&quot;     &quot;amarelo&quot;  &quot;verde&quot;    &quot;vermelho&quot;</code></pre>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="respostas-dos-exercícios.html#cb226-1" tabindex="-1"></a><span class="co"># (b) Agrupar todas as cores menos frequentes que &quot;azul&quot; em &quot;Outro&quot;</span></span>
+<span id="cb226-2"><a href="respostas-dos-exercícios.html#cb226-2" tabindex="-1"></a>cores_agrupadas <span class="ot">&lt;-</span> <span class="fu">fct_lump</span>(cores, <span class="at">n =</span> <span class="dv">2</span>, <span class="at">other_level =</span> <span class="st">&quot;Outro&quot;</span>)</span>
+<span id="cb226-3"><a href="respostas-dos-exercícios.html#cb226-3" tabindex="-1"></a><span class="fu">table</span>(cores_agrupadas)</span></code></pre></div>
+<pre><code>## cores_agrupadas
+##  azul  rosa Outro 
+##     2     3     3</code></pre>
 
 </div>
 </div>

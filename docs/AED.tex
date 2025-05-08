@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-05-03}
+\date{2025-05-07}
 
 \begin{document}
 \maketitle
@@ -2056,25 +2056,11 @@ Pode-se afirmar que nesta amostra, o gênero predominante é aventura (34,7\% do
 
 \section{Manipulação de Dados usando o tidyverse}\label{manipulauxe7uxe3o-de-dados-usando-o-tidyverse}
 
-Manipulação de dados no R envolve transformar, filtrar, organizar e resumir conjuntos de dados para prepará-los para análise. Um conceito importante para obtenção de uma base analítica é o data tidying, ou arrumação de dados. Uma base é considerada \emph{tidy} se:
-
-\begin{itemize}
-\tightlist
-\item
-  Cada linha da base representa uma observação.
-\item
-  Cada coluna da base representa uma variável.
-\end{itemize}
-
-A base de dados analítica é estruturada de tal forma que pode ser colocada diretamente em ambientes de modelagem estatística ou de visualização. Isso é a base do \emph{tidyverse}.
-
-Embora o R base permita com que você faça o tratamento e manipulação de dados, o conjunto de pacotes \emph{tidyverse} torna tudo mais rápido e eficiente. Os pacotes principais são:
+A manipulação de dados no R tem como objetivo organizar, filtrar e transformar um banco de dados. O \emph{tidyverse} é um conjunto de pacotes que compartilham uma filosofia de design e uma gramática comum, tornando a manipulação de dados mais intuitiva e fluida. Os pacotes principais são:
 
 \textbf{Tibble}
 
-O tibble é uma estrutura de dados dentro do R, sendo uma uma versão mais atualizada do data.frame, criado dentro do conjunto de pacotes do \emph{tidyverse}.
-
-Ele é mais completo, mais legível e menos propenso a erros do que o data.frame, uma vez que não converte automaticamente strings em fatores e permite colunas com tipos de dados mais complexos (como listas e funções). Além disso, o tibble se encaixa devidamente com outros pacotes do tidyverse.
+O tibble é uma estrutura de dados do R, sendo uma versão atualizada do data.frame. Ele é mais completo, mais legível e menos propenso a erros do que o data.frame, uma vez que não converte automaticamente strings em fatores e permite colunas com tipos de dados mais complexos (como listas e funções). Além disso, o tibble se encaixa devidamente com outros pacotes do tidyverse.
 
 Para transformar um data.frame já existente em tibble:
 
@@ -2099,7 +2085,7 @@ Ou então, basta criá-lo diretamente
 
 \textbf{O operador pipe}
 
-O \emph{\%\textgreater\%} (pipe) é um operador do pacote \emph{magrittr} que torna a escrita e leitura dos códigos mais compreensíveis. Uma vez que usa o valor resultante da expressão do lado esquerdo como primeiro argumento da função do lado direito. Por exemplo:
+O pipe (\%\textgreater\%) é um operador do pacote \emph{magrittr} que encadeia funções, ou seja, ele pega o resultado de uma expressão e passa como argumento para a próxima função. A ideia é que ao invés de escrever o código de dentro pra fora, escrevemos passo a passo, numa sequência lógica. Por exemplo
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2125,32 +2111,6 @@ O \emph{\%\textgreater\%} (pipe) é um operador do pacote \emph{magrittr} que to
 \begin{Highlighting}[]
 \CommentTok{\# Raiz quadrada com o pipe}
 \FunctionTok{library}\NormalTok{(magrittr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: pacote 'magrittr' foi compilado no R versão 4.4.2
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Anexando pacote: 'magrittr'
-\end{verbatim}
-
-\begin{verbatim}
-## O seguinte objeto é mascarado por 'package:purrr':
-## 
-##     set_names
-\end{verbatim}
-
-\begin{verbatim}
-## O seguinte objeto é mascarado por 'package:tidyr':
-## 
-##     extract
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{)}
 \NormalTok{x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{sum}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{sqrt}\NormalTok{()}
 \end{Highlighting}
@@ -2237,7 +2197,7 @@ Um exemplo:
 
 \textbf{O pacote Stringr}
 
-O stringr é um pacote dentro do \emph{tidyverse} voltado a maipulação de textos. Suas principais funções são:
+O pacote \emph{stringr} é um dos pacotes do \emph{tidyverse} especializado em manipulação de strings (textos). Seu objetivo é tornar o trabalho com strings mais simples, eficiente e legível. Suas principais funções são:
 
 \begin{itemize}
 \tightlist
@@ -2260,27 +2220,27 @@ Exemplo:
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
-\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Bruno"}\NormalTok{, }\StringTok{"Clara"}\NormalTok{, }\StringTok{"Bernardo"}\NormalTok{))}
+\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{nome =} \FunctionTok{c}\NormalTok{(}\StringTok{"Letícia"}\NormalTok{, }\StringTok{"Mariana"}\NormalTok{, }\StringTok{"Mateus"}\NormalTok{, }\StringTok{"Guilherme"}\NormalTok{))}
 \NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{comeca\_com\_B =} \FunctionTok{str\_detect}\NormalTok{(nome, }\StringTok{"\^{}B"}\NormalTok{))}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{comeca\_com\_B =} \FunctionTok{str\_detect}\NormalTok{(nome, }\StringTok{"\^{}G"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## # A tibble: 4 x 2
-##   nome     comeca_com_B
-##   <chr>    <lgl>       
-## 1 Ana      FALSE       
-## 2 Bruno    TRUE        
-## 3 Clara    FALSE       
-## 4 Bernardo TRUE
+##   nome      comeca_com_B
+##   <chr>     <lgl>       
+## 1 Letícia   FALSE       
+## 2 Mariana   FALSE       
+## 3 Mateus    FALSE       
+## 4 Guilherme TRUE
 \end{verbatim}
 
 O exemplo abaxio cria uma coluna que retorna \emph{TRUE} se o nome começa com B e \emph{FALSE} caso contrário.
 
 \textbf{O pacote lubridate}
 
-O lubridate é um pacote usado para tratar de objetos da classe dadas. Suas principais funções são:
+Trabalhar com datas e horários na base do R pode ser complicado, uma vez que, pode ser cheio de erros e formatos diferentes, então o pacote \emph{lubridade}, do \emph{tidyverse} foi criado para deixar tudo isso mais fácil. Suas principais funções são:
 
 \begin{itemize}
 \tightlist
@@ -2303,12 +2263,13 @@ O lubridate é um pacote usado para tratar de objetos da classe dadas. Suas prin
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Data e hora (editados pela última vez)}
+\FunctionTok{library}\NormalTok{(lubridate)}
 \FunctionTok{today}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "2025-05-03"
+## [1] "2025-05-07"
 \end{verbatim}
 
 \begin{Shaded}
@@ -2318,19 +2279,88 @@ O lubridate é um pacote usado para tratar de objetos da classe dadas. Suas prin
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 16
+## [1] 21
 \end{verbatim}
 
 \textbf{O pacote Forcats}
 
-O forcats é um pacote do \emph{tidyverse} especializado em manipular variáveis fator no R, suas principais servem para alterar a ordem e modificar os níveis de um fator.
+Embora o R base já tenha suporte a fatores, manipular níveis, ordenar ou recodificar fatores pode ser meio confuso e gerar muito error. O pacote \emph{forcats} (FOR Categorial VariableS) é um pacote do \emph{tidyverse} foi criado para facilitar esse trabalhar e tornar a manipulação de fatores mais simples.
 
-Algumas funções são:
-- fct\_relevel() - reordena níveis manualmente, movendo um ou mais para frente.
-- fct\_reorder() - reordena níveis de um fator com base em outra variável .
-- fct\_infreq() - ordena os níveis do fator pela frequência (do mais comum ao menos comum).
-- fct\_recode() - renomeia os níveis.
-- fct\_count() - conta as observações por nível.
+O \emph{forcats} criar fatores de forma controlada, renomeia e recodifica níveis, reordena níveis com base em frêquencia ou valores, lida com fatores não utilizados. Algumas de suas funções são:
+
+\begin{itemize}
+\tightlist
+\item
+  fct\_relevel() - reordena níveis manualmente, movendo um ou mais para frente.
+\item
+  fct\_reorder() - reordena níveis de um fator com base em outra variável .
+\item
+  fct\_infreq() - ordena os níveis do fator pela frequência (do mais comum ao menos comum).
+\item
+  fct\_recode() - renomeia os níveis.
+\item
+  fct\_count() - conta as observações por nível.
+\item
+  fct\_lump() - Junta os níveis menos frequentes em ``Outro''.
+\end{itemize}
+
+Exemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(forcats)}
+\NormalTok{nivel }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"alto"}\NormalTok{, }\StringTok{"baixo"}\NormalTok{, }\StringTok{"médio"}\NormalTok{, }\StringTok{"baixo"}\NormalTok{, }\StringTok{"alto"}\NormalTok{, }\StringTok{"baixo"}\NormalTok{))}
+\FunctionTok{fct\_infreq}\NormalTok{(nivel)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] alto  baixo médio baixo alto  baixo
+## Levels: baixo alto médio
+\end{verbatim}
+
+O código acima reordena os fatores por frequência.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Exercícios}\label{exercuxedcios-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Usando o conjunto de pacotes \emph{tidyverse} e o banco de dados do R mtcars, faça seguinte:
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Filtre apenas os carros que têm 6 cilindros.
+\item
+  Selecione apenas as colunas: mpg, hp e wt.
+\item
+  Ordene o resultado do maior para o menor consumo de combustível (mpg).
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Primeiro, crie um vetor com o nome e sobrenome de 5 pessoas, depois, usando o pacote \emph{stringr} separe o nome e o sobrenome de cada pessoa.
+\item
+  Crie o fator:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cores }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"rosa"}\NormalTok{, }\StringTok{"vermelho"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"amarelo"}\NormalTok{, }\StringTok{"rosa"}\NormalTok{, }\StringTok{"verde"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"rosa"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+A partir disso:
+(a) Reordene os níveis para que a cor mais frequente venha primeiro.
+(b) Agrupe todas as cores menos frequentes que ``azul'' em um novo nível chamado ``Outro''.
 
 \chapter{Medidas de uma variável}\label{medidas_uma_variavel_5}
 
@@ -3276,7 +3306,7 @@ Assim, dependendo do tipo de dado e do objetivo da análise, podemos escolher o 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\section{Exercícios}\label{exercuxedcios-1}
+\section{Exercícios}\label{exercuxedcios-2}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3975,6 +4005,110 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{Capítulo 4}\label{capuxedtulo-4}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 1}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse) }\CommentTok{\# Carregue o pacote}
+
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(cyl }\SpecialCharTok{==} \DecValTok{6}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# Item a}
+  \FunctionTok{select}\NormalTok{(mpg, hp, wt) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\# Item b}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(mpg)) }\CommentTok{\# Item c}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 mpg  hp    wt
+## Hornet 4 Drive 21.4 110 3.215
+## Mazda RX4      21.0 110 2.620
+## Mazda RX4 Wag  21.0 110 2.875
+## Ferrari Dino   19.7 175 2.770
+## Merc 280       19.2 123 3.440
+## Valiant        18.1 105 3.460
+## Merc 280C      17.8 123 3.440
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 2}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stringr)}
+
+\NormalTok{nomes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Mariana Silva"}\NormalTok{, }\StringTok{"Mateus Souza"}\NormalTok{, }\StringTok{"Letícia Dias"}\NormalTok{, }\StringTok{"Guilherme Almeida"}\NormalTok{, }
+           \StringTok{"Yasmin Santos"}\NormalTok{)}
+
+\CommentTok{\# Separando o nome e sobrenome}
+\NormalTok{nomes\_sobrenomes }\OtherTok{\textless{}{-}} \FunctionTok{str\_split}\NormalTok{(nomes, }\StringTok{" "}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(nomes\_sobrenomes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "Mariana" "Silva"  
+## 
+## [[2]]
+## [1] "Mateus" "Souza" 
+## 
+## [[3]]
+## [1] "Letícia" "Dias"   
+## 
+## [[4]]
+## [1] "Guilherme" "Almeida"  
+## 
+## [[5]]
+## [1] "Yasmin" "Santos"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 3:}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(forcats)}
+
+\CommentTok{\# Criando o fator}
+\NormalTok{cores }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"rosa"}\NormalTok{, }\StringTok{"vermelho"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"amarelo"}\NormalTok{, }\StringTok{"rosa"}\NormalTok{, }\StringTok{"verde"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"rosa"}\NormalTok{))}
+
+\CommentTok{\# (a) Reordenar os níveis para que a cor mais frequente venha primeiro}
+\NormalTok{cores\_reordenadas }\OtherTok{\textless{}{-}} \FunctionTok{fct\_infreq}\NormalTok{(cores)}
+\FunctionTok{levels}\NormalTok{(cores\_reordenadas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "rosa"     "azul"     "amarelo"  "verde"    "vermelho"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# (b) Agrupar todas as cores menos frequentes que "azul" em "Outro"}
+\NormalTok{cores\_agrupadas }\OtherTok{\textless{}{-}} \FunctionTok{fct\_lump}\NormalTok{(cores, }\AttributeTok{n =} \DecValTok{2}\NormalTok{, }\AttributeTok{other\_level =} \StringTok{"Outro"}\NormalTok{)}
+\FunctionTok{table}\NormalTok{(cores\_agrupadas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## cores_agrupadas
+##  azul  rosa Outro 
+##     2     3     3
+\end{verbatim}
+
 \chapter{Outros Gráficos (incompleto)}\label{outros-gruxe1ficos-incompleto}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -4000,7 +4134,7 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{AED_files/figure-latex/unnamed-chunk-2-1} \end{center}
+\begin{center}\includegraphics{AED_files/figure-latex/unnamed-chunk-3-1} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -4026,7 +4160,7 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{AED_files/figure-latex/unnamed-chunk-3-1} \end{center}
+\begin{center}\includegraphics{AED_files/figure-latex/unnamed-chunk-4-1} \end{center}
 
 \subsection{Barras empilhadas}\label{barras-empilhadas}
 

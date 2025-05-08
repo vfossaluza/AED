@@ -168,20 +168,11 @@ tab_bilheteria %>%
 
 ## Manipulação de Dados usando o tidyverse
 
-Manipulação de dados no R envolve transformar, filtrar, organizar e resumir conjuntos de dados para prepará-los para análise. Um conceito importante para obtenção de uma base analítica é o data tidying, ou arrumação de dados. Uma base é considerada *tidy* se:
-
-  - Cada linha da base representa uma observação.
-  - Cada coluna da base representa uma variável.
-
-A base de dados analítica é estruturada de tal forma que pode ser colocada diretamente em ambientes de modelagem estatística ou de visualização. Isso é a base do *tidyverse*. 
-
-Embora o R base permita com que você faça o tratamento e manipulação de dados, o conjunto de pacotes *tidyverse* torna tudo mais rápido e eficiente. Os pacotes principais são:
+A manipulação de dados no R tem como objetivo organizar, filtrar e transformar um banco de dados. O *tidyverse* é um conjunto de pacotes que compartilham uma filosofia de design e uma gramática comum, tornando a manipulação de dados mais intuitiva e fluida. Os pacotes principais são:
 
 **Tibble**
 
-O tibble é uma estrutura de dados dentro do R, sendo uma uma versão mais atualizada do data.frame, criado dentro do conjunto de pacotes do *tidyverse*. 
-
-Ele é mais completo, mais legível e menos propenso a erros do que o data.frame, uma vez que não converte automaticamente strings em fatores e permite colunas com tipos de dados mais complexos (como listas e funções). Além disso, o tibble se encaixa devidamente com outros pacotes do tidyverse.
+O tibble é uma estrutura de dados do R, sendo uma versão atualizada do data.frame. Ele é mais completo, mais legível e menos propenso a erros do que o data.frame, uma vez que não converte automaticamente strings em fatores e permite colunas com tipos de dados mais complexos (como listas e funções). Além disso, o tibble se encaixa devidamente com outros pacotes do tidyverse.
 
 Para transformar um data.frame já existente em tibble:
 
@@ -202,7 +193,7 @@ meu_tibble <- tibble(
 
 **O operador pipe**
 
-O *%>%* (pipe) é um operador do pacote *magrittr* que torna a escrita e leitura dos códigos mais compreensíveis. Uma vez que usa o valor resultante da expressão do lado esquerdo como primeiro argumento da função do lado direito. Por exemplo:
+O pipe (%>%) é um operador do pacote *magrittr* que encadeia funções, ou seja, ele pega o resultado de uma expressão e passa como argumento para a próxima função. A ideia é que ao invés de escrever o código de dentro pra fora, escrevemos passo a passo, numa sequência lógica. Por exemplo 
 
 ```{r ex_pipe, eval = FALSE}
 # As duas linhas representam a mesma coisa
@@ -210,14 +201,11 @@ f(x, y)
 x %>% f(y)
 ```
 
-
 ```{r sqrt1}
 # Raiz quadrada sem o pipe
 x <- c(5, 3, 1, 0, 4, 2, 1)
 sqrt(sum(x))
-```
 
-```{r sqrt2}
 # Raiz quadrada com o pipe
 library(magrittr)
 x <- c(5, 3, 1, 0, 4, 2, 1)
@@ -275,7 +263,7 @@ inner_join(clientes, compras, by = "cliente_id")
 
 **O pacote Stringr**
 
-O stringr é um pacote dentro do *tidyverse* voltado a maipulação de textos. Suas principais funções são:
+O pacote *stringr* é um dos pacotes do *tidyverse* especializado em manipulação de strings (textos). Seu objetivo é tornar o trabalho com strings mais simples, eficiente e legível. Suas principais funções são:
 
 - str_detect() - Verifica se um padrão existe em uma string (retorna TRUE/FALSE).
 - str_subset() - Filtra strings que contêm determinado padrão.
@@ -288,9 +276,9 @@ Exemplo:
 
 ```{r ex_stringr}
 library(tidyverse)
-dados <- tibble(nome = c("Ana", "Bruno", "Clara", "Bernardo"))
+dados <- tibble(nome = c("Letícia", "Mariana", "Mateus", "Guilherme"))
 dados %>%
-  mutate(comeca_com_B = str_detect(nome, "^B"))
+  mutate(comeca_com_B = str_detect(nome, "^G"))
 ```
 
 O exemplo abaxio cria uma coluna que retorna *TRUE* se o nome começa com B e *FALSE* caso contrário.
@@ -298,7 +286,7 @@ O exemplo abaxio cria uma coluna que retorna *TRUE* se o nome começa com B e *F
 
 **O pacote lubridate**
 
-O lubridate é um pacote usado para tratar de objetos da classe dadas. Suas principais funções são:
+Trabalhar com datas e horários na base do R pode ser complicado, uma vez que, pode ser cheio de erros e formatos diferentes, então o pacote *lubridade*, do *tidyverse* foi criado para deixar tudo isso mais fácil. Suas principais funções são:
 
 - second() - extrai os segundos.
 - minute() - extrai os minutos.
@@ -310,18 +298,50 @@ O lubridate é um pacote usado para tratar de objetos da classe dadas. Suas prin
 
 ```{r ex_lubridade}
 # Data e hora (editados pela última vez)
+library(lubridate)
 today()
 hour(now())
 ```
 
-
 **O pacote Forcats**
 
-O forcats é um pacote do *tidyverse* especializado em manipular variáveis fator no R, suas principais servem para alterar a ordem e modificar os níveis de um fator. 
+Embora o R base já tenha suporte a fatores, manipular níveis, ordenar ou recodificar fatores pode ser meio confuso e gerar muito error. O pacote *forcats* (FOR Categorial VariableS) é um pacote do *tidyverse* foi criado para facilitar esse trabalhar e tornar a manipulação de fatores mais simples.
 
-Algumas funções são:
+O *forcats* criar fatores de forma controlada, renomeia e recodifica níveis, reordena níveis com base em frêquencia ou valores, lida com fatores não utilizados. Algumas de suas funções são:
+
 - fct_relevel() - reordena níveis manualmente, movendo um ou mais para frente.
 - fct_reorder() - reordena níveis de um fator com base em outra variável .
 - fct_infreq() - ordena os níveis do fator pela frequência (do mais comum ao menos comum).
 - fct_recode() - renomeia os níveis.
 - fct_count() - conta as observações por nível.
+- fct_lump() - Junta os níveis menos frequentes em "Outro".
+
+Exemplo:
+
+```{r ex_forcats}
+library(forcats)
+nivel <- factor(c("alto", "baixo", "médio", "baixo", "alto", "baixo"))
+fct_infreq(nivel)
+```
+
+O código acima reordena os fatores por frequência.
+
+---
+
+## Exercícios
+
+1. Usando o conjunto de pacotes *tidyverse* e o banco de dados do R mtcars, faça seguinte:
+(a) Filtre apenas os carros que têm 6 cilindros.
+(b) Selecione apenas as colunas: mpg, hp e wt.
+(c) Ordene o resultado do maior para o menor consumo de combustível (mpg).
+
+2. Primeiro, crie um vetor com o nome e sobrenome de 5 pessoas, depois, usando o pacote *stringr* separe o nome e o sobrenome de cada pessoa. 
+
+3. Crie o fator:
+```{r ex3_fator}
+cores <- factor(c("rosa", "vermelho", "azul", "amarelo", "rosa", "verde", "azul", "rosa"))
+```
+
+A partir disso:
+(a) Reordene os níveis para que a cor mais frequente venha primeiro.
+(b) Agrupe todas as cores menos frequentes que "azul" em um novo nível chamado "Outro".

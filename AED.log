@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.27)  3 MAY 2025 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.4.27)  7 MAY 2025 21:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -633,7 +633,7 @@ Overfull \hbox (42.12115pt too wide) has occurred while \output is active
  []
 
 [12{c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-<AED_files/figure-latex/LGN-1.pdf, id=224, 469.755pt x 325.215pt>
+<AED_files/figure-latex/LGN-1.pdf, id=228, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/LGN-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/LGN-1.pdf>
 Package pdftex.def Info: AED_files/figure-latex/LGN-1.pdf  used on input line 375.
@@ -998,12 +998,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 1969--1971
 [46]
 Chapter 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2342--2344
+Underfull \hbox (badness 10000) in paragraph at lines 2372--2374
 
  []
 
 
-Overfull \hbox (257.95757pt too wide) in paragraph at lines 2351--2354
+Overfull \hbox (257.95757pt too wide) in paragraph at lines 2381--2384
 \T1/lmr/m/n/10 *Exemplo - Du-ração dos filmes da pixar: $[] \OT1/lmr/m/n/10 = [] =
  []
 
@@ -1012,41 +1012,41 @@ Overfull \hbox (257.95757pt too wide) in paragraph at lines 2351--2354
 [47
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 2391--2393
+Underfull \hbox (badness 10000) in paragraph at lines 2421--2423
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2409--2411
+Underfull \hbox (badness 10000) in paragraph at lines 2439--2441
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2411--2413
+Underfull \hbox (badness 10000) in paragraph at lines 2441--2443
 
  []
 
 
 
 [48]
-Overfull \hbox (7.12541pt too wide) in paragraph at lines 2432--2434
+Overfull \hbox (7.12541pt too wide) in paragraph at lines 2462--2464
 []\T1/lmr/m/n/10 para a Amostra 1: $[] \OT1/lmr/m/n/10 = [] =
  []
 
 
 
 [49]
-Underfull \hbox (badness 10000) in paragraph at lines 2505--2507
+Underfull \hbox (badness 10000) in paragraph at lines 2535--2537
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2507--2509
+Underfull \hbox (badness 10000) in paragraph at lines 2537--2539
 
  []
 
 
-Overfull \hbox (0.74431pt too wide) detected at line 2523
+Overfull \hbox (0.74431pt too wide) detected at line 2553
 \OML/lmm/m/it/10 Q\OT1/lmr/m/n/10 (\OML/lmm/m/it/10 p\OT1/lmr/m/n/10 ) = []
  []
 
@@ -1067,74 +1067,74 @@ Chapter 6.
 
 
 [55]
-<AED_files/figure-latex/graf_genero-1.pdf, id=486, 469.755pt x 325.215pt>
+<AED_files/figure-latex/graf_genero-1.pdf, id=496, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/graf_genero-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/graf_genero-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/graf_genero-1.pdf  used on input line 2754.
+Package pdftex.def Info: AED_files/figure-latex/graf_genero-1.pdf  used on input line 2784.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
-<AED_files/figure-latex/graf_duracao-1.pdf, id=487, 469.755pt x 325.215pt>
+<AED_files/figure-latex/graf_duracao-1.pdf, id=497, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/graf_duracao-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/graf_duracao-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/graf_duracao-1.pdf  used on input line 2791.
+Package pdftex.def Info: AED_files/figure-latex/graf_duracao-1.pdf  used on input line 2821.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
 [56 <./AED_files/figure-latex/graf_genero-1.pdf>]
-<AED_files/figure-latex/pizza1-1.pdf, id=498, 469.755pt x 325.215pt>
+<AED_files/figure-latex/pizza1-1.pdf, id=508, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/pizza1-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/pizza1-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/pizza1-1.pdf  used on input line 2824.
+Package pdftex.def Info: AED_files/figure-latex/pizza1-1.pdf  used on input line 2854.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
 [57 <./AED_files/figure-latex/graf_duracao-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 2834--2836
+Underfull \hbox (badness 10000) in paragraph at lines 2864--2866
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2836--2838
+Underfull \hbox (badness 10000) in paragraph at lines 2866--2868
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2838--2840
+Underfull \hbox (badness 10000) in paragraph at lines 2868--2870
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2851--2853
+Underfull \hbox (badness 10000) in paragraph at lines 2881--2883
 
  []
 
 
 
 [58 <./AED_files/figure-latex/pizza1-1.pdf>]
-<AED_files/figure-latex/hist_bilheteria1-1.pdf, id=517, 469.755pt x 325.215pt>
+<AED_files/figure-latex/hist_bilheteria1-1.pdf, id=527, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/hist_bilheteria1-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/hist_bilheteria1-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/hist_bilheteria1-1.pdf  used on input line 2883.
+Package pdftex.def Info: AED_files/figure-latex/hist_bilheteria1-1.pdf  used on input line 2913.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2888--2890
+Underfull \hbox (badness 10000) in paragraph at lines 2918--2920
 
  []
 
 
 
 [59 <./AED_files/figure-latex/hist_bilheteria1-1.pdf>]
-<AED_files/figure-latex/hist_bilheteria2-1.pdf, id=528, 469.755pt x 325.215pt>
+<AED_files/figure-latex/hist_bilheteria2-1.pdf, id=539, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/hist_bilheteria2-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/hist_bilheteria2-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/hist_bilheteria2-1.pdf  used on input line 2921.
+Package pdftex.def Info: AED_files/figure-latex/hist_bilheteria2-1.pdf  used on input line 2951.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
 [60 <./AED_files/figure-latex/hist_bilheteria2-1.pdf>]
-<AED_files/figure-latex/hist_bilheteria2-2.pdf, id=540, 469.755pt x 325.215pt>
+<AED_files/figure-latex/hist_bilheteria2-2.pdf, id=550, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/hist_bilheteria2-2.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/hist_bilheteria2-2.pdf>
-Package pdftex.def Info: AED_files/figure-latex/hist_bilheteria2-2.pdf  used on input line 2934.
+Package pdftex.def Info: AED_files/figure-latex/hist_bilheteria2-2.pdf  used on input line 2964.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
@@ -1147,45 +1147,45 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 [63]
-<AED_files/figure-latex/boxplot_duracao-1.pdf, id=562, 469.755pt x 325.215pt>
+<AED_files/figure-latex/boxplot_duracao-1.pdf, id=572, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/boxplot_duracao-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/boxplot_duracao-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/boxplot_duracao-1.pdf  used on input line 3121.
+Package pdftex.def Info: AED_files/figure-latex/boxplot_duracao-1.pdf  used on input line 3151.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3125--3127
+Underfull \hbox (badness 10000) in paragraph at lines 3155--3157
 
  []
 
 
 
 [64 <./AED_files/figure-latex/boxplot_duracao-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 3127--3129
+Underfull \hbox (badness 10000) in paragraph at lines 3157--3159
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3129--3131
+Underfull \hbox (badness 10000) in paragraph at lines 3159--3161
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3131--3133
+Underfull \hbox (badness 10000) in paragraph at lines 3161--3163
 
  []
 
-<AED_files/figure-latex/boxplot_P_duracao-1.pdf, id=573, 469.755pt x 325.215pt>
+<AED_files/figure-latex/boxplot_P_duracao-1.pdf, id=583, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/boxplot_P_duracao-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/boxplot_P_duracao-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/boxplot_P_duracao-1.pdf  used on input line 3146.
+Package pdftex.def Info: AED_files/figure-latex/boxplot_P_duracao-1.pdf  used on input line 3176.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
 [65 <./AED_files/figure-latex/boxplot_P_duracao-1.pdf>]
-<AED_files/figure-latex/simetria-1.pdf, id=583, 469.755pt x 325.215pt>
+<AED_files/figure-latex/simetria-1.pdf, id=593, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/simetria-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/simetria-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/simetria-1.pdf  used on input line 3180.
+Package pdftex.def Info: AED_files/figure-latex/simetria-1.pdf  used on input line 3210.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1193,10 +1193,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [66]
-<AED_files/figure-latex/assimetriaD-1.pdf, id=588, 469.755pt x 325.215pt>
+<AED_files/figure-latex/assimetriaD-1.pdf, id=598, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/assimetriaD-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/assimetriaD-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/assimetriaD-1.pdf  used on input line 3203.
+Package pdftex.def Info: AED_files/figure-latex/assimetriaD-1.pdf  used on input line 3233.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1204,10 +1204,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [67 <./AED_files/figure-latex/simetria-1.pdf>]
-<AED_files/figure-latex/assimetriaE-1.pdf, id=599, 469.755pt x 325.215pt>
+<AED_files/figure-latex/assimetriaE-1.pdf, id=609, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/assimetriaE-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/assimetriaE-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/assimetriaE-1.pdf  used on input line 3224.
+Package pdftex.def Info: AED_files/figure-latex/assimetriaE-1.pdf  used on input line 3254.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1215,22 +1215,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [68 <./AED_files/figure-latex/assimetriaD-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 3233--3235
+Underfull \hbox (badness 10000) in paragraph at lines 3263--3265
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3235--3237
+Underfull \hbox (badness 10000) in paragraph at lines 3265--3267
 
  []
 
 
 
 [69 <./AED_files/figure-latex/assimetriaE-1.pdf>]
-<AED_files/figure-latex/graf_simetria-1.pdf, id=618, 469.755pt x 325.215pt>
+<AED_files/figure-latex/graf_simetria-1.pdf, id=628, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/graf_simetria-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/graf_simetria-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/graf_simetria-1.pdf  used on input line 3275.
+Package pdftex.def Info: AED_files/figure-latex/graf_simetria-1.pdf  used on input line 3305.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
@@ -1255,7 +1255,7 @@ Chapter 8.
 [75]
 
 [76]
-Underfull \hbox (badness 10000) in paragraph at lines 3626--3627
+Underfull \hbox (badness 10000) in paragraph at lines 3656--3657
 
  []
 
@@ -1264,17 +1264,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 3626--3627
 [77]
 
 [78]
-Underfull \hbox (badness 10000) in paragraph at lines 3685--3687
+Underfull \hbox (badness 10000) in paragraph at lines 3715--3717
 
  []
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 3690.
+(amsmath)                 on input line 3720.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3697--3699
+Underfull \hbox (badness 10000) in paragraph at lines 3727--3729
 
  []
 
@@ -1298,81 +1298,85 @@ Chapter 9.
 
 [85]
 
-[86
+[86]
+
+[87]
+
+[88
 
 ]
 Chapter 10.
-<AED_files/figure-latex/unnamed-chunk-2-1.pdf, id=718, 469.755pt x 325.215pt>
-File: AED_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type pdf)
-<use AED_files/figure-latex/unnamed-chunk-2-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/unnamed-chunk-2-1.pdf  used on input line 4003.
+<AED_files/figure-latex/unnamed-chunk-3-1.pdf, id=736, 469.755pt x 325.215pt>
+File: AED_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
+<use AED_files/figure-latex/unnamed-chunk-3-1.pdf>
+Package pdftex.def Info: AED_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 4137.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[87]
-<AED_files/figure-latex/unnamed-chunk-3-1.pdf, id=723, 469.755pt x 325.215pt>
-File: AED_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type pdf)
-<use AED_files/figure-latex/unnamed-chunk-3-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 4029.
+[89]
+<AED_files/figure-latex/unnamed-chunk-4-1.pdf, id=741, 469.755pt x 325.215pt>
+File: AED_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
+<use AED_files/figure-latex/unnamed-chunk-4-1.pdf>
+Package pdftex.def Info: AED_files/figure-latex/unnamed-chunk-4-1.pdf  used on input line 4163.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
-[88 <./AED_files/figure-latex/unnamed-chunk-2-1.pdf>]
+[90 <./AED_files/figure-latex/unnamed-chunk-3-1.pdf>]
 
-[89 <./AED_files/figure-latex/unnamed-chunk-3-1.pdf>]
+[91 <./AED_files/figure-latex/unnamed-chunk-4-1.pdf>]
 
-[90]
+[92]
 Chapter 11.
 
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 4086--4086
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 4220--4220
 []\T1/lmtt/m/n/10 ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.[] 
  []
 
 
-Overfull \hbox (53.99884pt too wide) in paragraph at lines 4086--4086
+Overfull \hbox (53.99884pt too wide) in paragraph at lines 4220--4220
 []\T1/lmtt/m/n/10 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was[] 
  []
 
-<AED_files/figure-latex/graf_regrecao-1.pdf, id=753, 469.755pt x 325.215pt>
+<AED_files/figure-latex/graf_regrecao-1.pdf, id=772, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/graf_regrecao-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/graf_regrecao-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/graf_regrecao-1.pdf  used on input line 4092.
+Package pdftex.def Info: AED_files/figure-latex/graf_regrecao-1.pdf  used on input line 4226.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
-[91
+[93
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 4107.
+(Font)              <14.4> on input line 4241.
 
 
-[92 <./AED_files/figure-latex/graf_regrecao-1.pdf>]
+[94 <./AED_files/figure-latex/graf_regrecao-1.pdf>]
 No file AED.bbl.
 
 
-[93] (./AED.aux)
+[95] (./AED.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15357 strings out of 475171
- 248885 string characters out of 5764510
- 643090 words of memory out of 5000000
- 37797 multiletter control sequences out of 15000+600000
+ 15371 strings out of 475171
+ 249007 string characters out of 5764510
+ 643168 words of memory out of 5000000
+ 37801 multiletter control sequences out of 15000+600000
  657275 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,12n,79p,827b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmro10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on AED.pdf (93 pages, 703602 bytes).
+Output written on AED.pdf (95 pages, 707845 bytes).
 PDF statistics:
- 1142 PDF objects out of 1200 (max. 8388607)
- 955 compressed objects within 10 object streams
- 268 named destinations out of 1000 (max. 500000)
- 601 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1168 PDF objects out of 1200 (max. 8388607)
+ 979 compressed objects within 10 object streams
+ 278 named destinations out of 1000 (max. 500000)
+ 617 words of extra memory for PDF output out of 10000 (max. 10000000)
 

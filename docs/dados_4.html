@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-05-03" />
+<meta name="date" content="2025-05-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,6 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="dados_4.html"><a href="dados_4.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>4.2</b> Tipos de Variáveis</a></li>
 <li class="chapter" data-level="4.3" data-path="dados_4.html"><a href="dados_4.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.3</b> Tabelas de Frequências</a></li>
 <li class="chapter" data-level="4.4" data-path="dados_4.html"><a href="dados_4.html#manipulação-de-dados-usando-o-tidyverse"><i class="fa fa-check"></i><b>4.4</b> Manipulação de Dados usando o tidyverse</a></li>
+<li class="chapter" data-level="4.5" data-path="dados_4.html"><a href="dados_4.html#exercícios-1"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html"><i class="fa fa-check"></i><b>5</b> Medidas de uma variável</a>
 <ul>
@@ -232,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
 <li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
 <li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
-<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-1"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
+<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-2"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="anaise_bi7.html"><a href="anaise_bi7.html"><i class="fa fa-check"></i><b>7</b> Análise bivariada</a>
 <ul>
@@ -268,6 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>9</b> Respostas dos exercícios</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-3"><i class="fa fa-check"></i><b>9.1</b> Capítulo 3</a></li>
+<li class="chapter" data-level="9.2" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-4"><i class="fa fa-check"></i><b>9.2</b> Capítulo 4</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html"><i class="fa fa-check"></i><b>10</b> Outros Gráficos (incompleto)</a>
 <ul>
@@ -857,16 +859,9 @@ FreqAcum
 </div>
 <div id="manipulação-de-dados-usando-o-tidyverse" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Manipulação de Dados usando o tidyverse<a href="dados_4.html#manipulação-de-dados-usando-o-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Manipulação de dados no R envolve transformar, filtrar, organizar e resumir conjuntos de dados para prepará-los para análise. Um conceito importante para obtenção de uma base analítica é o data tidying, ou arrumação de dados. Uma base é considerada <em>tidy</em> se:</p>
-<ul>
-<li>Cada linha da base representa uma observação.</li>
-<li>Cada coluna da base representa uma variável.</li>
-</ul>
-<p>A base de dados analítica é estruturada de tal forma que pode ser colocada diretamente em ambientes de modelagem estatística ou de visualização. Isso é a base do <em>tidyverse</em>.</p>
-<p>Embora o R base permita com que você faça o tratamento e manipulação de dados, o conjunto de pacotes <em>tidyverse</em> torna tudo mais rápido e eficiente. Os pacotes principais são:</p>
+<p>A manipulação de dados no R tem como objetivo organizar, filtrar e transformar um banco de dados. O <em>tidyverse</em> é um conjunto de pacotes que compartilham uma filosofia de design e uma gramática comum, tornando a manipulação de dados mais intuitiva e fluida. Os pacotes principais são:</p>
 <p><strong>Tibble</strong></p>
-<p>O tibble é uma estrutura de dados dentro do R, sendo uma uma versão mais atualizada do data.frame, criado dentro do conjunto de pacotes do <em>tidyverse</em>.</p>
-<p>Ele é mais completo, mais legível e menos propenso a erros do que o data.frame, uma vez que não converte automaticamente strings em fatores e permite colunas com tipos de dados mais complexos (como listas e funções). Além disso, o tibble se encaixa devidamente com outros pacotes do tidyverse.</p>
+<p>O tibble é uma estrutura de dados do R, sendo uma versão atualizada do data.frame. Ele é mais completo, mais legível e menos propenso a erros do que o data.frame, uma vez que não converte automaticamente strings em fatores e permite colunas com tipos de dados mais complexos (como listas e funções). Além disso, o tibble se encaixa devidamente com outros pacotes do tidyverse.</p>
 <p>Para transformar um data.frame já existente em tibble:</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dados_4.html#cb138-1" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
 <span id="cb138-2"><a href="dados_4.html#cb138-2" tabindex="-1"></a>exemplo_tibble <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(meu_dataframe)</span></code></pre></div>
@@ -877,7 +872,7 @@ FreqAcum
 <span id="cb139-4"><a href="dados_4.html#cb139-4" tabindex="-1"></a>  <span class="at">z =</span> x<span class="sc">^</span><span class="dv">2</span></span>
 <span id="cb139-5"><a href="dados_4.html#cb139-5" tabindex="-1"></a>)</span></code></pre></div>
 <p><strong>O operador pipe</strong></p>
-<p>O <em>%&gt;%</em> (pipe) é um operador do pacote <em>magrittr</em> que torna a escrita e leitura dos códigos mais compreensíveis. Uma vez que usa o valor resultante da expressão do lado esquerdo como primeiro argumento da função do lado direito. Por exemplo:</p>
+<p>O pipe (%&gt;%) é um operador do pacote <em>magrittr</em> que encadeia funções, ou seja, ele pega o resultado de uma expressão e passa como argumento para a próxima função. A ideia é que ao invés de escrever o código de dentro pra fora, escrevemos passo a passo, numa sequência lógica. Por exemplo</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="dados_4.html#cb140-1" tabindex="-1"></a><span class="co"># As duas linhas representam a mesma coisa</span></span>
 <span id="cb140-2"><a href="dados_4.html#cb140-2" tabindex="-1"></a><span class="fu">f</span>(x, y)</span>
 <span id="cb140-3"><a href="dados_4.html#cb140-3" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">f</span>(y)</span></code></pre></div>
@@ -886,18 +881,9 @@ FreqAcum
 <span id="cb141-3"><a href="dados_4.html#cb141-3" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">sum</span>(x))</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="dados_4.html#cb143-1" tabindex="-1"></a><span class="co"># Raiz quadrada com o pipe</span></span>
-<span id="cb143-2"><a href="dados_4.html#cb143-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
-<pre><code>## Warning: pacote &#39;magrittr&#39; foi compilado no R versão 4.4.2</code></pre>
-<pre><code>## 
-## Anexando pacote: &#39;magrittr&#39;</code></pre>
-<pre><code>## O seguinte objeto é mascarado por &#39;package:purrr&#39;:
-## 
-##     set_names</code></pre>
-<pre><code>## O seguinte objeto é mascarado por &#39;package:tidyr&#39;:
-## 
-##     extract</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dados_4.html#cb148-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb148-2"><a href="dados_4.html#cb148-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>()</span></code></pre></div>
+<span id="cb143-2"><a href="dados_4.html#cb143-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb143-3"><a href="dados_4.html#cb143-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb143-4"><a href="dados_4.html#cb143-4" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">sqrt</span>()</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p><strong>O pacote dplyr</strong></p>
 <p>O dplyr é o pacote mais comum para manipulação de dados no R. Suas principais funções são:</p>
@@ -911,11 +897,11 @@ FreqAcum
 </ul>
 <p>Todas essas funçõees tem como entrada e como saída uma tibble. Além disso, o dplyr facilida o uso do operador <em>pipe</em>.</p>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dados_4.html#cb150-1" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
-<span id="cb150-2"><a href="dados_4.html#cb150-2" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
-<span id="cb150-3"><a href="dados_4.html#cb150-3" tabindex="-1"></a>  <span class="fu">filter</span>(idade <span class="sc">&gt;</span> <span class="dv">18</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb150-4"><a href="dados_4.html#cb150-4" tabindex="-1"></a>  <span class="fu">group_by</span>(genero) <span class="sc">%&gt;%</span> </span>
-<span id="cb150-5"><a href="dados_4.html#cb150-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_salario =</span> <span class="fu">mean</span>(salario))</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="dados_4.html#cb145-1" tabindex="-1"></a><span class="fu">library</span>(dbplyr)</span>
+<span id="cb145-2"><a href="dados_4.html#cb145-2" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb145-3"><a href="dados_4.html#cb145-3" tabindex="-1"></a>  <span class="fu">filter</span>(idade <span class="sc">&gt;</span> <span class="dv">18</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb145-4"><a href="dados_4.html#cb145-4" tabindex="-1"></a>  <span class="fu">group_by</span>(genero) <span class="sc">%&gt;%</span> </span>
+<span id="cb145-5"><a href="dados_4.html#cb145-5" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_salario =</span> <span class="fu">mean</span>(salario))</span></code></pre></div>
 <p>O exemplo acima resulta em uma tabela mostrando, para cada gênero, a média de salário das pessoas maiores de 18 anos. Ou seja, primeiro filtramos (<em>filter</em>) apenas as pessoas com idade acima de 18, agrupamos (<em>group_by</em>) os dados por gênero e resume (<em>summarise</em>) calculando a média dos salários de cada grupo.</p>
 <p>Outra coisa que o pacote dplyr permite fazer é combinar duas tabelas com base em uma ou mais colunas em comum, o nome disso é <em>join</em>. Os principais tipos de join são:</p>
 <ul>
@@ -925,23 +911,23 @@ FreqAcum
 <li>full_join - mantém todas as linhas das duas tabelas.</li>
 </ul>
 <p>Um exemplo:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="dados_4.html#cb151-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb151-2"><a href="dados_4.html#cb151-2" tabindex="-1"></a></span>
-<span id="cb151-3"><a href="dados_4.html#cb151-3" tabindex="-1"></a>clientes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cliente_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
-<span id="cb151-4"><a href="dados_4.html#cb151-4" tabindex="-1"></a>                   <span class="at">nome =</span> <span class="fu">c</span>(<span class="st">&quot;Victor&quot;</span>, <span class="st">&quot;Letícia&quot;</span>, <span class="st">&quot;Mariana&quot;</span>))</span>
-<span id="cb151-5"><a href="dados_4.html#cb151-5" tabindex="-1"></a></span>
-<span id="cb151-6"><a href="dados_4.html#cb151-6" tabindex="-1"></a>compras <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cliente_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>),</span>
-<span id="cb151-7"><a href="dados_4.html#cb151-7" tabindex="-1"></a>                  <span class="at">valor =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>))</span>
-<span id="cb151-8"><a href="dados_4.html#cb151-8" tabindex="-1"></a></span>
-<span id="cb151-9"><a href="dados_4.html#cb151-9" tabindex="-1"></a><span class="co"># Juntar apenas quem aparece nos dois</span></span>
-<span id="cb151-10"><a href="dados_4.html#cb151-10" tabindex="-1"></a><span class="fu">inner_join</span>(clientes, compras, <span class="at">by =</span> <span class="st">&quot;cliente_id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="dados_4.html#cb146-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb146-2"><a href="dados_4.html#cb146-2" tabindex="-1"></a></span>
+<span id="cb146-3"><a href="dados_4.html#cb146-3" tabindex="-1"></a>clientes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cliente_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb146-4"><a href="dados_4.html#cb146-4" tabindex="-1"></a>                   <span class="at">nome =</span> <span class="fu">c</span>(<span class="st">&quot;Victor&quot;</span>, <span class="st">&quot;Letícia&quot;</span>, <span class="st">&quot;Mariana&quot;</span>))</span>
+<span id="cb146-5"><a href="dados_4.html#cb146-5" tabindex="-1"></a></span>
+<span id="cb146-6"><a href="dados_4.html#cb146-6" tabindex="-1"></a>compras <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">cliente_id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>),</span>
+<span id="cb146-7"><a href="dados_4.html#cb146-7" tabindex="-1"></a>                  <span class="at">valor =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>))</span>
+<span id="cb146-8"><a href="dados_4.html#cb146-8" tabindex="-1"></a></span>
+<span id="cb146-9"><a href="dados_4.html#cb146-9" tabindex="-1"></a><span class="co"># Juntar apenas quem aparece nos dois</span></span>
+<span id="cb146-10"><a href="dados_4.html#cb146-10" tabindex="-1"></a><span class="fu">inner_join</span>(clientes, compras, <span class="at">by =</span> <span class="st">&quot;cliente_id&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   cliente_id nome    valor
 ##        &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
 ## 1          1 Victor     10
 ## 2          2 Letícia    20</code></pre>
 <p><strong>O pacote Stringr</strong></p>
-<p>O stringr é um pacote dentro do <em>tidyverse</em> voltado a maipulação de textos. Suas principais funções são:</p>
+<p>O pacote <em>stringr</em> é um dos pacotes do <em>tidyverse</em> especializado em manipulação de strings (textos). Seu objetivo é tornar o trabalho com strings mais simples, eficiente e legível. Suas principais funções são:</p>
 <ul>
 <li>str_detect() - Verifica se um padrão existe em uma string (retorna TRUE/FALSE).</li>
 <li>str_subset() - Filtra strings que contêm determinado padrão.</li>
@@ -951,20 +937,20 @@ FreqAcum
 <li>str_to_lower() / str_to_upper() Converte texto para minúsculas / maiúsculas.</li>
 </ul>
 <p>Exemplo:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dados_4.html#cb153-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb153-2"><a href="dados_4.html#cb153-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Bruno&quot;</span>, <span class="st">&quot;Clara&quot;</span>, <span class="st">&quot;Bernardo&quot;</span>))</span>
-<span id="cb153-3"><a href="dados_4.html#cb153-3" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
-<span id="cb153-4"><a href="dados_4.html#cb153-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comeca_com_B =</span> <span class="fu">str_detect</span>(nome, <span class="st">&quot;^B&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dados_4.html#cb148-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb148-2"><a href="dados_4.html#cb148-2" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">&quot;Letícia&quot;</span>, <span class="st">&quot;Mariana&quot;</span>, <span class="st">&quot;Mateus&quot;</span>, <span class="st">&quot;Guilherme&quot;</span>))</span>
+<span id="cb148-3"><a href="dados_4.html#cb148-3" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
+<span id="cb148-4"><a href="dados_4.html#cb148-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comeca_com_B =</span> <span class="fu">str_detect</span>(nome, <span class="st">&quot;^G&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 2
-##   nome     comeca_com_B
-##   &lt;chr&gt;    &lt;lgl&gt;       
-## 1 Ana      FALSE       
-## 2 Bruno    TRUE        
-## 3 Clara    FALSE       
-## 4 Bernardo TRUE</code></pre>
+##   nome      comeca_com_B
+##   &lt;chr&gt;     &lt;lgl&gt;       
+## 1 Letícia   FALSE       
+## 2 Mariana   FALSE       
+## 3 Mateus    FALSE       
+## 4 Guilherme TRUE</code></pre>
 <p>O exemplo abaxio cria uma coluna que retorna <em>TRUE</em> se o nome começa com B e <em>FALSE</em> caso contrário.</p>
 <p><strong>O pacote lubridate</strong></p>
-<p>O lubridate é um pacote usado para tratar de objetos da classe dadas. Suas principais funções são:</p>
+<p>Trabalhar com datas e horários na base do R pode ser complicado, uma vez que, pode ser cheio de erros e formatos diferentes, então o pacote <em>lubridade</em>, do <em>tidyverse</em> foi criado para deixar tudo isso mais fácil. Suas principais funções são:</p>
 <ul>
 <li>second() - extrai os segundos.</li>
 <li>minute() - extrai os minutos.</li>
@@ -974,19 +960,50 @@ FreqAcum
 <li>month() - extrai o mês.</li>
 <li>year() - extrai o ano.</li>
 </ul>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="dados_4.html#cb155-1" tabindex="-1"></a><span class="co"># Data e hora (editados pela última vez)</span></span>
-<span id="cb155-2"><a href="dados_4.html#cb155-2" tabindex="-1"></a><span class="fu">today</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2025-05-03&quot;</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="dados_4.html#cb157-1" tabindex="-1"></a><span class="fu">hour</span>(<span class="fu">now</span>())</span></code></pre></div>
-<pre><code>## [1] 16</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dados_4.html#cb150-1" tabindex="-1"></a><span class="co"># Data e hora (editados pela última vez)</span></span>
+<span id="cb150-2"><a href="dados_4.html#cb150-2" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb150-3"><a href="dados_4.html#cb150-3" tabindex="-1"></a><span class="fu">today</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2025-05-07&quot;</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="dados_4.html#cb152-1" tabindex="-1"></a><span class="fu">hour</span>(<span class="fu">now</span>())</span></code></pre></div>
+<pre><code>## [1] 21</code></pre>
 <p><strong>O pacote Forcats</strong></p>
-<p>O forcats é um pacote do <em>tidyverse</em> especializado em manipular variáveis fator no R, suas principais servem para alterar a ordem e modificar os níveis de um fator.</p>
-<p>Algumas funções são:
-- fct_relevel() - reordena níveis manualmente, movendo um ou mais para frente.
-- fct_reorder() - reordena níveis de um fator com base em outra variável .
-- fct_infreq() - ordena os níveis do fator pela frequência (do mais comum ao menos comum).
-- fct_recode() - renomeia os níveis.
-- fct_count() - conta as observações por nível.</p>
+<p>Embora o R base já tenha suporte a fatores, manipular níveis, ordenar ou recodificar fatores pode ser meio confuso e gerar muito error. O pacote <em>forcats</em> (FOR Categorial VariableS) é um pacote do <em>tidyverse</em> foi criado para facilitar esse trabalhar e tornar a manipulação de fatores mais simples.</p>
+<p>O <em>forcats</em> criar fatores de forma controlada, renomeia e recodifica níveis, reordena níveis com base em frêquencia ou valores, lida com fatores não utilizados. Algumas de suas funções são:</p>
+<ul>
+<li>fct_relevel() - reordena níveis manualmente, movendo um ou mais para frente.</li>
+<li>fct_reorder() - reordena níveis de um fator com base em outra variável .</li>
+<li>fct_infreq() - ordena os níveis do fator pela frequência (do mais comum ao menos comum).</li>
+<li>fct_recode() - renomeia os níveis.</li>
+<li>fct_count() - conta as observações por nível.</li>
+<li>fct_lump() - Junta os níveis menos frequentes em “Outro”.</li>
+</ul>
+<p>Exemplo:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="dados_4.html#cb154-1" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb154-2"><a href="dados_4.html#cb154-2" tabindex="-1"></a>nivel <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;alto&quot;</span>, <span class="st">&quot;baixo&quot;</span>, <span class="st">&quot;médio&quot;</span>, <span class="st">&quot;baixo&quot;</span>, <span class="st">&quot;alto&quot;</span>, <span class="st">&quot;baixo&quot;</span>))</span>
+<span id="cb154-3"><a href="dados_4.html#cb154-3" tabindex="-1"></a><span class="fu">fct_infreq</span>(nivel)</span></code></pre></div>
+<pre><code>## [1] alto  baixo médio baixo alto  baixo
+## Levels: baixo alto médio</code></pre>
+<p>O código acima reordena os fatores por frequência.</p>
+<hr />
+</div>
+<div id="exercícios-1" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Exercícios<a href="dados_4.html#exercícios-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Usando o conjunto de pacotes <em>tidyverse</em> e o banco de dados do R mtcars, faça seguinte:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Filtre apenas os carros que têm 6 cilindros.</li>
+<li>Selecione apenas as colunas: mpg, hp e wt.</li>
+<li>Ordene o resultado do maior para o menor consumo de combustível (mpg).</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Primeiro, crie um vetor com o nome e sobrenome de 5 pessoas, depois, usando o pacote <em>stringr</em> separe o nome e o sobrenome de cada pessoa.</p></li>
+<li><p>Crie o fator:</p></li>
+</ol>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="dados_4.html#cb156-1" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;rosa&quot;</span>, <span class="st">&quot;vermelho&quot;</span>, <span class="st">&quot;azul&quot;</span>, <span class="st">&quot;amarelo&quot;</span>, <span class="st">&quot;rosa&quot;</span>, <span class="st">&quot;verde&quot;</span>, <span class="st">&quot;azul&quot;</span>, <span class="st">&quot;rosa&quot;</span>))</span></code></pre></div>
+<p>A partir disso:
+(a) Reordene os níveis para que a cor mais frequente venha primeiro.
+(b) Agrupe todas as cores menos frequentes que “azul” em um novo nível chamado “Outro”.</p>
 
 </div>
 </div>

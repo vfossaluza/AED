@@ -91,3 +91,47 @@ print(resultado)
 ```
 
 ---
+
+## Capítulo 4
+
+- **Exercício 1**
+
+```{r cap4_ex1}
+library(tidyverse) # Carregue o pacote
+
+mtcars %>% 
+  filter(cyl == 6) %>% # Item a
+  select(mpg, hp, wt) %>% # Item b
+  arrange(desc(mpg)) # Item c
+```
+
+- **Exercício 2**
+
+```{r cap4_ex2}
+library(stringr)
+
+nomes <- c("Mariana Silva", "Mateus Souza", "Letícia Dias", "Guilherme Almeida", 
+           "Yasmin Santos")
+
+# Separando o nome e sobrenome
+nomes_sobrenomes <- str_split(nomes, " ")
+
+print(nomes_sobrenomes)
+```
+
+- **Exercício 3:**
+
+```{r}
+library(forcats)
+
+# Criando o fator
+cores <- factor(c("rosa", "vermelho", "azul", "amarelo", "rosa", "verde", "azul", "rosa"))
+
+# (a) Reordenar os níveis para que a cor mais frequente venha primeiro
+cores_reordenadas <- fct_infreq(cores)
+levels(cores_reordenadas)
+
+# (b) Agrupar todas as cores menos frequentes que "azul" em "Outro"
+cores_agrupadas <- fct_lump(cores, n = 2, other_level = "Outro")
+table(cores_agrupadas)
+```

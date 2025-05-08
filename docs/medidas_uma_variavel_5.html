@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-05-03" />
+<meta name="date" content="2025-05-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,6 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="dados_4.html"><a href="dados_4.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>4.2</b> Tipos de Variáveis</a></li>
 <li class="chapter" data-level="4.3" data-path="dados_4.html"><a href="dados_4.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.3</b> Tabelas de Frequências</a></li>
 <li class="chapter" data-level="4.4" data-path="dados_4.html"><a href="dados_4.html#manipulação-de-dados-usando-o-tidyverse"><i class="fa fa-check"></i><b>4.4</b> Manipulação de Dados usando o tidyverse</a></li>
+<li class="chapter" data-level="4.5" data-path="dados_4.html"><a href="dados_4.html#exercícios-1"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html"><i class="fa fa-check"></i><b>5</b> Medidas de uma variável</a>
 <ul>
@@ -232,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
 <li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
 <li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
-<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-1"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
+<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-2"><i class="fa fa-check"></i><b>6.7</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="anaise_bi7.html"><a href="anaise_bi7.html"><i class="fa fa-check"></i><b>7</b> Análise bivariada</a>
 <ul>
@@ -268,6 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>9</b> Respostas dos exercícios</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-3"><i class="fa fa-check"></i><b>9.1</b> Capítulo 3</a></li>
+<li class="chapter" data-level="9.2" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-4"><i class="fa fa-check"></i><b>9.2</b> Capítulo 4</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html"><i class="fa fa-check"></i><b>10</b> Outros Gráficos (incompleto)</a>
 <ul>
@@ -509,37 +511,37 @@ Q(p) =
 <ul>
 <li>Média: função mean()</li>
 </ul>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="medidas_uma_variavel_5.html#cb160-1" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="medidas_uma_variavel_5.html#cb158-1" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>))</span></code></pre></div>
 <ul>
 <li>Mediana: função median()</li>
 </ul>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="medidas_uma_variavel_5.html#cb161-1" tabindex="-1"></a>mediana <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">68</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="medidas_uma_variavel_5.html#cb159-1" tabindex="-1"></a>mediana <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">68</span>))</span></code></pre></div>
 <ul>
 <li>Moda: o R não possui uma função embutida para moda, porém podemos calcular dessa forma:</li>
 </ul>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="medidas_uma_variavel_5.html#cb162-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb162-2"><a href="medidas_uma_variavel_5.html#cb162-2" tabindex="-1"></a></span>
-<span id="cb162-3"><a href="medidas_uma_variavel_5.html#cb162-3" tabindex="-1"></a>frequencias <span class="ot">&lt;-</span> <span class="fu">table</span>(dados)</span>
-<span id="cb162-4"><a href="medidas_uma_variavel_5.html#cb162-4" tabindex="-1"></a>moda <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(frequencias[frequencias <span class="sc">==</span> <span class="fu">max</span>(frequencias)]))</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="medidas_uma_variavel_5.html#cb160-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb160-2"><a href="medidas_uma_variavel_5.html#cb160-2" tabindex="-1"></a></span>
+<span id="cb160-3"><a href="medidas_uma_variavel_5.html#cb160-3" tabindex="-1"></a>frequencias <span class="ot">&lt;-</span> <span class="fu">table</span>(dados)</span>
+<span id="cb160-4"><a href="medidas_uma_variavel_5.html#cb160-4" tabindex="-1"></a>moda <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(frequencias[frequencias <span class="sc">==</span> <span class="fu">max</span>(frequencias)]))</span></code></pre></div>
 <ul>
 <li>Quartis: função quantile()</li>
 </ul>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="medidas_uma_variavel_5.html#cb163-1" tabindex="-1"></a>quartis <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="medidas_uma_variavel_5.html#cb161-1" tabindex="-1"></a>quartis <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>))</span></code></pre></div>
 <ul>
 <li>Variância: função var()</li>
 </ul>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="medidas_uma_variavel_5.html#cb164-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
-<span id="cb164-2"><a href="medidas_uma_variavel_5.html#cb164-2" tabindex="-1"></a>variancia <span class="ot">&lt;-</span> <span class="fu">var</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="medidas_uma_variavel_5.html#cb162-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
+<span id="cb162-2"><a href="medidas_uma_variavel_5.html#cb162-2" tabindex="-1"></a>variancia <span class="ot">&lt;-</span> <span class="fu">var</span>(dados)</span></code></pre></div>
 <ul>
 <li>Desvio padrão: função sd()</li>
 </ul>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="medidas_uma_variavel_5.html#cb165-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
-<span id="cb165-2"><a href="medidas_uma_variavel_5.html#cb165-2" tabindex="-1"></a>desvio_padrao <span class="ot">&lt;-</span> <span class="fu">sd</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="medidas_uma_variavel_5.html#cb163-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
+<span id="cb163-2"><a href="medidas_uma_variavel_5.html#cb163-2" tabindex="-1"></a>desvio_padrao <span class="ot">&lt;-</span> <span class="fu">sd</span>(dados)</span></code></pre></div>
 <ul>
 <li>Desvio mediano absoluto: função´mad()</li>
 </ul>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="medidas_uma_variavel_5.html#cb166-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
-<span id="cb166-2"><a href="medidas_uma_variavel_5.html#cb166-2" tabindex="-1"></a>desvio_mediano_absoluto <span class="ot">&lt;-</span> <span class="fu">mad</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="medidas_uma_variavel_5.html#cb164-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
+<span id="cb164-2"><a href="medidas_uma_variavel_5.html#cb164-2" tabindex="-1"></a>desvio_mediano_absoluto <span class="ot">&lt;-</span> <span class="fu">mad</span>(dados)</span></code></pre></div>
 <hr />
 
 </div>
