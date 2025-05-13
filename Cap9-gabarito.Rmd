@@ -138,9 +138,79 @@ table(cores_agrupadas)
 
 ---
 
+# Capítulo 5
+
+- **Exercício 1:**
+
+Dada uma amostra de tamanho $n$, $x_1,\ldots,x_n$, queremos mostrar que 
+
+$$
+\sum_{i=1}^n (x_i - \bar{x}) = 0
+$$
+
+Onde $\bar{x}$ é a *média amostral*, dada por
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i 
+$$
+
+Primeiro, vamos expandir a soma
+
+$$
+\sum_{i=1}^n (x_i - \bar{x}) = \sum_{i=1}^n x_i - \sum_{i=1}^n \bar{x}
+$$
+
+Como $\bar{x}$ é uma constante, ou seja, não depende de $i$, podemos reescrever:
+
+$$
+\sum_{i=1}^n \bar{x} = n \bar{x}
+$$
+
+Mas pela definição de média amostral:
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i  
+  \Rightarrow
+n \bar{x} = \frac{1}{n}\sum_{i=1}^n nx_i= \sum_{i=1}^n x_i 
+$$
+
+Logo,
+
+$$
+\sum_{i=1}^n x_i - \sum_{i=1}^n x_i = 0 \text{  } \blacksquare
+$$
+
+- **Exercício 2**
+
+- Média:
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i 
+$$
+
+$$
+\bar{x} = \frac{(1 \times 3) + (2 \times 11) + (3 \times 16) + (4 \times 9) + (5 \times 6) + (6 \times 1) + (7 \times 2) + (8 \times 1) + (15 \times 1)}{50} \\
+$$
+
+$$
+\bar{x} = \frac{182}{50}  = 3,64
+$$
+
+- Moda: 3
+
+- Mediana:
+
+$$
+\frac{x_{25} + x_{26}}{2} =\frac{3 + 3}{2} = 3 
+$$
+- Quartis 
+$q(0,25) = x_{13} = 2$ e $q(0,75) = x_{38} = 4$
+
+---
+
 ## Capítulo 6
 
-- *Exercício 1:*
+- **Exercício 1:**
 
 **Item (a)**
 
@@ -234,7 +304,7 @@ ggplot(n_sequelas, aes(x = factor(`Fisioterapia (em meses)`))) +
 ```
 
 
-- *Exercício 2:*
+- **Exercício 2:**
 
 ```{r cap6_ex2_1}
 mtcars %>% filter(vs==0) %>% summarise(media = mean(hp), dp = sd(hp))
@@ -260,4 +330,23 @@ hist(
   border = "white"
 )
 ```
+
+- **Exercício 3**
+
+```{r cap6_e3, echo = FALSE}
+tempos <- c(1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+            4, 4, 4, 4, 4, 4, 4, 4, 4,
+            5, 5, 5, 5, 5, 5,
+            6, 7, 7, 8, 15)
+
+# Colocar em um data frame
+df <- data.frame(tempo = tempos)
+
+ggplot(df, aes(x = "", y = tempo)) +
+  geom_boxplot(fill = "skyblue", color = "darkblue", outlier.color = "deeppink", outlier.shape = "_") +
+  labs(title = "Boxplot", y = "Tempo de espera", x = "") +
+  theme_minimal(base_size = 14)
+```
+
 

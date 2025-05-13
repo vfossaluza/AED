@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Medidas de uma variável | Análise Exploratória de Dados</title>
+  <title>10 Capítulo 5 | Análise Exploratória de Dados</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Medidas de uma variável | Análise Exploratória de Dados" />
+  <meta property="og:title" content="10 Capítulo 5 | Análise Exploratória de Dados" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Medidas de uma variável | Análise Exploratória de Dados" />
+  <meta name="twitter:title" content="10 Capítulo 5 | Análise Exploratória de Dados" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dados_4.html"/>
-<link rel="next" href="modelos_graficos6.html"/>
+<link rel="prev" href="respostas-dos-exercícios.html"/>
+<link rel="next" href="regressão-linear-incompleto.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -300,245 +300,182 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="medidas_uma_variavel_5" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">5</span> Medidas de uma variável<a href="medidas_uma_variavel_5.html#medidas_uma_variavel_5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="medidas-de-posição-ou-de-tendência-central" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Medidas de posição ou de Tendência Central<a href="medidas_uma_variavel_5.html#medidas-de-posição-ou-de-tendência-central" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="capítulo-5" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Capítulo 5<a href="capítulo-5.html#capítulo-5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <ul>
-<li>Utilidadas para resumir variáveis quantitativas.<br />
-</li>
-<li>Dão a ideia do lugar da reta estão concentrados os valores de uma variável.</li>
+<li><strong>Exercício 1:</strong></li>
 </ul>
-<div id="média-aritmética" class="section level3 hasAnchor" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Média (Aritmética)<a href="medidas_uma_variavel_5.html#média-aritmética" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dada uma amostra de tamanho <span class="math inline">\(n\)</span>, <span class="math inline">\(x_1,\ldots,x_n\)</span>, queremos mostrar que</p>
+<p><span class="math display">\[
+\sum_{i=1}^n (x_i - \bar{x}) = 0
+\]</span></p>
+<p>Onde <span class="math inline">\(\bar{x}\)</span> é a <em>média amostral</em>, dada por</p>
+<p><span class="math display">\[
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i
+\]</span></p>
+<p>Primeiro, vamos expandir a soma</p>
+<p><span class="math display">\[
+\sum_{i=1}^n (x_i - \bar{x}) = \sum_{i=1}^n x_i - \sum_{i=1}^n \bar{x}
+\]</span></p>
+<p>Como <span class="math inline">\(\bar{x}\)</span> é uma constante, ou seja, não depende de <span class="math inline">\(i\)</span>, podemos reescrever:</p>
+<p><span class="math display">\[
+\sum_{i=1}^n \bar{x} = n \bar{x}
+\]</span></p>
+<p>Mas pela definição de média amostral:</p>
+<p><span class="math display">\[
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i  
+  \Rightarrow
+n \bar{x} = \frac{1}{n}\sum_{i=1}^n nx_i= \sum_{i=1}^n x_i
+\]</span></p>
+<p>Logo,</p>
+<p><span class="math display">\[
+\sum_{i=1}^n x_i - \sum_{i=1}^n x_i = 0 \text{  } \blacksquare
+\]</span></p>
 <ul>
-<li><p>A medida mais utilizada é a <strong>média</strong>, definida por <span class="math display">\[\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^n x_i = \dfrac{x_1+x_2+\ldots+x_n}{n}~.\]</span><br />
-*Exemplo - Duração dos filmes da pixar: <span class="math inline">\(\bar{x} = \frac{81+95+92+92+100+115+117+111+98+96+103+106+93+104+95+93+97+102+105+118+100+102+100}{23}=100.65\)</span></p></li>
-<li><p>Alternativamente, quando há empates (isto é, <span class="math inline">\(n_1\)</span> observações do valor <span class="math inline">\(x_1\)</span>, <span class="math inline">\(n_2\)</span> observações do valor <span class="math inline">\(x_2\)</span>, e assim por diante), podemos calcular a média por <span class="math display">\[\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^k n_i~x_i = \sum_{i=1}^k f_i~x_i = \frac{n_1~x_1+n_2~x_2+\ldots+n_k~x_k}{n}~,\]</span> em que <span class="math inline">\(k\leq n\)</span> é a quantidade de valores diferentes assumidos pela variável <span class="math inline">\(X\)</span> e <span class="math inline">\(\sum n_i = n\)</span>. Ainda pode-se considerar para o cálculo da média a frequência relativa <span class="math inline">\(f_i = n_i/n\)</span>.</p></li>
-<li><p>Quando os dados estão agrupados em classes, podemos calcular um valor aproximado da média fazendo <span class="math display">\[\displaystyle \bar{x} \approx \sum_{i=1}^k f_i~\bar{x}_i~,\]</span> em que <span class="math inline">\(\bar{x}_i\)</span> é o valor médio da <em>i</em>-ésima classe e <span class="math inline">\(f_i\)</span> é a frequência relativa daquela classe.</p></li>
-</ul>
-</div>
-<div id="mediana" class="section level3 hasAnchor" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> Mediana<a href="medidas_uma_variavel_5.html#mediana" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>A <strong>mediana</strong> é o valor central dos dados. Pode ser calculada por</li>
+<li><p><strong>Exercício 2</strong></p></li>
+<li><p>Média:</p></li>
 </ul>
 <p><span class="math display">\[
-\displaystyle md(x) =
-\left\{
-  \begin{array}{ll}
-    x_{\left(\frac{n+1}{2}\right)} ,&amp;  ~\text{se } n \text{ é ímpar} \\
-    \dfrac{x_{\left(\frac{n}{2}\right)}+x_{\left(\frac{n}{2}+1\right)}}{2} ,&amp;  ~\text{se } n \text{ é par}
-  \end{array}
-\right.
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i
 \]</span></p>
-<p>em que <span class="math inline">\(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\)</span>, <span class="math inline">\(x_{(1)}\)</span> é o menor valor observado na amostra, <span class="math inline">\(x_{(2)}\)</span> é o segundo menor valor, <span class="math inline">\(\ldots\)</span>, <span class="math inline">\(x_{(n)}\)</span> é o maior valor na amostra. <span class="math inline">\(x_{(1)}, x_{(2)}, \ldots, x_{(n)}\)</span> são chamados <em>estatísticas de ordem</em>.<br />
-* Para a duração do filme: <span class="math inline">\(md(x) = 1.725\)</span></p>
-<ul>
-<li><strong>Observação:</strong> a mediana é uma medida mais robusta que a média pois é menos afetada por valores extremos.</li>
-</ul>
-</div>
-<div id="moda" class="section level3 hasAnchor" number="5.1.3">
-<h3><span class="header-section-number">5.1.3</span> Moda<a href="medidas_uma_variavel_5.html#moda" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>A <strong>moda</strong> é o valor que mais frequente na amostra.<br />
-</li>
-<li>Em alguns casos, pode existir mais de uma moda.
-<ul>
-<li>Para a duração do filme: <span class="math inline">\(mo(x) = 100\)</span></li>
-</ul></li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="medidas-de-dispersão" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Medidas de Dispersão<a href="medidas_uma_variavel_5.html#medidas-de-dispersão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Na maioria dos casos, somente as medidas de posição trazem pouca informação sobre a variável de interesse.<br />
-</li>
-<li>Por exemplo, considere as seguintes amostras de tamanho 3: <span class="math inline">\((1,5,9)\)</span>, <span class="math inline">\((4,5,6)\)</span> e <span class="math inline">\((5,5,5)\)</span>. Em todas elas, <span class="math inline">\(\bar{x}=md(x)=5\)</span>. Contudo, na primeira os valores estão mais “espalhados”, enquanto na última os valores estão mais “concentrados”.<br />
-</li>
-<li>Para descrever melhor esta diferença, podemos usar medidas que nos informem o quanto os dados estão “espalhados”, ou como é a dispersão dos dados.</li>
-</ul>
-<div id="variância" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Variância<a href="medidas_uma_variavel_5.html#variância" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>A variância é a média dos desvios ao quadrado das observações com relação à média, dada por <span class="math display">\[var(x) = \frac{1}{n}\sum_{i=1}^n \left(x_i - \bar{x}\right)^2.\]</span>
-<ul>
-<li>No exemplo acima:
-<ol style="list-style-type: decimal">
-<li>para a Amostra 1: <span class="math inline">\(\dfrac{(1-5)^2+(5-5)^2+(9-5)^2}{3}=\dfrac{16+0+16}{3}=10.666\)</span>;</li>
-<li>para a Amostra 2: <span class="math inline">\(\dfrac{(4-5)^2+(5-5)^2+(6-5)^2}{3}=\dfrac{1+0+1}{3}=0.666\)</span>;</li>
-<li>para a Amostra 3: <span class="math inline">\(\dfrac{(5-5)^2+(5-5)^2+(5-5)^2}{3}=0\)</span>.</li>
-</ol></li>
-<li>No exemplo da duração do filme: <span class="math inline">\(var(x) = 73\)</span></li>
-</ul></li>
-</ul>
-</div>
-<div id="desvio-padrão" class="section level3 hasAnchor" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Desvio padrão<a href="medidas_uma_variavel_5.html#desvio-padrão" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>A variância está em uma escala diferente da variável observada. Uma forma de contornar isso é calcular sua raiz. A medida resultante é chamada de desvio padrão: <span class="math inline">\(dp(x) = \sqrt{var(x)}\)</span>
-<ul>
-<li>No exemplo acima:
-<ol style="list-style-type: decimal">
-<li>para a Amostra 1: <span class="math inline">\(\sqrt{\dfrac{(1-5)^2+(5-5)^2+(9-5)^2}{3}}=\sqrt{32/3}=3.265986\)</span>;</li>
-<li>para a Amostra 2: <span class="math inline">\(\sqrt{\dfrac{(4-5)^2+(5-5)^2+(6-5)^2}{3}}=\sqrt{2/3}=0.8164966\)</span>;</li>
-<li>para a Amostra 3: <span class="math inline">\(\sqrt{\dfrac{(5-5)^2+(5-5)^2+(5-5)^2}{3}}=0\)</span>.</li>
-</ol></li>
-<li>No exemplo da duração do filme: <span class="math inline">\(dp(x) = \sqrt{73}=8.54~m\)</span></li>
-</ul></li>
-</ul>
-</div>
-<div id="desvio-médio-ou-absoluto" class="section level3 hasAnchor" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> Desvio médio ou absoluto<a href="medidas_uma_variavel_5.html#desvio-médio-ou-absoluto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Outra medida de dispersão é o desvio médio (ou absoluto): <span class="math display">\[dm(x) = \frac{1}{n}\sum_{i=1}^n \left|x_i - \bar{x}\right|.\]</span>
-<ul>
-<li>No exemplo acima:
-<ol style="list-style-type: decimal">
-<li>para a Amostra 1: <span class="math inline">\({\dfrac{|1-5|+|5-5|+|9-5|}{3}}=\dfrac{8}{3} \approx 2.666\)</span>;</li>
-<li>para a Amostra 2: <span class="math inline">\({\dfrac{|4-5|+|5-5|+|6-5|}{3}}=\dfrac{2}{3} \approx 0.666\)</span>;</li>
-<li>para a Amostra 3: <span class="math inline">\({\dfrac{|5-5|+|5-5|+|5-5|}{3}}=0\)</span>.</li>
-</ol></li>
-</ul></li>
-<li>O desvio médio, assim como o desvio padrão, representam “erros” médios ao aproximar os valores observados pela média.</li>
-</ul>
-<hr />
-</div>
-</div>
-<div id="medidas-de-ordem" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Medidas de ordem<a href="medidas_uma_variavel_5.html#medidas-de-ordem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="quartis-e-quantis" class="section level3 hasAnchor" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Quartis e quantis<a href="medidas_uma_variavel_5.html#quartis-e-quantis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>Como vimos, a mediana é o valor que “divide ao meio” a amostra.<br />
-</p></li>
-<li><p>De forma similar, podemos dividir a amostra em partes menores. Por exemplo, pode ser de interesse considerar os valores que dividem a amostra nos 5% menores valores, 10% menores, 20% e assim por diante.<br />
-</p></li>
-<li><p>O <em>quantil</em> de ordem <em>p</em> ou <em>p</em>-quantil, <span class="math inline">\(0 &lt; p &lt; 1\)</span>, é o valor <span class="math inline">\(Q(p)\)</span> tal que <span class="math inline">\(100\cdot p~\%\)</span> das
-observações sejam menores do que <span class="math inline">\(Q(p)\)</span>.</p></li>
-<li><p>Há diversas formas de definir os quantis amostrais (veja, por exemplo, a ajuda do R para a função <em>quantile</em>). Aqui, por simplicidade, vamos considerar a definição a seguir.
-<span class="math display">\[
-Q(p) =
-\left\{
-\begin{array}{lll}
-  x_{(i)} &amp; \text{se} &amp; p = p_i = \frac{i - 0.5}{n}, \quad i = 1, \ldots, n \\
-  (1 - f_i) Q(p_i) + f_i Q(p_{i+1}) &amp; \text{se} &amp; p_i &lt; p &lt; p_{i+1} \\
-  x_{(1)} &amp; \text{se} &amp; 0 &lt; p &lt; p_1 \\
-  x_{(n)} &amp; \text{se} &amp; p_n &lt; p &lt; 1
-\end{array}
-\right.
+<p><span class="math display">\[
+\bar{x} = \frac{(1 \times 3) + (2 \times 11) + (3 \times 16) + (4 \times 9) + (5 \times 6) + (6 \times 1) + (7 \times 2) + (8 \times 1) + (15 \times 1)}{50} \\
 \]</span></p>
-<pre><code>    em que $f_i = \dfrac{p-p_i}{p_{i+1}-p_i}$.</code></pre></li>
-<li><p>Quando houver empates (valores iguais) na amostra, vamos considerar o maior <span class="math inline">\(p_i\)</span> entre as observações empatadas.</p></li>
-<li><p>Outros quantis podem ser calculados, como por exemplo,</p>
+<p><span class="math display">\[
+\bar{x} = \frac{182}{50}  = 3,64
+\]</span></p>
 <ul>
-<li><span class="math inline">\(Q(0.5) = \left(1-\frac{0.5-0.45}{0.55-0.45}\right)Q(0.45)+\left(\frac{0.5-0.45}{0.55-0.45}\right)Q(0.55)=\frac{1}{2}\cdot 1.70 + \frac{1}{2}\cdot 1.75 = 1.725 = md(x)\)</span></li>
-<li><span class="math inline">\(Q(0.83) = \left(1-\frac{0.83-0.75}{0.85-0.75}\right)Q(0.75)+\left(\frac{0.83-0.75}{0.85-0.75}\right)Q(0.85)=0.2\cdot 1.79 + 0.8\cdot 1.81 = 1.806\)</span></li>
-<li><span class="math inline">\(Q(0.13) = \left(1-\frac{0.13-0.05}{0.25-0.05}\right)Q(0.05)+\left(\frac{0.13-0.05}{0.25-0.05}\right)Q(0.25)=0.6\cdot 1.50 + 0.4\cdot 1.60 = 1.54\)</span></li>
-</ul></li>
-<li><p>Os quantis <span class="math inline">\(Q(0.25)\)</span>, <span class="math inline">\(Q(0.50)\)</span> e <span class="math inline">\(Q(0.75)\)</span> são chamados de primeiro, segundo e terceiro <strong>quartis</strong> e são denotados por <span class="math inline">\(q_1\)</span>, <span class="math inline">\(q_2\)</span> e <span class="math inline">\(q_3\)</span>, respectivamente. Como já foi dito, <span class="math inline">\(q_2 = md(x)\)</span>.</p></li>
+<li><p>Moda: 3</p></li>
+<li><p>Mediana:</p></li>
 </ul>
-</div>
-<div id="distância-ou-amplitude-interquartis" class="section level3 hasAnchor" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Distância (ou Amplitude) Interquartis<a href="medidas_uma_variavel_5.html#distância-ou-amplitude-interquartis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Outra medida de dispersão bastante utilizada é a <em>distância interquartis</em>, definida por <span class="math display">\[d_Q = q_3 - q_1~.\]</span></li>
-<li>A distância interquartis é a amplitude do intervalo que concentra 50% das observações centrais.</li>
-</ul>
-</div>
-<div id="desvio-mediano-absoluto" class="section level3 hasAnchor" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Desvio Mediano Absoluto<a href="medidas_uma_variavel_5.html#desvio-mediano-absoluto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Como a mediana é uma medida mais robusta que a média, é possível estabelecer também uma medida de dispersão em termos de desvios em relação à mediana. Assim, defina o <em>desvio mediano absoluto</em> como <span class="math display">\[dma(x) = md(|x_i - md(x)|)~.\]</span></li>
-</ul>
-</div>
-<div id="amplitude" class="section level3 hasAnchor" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Amplitude<a href="medidas_uma_variavel_5.html#amplitude" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>Distância entre o maior e o menos valor observado.
-<span class="math display">\[\Delta = x_{(n)} - x_{(1)}\]</span></li>
-</ul>
+<p><span class="math display">\[
+\frac{x_{25} + x_{26}}{2} =\frac{3 + 3}{2} = 3
+\]</span>
+- Quartis
+<span class="math inline">\(q(0,25) = x_{13} = 2\)</span> e <span class="math inline">\(q(0,75) = x_{38} = 4\)</span></p>
 <hr />
-</div>
-</div>
-<div id="medidas-de-assimetria" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Medidas de assimetria<a href="medidas_uma_variavel_5.html#medidas-de-assimetria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="coeficiente-de-assimetria-de-bowley" class="section level3 hasAnchor" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Coeficiente de Assimetria de Bowley<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-bowley" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[B = \frac{(q_3-q_2)-(q_2-q_1)}{q_3-q_1} = \frac{(q_3-q_2)-(q_2-q_1)}{(q_3-q_2)+(q_2-q_1)} = \frac{q_3+q_1-2q_2}{q_3-q_1}\]</span></p>
-</div>
-<div id="coeficiente-de-assimetria-de-pearson-1" class="section level3 hasAnchor" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Coeficiente de Assimetria de Pearson 1<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[Sk_1 = \frac{\bar{x}-moda(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}\]</span></p>
-</div>
-<div id="coeficiente-de-assimetria-de-pearson-2" class="section level3 hasAnchor" number="5.4.3">
-<h3><span class="header-section-number">5.4.3</span> Coeficiente de Assimetria de Pearson 2<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-pearson-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[Sk_2 = 3\cdot\frac{\bar{x}-md(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}\]</span></p>
+<div id="capítulo-6" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Capítulo 6<a href="capítulo-5.html#capítulo-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Considere o <strong><em>k</em>-ésimo momento (central) amostral</strong>, definido por <span class="math display">\[m_k = \frac{1}{n}\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^k\]</span></li>
+<li><strong>Exercício 1:</strong></li>
 </ul>
-</div>
-<div id="coeficiente-de-assimetria-de-fisher-pearson" class="section level3 hasAnchor" number="5.4.4">
-<h3><span class="header-section-number">5.4.4</span> Coeficiente de Assimetria de Fisher-Pearson<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><span class="math display">\[g_1 = m_3/m_2^{3/2}\]</span></p>
-</div>
-<div id="coeficiente-de-assimetria-de-fisher-pearson-ajustado" class="section level3 hasAnchor" number="5.4.5">
-<h3><span class="header-section-number">5.4.5</span> Coeficiente de Assimetria de Fisher-Pearson ajustado<a href="medidas_uma_variavel_5.html#coeficiente-de-assimetria-de-fisher-pearson-ajustado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>(pelo tamanho amostral)<strong>:</strong> <span class="math display">\[g_2 = \frac{n\sqrt{n(n-1)}}{n-1}g1\]</span></p>
-<hr />
-</div>
-</div>
-<div id="calculo-de-medidas-no-r" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Calculo de medidas no R<a href="medidas_uma_variavel_5.html#calculo-de-medidas-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Item (a)</strong></p>
 <ul>
-<li>Média: função mean()</li>
+<li>Fisioterapia: variável qualitativa discreta.</li>
+<li>Sequelas: variável qualitativa nominal.</li>
+<li>Cirurgia: variável qualitativa ordinal.</li>
 </ul>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="medidas_uma_variavel_5.html#cb158-1" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">60</span>))</span></code></pre></div>
+<p><strong>Item (b)</strong></p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="capítulo-5.html#cb228-1" tabindex="-1"></a>tab_fisio <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;tab_fisio.csv&quot;</span>)</span></code></pre></div>
 <ul>
-<li>Mediana: função median()</li>
+<li>Para <em>Fisioterapia (em meses)</em>:</li>
 </ul>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="medidas_uma_variavel_5.html#cb159-1" tabindex="-1"></a>mediana <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">68</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="capítulo-5.html#cb229-1" tabindex="-1"></a>freq_fisio <span class="ot">&lt;-</span> tab_fisio <span class="sc">%&gt;%</span></span>
+<span id="cb229-2"><a href="capítulo-5.html#cb229-2" tabindex="-1"></a>  <span class="fu">count</span>(<span class="st">`</span><span class="at">Fisioterapia (em meses)</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb229-3"><a href="capítulo-5.html#cb229-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb229-4"><a href="capítulo-5.html#cb229-4" tabindex="-1"></a>    <span class="at">FreqRel =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="dv">2</span>)</span>
+<span id="cb229-5"><a href="capítulo-5.html#cb229-5" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb229-6"><a href="capítulo-5.html#cb229-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Frequencia =</span> n)</span>
+<span id="cb229-7"><a href="capítulo-5.html#cb229-7" tabindex="-1"></a></span>
+<span id="cb229-8"><a href="capítulo-5.html#cb229-8" tabindex="-1"></a><span class="fu">print</span>(freq_fisio)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 3
+##   `Fisioterapia (em meses)` Frequencia FreqRel
+##                       &lt;dbl&gt;      &lt;int&gt;   &lt;dbl&gt;
+## 1                         4          2    0.13
+## 2                         5          5    0.33
+## 3                         6          3    0.2 
+## 4                         7          3    0.2 
+## 5                         8          2    0.13</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="capítulo-5.html#cb231-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_fisio, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(<span class="st">`</span><span class="at">Fisioterapia (em meses)</span><span class="st">`</span>))) <span class="sc">+</span></span>
+<span id="cb231-2"><a href="capítulo-5.html#cb231-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb231-3"><a href="capítulo-5.html#cb231-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Meses de Fisioterapia&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb231-4"><a href="capítulo-5.html#cb231-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/cap6_ex1bf-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Moda: o R não possui uma função embutida para moda, porém podemos calcular dessa forma:</li>
+<li>Para <em>Sequêlas</em>:</li>
 </ul>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="medidas_uma_variavel_5.html#cb160-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
-<span id="cb160-2"><a href="medidas_uma_variavel_5.html#cb160-2" tabindex="-1"></a></span>
-<span id="cb160-3"><a href="medidas_uma_variavel_5.html#cb160-3" tabindex="-1"></a>frequencias <span class="ot">&lt;-</span> <span class="fu">table</span>(dados)</span>
-<span id="cb160-4"><a href="medidas_uma_variavel_5.html#cb160-4" tabindex="-1"></a>moda <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">names</span>(frequencias[frequencias <span class="sc">==</span> <span class="fu">max</span>(frequencias)]))</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="capítulo-5.html#cb232-1" tabindex="-1"></a>freq_sequelas <span class="ot">&lt;-</span> tab_fisio <span class="sc">%&gt;%</span></span>
+<span id="cb232-2"><a href="capítulo-5.html#cb232-2" tabindex="-1"></a>  <span class="fu">count</span>(Sequelas) <span class="sc">%&gt;%</span></span>
+<span id="cb232-3"><a href="capítulo-5.html#cb232-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb232-4"><a href="capítulo-5.html#cb232-4" tabindex="-1"></a>    <span class="at">FreqRel =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="dv">2</span>)</span>
+<span id="cb232-5"><a href="capítulo-5.html#cb232-5" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb232-6"><a href="capítulo-5.html#cb232-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Frequencia =</span> n)</span>
+<span id="cb232-7"><a href="capítulo-5.html#cb232-7" tabindex="-1"></a></span>
+<span id="cb232-8"><a href="capítulo-5.html#cb232-8" tabindex="-1"></a><span class="fu">print</span>(freq_sequelas)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   Sequelas Frequencia FreqRel
+##   &lt;chr&gt;         &lt;int&gt;   &lt;dbl&gt;
+## 1 N                 8    0.53
+## 2 S                 7    0.47</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="capítulo-5.html#cb234-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_fisio, <span class="fu">aes</span>(<span class="at">x =</span> Sequelas)) <span class="sc">+</span></span>
+<span id="cb234-2"><a href="capítulo-5.html#cb234-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb234-3"><a href="capítulo-5.html#cb234-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Expectativa de Sequelas&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb234-4"><a href="capítulo-5.html#cb234-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/cap6_ex1bs-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Quartis: função quantile()</li>
+<li>Para <em>Cirurgia</em>:</li>
 </ul>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="medidas_uma_variavel_5.html#cb161-1" tabindex="-1"></a>quartis <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="capítulo-5.html#cb235-1" tabindex="-1"></a>freq_cirurgia <span class="ot">&lt;-</span> tab_fisio <span class="sc">%&gt;%</span></span>
+<span id="cb235-2"><a href="capítulo-5.html#cb235-2" tabindex="-1"></a>  <span class="fu">count</span>(Cirurgia) <span class="sc">%&gt;%</span></span>
+<span id="cb235-3"><a href="capítulo-5.html#cb235-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb235-4"><a href="capítulo-5.html#cb235-4" tabindex="-1"></a>    <span class="at">FreqRel =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="dv">2</span>)</span>
+<span id="cb235-5"><a href="capítulo-5.html#cb235-5" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb235-6"><a href="capítulo-5.html#cb235-6" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Frequencia =</span> n)</span>
+<span id="cb235-7"><a href="capítulo-5.html#cb235-7" tabindex="-1"></a></span>
+<span id="cb235-8"><a href="capítulo-5.html#cb235-8" tabindex="-1"></a><span class="fu">print</span>(freq_cirurgia)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   Cirurgia Frequencia FreqRel
+##   &lt;chr&gt;         &lt;int&gt;   &lt;dbl&gt;
+## 1 A                 4    0.27
+## 2 B                 4    0.27
+## 3 M                 7    0.47</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="capítulo-5.html#cb237-1" tabindex="-1"></a><span class="fu">ggplot</span>(tab_fisio, <span class="fu">aes</span>(<span class="at">x =</span> Cirurgia)) <span class="sc">+</span></span>
+<span id="cb237-2"><a href="capítulo-5.html#cb237-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb237-3"><a href="capítulo-5.html#cb237-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Grau de Complexidade da Cirurgia&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb237-4"><a href="capítulo-5.html#cb237-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/cap6_ex1bc-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Item (c)</strong></p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="capítulo-5.html#cb238-1" tabindex="-1"></a>n_sequelas <span class="ot">&lt;-</span> tab_fisio <span class="sc">%&gt;%</span></span>
+<span id="cb238-2"><a href="capítulo-5.html#cb238-2" tabindex="-1"></a>  <span class="fu">filter</span>(Sequelas <span class="sc">==</span> <span class="st">&quot;N&quot;</span>)</span>
+<span id="cb238-3"><a href="capítulo-5.html#cb238-3" tabindex="-1"></a></span>
+<span id="cb238-4"><a href="capítulo-5.html#cb238-4" tabindex="-1"></a><span class="fu">ggplot</span>(n_sequelas, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(<span class="st">`</span><span class="at">Fisioterapia (em meses)</span><span class="st">`</span>))) <span class="sc">+</span></span>
+<span id="cb238-5"><a href="capítulo-5.html#cb238-5" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb238-6"><a href="capítulo-5.html#cb238-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb238-7"><a href="capítulo-5.html#cb238-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribuição dos Meses de Fisioterapia (Pacientes sem Sequelas)&quot;</span>,</span>
+<span id="cb238-8"><a href="capítulo-5.html#cb238-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Meses de Fisioterapia&quot;</span>,</span>
+<span id="cb238-9"><a href="capítulo-5.html#cb238-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span></span>
+<span id="cb238-10"><a href="capítulo-5.html#cb238-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb238-11"><a href="capítulo-5.html#cb238-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/cap6_ex1c-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Variância: função var()</li>
+<li><strong>Exercício 2:</strong></li>
 </ul>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="medidas_uma_variavel_5.html#cb162-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
-<span id="cb162-2"><a href="medidas_uma_variavel_5.html#cb162-2" tabindex="-1"></a>variancia <span class="ot">&lt;-</span> <span class="fu">var</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="capítulo-5.html#cb239-1" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(vs<span class="sc">==</span><span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(hp), <span class="at">dp =</span> <span class="fu">sd</span>(hp))</span></code></pre></div>
+<pre><code>##      media      dp
+## 1 189.7222 60.2815</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="capítulo-5.html#cb241-1" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(vs<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(hp), <span class="at">dp =</span> <span class="fu">sd</span>(hp))</span></code></pre></div>
+<pre><code>##      media       dp
+## 1 91.35714 24.42447</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="capítulo-5.html#cb243-1" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb243-2"><a href="capítulo-5.html#cb243-2" tabindex="-1"></a>  mtcars<span class="sc">$</span>hp[mtcars<span class="sc">$</span>vs <span class="sc">==</span> <span class="dv">0</span>],</span>
+<span id="cb243-3"><a href="capítulo-5.html#cb243-3" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Histograma de HP (vs == 0)&quot;</span>,</span>
+<span id="cb243-4"><a href="capítulo-5.html#cb243-4" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;HP&quot;</span>,</span>
+<span id="cb243-5"><a href="capítulo-5.html#cb243-5" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;pink&quot;</span>,</span>
+<span id="cb243-6"><a href="capítulo-5.html#cb243-6" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">&quot;white&quot;</span></span>
+<span id="cb243-7"><a href="capítulo-5.html#cb243-7" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="AED_files/figure-html/cap6_ex2_vs0-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="capítulo-5.html#cb244-1" tabindex="-1"></a><span class="fu">hist</span>(</span>
+<span id="cb244-2"><a href="capítulo-5.html#cb244-2" tabindex="-1"></a>  mtcars<span class="sc">$</span>hp[mtcars<span class="sc">$</span>vs <span class="sc">==</span> <span class="dv">1</span>],</span>
+<span id="cb244-3"><a href="capítulo-5.html#cb244-3" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Histograma de HP (vs == 1)&quot;</span>,</span>
+<span id="cb244-4"><a href="capítulo-5.html#cb244-4" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;HP&quot;</span>,</span>
+<span id="cb244-5"><a href="capítulo-5.html#cb244-5" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;pink&quot;</span>,</span>
+<span id="cb244-6"><a href="capítulo-5.html#cb244-6" tabindex="-1"></a>  <span class="at">border =</span> <span class="st">&quot;white&quot;</span></span>
+<span id="cb244-7"><a href="capítulo-5.html#cb244-7" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="AED_files/figure-html/cap6_ex2_vs1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <ul>
-<li>Desvio padrão: função sd()</li>
+<li><strong>Exercício 3</strong></li>
 </ul>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="medidas_uma_variavel_5.html#cb163-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
-<span id="cb163-2"><a href="medidas_uma_variavel_5.html#cb163-2" tabindex="-1"></a>desvio_padrao <span class="ot">&lt;-</span> <span class="fu">sd</span>(dados)</span></code></pre></div>
-<ul>
-<li>Desvio mediano absoluto: função´mad()</li>
-</ul>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="medidas_uma_variavel_5.html#cb164-1" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">21</span>, <span class="dv">16</span>)</span>
-<span id="cb164-2"><a href="medidas_uma_variavel_5.html#cb164-2" tabindex="-1"></a>desvio_mediano_absoluto <span class="ot">&lt;-</span> <span class="fu">mad</span>(dados)</span></code></pre></div>
-<hr />
-</div>
-<div id="exercícios-2" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Exercícios<a href="medidas_uma_variavel_5.html#exercícios-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li><p>Considere uma amostra de tamanho <span class="math inline">\(n\)</span>, <span class="math inline">\(x_1,\ldots,x_n\)</span>. Mostre que<br />
-<span class="math display">\[
-  \displaystyle \sum_{i=1}^{n} (x_i-\bar{x}) = 0
-\]</span></p></li>
-<li><p>Uma empresa está realizando um levantamento sobre o tempo médio de espera de seus clientes em uma fila de atendimento. Para isso, foi coletado o número de minutos que os 50 últimos clientes ficaram aguardando na fila. Os dados, já ordenados, são os seguintes:</p></li>
-</ol>
-<p>1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 7, 7, 8, 15.</p>
-<p>Calcule a média, moda, mediana e quartis.</p>
+<p><img src="AED_files/figure-html/cap6_e3-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>
@@ -547,8 +484,8 @@ Q(p) =
           </div>
         </div>
       </div>
-<a href="dados_4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modelos_graficos6.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="respostas-dos-exercícios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regressão-linear-incompleto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -579,7 +516,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/Cap5-Med_uma_variável.Rmd",
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/Cap9-gabarito.Rmd",
     "text": "Edit"
   },
   "history": {

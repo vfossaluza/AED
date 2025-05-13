@@ -452,10 +452,12 @@ tab_fisio %>%
 (b) Para cada variável, construa a tabela de frequência e faça uma representação gráfica.
 (c) Para o grupo de pacientes que não ficaram com sequelas, faça um gráfico de barras para a variável Fisioterapia. Você acha que essa variável se comporta de modo diferente nesse grupo quando comparado com a amostra total?
 
-*Obs.:* Para o item (b) e (c) faça à mão e depois repita o exercício no R. Para a parte do R os dados da tabela estão **[aqui](./arquivos/tab_fisio.csv)**.
+*Obs.:* Para o item (b) e (c) faça à mão e depois repita o exercício no R.
 
 ```{r tab_csv, include=FALSE}
 write.csv(tab_fisio, "tab_fisio.csv", row.names = FALSE)
 ```
 
 2. Usando o banco de dados do R *mtcars*, analise as características dos carros com motor de 6 cilindros versus os de motor de 8 cilindros. Para isso, calcule a média e o desvio padrão da potência do motor (hp) para os carros onde a variável vs (motor V/S) é igual a 0 (motor de 6 cilindros) e igual a 1 (motor de 8 cilindros). A partir disso, crie um histograma. 
+
+3. Usando os dados e os calculos feitos no *exercício 2* do *capítulo 5*, construa a mão um boxplot.

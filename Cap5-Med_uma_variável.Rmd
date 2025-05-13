@@ -238,3 +238,17 @@ desvio_mediano_absoluto <- mad(dados)
 ```
 
 ---
+
+## Exercícios
+
+1. Considere uma amostra de tamanho $n$, $x_1,\ldots,x_n$. Mostre que  
+$$
+  \displaystyle \sum_{i=1}^{n} (x_i-\bar{x}) = 0
+$$  
+
+
+2. Uma empresa está realizando um levantamento sobre o tempo médio de espera de seus clientes em uma fila de atendimento. Para isso, foi coletado o número de minutos que os 50 últimos clientes ficaram aguardando na fila. Os dados, já ordenados, são os seguintes:
+
+1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 7, 7, 8, 15.
+
+Calcule a média, moda, mediana e quartis.
