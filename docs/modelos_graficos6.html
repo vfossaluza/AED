@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-05-07" />
+<meta name="date" content="2025-05-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -270,6 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.1" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-3"><i class="fa fa-check"></i><b>9.1</b> Capítulo 3</a></li>
 <li class="chapter" data-level="9.2" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-4"><i class="fa fa-check"></i><b>9.2</b> Capítulo 4</a></li>
+<li class="chapter" data-level="9.3" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-6"><i class="fa fa-check"></i><b>9.3</b> Capítulo 6</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="outros-gráficos-incompleto.html"><a href="outros-gráficos-incompleto.html"><i class="fa fa-check"></i><b>10</b> Outros Gráficos (incompleto)</a>
 <ul>
@@ -1194,13 +1195,247 @@ Dens
 <div id="exercícios-2" class="section level2 hasAnchor" number="6.7">
 <h2><span class="header-section-number">6.7</span> Exercícios<a href="modelos_graficos6.html#exercícios-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li>Escolha um banco de dados de sua preferência no R ou na internet contendo pelo menos duas variáveis quantitativas (preferencialmente contínuas). Crie um arquivo de RMarkdown e faça:</li>
+<li>Quinze pacientes de uma clínica de ortopedia foram entrevistados quanto ao <em>número de meses previstos de fisioterapia</em>, se há <em>expectativa de sequelas</em> (S) ou não (N) após o tratamento e o <em>graus de complexidade da cirurgia</em> realizada: alto (A), médio (M), ou baixo (B). Os dados estão apresentados na tabela a seguir.</li>
 </ol>
+<table class="table table-striped table-hover table-bordered table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Paciente
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Fisioterapia (em meses)
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Sequelas
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Cirurgia
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+S
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+S
+</td>
+<td style="text-align:center;">
+M
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+M
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+M
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+S
+</td>
+<td style="text-align:center;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+S
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+M
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+S
+</td>
+<td style="text-align:center;">
+M
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+S
+</td>
+<td style="text-align:center;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+B
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+13
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+S
+</td>
+<td style="text-align:center;">
+M
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+14
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+M
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+15
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+N
+</td>
+<td style="text-align:center;">
+A
+</td>
+</tr>
+</tbody>
+</table>
 <ol style="list-style-type: lower-alpha">
-<li>um histograma</li>
-<li>um boxplot</li>
+<li>Classifique cada uma das variáveis.</li>
+<li>Para cada variável, construa a tabela de frequência e faça uma representação gráfica.</li>
+<li>Para o grupo de pacientes que não ficaram com sequelas, faça um gráfico de barras para a variável Fisioterapia. Você acha que essa variável se comporta de modo diferente nesse grupo quando comparado com a amostra total?</li>
 </ol>
-<hr />
+<p><em>Obs.:</em> Para o item (b) e (c) faça à mão e depois repita o exercício no R. Para a parte do R os dados da tabela estão <strong><a href="./arquivos/tab_fisio.csv">aqui</a></strong>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Usando o banco de dados do R <em>mtcars</em>, analise as características dos carros com motor de 6 cilindros versus os de motor de 8 cilindros. Para isso, calcule a média e o desvio padrão da potência do motor (hp) para os carros onde a variável vs (motor V/S) é igual a 0 (motor de 6 cilindros) e igual a 1 (motor de 8 cilindros). A partir disso, crie um histograma.</li>
+</ol>
 
 </div>
 </div>

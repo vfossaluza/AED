@@ -135,3 +135,129 @@ levels(cores_reordenadas)
 cores_agrupadas <- fct_lump(cores, n = 2, other_level = "Outro")
 table(cores_agrupadas)
 ```
+
+---
+
+## Capítulo 6
+
+- *Exercício 1:*
+
+**Item (a)**
+
+- Fisioterapia: variável qualitativa discreta.
+- Sequelas: variável qualitativa nominal.
+- Cirurgia: variável qualitativa ordinal.
+
+**Item (b)**
+
+```{r cap6_ex1b}
+tab_fisio <- read.csv("tab_fisio.csv")
+```
+
+- Para *Fisioterapia (em meses)*:
+
+```{r tab2_fisio, echo = FALSE}
+tab_fisio <- tibble::tibble(
+  Paciente = 1:15,
+  `Fisioterapia (em meses)` = c(7, 8, 5, 6, 4, 5, 7, 7, 6, 8, 6, 5, 5, 4, 5),
+  Sequelas = c("S", "S", "N", "N", "N", "S", "S", "N", "N", "S", "S", "N", "S", "N", "N"),
+  Cirurgia = c("A", "M", "A", "M", "M", "B", "A", "M", "B", "M", "B", "B", "M", "M", "A")
+)
+```
+
+```{r cap6_ex1bf}
+freq_fisio <- tab_fisio %>%
+  count(`Fisioterapia (em meses)`) %>%
+  mutate(
+    FreqRel = round(n / sum(n), 2)
+  ) %>%
+  rename(Frequencia = n)
+
+print(freq_fisio)
+
+ggplot(tab_fisio, aes(x = factor(`Fisioterapia (em meses)`))) +
+  geom_bar(fill = "deeppink", color = "black") +
+  labs(x = "Meses de Fisioterapia", y = "Frequência") +
+  theme_minimal()
+```
+
+- Para *Sequêlas*:
+
+```{r cap6_ex1bs}
+freq_sequelas <- tab_fisio %>%
+  count(Sequelas) %>%
+  mutate(
+    FreqRel = round(n / sum(n), 2)
+  ) %>%
+  rename(Frequencia = n)
+
+print(freq_sequelas)
+
+ggplot(tab_fisio, aes(x = Sequelas)) +
+  geom_bar(fill = "deeppink", color = "black") +
+  labs(x = "Expectativa de Sequelas", y = "Frequência") +
+  theme_minimal()
+```
+
+- Para *Cirurgia*:
+
+```{r cap6_ex1bc}
+freq_cirurgia <- tab_fisio %>%
+  count(Cirurgia) %>%
+  mutate(
+    FreqRel = round(n / sum(n), 2)
+  ) %>%
+  rename(Frequencia = n)
+
+print(freq_cirurgia)
+
+ggplot(tab_fisio, aes(x = Cirurgia)) +
+  geom_bar(fill = "deeppink", color = "black") +
+  labs(x = "Grau de Complexidade da Cirurgia", y = "Frequência") +
+  theme_minimal()
+```
+
+**Item (c)**
+
+```{r cap6_ex1c}
+n_sequelas <- tab_fisio %>%
+  filter(Sequelas == "N")
+
+ggplot(n_sequelas, aes(x = factor(`Fisioterapia (em meses)`))) +
+  geom_bar(fill = "deeppink", color = "black") +
+  labs(
+    title = "Distribuição dos Meses de Fisioterapia (Pacientes sem Sequelas)",
+    x = "Meses de Fisioterapia",
+    y = "Frequência"
+  ) +
+  theme_minimal()
+```
+
+
+- *Exercício 2:*
+
+```{r cap6_ex2_1}
+mtcars %>% filter(vs==0) %>% summarise(media = mean(hp), dp = sd(hp))
+mtcars %>% filter(vs==1) %>% summarise(media = mean(hp), dp = sd(hp))
+```
+
+```{r cap6_ex2_vs0}
+hist(
+  mtcars$hp[mtcars$vs == 0],
+  main = "Histograma de HP (vs == 0)",
+  xlab = "HP",
+  col = "pink",
+  border = "white"
+)
+```
+
+```{r cap6_ex2_vs1}
+hist(
+  mtcars$hp[mtcars$vs == 1],
+  main = "Histograma de HP (vs == 1)",
+  xlab = "HP",
+  col = "pink",
+  border = "white"
+)
+```
+

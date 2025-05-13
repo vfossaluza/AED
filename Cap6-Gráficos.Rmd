@@ -425,8 +425,37 @@ tibble(u = 100.6522 - sort(filmes_pixar$duracao)[1:5],
 
 ## Exercícios
 
-1. Escolha um banco de dados de sua preferência no R ou na internet contendo pelo menos duas variáveis quantitativas (preferencialmente contínuas). Crie um arquivo de RMarkdown e faça:
-a. um histograma
-b. um boxplot
+1. Quinze pacientes de uma clínica de ortopedia foram entrevistados quanto ao *número de meses previstos de fisioterapia*, se há *expectativa de sequelas* (S) ou não (N) após o tratamento e o *graus de complexidade da cirurgia* realizada: alto (A), médio (M), ou baixo (B). Os dados estão apresentados na tabela a seguir.
 
----
+```{r tab_ex1, echo = FALSE}
+tab_fisio <- tibble::tibble(
+  Paciente = 1:15,
+  `Fisioterapia (em meses)` = c(7, 8, 5, 6, 4, 5, 7, 7, 6, 8, 6, 5, 5, 4, 5),
+  Sequelas = c("S", "S", "N", "N", "N", "S", "S", "N", "N", "S", "S", "N", "S", "N", "N"),
+  Cirurgia = c("A", "M", "A", "M", "M", "B", "A", "M", "B", "M", "B", "B", "M", "M", "A")
+)
+
+tab_fisio %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+    bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) c("striped", "hold_position") 
+    else NULL) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
+
+(a) Classifique cada uma das variáveis.
+(b) Para cada variável, construa a tabela de frequência e faça uma representação gráfica.
+(c) Para o grupo de pacientes que não ficaram com sequelas, faça um gráfico de barras para a variável Fisioterapia. Você acha que essa variável se comporta de modo diferente nesse grupo quando comparado com a amostra total?
+
+*Obs.:* Para o item (b) e (c) faça à mão e depois repita o exercício no R. Para a parte do R os dados da tabela estão **[aqui](./arquivos/tab_fisio.csv)**.
+
+```{r tab_csv, include=FALSE}
+write.csv(tab_fisio, "tab_fisio.csv", row.names = FALSE)
+```
+
+2. Usando o banco de dados do R *mtcars*, analise as características dos carros com motor de 6 cilindros versus os de motor de 8 cilindros. Para isso, calcule a média e o desvio padrão da potência do motor (hp) para os carros onde a variável vs (motor V/S) é igual a 0 (motor de 6 cilindros) e igual a 1 (motor de 8 cilindros). A partir disso, crie um histograma. 

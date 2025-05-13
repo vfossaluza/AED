@@ -345,3 +345,4 @@ cores <- factor(c("rosa", "vermelho", "azul", "amarelo", "rosa", "verde", "azul"
 A partir disso:
 (a) Reordene os níveis para que a cor mais frequente venha primeiro.
 (b) Agrupe todas as cores menos frequentes que "azul" em um novo nível chamado "Outro".
+

@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-05-07}
+\date{2025-05-13}
 
 \begin{document}
 \maketitle
@@ -3312,19 +3312,56 @@ Assim, dependendo do tipo de dado e do objetivo da análise, podemos escolher o 
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Escolha um banco de dados de sua preferência no R ou na internet contendo pelo menos duas variáveis quantitativas (preferencialmente contínuas). Crie um arquivo de RMarkdown e faça:
+  Quinze pacientes de uma clínica de ortopedia foram entrevistados quanto ao \emph{número de meses previstos de fisioterapia}, se há \emph{expectativa de sequelas} (S) ou não (N) após o tratamento e o \emph{graus de complexidade da cirurgia} realizada: alto (A), médio (M), ou baixo (B). Os dados estão apresentados na tabela a seguir.
 \end{enumerate}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}[t]{cccc}
+\toprule
+\cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Paciente}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Fisioterapia (em meses)}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Sequelas}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Cirurgia}}}\\
+\midrule
+\cellcolor{gray!10}{1} & \cellcolor{gray!10}{7} & \cellcolor{gray!10}{S} & \cellcolor{gray!10}{A}\\
+2 & 8 & S & M\\
+\cellcolor{gray!10}{3} & \cellcolor{gray!10}{5} & \cellcolor{gray!10}{N} & \cellcolor{gray!10}{A}\\
+4 & 6 & N & M\\
+\cellcolor{gray!10}{5} & \cellcolor{gray!10}{4} & \cellcolor{gray!10}{N} & \cellcolor{gray!10}{M}\\
+\addlinespace
+6 & 5 & S & B\\
+\cellcolor{gray!10}{7} & \cellcolor{gray!10}{7} & \cellcolor{gray!10}{S} & \cellcolor{gray!10}{A}\\
+8 & 7 & N & M\\
+\cellcolor{gray!10}{9} & \cellcolor{gray!10}{6} & \cellcolor{gray!10}{N} & \cellcolor{gray!10}{B}\\
+10 & 8 & S & M\\
+\addlinespace
+\cellcolor{gray!10}{11} & \cellcolor{gray!10}{6} & \cellcolor{gray!10}{S} & \cellcolor{gray!10}{B}\\
+12 & 5 & N & B\\
+\cellcolor{gray!10}{13} & \cellcolor{gray!10}{5} & \cellcolor{gray!10}{S} & \cellcolor{gray!10}{M}\\
+14 & 4 & N & M\\
+\cellcolor{gray!10}{15} & \cellcolor{gray!10}{5} & \cellcolor{gray!10}{N} & \cellcolor{gray!10}{A}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
+\def\labelenumi{(\alph{enumi})}
 \tightlist
 \item
-  um histograma
+  Classifique cada uma das variáveis.
 \item
-  um boxplot
+  Para cada variável, construa a tabela de frequência e faça uma representação gráfica.
+\item
+  Para o grupo de pacientes que não ficaram com sequelas, faça um gráfico de barras para a variável Fisioterapia. Você acha que essa variável se comporta de modo diferente nesse grupo quando comparado com a amostra total?
 \end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\emph{Obs.:} Para o item (b) e (c) faça à mão e depois repita o exercício no R. Para a parte do R os dados da tabela estão \textbf{\href{./arquivos/tab_fisio.csv}{aqui}}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Usando o banco de dados do R \emph{mtcars}, analise as características dos carros com motor de 6 cilindros versus os de motor de 8 cilindros. Para isso, calcule a média e o desvio padrão da potência do motor (hp) para os carros onde a variável vs (motor V/S) é igual a 0 (motor de 6 cilindros) e igual a 1 (motor de 8 cilindros). A partir disso, crie um histograma.
+\end{enumerate}
 
 \chapter{Análise bivariada}\label{anaise_bi7}
 
@@ -4108,6 +4145,230 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 ##  azul  rosa Outro 
 ##     2     3     3
 \end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Capítulo 6}\label{capuxedtulo-6}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Exercício 1:}
+\end{itemize}
+
+\textbf{Item (a)}
+
+\begin{itemize}
+\tightlist
+\item
+  Fisioterapia: variável qualitativa discreta.
+\item
+  Sequelas: variável qualitativa nominal.
+\item
+  Cirurgia: variável qualitativa ordinal.
+\end{itemize}
+
+\textbf{Item (b)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tab\_fisio }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"tab\_fisio.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Para \emph{Fisioterapia (em meses)}:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{freq\_fisio }\OtherTok{\textless{}{-}}\NormalTok{ tab\_fisio }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Fisioterapia (em meses)}\StringTok{\textasciigrave{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{FreqRel =} \FunctionTok{round}\NormalTok{(n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n), }\DecValTok{2}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{Frequencia =}\NormalTok{ n)}
+
+\FunctionTok{print}\NormalTok{(freq\_fisio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##   `Fisioterapia (em meses)` Frequencia FreqRel
+##                       <dbl>      <int>   <dbl>
+## 1                         4          2    0.13
+## 2                         5          5    0.33
+## 3                         6          3    0.2 
+## 4                         7          3    0.2 
+## 5                         8          2    0.13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(tab\_fisio, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Fisioterapia (em meses)}\StringTok{\textasciigrave{}}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Meses de Fisioterapia"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frequência"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap6_ex1bf-1} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Para \emph{Sequêlas}:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{freq\_sequelas }\OtherTok{\textless{}{-}}\NormalTok{ tab\_fisio }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(Sequelas) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{FreqRel =} \FunctionTok{round}\NormalTok{(n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n), }\DecValTok{2}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{Frequencia =}\NormalTok{ n)}
+
+\FunctionTok{print}\NormalTok{(freq\_sequelas)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   Sequelas Frequencia FreqRel
+##   <chr>         <int>   <dbl>
+## 1 N                 8    0.53
+## 2 S                 7    0.47
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(tab\_fisio, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sequelas)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Expectativa de Sequelas"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frequência"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap6_ex1bs-1} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Para \emph{Cirurgia}:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{freq\_cirurgia }\OtherTok{\textless{}{-}}\NormalTok{ tab\_fisio }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{count}\NormalTok{(Cirurgia) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{FreqRel =} \FunctionTok{round}\NormalTok{(n }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(n), }\DecValTok{2}\NormalTok{)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{Frequencia =}\NormalTok{ n)}
+
+\FunctionTok{print}\NormalTok{(freq\_cirurgia)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   Cirurgia Frequencia FreqRel
+##   <chr>         <int>   <dbl>
+## 1 A                 4    0.27
+## 2 B                 4    0.27
+## 3 M                 7    0.47
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(tab\_fisio, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Cirurgia)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Grau de Complexidade da Cirurgia"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frequência"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap6_ex1bc-1} \end{center}
+
+\textbf{Item (c)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n\_sequelas }\OtherTok{\textless{}{-}}\NormalTok{ tab\_fisio }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Sequelas }\SpecialCharTok{==} \StringTok{"N"}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(n\_sequelas, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Fisioterapia (em meses)}\StringTok{\textasciigrave{}}\NormalTok{))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{fill =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Distribuição dos Meses de Fisioterapia (Pacientes sem Sequelas)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Meses de Fisioterapia"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Frequência"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap6_ex1c-1} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Exercício 2:}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(vs}\SpecialCharTok{==}\DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{media =} \FunctionTok{mean}\NormalTok{(hp), }\AttributeTok{dp =} \FunctionTok{sd}\NormalTok{(hp))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      media      dp
+## 1 189.7222 60.2815
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(vs}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarise}\NormalTok{(}\AttributeTok{media =} \FunctionTok{mean}\NormalTok{(hp), }\AttributeTok{dp =} \FunctionTok{sd}\NormalTok{(hp))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      media       dp
+## 1 91.35714 24.42447
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(}
+\NormalTok{  mtcars}\SpecialCharTok{$}\NormalTok{hp[mtcars}\SpecialCharTok{$}\NormalTok{vs }\SpecialCharTok{==} \DecValTok{0}\NormalTok{],}
+  \AttributeTok{main =} \StringTok{"Histograma de HP (vs == 0)"}\NormalTok{,}
+  \AttributeTok{xlab =} \StringTok{"HP"}\NormalTok{,}
+  \AttributeTok{col =} \StringTok{"pink"}\NormalTok{,}
+  \AttributeTok{border =} \StringTok{"white"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap6_ex2_vs0-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(}
+\NormalTok{  mtcars}\SpecialCharTok{$}\NormalTok{hp[mtcars}\SpecialCharTok{$}\NormalTok{vs }\SpecialCharTok{==} \DecValTok{1}\NormalTok{],}
+  \AttributeTok{main =} \StringTok{"Histograma de HP (vs == 1)"}\NormalTok{,}
+  \AttributeTok{xlab =} \StringTok{"HP"}\NormalTok{,}
+  \AttributeTok{col =} \StringTok{"pink"}\NormalTok{,}
+  \AttributeTok{border =} \StringTok{"white"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap6_ex2_vs1-1} \end{center}
 
 \chapter{Outros Gráficos (incompleto)}\label{outros-gruxe1ficos-incompleto}
 
