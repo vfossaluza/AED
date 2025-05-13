@@ -138,7 +138,7 @@ table(cores_agrupadas)
 
 ---
 
-# Capítulo 5
+## Capítulo 5
 
 - **Exercício 1:**
 
