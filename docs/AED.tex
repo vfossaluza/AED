@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-05-13}
+\date{2025-05-25}
 
 \begin{document}
 \maketitle
@@ -2602,36 +2602,6 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\section{Medidas de assimetria}\label{medidas-de-assimetria}
-
-\subsection{Coeficiente de Assimetria de Bowley}\label{coeficiente-de-assimetria-de-bowley}
-
-\[B = \frac{(q_3-q_2)-(q_2-q_1)}{q_3-q_1} = \frac{(q_3-q_2)-(q_2-q_1)}{(q_3-q_2)+(q_2-q_1)} = \frac{q_3+q_1-2q_2}{q_3-q_1}\]
-
-\subsection{Coeficiente de Assimetria de Pearson 1}\label{coeficiente-de-assimetria-de-pearson-1}
-
-\[Sk_1 = \frac{\bar{x}-moda(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}\]
-
-\subsection{Coeficiente de Assimetria de Pearson 2}\label{coeficiente-de-assimetria-de-pearson-2}
-
-\[Sk_2 = 3\cdot\frac{\bar{x}-md(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}\]
-
-\begin{itemize}
-\tightlist
-\item
-  Considere o \textbf{\emph{k}-ésimo momento (central) amostral}, definido por \[m_k = \frac{1}{n}\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^k\]
-\end{itemize}
-
-\subsection{Coeficiente de Assimetria de Fisher-Pearson}\label{coeficiente-de-assimetria-de-fisher-pearson}
-
-\[g_1 = m_3/m_2^{3/2}\]
-
-\subsection{Coeficiente de Assimetria de Fisher-Pearson ajustado}\label{coeficiente-de-assimetria-de-fisher-pearson-ajustado}
-
-(pelo tamanho amostral)\textbf{:} \[g_2 = \frac{n\sqrt{n(n-1)}}{n-1}g1\]
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
 \section{Calculo de medidas no R}\label{calculo-de-medidas-no-r}
 
 \begin{itemize}
@@ -2742,6 +2712,14 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 7, 7, 8, 15.
 
 Calcule a média, moda, mediana e quartis.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Prove que \(\sum (x_i - \bar{x})^2 = \sum (x_i - \mu)^2 - n(\bar{x} - \mu)^2\)
+\end{enumerate}
 
 \chapter{Modelos Gráficos}\label{modelos_graficos6}
 
@@ -3320,6 +3298,85 @@ Assim, dependendo do tipo de dado e do objetivo da análise, podemos escolher o 
 \end{Shaded}
 
 \begin{center}\includegraphics{AED_files/figure-latex/graf_simetria-1} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Medidas de assimetria}\label{medidas-de-assimetria}
+
+Outra forma de avaliar e descrever a simetria (ou a falta dela) são com medidas especificas de assimetria, que descrevem a inclinação ou formato da distribuição.
+
+\subsection{Coeficiente de Assimetria de Bowley}\label{coeficiente-de-assimetria-de-bowley}
+
+O coeficiente de assimetria de Bowley usa os quartis para medir a assimetria.
+
+\[
+B = \frac{(q_3-q_2)-(q_2-q_1)}{q_3-q_1} = \frac{(q_3-q_2)-(q_2-q_1)}{(q_3-q_2)+(q_2-q_1)} = \frac{q_3+q_1-2q_2}{q_3-q_1}
+\]
+
+Onde:
+- \(q_1\): primeiro quartil
+- \(q_2\): mediana
+- \(q_3\): terceiro quartil
+
+Se o resultado for um valor próximo de 0, a distribuição é simétrica; se for maior que zero, a distribuição é assimétrica à direita; e, se for menor que zero, é assimétrica à esquerda.
+
+\subsection{Coeficiente de Assimetria de Pearson 1}\label{coeficiente-de-assimetria-de-pearson-1}
+
+O coeficiente de assimetria de Pearson 1 compara a média com a moda e é útil quando a moda é bem definida.
+
+\[
+Sk_1 = \frac{\bar{x}-moda(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}
+\]
+
+Onde:
+- \(\bar{x}\) é a média amostral
+- \(moda(x)\) é a moda da amostra
+- \(n\): tamanho da amostra
+- \(dp(x)\): desvio padrão
+
+Se o resultado for um valor próximo de 0, a distribuição é simétrica; se for maior que zero, a distribuição é assimétrica à direita; e, se for menor que zero, é assimétrica à esquerda.
+
+\subsection{Coeficiente de Assimetria de Pearson 2}\label{coeficiente-de-assimetria-de-pearson-2}
+
+O coeficiente de Assimetria de Pearson 2 é mais estável que o 1, uma vez que compara a média com a mediana (\(md(x)\)).
+
+\[
+Sk_2 = 3\cdot\frac{\bar{x}-md(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}
+\]
+
+Se o resultado for um valor próximo de 0, a distribuição é simétrica; se for maior que zero, a distribuição é assimétrica à direita; e, se for menor que zero, é assimétrica à esquerda.
+
+\subsection{Coeficiente de Assimetria de Fisher-Pearson}\label{coeficiente-de-assimetria-de-fisher-pearson}
+
+\begin{itemize}
+\tightlist
+\item
+  Considere o \textbf{\emph{k}-ésimo momento (central) amostral}, definido por
+  \[
+  m_k = \frac{1}{n}\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^k
+  \]
+  A fórmula do coeficiente de Assimetria de Fisher-Pearson é:
+\end{itemize}
+
+\[
+g_1 = \frac{m_3}{m_2^{3/2}}
+\]
+
+Onde:
+- \(m_3\): terceiro momento central
+- \(m_2\): segundo momento central (variância)
+
+Se o resultado for um valor próximo de 0, a distribuição é simétrica; se for maior que zero, a distribuição é assimétrica à direita; e, se for menor que zero, é assimétrica à esquerda.
+
+\subsection{Coeficiente de Assimetria de Fisher-Pearson ajustado}\label{coeficiente-de-assimetria-de-fisher-pearson-ajustado}
+
+O coeficiente de Assimetria de Fisher-Pearson ajustado tenta corrigir o viés do estimador de Fisher-Pearson em amostras pequenas.
+
+\[
+g_2 = \frac{n\sqrt{n(n-1)}}{n-1}g1
+\]
+
+Se o resultado for um valor próximo de 0, a distribuição é simétrica; se for maior que zero, a distribuição é assimétrica à direita; e, se for menor que zero, é assimétrica à esquerda.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 

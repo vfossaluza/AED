@@ -126,64 +126,6 @@ $$
 
 - Distância entre o maior e o menos valor observado.
 $$\Delta = x_{(n)} - x_{(1)}$$
-  
----
-
-## Medidas de assimetria 
-
-```{r assimetria_duracao, echo = FALSE, include = TRUE}
-require(ggplot2)
-
-hist <- filmes_pixar %>% 
-  ggplot() + theme_classic() + xlab("") +
-  ggtitle("Duração dos filmes da Pixar") +
-  geom_histogram(aes(duracao,after_stat(density)), 
-                 color="black", fill="deeppink", bins=5)
-
-box <- filmes_pixar %>% 
-  ggplot(aes(x="",y=duracao)) + theme_classic() + coord_flip() + 
-  xlab("") + ylab("") + 
-  geom_boxplot(color="black", fill="deeppink")  
-
-simA <- ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
-```
-
-```{r assimetria_bilheteria, echo = FALSE, include = TRUE}
-hist <- filmes_pixar %>% 
-  ggplot() + theme_classic() + xlab("") + 
-  ggtitle("Bilheteria Mundial dos filmes da Pixar") +
-  geom_histogram(aes(bilheteria_mundial,after_stat(density)), 
-                 color="black", fill="deeppink", bins=5)
-
-box <- filmes_pixar %>% 
-  ggplot(aes(x="",y=bilheteria_mundial)) + theme_classic() + coord_flip() + 
-  xlab("") + ylab("") + 
-  geom_boxplot(color="black", fill="deeppink")  
-
-simB <- ggpubr::ggarrange(hist, box, heights = c(2, 1), nrow=2, align = "v")
-```
-
-###	Coeficiente de Assimetria de Bowley
-
-$$B = \frac{(q_3-q_2)-(q_2-q_1)}{q_3-q_1} = \frac{(q_3-q_2)-(q_2-q_1)}{(q_3-q_2)+(q_2-q_1)} = \frac{q_3+q_1-2q_2}{q_3-q_1}$$
-
-###	Coeficiente de Assimetria de Pearson 1
-
-$$Sk_1 = \frac{\bar{x}-moda(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}$$
-  
-###	Coeficiente de Assimetria de Pearson 2
-
-$$Sk_2 = 3\cdot\frac{\bar{x}-md(x)}{\sqrt{\frac{n}{n-1}}~dp(x)}$$
-  
-- Considere o ***k*-ésimo momento (central) amostral**, definido por $$m_k = \frac{1}{n}\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^k$$
-
-###	Coeficiente de Assimetria de Fisher-Pearson
-
-$$g_1 = m_3/m_2^{3/2}$$
-
-###	Coeficiente de Assimetria de Fisher-Pearson ajustado
-
-(pelo tamanho amostral)**:** $$g_2 = \frac{n\sqrt{n(n-1)}}{n-1}g1$$
 
 ---
 
@@ -252,3 +194,5 @@ $$
 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 7, 7, 8, 15.
 
 Calcule a média, moda, mediana e quartis.
+
+3. Prove que $\sum (x_i - \bar{x})^2 = \sum (x_i - \mu)^2 - n(\bar{x} - \mu)^2$
