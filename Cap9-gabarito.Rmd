@@ -387,3 +387,81 @@ plot(fde, main = "Função de Distribuição Empírica (FDE)",
      xlab = "x", ylab = "F_n(x)", verticals = TRUE, do.points = TRUE, pch = 19)
 ```
 
+---
+
+## Capítulo 7
+
+- **Exercício 1**
+
+Primeiro, interpretando o exercício: 
+
+Das 200 pessoas estudadas, 100 pacientes são doentes e 100 não são doentes. No teste, dos 75 resultados positivos, 25 são falsos-positivos, ou seja, temos 50 pacientes *positivados* e *com HIV*. Já dos 125 resultados negativos, 50 são falsos-negativos, ou seja, temos 75 pacientes *negativados* e *sem HIV*.
+
+**item (a)**
+
+```{r cap7_ex1a}
+library(dplyr)
+library(gtsummary)
+
+# Criar os dados com data.frame()
+dados_hiv <- data.frame(
+  Teste = c(rep("Positivo", 75), rep("Negativo", 125)),
+  Doenca = c(
+    rep("Doente", 50),        # verdadeiros positivos
+    rep("Não Doente", 25),    # falsos positivos
+    rep("Doente", 50),        # falsos negativos
+    rep("Não Doente", 75)     # verdadeiros negativos 
+))
+
+dados_hiv %>%
+  tbl_cross(
+    row = Teste,
+    col = Doenca,
+    percent = "cell"
+  ) %>%
+  bold_labels()
+```
+
+**item (b)**
+
+Seja:
+*vp*: verdadeiro positivo (tem HIV e teste foi positivo)
+*fp*: falso positivo (não tem HIV, mas teste deu positivo)
+*fn*: falso negativo (tem HIV, mas teste deu negativo)
+*vn*: verdadeiro negativo (não tem HIV e teste deu negativo)
+
+*Sensibilidade:* a probabilidade do teste dar positivo, dado que a pessoa está doente.
+
+$$
+S = \frac{\text{vp}}{\text{vp + fn}} = \frac{50}{50 + 50} = 0,5
+$$
+
+
+*Especificidade:* a probabilidade do teste dar negativo, dado que a pessoa não está doente.
+
+$$
+E = \frac{\text{vn}}{\text{vn + fp}} = \frac{75}{75+25} = 0,75
+$$
+
+**Item (c)**
+
+*Valor Preditivo Positivo:* a probabilidade da pessoa estar doente, dado que o teste deu positivo.
+
+$$
+VPP = \frac{\text{vp}}{\text{vp + fp}} = \frac{50}{50+25} \approx 0,67
+$$
+
+*Valor Preditivo Negativo:* a probabilidade da ausência de doença quando o teste deu negativo.
+
+$$
+VPN = \frac{\text{vn}}{\text{vn + fn}} = \frac{75}{75+50} = 0,6
+$$
+
+**item (d)**
+
+A *acúracia* é a probabilidade do teste fornecer resultados corretos, ou seja, ser positivo nos doentes e negativo nos não doentes.
+
+$$
+AC = \frac{\text{vp + vn}}{\text{total}} = \frac{50 +75}{200} = 0,625
+$$
+

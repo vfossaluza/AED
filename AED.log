@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.13)  27 MAY 2025 14:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.13)  27 MAY 2025 19:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1270,187 +1270,182 @@ Chapter 7.
 [78]
 
 [79]
-
-[80
-
-]
-Chapter 8.
-
-
-[81]
-
-[82]
-Underfull \hbox (badness 10000) in paragraph at lines 3849--3850
+Underfull \hbox (badness 10000) in paragraph at lines 3699--3700
 
  []
 
 
 
-[83]
-
-[84]
-Underfull \hbox (badness 10000) in paragraph at lines 3908--3910
+[80]
+Underfull \hbox (badness 10000) in paragraph at lines 3758--3760
 
  []
 
 
 Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 3913.
+(amsmath)                 on input line 3763.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3920--3922
+Underfull \hbox (badness 10000) in paragraph at lines 3770--3772
 
  []
 
 
 
-[85]
+[81]
+
+[82]
+
+[83]
+
+[84]
+Chapter 8.
+
+
+[85
+
+]
 
 [86]
 
 [87]
 
 [88]
-Chapter 9.
 
-
-[89
-
-]
-
-[90]
-
-[91]
-
-[92]
-
-[93]
-Overfull \hbox (59.2286pt too wide) detected at line 4366
+[89]
+Overfull \hbox (59.2286pt too wide) detected at line 4238
 [] \OT1/lmr/m/n/10 = [][] 
  []
 
 
 
-[94]
-<AED_files/figure-latex/cap6_ex1bf-1.pdf, id=774, 469.755pt x 325.215pt>
+[90]
+<AED_files/figure-latex/cap6_ex1bf-1.pdf, id=760, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/cap6_ex1bf-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/cap6_ex1bf-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/cap6_ex1bf-1.pdf  used on input line 4454.
+Package pdftex.def Info: AED_files/figure-latex/cap6_ex1bf-1.pdf  used on input line 4326.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
-[95]
-<AED_files/figure-latex/cap6_ex1bs-1.pdf, id=780, 469.755pt x 325.215pt>
+[91]
+<AED_files/figure-latex/cap6_ex1bs-1.pdf, id=766, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/cap6_ex1bs-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/cap6_ex1bs-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/cap6_ex1bs-1.pdf  used on input line 4492.
+Package pdftex.def Info: AED_files/figure-latex/cap6_ex1bs-1.pdf  used on input line 4364.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
-[96 <./AED_files/figure-latex/cap6_ex1bf-1.pdf>]
-<AED_files/figure-latex/cap6_ex1bc-1.pdf, id=790, 469.755pt x 325.215pt>
+[92 <./AED_files/figure-latex/cap6_ex1bf-1.pdf>]
+<AED_files/figure-latex/cap6_ex1bc-1.pdf, id=776, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/cap6_ex1bc-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/cap6_ex1bc-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/cap6_ex1bc-1.pdf  used on input line 4531.
+Package pdftex.def Info: AED_files/figure-latex/cap6_ex1bc-1.pdf  used on input line 4403.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
-[97 <./AED_files/figure-latex/cap6_ex1bs-1.pdf>]
-<AED_files/figure-latex/cap6_ex1c-1.pdf, id=801, 469.755pt x 325.215pt>
+[93 <./AED_files/figure-latex/cap6_ex1bs-1.pdf>]
+<AED_files/figure-latex/cap6_ex1c-1.pdf, id=787, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/cap6_ex1c-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/cap6_ex1c-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/cap6_ex1c-1.pdf  used on input line 4551.
+Package pdftex.def Info: AED_files/figure-latex/cap6_ex1c-1.pdf  used on input line 4423.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[98 <./AED_files/figure-latex/cap6_ex1bc-1.pdf>]
-<AED_files/figure-latex/cap6_ex2_vs0-1.pdf, id=811, 469.755pt x 325.215pt>
+[94 <./AED_files/figure-latex/cap6_ex1bc-1.pdf>]
+<AED_files/figure-latex/cap6_ex2_vs0-1.pdf, id=797, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/cap6_ex2_vs0-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/cap6_ex2_vs0-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/cap6_ex2_vs0-1.pdf  used on input line 4593.
+Package pdftex.def Info: AED_files/figure-latex/cap6_ex2_vs0-1.pdf  used on input line 4465.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
-[99 <./AED_files/figure-latex/cap6_ex1c-1.pdf>]
-<AED_files/figure-latex/cap6_ex2_vs1-1.pdf, id=821, 469.755pt x 325.215pt>
+[95 <./AED_files/figure-latex/cap6_ex1c-1.pdf>]
+<AED_files/figure-latex/cap6_ex2_vs1-1.pdf, id=807, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/cap6_ex2_vs1-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/cap6_ex2_vs1-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/cap6_ex2_vs1-1.pdf  used on input line 4607.
+Package pdftex.def Info: AED_files/figure-latex/cap6_ex2_vs1-1.pdf  used on input line 4479.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[100 <./AED_files/figure-latex/cap6_ex2_vs0-1.pdf>]
-<AED_files/figure-latex/cap6_e3-1.pdf, id=832, 469.755pt x 325.215pt>
+[96 <./AED_files/figure-latex/cap6_ex2_vs0-1.pdf>]
+<AED_files/figure-latex/cap6_e3-1.pdf, id=818, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/cap6_e3-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/cap6_e3-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/cap6_e3-1.pdf  used on input line 4615.
+Package pdftex.def Info: AED_files/figure-latex/cap6_e3-1.pdf  used on input line 4487.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
-[101 <./AED_files/figure-latex/cap6_ex2_vs1-1.pdf> <./AED_files/figure-latex/cap6_e3-1.pdf>]
-<AED_files/figure-latex/cap6_ex4c-1.pdf, id=848, 469.755pt x 325.215pt>
+[97 <./AED_files/figure-latex/cap6_ex2_vs1-1.pdf> <./AED_files/figure-latex/cap6_e3-1.pdf>]
+<AED_files/figure-latex/cap6_ex4c-1.pdf, id=835, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/cap6_ex4c-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/cap6_ex4c-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/cap6_ex4c-1.pdf  used on input line 4658.
+Package pdftex.def Info: AED_files/figure-latex/cap6_ex4c-1.pdf  used on input line 4530.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
+Underfull \vbox (badness 1082) has occurred while \output is active []
 
-[102 <./AED_files/figure-latex/cap6_ex4c-1.pdf>]
-Chapter 10.
 
-Overfull \hbox (59.24883pt too wide) in paragraph at lines 4683--4683
+
+[98 <./AED_files/figure-latex/cap6_ex4c-1.pdf>]
+
+[99]
+
+[100]
+Chapter 9.
+
+Overfull \hbox (59.24883pt too wide) in paragraph at lines 4654--4654
 []\T1/lmtt/m/n/10 ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.[] 
  []
 
 
-Overfull \hbox (53.99884pt too wide) in paragraph at lines 4683--4683
+Overfull \hbox (53.99884pt too wide) in paragraph at lines 4654--4654
 []\T1/lmtt/m/n/10 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was[] 
  []
 
-<AED_files/figure-latex/graf_regrecao-1.pdf, id=860, 469.755pt x 325.215pt>
+<AED_files/figure-latex/graf_regrecao-1.pdf, id=856, 469.755pt x 325.215pt>
 File: AED_files/figure-latex/graf_regrecao-1.pdf Graphic file (type pdf)
 <use AED_files/figure-latex/graf_regrecao-1.pdf>
-Package pdftex.def Info: AED_files/figure-latex/graf_regrecao-1.pdf  used on input line 4689.
+Package pdftex.def Info: AED_files/figure-latex/graf_regrecao-1.pdf  used on input line 4660.
 (pdftex.def)             Requested size: 344.997pt x 238.84406pt.
 
 
-[103
+[101
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 4704.
+(Font)              <14.4> on input line 4675.
 
 
-[104 <./AED_files/figure-latex/graf_regrecao-1.pdf>]
+[102 <./AED_files/figure-latex/graf_regrecao-1.pdf>]
 No file AED.bbl.
 
 
-[105] (./AED.aux)
+[103] (./AED.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15424 strings out of 471589
- 251303 string characters out of 5519310
- 632231 words of memory out of 5000000
+ 15426 strings out of 471589
+ 251292 string characters out of 5519310
+ 632207 words of memory out of 5000000
  41423 multiletter control sequences out of 15000+600000
  725263 words of font info for 111 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,14n,79p,827b,593s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmib10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmro10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/Users/gaime/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on AED.pdf (105 pages, 760670 bytes).
+Output written on AED.pdf (103 pages, 761230 bytes).
 PDF statistics:
- 1256 PDF objects out of 1440 (max. 8388607)
- 1038 compressed objects within 11 object streams
- 290 named destinations out of 1000 (max. 500000)
+ 1252 PDF objects out of 1440 (max. 8388607)
+ 1036 compressed objects within 11 object streams
+ 292 named destinations out of 1000 (max. 500000)
  620 words of extra memory for PDF output out of 10000 (max. 10000000)
 

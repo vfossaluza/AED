@@ -1,5 +1,15 @@
 # Medidas de duas variáveis {#medidas_duas_va}
 
+Considere que o interesse agora é estudar a relação entre variáveis. Se não há associação entre duas ou mais variáveis, dizemos que elas são independentes.
+
+Exemplo: suponha que deseja-se estudar se a cor da roupa (1: clara, 0: escura) está associado com gostar de basquete (1: sim, 0: não). Perguntei para 10 alunos da turma e os dados estão apresentados abaixo
+
+```{r dadoscap7}
+dados_cap7 <- tibble(Camisa=c(1,1,1,1,1,0,0,0,0,0),
+                Basquete=c(1,0,1,0,1,0,0,0,1,0))
+```
+
+
 ##	Tabela de Contingência (de Frequências)
 
 - Para variáveis categóricas, vamos primeiramente considerar tabelas de frequências.
@@ -186,3 +196,13 @@ $AC = P\left[(\text{Teste}=0, \text{Doente} = 0) \cup (\text{Teste}=1, \text{Doe
   - no exemplo: $ac = \dfrac{3+4}{10} = \dfrac{7}{10}$ 
 
 ---
+
+## Exercícios 
+
+1. Um novo teste está sendo desenvolvido para a identificação do HIV. Das 200 pessoas estudadas, metade tem HIV e a outra metade não tem. O teste deu positivo para 75 pessoas e negativo para 125, sendo 25 falsos-positivos e 50 falsos-negativos.
+
+(a) Construa uma tabela de dupla entrada com as informações do enunciado 
+(b) Encontre as medidas de sensibilidade e especificidade do teste.
+(c) Calcule os valores preditivos positivo e negativo.
+(d) Qual é a acúracia do teste?
+

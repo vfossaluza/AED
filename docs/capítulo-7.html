@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | Análise Exploratória de Dados</title>
+  <title>9 Capítulo 7 | Análise Exploratória de Dados</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | Análise Exploratória de Dados" />
+  <meta property="og:title" content="9 Capítulo 7 | Análise Exploratória de Dados" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | Análise Exploratória de Dados" />
+  <meta name="twitter:title" content="9 Capítulo 7 | Análise Exploratória de Dados" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -36,8 +36,8 @@ set in the _output.yml file.</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="respostas-dos-exercícios.html"/>
+<link rel="next" href="regressão-linear-incompleto.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -271,11 +271,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-4"><i class="fa fa-check"></i><b>8.2</b> Capítulo 4</a></li>
 <li class="chapter" data-level="8.3" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-5"><i class="fa fa-check"></i><b>8.3</b> Capítulo 5</a></li>
 <li class="chapter" data-level="8.4" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-6"><i class="fa fa-check"></i><b>8.4</b> Capítulo 6</a></li>
-<li class="chapter" data-level="8.5" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-7"><i class="fa fa-check"></i><b>8.5</b> Capítulo 7</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html"><i class="fa fa-check"></i><b>9</b> Regressão linear (incompleto)</a>
+<li class="chapter" data-level="9" data-path="capítulo-7.html"><a href="capítulo-7.html"><i class="fa fa-check"></i><b>9</b> Capítulo 7</a></li>
+<li class="chapter" data-level="10" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html"><i class="fa fa-check"></i><b>10</b> Regressão linear (incompleto)</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html#estimar-a-e-b"><i class="fa fa-check"></i><b>9.1</b> Estimar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span></a></li>
+<li class="chapter" data-level="10.1" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html#estimar-a-e-b"><i class="fa fa-check"></i><b>10.1</b> Estimar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -297,19 +297,556 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="capítulo-7" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> Capítulo 7<a href="capítulo-7.html#capítulo-7" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li><strong>Exercício 1</strong></li>
+</ul>
+<p>Primeiro, interpretando o exercício:</p>
+<p>Das 200 pessoas estudadas, 100 pacientes são doentes e 100 não são doentes. No teste, dos 75 resultados positivos, 25 são falsos-positivos, ou seja, temos 50 pacientes <em>positivados</em> e <em>com HIV</em>. Já dos 125 resultados negativos, 50 são falsos-negativos, ou seja, temos 75 pacientes <em>negativados</em> e <em>sem HIV</em>.</p>
+<p><strong>item (a)</strong></p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="capítulo-7.html#cb237-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb237-2"><a href="capítulo-7.html#cb237-2" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb237-3"><a href="capítulo-7.html#cb237-3" tabindex="-1"></a></span>
+<span id="cb237-4"><a href="capítulo-7.html#cb237-4" tabindex="-1"></a><span class="co"># Criar os dados com data.frame()</span></span>
+<span id="cb237-5"><a href="capítulo-7.html#cb237-5" tabindex="-1"></a>dados_hiv <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb237-6"><a href="capítulo-7.html#cb237-6" tabindex="-1"></a>  <span class="at">Teste =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Positivo&quot;</span>, <span class="dv">75</span>), <span class="fu">rep</span>(<span class="st">&quot;Negativo&quot;</span>, <span class="dv">125</span>)),</span>
+<span id="cb237-7"><a href="capítulo-7.html#cb237-7" tabindex="-1"></a>  <span class="at">Doenca =</span> <span class="fu">c</span>(</span>
+<span id="cb237-8"><a href="capítulo-7.html#cb237-8" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">&quot;Doente&quot;</span>, <span class="dv">50</span>),        <span class="co"># verdadeiros positivos</span></span>
+<span id="cb237-9"><a href="capítulo-7.html#cb237-9" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">&quot;Não Doente&quot;</span>, <span class="dv">25</span>),    <span class="co"># falsos positivos</span></span>
+<span id="cb237-10"><a href="capítulo-7.html#cb237-10" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">&quot;Doente&quot;</span>, <span class="dv">50</span>),        <span class="co"># falsos negativos</span></span>
+<span id="cb237-11"><a href="capítulo-7.html#cb237-11" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">&quot;Não Doente&quot;</span>, <span class="dv">75</span>)     <span class="co"># verdadeiros negativos </span></span>
+<span id="cb237-12"><a href="capítulo-7.html#cb237-12" tabindex="-1"></a>))</span>
+<span id="cb237-13"><a href="capítulo-7.html#cb237-13" tabindex="-1"></a></span>
+<span id="cb237-14"><a href="capítulo-7.html#cb237-14" tabindex="-1"></a>dados_hiv <span class="sc">%&gt;%</span></span>
+<span id="cb237-15"><a href="capítulo-7.html#cb237-15" tabindex="-1"></a>  <span class="fu">tbl_cross</span>(</span>
+<span id="cb237-16"><a href="capítulo-7.html#cb237-16" tabindex="-1"></a>    <span class="at">row =</span> Teste,</span>
+<span id="cb237-17"><a href="capítulo-7.html#cb237-17" tabindex="-1"></a>    <span class="at">col =</span> Doenca,</span>
+<span id="cb237-18"><a href="capítulo-7.html#cb237-18" tabindex="-1"></a>    <span class="at">percent =</span> <span class="st">&quot;cell&quot;</span></span>
+<span id="cb237-19"><a href="capítulo-7.html#cb237-19" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb237-20"><a href="capítulo-7.html#cb237-20" tabindex="-1"></a>  <span class="fu">bold_labels</span>()</span></code></pre></div>
+<div id="tyyrpnrkkn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tyyrpnrkkn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tyyrpnrkkn thead, #tyyrpnrkkn tbody, #tyyrpnrkkn tfoot, #tyyrpnrkkn tr, #tyyrpnrkkn td, #tyyrpnrkkn th {
+  border-style: none;
+}
+
+#tyyrpnrkkn p {
+  margin: 0;
+  padding: 0;
+}
+
+#tyyrpnrkkn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tyyrpnrkkn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tyyrpnrkkn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tyyrpnrkkn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tyyrpnrkkn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tyyrpnrkkn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tyyrpnrkkn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tyyrpnrkkn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tyyrpnrkkn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#tyyrpnrkkn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#tyyrpnrkkn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tyyrpnrkkn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tyyrpnrkkn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tyyrpnrkkn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tyyrpnrkkn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tyyrpnrkkn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tyyrpnrkkn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tyyrpnrkkn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#tyyrpnrkkn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tyyrpnrkkn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tyyrpnrkkn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tyyrpnrkkn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tyyrpnrkkn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tyyrpnrkkn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tyyrpnrkkn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tyyrpnrkkn .gt_left {
+  text-align: left;
+}
+
+#tyyrpnrkkn .gt_center {
+  text-align: center;
+}
+
+#tyyrpnrkkn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tyyrpnrkkn .gt_font_normal {
+  font-weight: normal;
+}
+
+#tyyrpnrkkn .gt_font_bold {
+  font-weight: bold;
+}
+
+#tyyrpnrkkn .gt_font_italic {
+  font-style: italic;
+}
+
+#tyyrpnrkkn .gt_super {
+  font-size: 65%;
+}
+
+#tyyrpnrkkn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#tyyrpnrkkn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tyyrpnrkkn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#tyyrpnrkkn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#tyyrpnrkkn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tyyrpnrkkn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tyyrpnrkkn .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#tyyrpnrkkn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#tyyrpnrkkn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="label"></th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="level 1; stat_1">
+        <div class="gt_column_spanner"><span class='gt_from_md'><strong>Doenca</strong></span></div>
+      </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="stat_0"><span class='gt_from_md'><strong>Total</strong></span></th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span class='gt_from_md'>Doente</span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span class='gt_from_md'>Não Doente</span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Teste</td>
+<td headers="stat_1" class="gt_row gt_center"><br /></td>
+<td headers="stat_2" class="gt_row gt_center"><br /></td>
+<td headers="stat_0" class="gt_row gt_center"><br /></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Negativo</td>
+<td headers="stat_1" class="gt_row gt_center">50 (25%)</td>
+<td headers="stat_2" class="gt_row gt_center">75 (38%)</td>
+<td headers="stat_0" class="gt_row gt_center">125 (63%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">    Positivo</td>
+<td headers="stat_1" class="gt_row gt_center">50 (25%)</td>
+<td headers="stat_2" class="gt_row gt_center">25 (13%)</td>
+<td headers="stat_0" class="gt_row gt_center">75 (38%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left" style="font-weight: bold;">Total</td>
+<td headers="stat_1" class="gt_row gt_center">100 (50%)</td>
+<td headers="stat_2" class="gt_row gt_center">100 (50%)</td>
+<td headers="stat_0" class="gt_row gt_center">200 (100%)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p><strong>item (b)</strong></p>
+<p>Seja:
+<em>vp</em>: verdadeiro positivo (tem HIV e teste foi positivo)
+<em>fp</em>: falso positivo (não tem HIV, mas teste deu positivo)
+<em>fn</em>: falso negativo (tem HIV, mas teste deu negativo)
+<em>vn</em>: verdadeiro negativo (não tem HIV e teste deu negativo)</p>
+<p><em>Sensibilidade:</em> a probabilidade do teste dar positivo, dado que a pessoa está doente.</p>
+<p><span class="math display">\[
+S = \frac{\text{vp}}{\text{vp + fn}} = \frac{50}{50 + 50} = 0,5
+\]</span></p>
+<p><em>Especificidade:</em> a probabilidade do teste dar negativo, dado que a pessoa não está doente.</p>
+<p><span class="math display">\[
+E = \frac{\text{vn}}{\text{vn + fp}} = \frac{75}{75+25} = 0,75
+\]</span></p>
+<p><strong>Item (c)</strong></p>
+<p><em>Valor Preditivo Positivo:</em> a probabilidade da pessoa estar doente, dado que o teste deu positivo.</p>
+<p><span class="math display">\[
+VPP = \frac{\text{vp}}{\text{vp + fp}} = \frac{50}{50+25} \approx 0,67
+\]</span></p>
+<p><em>Valor Preditivo Negativo:</em> a probabilidade da ausência de doença quando o teste deu negativo.</p>
+<p><span class="math display">\[
+VPN = \frac{\text{vn}}{\text{vn + fn}} = \frac{75}{75+50} = 0,6
+\]</span></p>
+<p><strong>item (d)</strong></p>
+<p>A <em>acúracia</em> é a probabilidade do teste fornecer resultados corretos, ou seja, ser positivo nos doentes e negativo nos não doentes.</p>
+<p><span class="math display">\[
+AC = \frac{\text{vp + vn}}{\text{total}} = \frac{50 +75}{200} = 0,625
+\]</span></p>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="respostas-dos-exercícios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regressão-linear-incompleto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -340,7 +877,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/%s",
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/Cap9-gabarito.Rmd",
     "text": "Edit"
   },
   "history": {

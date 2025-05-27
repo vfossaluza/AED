@@ -3519,14 +3519,11 @@ Calculando a \emph{FDE}:
   Faça o gráfico da \emph{FDE} calculada acima.
 \end{enumerate}
 
-\chapter{Análise bivariada}\label{anaise_bi7}
+\chapter{Medidas de duas variáveis}\label{medidas_duas_va}
 
-\begin{itemize}
-\item
-  Considere que o interesse agora é estudar a relação entre variáveis. Se não há associação entre duas ou mais variáveis, dizemos que elas são independentes.
-\item
-  \textbf{Exemplo:} suponha que deseja-se estudar se a cor da roupa (1: clara, 0: escura) está associado com gostar de basquete (1: sim, 0: não). Perguntei para 10 alunos da turma e os dados estão apresentados abaixo
-\end{itemize}
+Considere que o interesse agora é estudar a relação entre variáveis. Se não há associação entre duas ou mais variáveis, dizemos que elas são independentes.
+
+Exemplo: suponha que deseja-se estudar se a cor da roupa (1: clara, 0: escura) está associado com gostar de basquete (1: sim, 0: não). Perguntei para 10 alunos da turma e os dados estão apresentados abaixo
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3534,153 +3531,6 @@ Calculando a \emph{FDE}:
                 \AttributeTok{Basquete=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
-
-\section{Duas variáveis categóricas}\label{duas-variuxe1veis-categuxf3ricas}
-
-\textbf{Tabela de Contingência (de Frequências)}
-
-\begin{itemize}
-\tightlist
-\item
-  Para variáveis categóricas, vamos primeiramente considerar tabelas de frequências.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# R base}
-\NormalTok{tab1 }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(dados\_cap7}\SpecialCharTok{$}\NormalTok{Camisa,dados\_cap7}\SpecialCharTok{$}\NormalTok{Basquete)}
-\NormalTok{tab1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    
-##     0 1
-##   0 4 1
-##   1 2 3
-\end{verbatim}
-
-\begin{itemize}
-\item
-  Lembre-se que podemos pensam em independência com relação à distribuição conjunta ou à distribuição condicional.
-\item
-  Se o objetivo é estudar a distribuição conjunta, podemos considerar as frequências relativas ao tamanho total da amostra observada.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Tidyverse}
-\FunctionTok{require}\NormalTok{(gtsummary)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Carregando pacotes exigidos: gtsummary
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dados\_cap7 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{tbl\_cross}\NormalTok{(Camisa,Basquete,}\AttributeTok{percent =} \StringTok{"cell"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{bold\_labels}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}[t]
-\fontsize{12.0pt}{14.4pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
-\toprule
- & \multicolumn{2}{c}{\textbf{Basquete}} &  \\ 
-\cmidrule(lr){2-3}
- & 0 & 1 & \textbf{Total} \\ 
-\midrule\addlinespace[2.5pt]
-{\bfseries Camisa} &  &  &  \\ 
-    0 & 4 (40\%) & 1 (10\%) & 5 (50\%) \\ 
-    1 & 2 (20\%) & 3 (30\%) & 5 (50\%) \\ 
-{\bfseries Total} & 6 (60\%) & 4 (40\%) & 10 (100\%) \\ 
-\bottomrule
-\end{tabular*}
-\end{table}
-
-\begin{itemize}
-\tightlist
-\item
-  Se o objetivo é estudar a distribuição condicional, podemos considerar as frequências relativas ao total das linhas ou das colunas. Pelo desenho de nosso estudo, eu fixei o total de cada cor da camisa, então a tabela abaixo é construída com relação ao total das linhas.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Tidyverse com porcentagens das linhas}
-\NormalTok{dados\_cap7 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{tbl\_cross}\NormalTok{(Camisa,Basquete,}\AttributeTok{percent =} \StringTok{"row"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{bold\_labels}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}[t]
-\fontsize{12.0pt}{14.4pt}\selectfont
-\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
-\toprule
- & \multicolumn{2}{c}{\textbf{Basquete}} &  \\ 
-\cmidrule(lr){2-3}
- & 0 & 1 & \textbf{Total} \\ 
-\midrule\addlinespace[2.5pt]
-{\bfseries Camisa} &  &  &  \\ 
-    0 & 4 (80\%) & 1 (20\%) & 5 (100\%) \\ 
-    1 & 2 (40\%) & 3 (60\%) & 5 (100\%) \\ 
-{\bfseries Total} & 6 (60\%) & 4 (40\%) & 10 (100\%) \\ 
-\bottomrule
-\end{tabular*}
-\end{table}
-
-\textbf{Correlação amostral}
-
-\begin{itemize}
-\item
-  Podemos estimar a \(E[xY]\) como \(\displaystyle \frac{1}{n}\sum_{i=1}^n x_i~y_i\).
-\item
-  Assim, a \(COV(X,Y)\) pode ser estimada por \(\displaystyle cov = \frac{1}{n}\sum_{i=1}^n x_i~y_i - \bar{x}~\bar{y}\).
-\item
-  Analogamente, a correção amostral é \[cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.\]
-\item
-  No exemplo:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{cor}\NormalTok{(dados\_cap7}\SpecialCharTok{$}\NormalTok{Camisa,dados\_cap7}\SpecialCharTok{$}\NormalTok{Basquete)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.4082483
-\end{verbatim}
-
-\textbf{Qui-Quadrado de Pearson}
-
-\begin{itemize}
-\item
-  Sejam \(o_{ij}\) as frequências observadas na \emph{i}-ésima linha e \emph{j}-ésima coluna da tabela, \(o_{i.}\) o total observado na linha \emph{i} e \(o_{.j}\) o total observado na coluna \emph{j}. Sob a hipótese de independência, espera que o valor observado em cada casela da tabela seja \(\displaystyle e_{ij} = \frac{o_{i.}~o_{.j}}{n}\).
-\item
-  A estatística de Qui-Quadrado é dada por:
-  \[Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}~.\]
-\item
-  No exemplo:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{chi2 }\OtherTok{=} \FunctionTok{chisq.test}\NormalTok{(tab1)}\SpecialCharTok{$}\NormalTok{statistic}
-\NormalTok{chi2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## X-squared 
-## 0.4166667
-\end{verbatim}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\chapter{Medidas de duas variáveis}\label{medidas_duas_va}
 
 \section{Tabela de Contingência (de Frequências)}\label{tabela-de-continguxeancia-de-frequuxeancias}
 
@@ -4016,6 +3866,28 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 - no exemplo: \(ac = \dfrac{3+4}{10} = \dfrac{7}{10}\)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Exercícios}\label{exercuxedcios-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Um novo teste está sendo desenvolvido para a identificação do HIV. Das 200 pessoas estudadas, metade tem HIV e a outra metade não tem. O teste deu positivo para 75 pessoas e negativo para 125, sendo 25 falsos-positivos e 50 falsos-negativos.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Construa uma tabela de dupla entrada com as informações do enunciado
+\item
+  Encontre as medidas de sensibilidade e especificidade do teste.
+\item
+  Calcule os valores preditivos positivo e negativo.
+\item
+  Qual é a acúracia do teste?
+\end{enumerate}
 
 \chapter{Respostas dos exercícios}\label{respostas-dos-exercuxedcios}
 
@@ -4656,6 +4528,105 @@ Logo,
 \end{Shaded}
 
 \begin{center}\includegraphics{AED_files/figure-latex/cap6_ex4c-1} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Capítulo 7}\label{capuxedtulo-7}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 1}
+\end{itemize}
+
+Primeiro, interpretando o exercício:
+
+Das 200 pessoas estudadas, 100 pacientes são doentes e 100 não são doentes. No teste, dos 75 resultados positivos, 25 são falsos-positivos, ou seja, temos 50 pacientes \emph{positivados} e \emph{com HIV}. Já dos 125 resultados negativos, 50 são falsos-negativos, ou seja, temos 75 pacientes \emph{negativados} e \emph{sem HIV}.
+
+\textbf{item (a)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(gtsummary)}
+
+\CommentTok{\# Criar os dados com data.frame()}
+\NormalTok{dados\_hiv }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Teste =} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"Positivo"}\NormalTok{, }\DecValTok{75}\NormalTok{), }\FunctionTok{rep}\NormalTok{(}\StringTok{"Negativo"}\NormalTok{, }\DecValTok{125}\NormalTok{)),}
+  \AttributeTok{Doenca =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{rep}\NormalTok{(}\StringTok{"Doente"}\NormalTok{, }\DecValTok{50}\NormalTok{),        }\CommentTok{\# verdadeiros positivos}
+    \FunctionTok{rep}\NormalTok{(}\StringTok{"Não Doente"}\NormalTok{, }\DecValTok{25}\NormalTok{),    }\CommentTok{\# falsos positivos}
+    \FunctionTok{rep}\NormalTok{(}\StringTok{"Doente"}\NormalTok{, }\DecValTok{50}\NormalTok{),        }\CommentTok{\# falsos negativos}
+    \FunctionTok{rep}\NormalTok{(}\StringTok{"Não Doente"}\NormalTok{, }\DecValTok{75}\NormalTok{)     }\CommentTok{\# verdadeiros negativos }
+\NormalTok{))}
+
+\NormalTok{dados\_hiv }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{tbl\_cross}\NormalTok{(}
+    \AttributeTok{row =}\NormalTok{ Teste,}
+    \AttributeTok{col =}\NormalTok{ Doenca,}
+    \AttributeTok{percent =} \StringTok{"cell"}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{bold\_labels}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[t]
+\fontsize{12.0pt}{14.4pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Doenca}} &  \\ 
+\cmidrule(lr){2-3}
+ & Doente & Não Doente & \textbf{Total} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Teste} &  &  &  \\ 
+    Negativo & 50 (25\%) & 75 (38\%) & 125 (63\%) \\ 
+    Positivo & 50 (25\%) & 25 (13\%) & 75 (38\%) \\ 
+{\bfseries Total} & 100 (50\%) & 100 (50\%) & 200 (100\%) \\ 
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\textbf{item (b)}
+
+Seja:
+\emph{vp}: verdadeiro positivo (tem HIV e teste foi positivo)
+\emph{fp}: falso positivo (não tem HIV, mas teste deu positivo)
+\emph{fn}: falso negativo (tem HIV, mas teste deu negativo)
+\emph{vn}: verdadeiro negativo (não tem HIV e teste deu negativo)
+
+\emph{Sensibilidade:} a probabilidade do teste dar positivo, dado que a pessoa está doente.
+
+\[
+S = \frac{\text{vp}}{\text{vp + fn}} = \frac{50}{50 + 50} = 0,5
+\]
+
+\emph{Especificidade:} a probabilidade do teste dar negativo, dado que a pessoa não está doente.
+
+\[
+E = \frac{\text{vn}}{\text{vn + fp}} = \frac{75}{75+25} = 0,75
+\]
+
+\textbf{Item (c)}
+
+\emph{Valor Preditivo Positivo:} a probabilidade da pessoa estar doente, dado que o teste deu positivo.
+
+\[
+VPP = \frac{\text{vp}}{\text{vp + fp}} = \frac{50}{50+25} \approx 0,67
+\]
+
+\emph{Valor Preditivo Negativo:} a probabilidade da ausência de doença quando o teste deu negativo.
+
+\[
+VPN = \frac{\text{vn}}{\text{vn + fn}} = \frac{75}{75+50} = 0,6
+\]
+
+\textbf{item (d)}
+
+A \emph{acúracia} é a probabilidade do teste fornecer resultados corretos, ou seja, ser positivo nos doentes e negativo nos não doentes.
+
+\[
+AC = \frac{\text{vp + vn}}{\text{total}} = \frac{50 +75}{200} = 0,625
+\]
 
 \chapter{Regressão linear (incompleto)}\label{regressuxe3o-linear-incompleto}
 
