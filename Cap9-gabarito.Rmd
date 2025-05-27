@@ -350,3 +350,40 @@ ggplot(df, aes(x = "", y = tempo)) +
 ```
 
 
+- **Exercício 4**
+
+**item (a)**  
+{2, 3, 4, 7, 7}
+
+**item (b)**
+
+```{r cap6_ex4b, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab_fde2 <- tibble(x = c(2, 3, 4, 7), FDE = c(0.2, 0.4, 0.6, 1))
+
+tab_fde2 %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "deeppink")
+```
+
+
+**item (c)**
+
+```{r cap6_ex4c}
+dados <- c(3, 7, 4, 2, 7)
+
+fde <- ecdf(dados)
+
+plot(fde, main = "Função de Distribuição Empírica (FDE)", 
+     xlab = "x", ylab = "F_n(x)", verticals = TRUE, do.points = TRUE, pch = 19)
+```
+

@@ -50,8 +50,11 @@ pixar_dados %>%
            background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
 ```
 
-A tabela acima é uma versão reduzida do banco de dados "filmes_pixar", disponível para download **[aqui](./arquivos/filmes_pixar.csv)**. 
-Este banco de dados foi elaborado para servir de base na construção de tabelas e gráficos nesse e nos próximos capítulos. Já a versão reduzida será usada para facilitar os cálculos e a resolução de exemplos na lousa, durante a aula.
+A tabela acima é uma versão reduzida do banco de dados "filmes_pixar", disponível para download **[aqui](./arquivos/filmes_pixar.csv)**. Este banco de dados foi elaborado para servir de base na construção de tabelas e gráficos nesse e nos próximos capítulos. Já a versão reduzida será usada para facilitar os cálculos e a resolução de exemplos na lousa, durante a aula.
+
+Formalmente, uma amostra é uma coleção de vetores aleatórios, $X_1, X_2, \cdots, X_n$, independente e indenticamente distribuida (*i.i.d*), com $X_i = X_{i1}, X_{i2}, \cdots, X_{ik}$, em que o primeiro índice se refere à unidade amostral (ou seja, a linha do banco de dados) e o segundo índice se refere a uma característica (variável) da unidade amostral (ou seja, a coluna do banco de dados).
+
+Denotaremos aqui os valores observados por letras minusculas, por exemplo, $x_1, x_2, \cdots, x_n$, são os valores observados em uma particular amostra de $X_1, X_2, \cdots, X_n$.
 
 ---
 

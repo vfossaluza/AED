@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-05-25}
+\date{2025-05-27}
 
 \begin{document}
 \maketitle
@@ -1909,8 +1909,11 @@ Pacotes podem ser instalados usando \texttt{install.packages("nome\_do\_pacote")
 \endgroup{}
 \end{table}
 
-A tabela acima é uma versão reduzida do banco de dados ``filmes\_pixar'', disponível para download \textbf{\href{./arquivos/filmes_pixar.csv}{aqui}}.
-Este banco de dados foi elaborado para servir de base na construção de tabelas e gráficos nesse e nos próximos capítulos. Já a versão reduzida será usada para facilitar os cálculos e a resolução de exemplos na lousa, durante a aula.
+A tabela acima é uma versão reduzida do banco de dados ``filmes\_pixar'', disponível para download \textbf{\href{./arquivos/filmes_pixar.csv}{aqui}}. Este banco de dados foi elaborado para servir de base na construção de tabelas e gráficos nesse e nos próximos capítulos. Já a versão reduzida será usada para facilitar os cálculos e a resolução de exemplos na lousa, durante a aula.
+
+Formalmente, uma amostra é uma coleção de vetores aleatórios, \(X_1, X_2, \cdots, X_n\), independente e indenticamente distribuida (\emph{i.i.d}), com \(X_i = X_{i1}, X_{i2}, \cdots, X_{ik}\), em que o primeiro índice se refere à unidade amostral (ou seja, a linha do banco de dados) e o segundo índice se refere a uma característica (variável) da unidade amostral (ou seja, a coluna do banco de dados).
+
+Denotaremos aqui os valores observados por letras minusculas, por exemplo, \(x_1, x_2, \cdots, x_n\), são os valores observados em uma particular amostra de \(X_1, X_2, \cdots, X_n\).
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -3380,6 +3383,71 @@ Se o resultado for um valor próximo de 0, a distribuição é simétrica; se fo
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{Função de distribuição empírica (FDE)}\label{funuxe7uxe3o-de-distribuiuxe7uxe3o-empuxedrica-fde}
+
+Seja \(x_1, x_2, \cdots, x_n\) valores observados de uma amostra. A função de distribuição empírica é definida como:
+
+\[
+\overset{\sim}{F} (x) = \frac{1}{n} \sum_{i=1}^{n}~ \mathbb{I} (x_i \leq x)
+\]
+
+Onde,
+\[
+ \mathbb{I}_A (x) = I(x \in A) = 
+\begin{cases}
+1, & \text{se } x \in A \\
+0, & \text{se } x \notin A
+\end{cases}
+\]
+
+Ou seja, para qualquer valor de \(x\), \(\overset{\sim}{F}(x)\) nos diz a proporção de dados que é menor ou igual a \(x\), obtendo uma estimativa empírica da função de distribuição acumilada verdadeira \(F(x)\).
+
+\textbf{Exemplo:}
+
+Suponha a amostra \textbf{\{3,5,2,4,3,2,5,1,4,2\}}, para calcular a sua função empírica vamos primeiro reordenar os valores:
+\textbf{\{1,2,2,2,3,3,4,4,5,5\}}
+
+Calculando a \emph{FDE}:
+
+\begin{table}[!h]
+\centering\begingroup\fontsize{8}{10}\selectfont
+
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{cc}
+\toprule
+\cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{x}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{FDE}}}\\
+\midrule
+\cellcolor{gray!10}{1} & \cellcolor{gray!10}{0.1}\\
+2 & 0.4\\
+\cellcolor{gray!10}{3} & \cellcolor{gray!10}{0.6}\\
+4 & 0.8\\
+\cellcolor{gray!10}{5} & \cellcolor{gray!10}{1.0}\\
+\bottomrule
+\end{tabular}}
+\endgroup{}
+\end{table}
+
+\textbf{Representação gráfica}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amostra }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Criar a função de distribuição empírica}
+\NormalTok{fde }\OtherTok{\textless{}{-}} \FunctionTok{ecdf}\NormalTok{(amostra)}
+
+\CommentTok{\# Plotar a FDE}
+\FunctionTok{plot}\NormalTok{(fde, }\AttributeTok{verticals =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{do.points =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{pch =} \DecValTok{16}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Função de Distribuição Empírica"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"x"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"F\_n(x)"}\NormalTok{,}
+     \AttributeTok{col =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/empirica-1} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \section{Exercícios}\label{exercuxedcios-3}
 
 \begin{enumerate}
@@ -3436,6 +3504,19 @@ Se o resultado for um valor próximo de 0, a distribuição é simétrica; se fo
   Usando o banco de dados do R \emph{mtcars}, analise as características dos carros com motor de 6 cilindros versus os de motor de 8 cilindros. Para isso, calcule a média e o desvio padrão da potência do motor (hp) para os carros onde a variável vs (motor V/S) é igual a 0 (motor de 6 cilindros) e igual a 1 (motor de 8 cilindros). A partir disso, crie um histograma.
 \item
   Usando os dados e os calculos feitos no \emph{exercício 2} do \emph{capítulo 5}, construa a mão um boxplot.
+\item
+  Considere a amostra \textbf{\{3, 7, 4, 2, 7\}}
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Organize os dados em ordem crescente.
+\item
+  Construa a tabela da FDE \(\overset{\sim}{F}(x)\), para todos os valores de \(x\) da amostra.
+\item
+  Faça o gráfico da \emph{FDE} calculada acima.
 \end{enumerate}
 
 \chapter{Análise bivariada}\label{anaise_bi7}
@@ -4532,6 +4613,49 @@ Logo,
 \end{itemize}
 
 \begin{center}\includegraphics{AED_files/figure-latex/cap6_e3-1} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 4}
+\end{itemize}
+
+\textbf{item (a)}\\
+\{2, 3, 4, 7, 7\}
+
+\textbf{item (b)}
+
+\begin{table}[!h]
+\centering\begingroup\fontsize{8}{10}\selectfont
+
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
+\begin{tabular}[t]{cc}
+\toprule
+\cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{x}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{FDE}}}\\
+\midrule
+\cellcolor{gray!10}{2} & \cellcolor{gray!10}{0.2}\\
+3 & 0.4\\
+\cellcolor{gray!10}{4} & \cellcolor{gray!10}{0.6}\\
+7 & 1.0\\
+\bottomrule
+\end{tabular}}
+\endgroup{}
+\end{table}
+
+\textbf{item (c)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{7}\NormalTok{)}
+
+\NormalTok{fde }\OtherTok{\textless{}{-}} \FunctionTok{ecdf}\NormalTok{(dados)}
+
+\FunctionTok{plot}\NormalTok{(fde, }\AttributeTok{main =} \StringTok{"Função de Distribuição Empírica (FDE)"}\NormalTok{, }
+     \AttributeTok{xlab =} \StringTok{"x"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"F\_n(x)"}\NormalTok{, }\AttributeTok{verticals =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{do.points =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{pch =} \DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap6_ex4c-1} \end{center}
 
 \chapter{Regressão linear (incompleto)}\label{regressuxe3o-linear-incompleto}
 

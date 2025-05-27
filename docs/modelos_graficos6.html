@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-05-25" />
+<meta name="date" content="2025-05-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -234,7 +234,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.7.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#coeficiente-de-assimetria-de-fisher-pearson"><i class="fa fa-check"></i><b>6.7.4</b> Coeficiente de Assimetria de Fisher-Pearson</a></li>
 <li class="chapter" data-level="6.7.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#coeficiente-de-assimetria-de-fisher-pearson-ajustado"><i class="fa fa-check"></i><b>6.7.5</b> Coeficiente de Assimetria de Fisher-Pearson ajustado</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-3"><i class="fa fa-check"></i><b>6.8</b> Exercícios</a></li>
+<li class="chapter" data-level="6.8" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#função-de-distribuição-empírica-fde"><i class="fa fa-check"></i><b>6.8</b> Função de distribuição empírica (FDE)</a></li>
+<li class="chapter" data-level="6.9" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-3"><i class="fa fa-check"></i><b>6.9</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="anaise_bi7.html"><a href="anaise_bi7.html"><i class="fa fa-check"></i><b>7</b> Análise bivariada</a>
 <ul>
@@ -1236,8 +1237,95 @@ g_2 = \frac{n\sqrt{n(n-1)}}{n-1}g1
 <hr />
 </div>
 </div>
-<div id="exercícios-3" class="section level2 hasAnchor" number="6.8">
-<h2><span class="header-section-number">6.8</span> Exercícios<a href="modelos_graficos6.html#exercícios-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="função-de-distribuição-empírica-fde" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Função de distribuição empírica (FDE)<a href="modelos_graficos6.html#função-de-distribuição-empírica-fde" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Seja <span class="math inline">\(x_1, x_2, \cdots, x_n\)</span> valores observados de uma amostra. A função de distribuição empírica é definida como:</p>
+<p><span class="math display">\[
+\overset{\sim}{F} (x) = \frac{1}{n} \sum_{i=1}^{n}~ \mathbb{I} (x_i \leq x)
+\]</span></p>
+<p>Onde,
+<span class="math display">\[
+\mathbb{I}_A (x) = I(x \in A) =
+\begin{cases}
+1, &amp; \text{se } x \in A \\
+0, &amp; \text{se } x \notin A
+\end{cases}
+\]</span></p>
+<p>Ou seja, para qualquer valor de <span class="math inline">\(x\)</span>, <span class="math inline">\(\overset{\sim}{F}(x)\)</span> nos diz a proporção de dados que é menor ou igual a <span class="math inline">\(x\)</span>, obtendo uma estimativa empírica da função de distribuição acumilada verdadeira <span class="math inline">\(F(x)\)</span>.</p>
+<p><strong>Exemplo:</strong></p>
+<p>Suponha a amostra <strong>{3,5,2,4,3,2,5,1,4,2}</strong>, para calcular a sua função empírica vamos primeiro reordenar os valores:
+<strong>{1,2,2,2,3,3,4,4,5,5}</strong></p>
+<p>Calculando a <em>FDE</em>:</p>
+<table class="table table-striped table-hover table-bordered table-condensed" style="font-size: 15px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+x
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+FDE
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0.4
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0.6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+0.8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+1.0
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Representação gráfica</strong></p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="modelos_graficos6.html#cb184-1" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb184-2"><a href="modelos_graficos6.html#cb184-2" tabindex="-1"></a></span>
+<span id="cb184-3"><a href="modelos_graficos6.html#cb184-3" tabindex="-1"></a><span class="co"># Criar a função de distribuição empírica</span></span>
+<span id="cb184-4"><a href="modelos_graficos6.html#cb184-4" tabindex="-1"></a>fde <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(amostra)</span>
+<span id="cb184-5"><a href="modelos_graficos6.html#cb184-5" tabindex="-1"></a></span>
+<span id="cb184-6"><a href="modelos_graficos6.html#cb184-6" tabindex="-1"></a><span class="co"># Plotar a FDE</span></span>
+<span id="cb184-7"><a href="modelos_graficos6.html#cb184-7" tabindex="-1"></a><span class="fu">plot</span>(fde, <span class="at">verticals =</span> <span class="cn">TRUE</span>, <span class="at">do.points =</span> <span class="cn">TRUE</span>, <span class="at">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb184-8"><a href="modelos_graficos6.html#cb184-8" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Função de Distribuição Empírica&quot;</span>,</span>
+<span id="cb184-9"><a href="modelos_graficos6.html#cb184-9" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;F_n(x)&quot;</span>,</span>
+<span id="cb184-10"><a href="modelos_graficos6.html#cb184-10" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="AED_files/figure-html/empirica-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="exercícios-3" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Exercícios<a href="modelos_graficos6.html#exercícios-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li>Quinze pacientes de uma clínica de ortopedia foram entrevistados quanto ao <em>número de meses previstos de fisioterapia</em>, se há <em>expectativa de sequelas</em> (S) ou não (N) após o tratamento e o <em>graus de complexidade da cirurgia</em> realizada: alto (A), médio (M), ou baixo (B). Os dados estão apresentados na tabela a seguir.</li>
 </ol>
@@ -1480,6 +1568,12 @@ A
 <ol start="2" style="list-style-type: decimal">
 <li><p>Usando o banco de dados do R <em>mtcars</em>, analise as características dos carros com motor de 6 cilindros versus os de motor de 8 cilindros. Para isso, calcule a média e o desvio padrão da potência do motor (hp) para os carros onde a variável vs (motor V/S) é igual a 0 (motor de 6 cilindros) e igual a 1 (motor de 8 cilindros). A partir disso, crie um histograma.</p></li>
 <li><p>Usando os dados e os calculos feitos no <em>exercício 2</em> do <em>capítulo 5</em>, construa a mão um boxplot.</p></li>
+<li><p>Considere a amostra <strong>{3, 7, 4, 2, 7}</strong></p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Organize os dados em ordem crescente.</li>
+<li>Construa a tabela da FDE <span class="math inline">\(\overset{\sim}{F}(x)\)</span>, para todos os valores de <span class="math inline">\(x\)</span> da amostra.</li>
+<li>Faça o gráfico da <em>FDE</em> calculada acima.</li>
 </ol>
 
 </div>

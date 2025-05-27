@@ -534,6 +534,69 @@ Se o resultado for um valor próximo de 0, a distribuição é simétrica; se fo
 
 ---
 
+## Função de distribuição empírica (FDE)
+
+Seja $x_1, x_2, \cdots, x_n$ valores observados de uma amostra. A função de distribuição empírica é definida como:
+
+$$
+\overset{\sim}{F} (x) = \frac{1}{n} \sum_{i=1}^{n}~ \mathbb{I} (x_i \leq x)
+$$
+
+Onde,
+$$
+ \mathbb{I}_A (x) = I(x \in A) = 
+\begin{cases}
+1, & \text{se } x \in A \\
+0, & \text{se } x \notin A
+\end{cases}
+$$
+
+
+Ou seja, para qualquer valor de $x$, $\overset{\sim}{F}(x)$ nos diz a proporção de dados que é menor ou igual a $x$, obtendo uma estimativa empírica da função de distribuição acumilada verdadeira $F(x)$.
+
+**Exemplo:**
+
+Suponha a amostra **{3,5,2,4,3,2,5,1,4,2}**, para calcular a sua função empírica vamos primeiro reordenar os valores: 
+**{1,2,2,2,3,3,4,4,5,5}**
+
+Calculando a *FDE*:
+
+```{r tab_empirica, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+tab_fde1 <- tibble(x = c(1, 2, 3, 4, 5), FDE = c(0.1, 0.4, 0.6, 0.8, 1))
+
+tab_fde1 %>% 
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+     bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) 
+      c("striped", "hold_position", "scale_down") else NULL,
+    font_size = if (knitr::is_latex_output()) 8 else 15
+  ) %>% 
+  row_spec(0, bold = TRUE, 
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
+
+
+**Representação gráfica**
+
+```{r empirica}
+amostra <- c(3, 5, 2, 4, 3, 2, 5, 1, 4, 2)
+
+# Criar a função de distribuição empírica
+fde <- ecdf(amostra)
+
+# Plotar a FDE
+plot(fde, verticals = TRUE, do.points = TRUE, pch = 16,
+     main = "Função de Distribuição Empírica",
+     xlab = "x", ylab = "F_n(x)",
+     col = "black")
+```
+
+---
+
 ## Exercícios
 
 1. Quinze pacientes de uma clínica de ortopedia foram entrevistados quanto ao *número de meses previstos de fisioterapia*, se há *expectativa de sequelas* (S) ou não (N) após o tratamento e o *graus de complexidade da cirurgia* realizada: alto (A), médio (M), ou baixo (B). Os dados estão apresentados na tabela a seguir.
@@ -572,3 +635,8 @@ write.csv(tab_fisio, "tab_fisio.csv", row.names = FALSE)
 2. Usando o banco de dados do R *mtcars*, analise as características dos carros com motor de 6 cilindros versus os de motor de 8 cilindros. Para isso, calcule a média e o desvio padrão da potência do motor (hp) para os carros onde a variável vs (motor V/S) é igual a 0 (motor de 6 cilindros) e igual a 1 (motor de 8 cilindros). A partir disso, crie um histograma. 
 
 3. Usando os dados e os calculos feitos no *exercício 2* do *capítulo 5*, construa a mão um boxplot.
+
+4. Considere a amostra **{3, 7, 4, 2, 7}**
+a) Organize os dados em ordem crescente.
+b) Construa a tabela da FDE $\overset{\sim}{F}(x)$, para todos os valores de $x$ da amostra.
+c) Faça o gráfico da *FDE* calculada acima.
