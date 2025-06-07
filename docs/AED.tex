@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-05-27}
+\date{2025-06-06}
 
 \begin{document}
 \maketitle
@@ -3888,6 +3888,178 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 \item
   Qual é a acúracia do teste?
 \end{enumerate}
+
+\chapter{Simulação}\label{simulauxe7uxe3o}
+
+A \emph{simulação computacional} é uma ferramenta que permite o estudo de fenômenos complexos, que seriam difíceis ou inviáveis de analisar em contextos reais. Por meio dela, criamos modelos matemáticos que imitam o comportamento de sistemas verdadeiros.
+
+Ou seja, em vez de observar o mundo real diretamente (o que pode ser caro, demorado ou impossível), geramos artificialmente observações que seguem uma determinada distribuição de probabilidade e que se comportam de forma semelhante aos dados reais. Dessa forma, podemos estudar suas propriedades, prever resultados ou testar hipóteses.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Lei dos Grandes Números}\label{lei-dos-grandes-nuxfameros}
+
+A \emph{Lei dos Grandes Números} é a base teórica para a simulação ser algo tão confiável. Em termos simples, ela afirma que, à medida que o número de repetições de um experimento aleatório aumenta, a \emph{média} dos resultados \emph{observados} tende a se aproximar cada vez mais do \emph{valor esperado} (média teórica) desse experimento. Ou seja, essa convergência garante que, com um número suficientemente grande de simulações, podemos calcular estimativas precisas para probabilidades e valores médios.
+
+Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme de 1 a 6).
+
+De forma semelhante, podemos usar a simulação para observar o que acontece com uma moeda honesta. Se lançarmos 10 vezes, pode dar 7 caras e 3 coroas, mas ao repetir o experimento 10 mil vezes, a proporção de caras de aproxima de 0,5.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Número de lançamentos}
+\NormalTok{n\_lancamentos }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\CommentTok{\# Simular lançamentos de moeda (0 = coroa, 1 = cara)}
+\NormalTok{resultados }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{size =}\NormalTok{ n\_lancamentos, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Calcular a proporção de caras}
+\NormalTok{proporcao\_caras }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(resultados) }\SpecialCharTok{/}\NormalTok{ n\_lancamentos}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Número de lançamentos:"}\NormalTok{, n\_lancamentos, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Número de lançamentos: 10000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Proporção de caras simulada:"}\NormalTok{, proporcao\_caras, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Proporção de caras simulada: 0.4983
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Para ver a convergência ao longo do tempo (Lei dos Grandes Números)}
+\NormalTok{proporcoes\_acumuladas }\OtherTok{\textless{}{-}} \FunctionTok{cumsum}\NormalTok{(resultados) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n\_lancamentos)}
+
+\FunctionTok{plot}\NormalTok{(proporcoes\_acumuladas, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Convergência da Proporção de Caras"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Número de Lançamentos"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Proporção de Caras"}\NormalTok{,}
+     \AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{col =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/simulacao1-1} \end{center}
+
+No código acima, primeiro definimos a semente do gerador de números aleatórios \emph{set.seed(123)}, para garantir que os resultados da simulação sejam possíveis de reproduzir, ou seja, toda vez que o código for executado com essa seed, os mesmos números aleatórios serão gerados.
+
+Depois, simulamos os lançamentos da moeda, com 10 mil lançamentos. A função \emph{sample()} escolhe aleatoriamente entre os valores 0 (coroa) e 1 (cara), com reposição (\emph{replace = TRUE}). Sendo assim, cada lançamento é independente dos anteriores. O \emph{resultados} é um vetor com 10 mil resultados de zeros e uns.
+
+Com esses dados, criamos um gráfico da proporção acumulada de caras ao longo dos lançamentos. E por fim, adicionamos uma linha horizontal pontilhada no valor de 0,5 (o valor esperado de caras de uma moeda justa). Dessa forma, conseguimos visualizar como a média de caras observadas se aproximam do valor esperado (0,5).
+
+Observe que no início, com poucos lançamentos, a proporção de caras varia bastante, mas conforme o número de lançamentos aumenta, a linha da proporção acumulada se aproxima cada vez mais de 0,5, confirmando o que a Lei dos Grandes Números nos diz.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Método de Monte Carlo}\label{muxe9todo-de-monte-carlo}
+
+O \emph{Método de Monte Carlo} é uma técnica de simulação, baseada na amostragem aleatória para obter resultados numéricos. Esse método funciona gerando um grande número de amostras aleatórias de uma distribuição de probabilidade e, com isso, estimando uma quantidade de interesse.
+
+Como exemplo, imagine que queremos estimar a área de uma forma irregular. Podemos fazer isso gerando pontos aleatórios dentro de um quadrado que a contém e contar a proporção de pontos que caem dentro da forma irregular.
+
+Utilizando essa ideia, aplicaremos o método de Monte Carlo para para estimar a área de um círculo, a ideia é ``jogar'' pontos aleatoriamente dentro de um quadrado conhecido e ver quantos desses pontos caem dentro do círculo inscrito nesse quadrado.
+
+Pense em um círculo centrado na origem (ponto (0, 0)) e de raio 1. Ou seja, ele ocupa a região: \(x^2 + y^2 \leq 1\). Esse círculo está inteiramente contido dentro de um quadrado que vai de {[}-1, 1{]} tanto no eixo \(x\), quanto no eixo \(y\), isto é, o quadrado tem lado 2.
+
+Sabemos que a área real de um círculo é:
+
+\[
+\text{Área real} = \pi \cdot r^2 = \pi \cdot 1^2 = \pi \approx 3,1416
+\]
+
+Estimando isso pelo metódo de Monte Carlo, vamos gerar aleatoriamente pontos dentro do quadrado e contar quantos desses pontos caem dentro do círculo (satisfazem \(x^2 + y^2 \leq 1\)). A fração de pontos dentro do círculo multiplicada pela área do quadrado (que é 4) nos dá uma estimativa para \(\pi\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define a semente para garantir reprodutibilidade dos resultados}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\CommentTok{\# Definir o número de pontos }
+\NormalTok{n\_pontos }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\CommentTok{\# Gerar coordenadas X e Y aleatórias para os pontos dentro do quadrado [{-}1, 1] x [{-}1, 1]}
+\NormalTok{x\_coords }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n\_pontos, }\AttributeTok{min =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)}
+\NormalTok{y\_coords }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n\_pontos, }\AttributeTok{min =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Calcular a distância ao quadrado até a origem para cada ponto}
+\NormalTok{distancia\_ao\_quadrado }\OtherTok{\textless{}{-}}\NormalTok{ x\_coords}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ y\_coords}\SpecialCharTok{\^{}}\DecValTok{2}
+
+\CommentTok{\# Contar quantos pontos caem dentro do círculo de raio 1}
+\NormalTok{pontos\_dentro\_circulo }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(distancia\_ao\_quadrado }\SpecialCharTok{\textless{}=} \DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Calcular a proporção de pontos dentro do círculo}
+\NormalTok{proporcao\_no\_circulo }\OtherTok{\textless{}{-}}\NormalTok{ pontos\_dentro\_circulo }\SpecialCharTok{/}\NormalTok{ n\_pontos}
+
+\CommentTok{\# Estimar a área do círculo (área do quadrado é 4)}
+\NormalTok{area\_circulo\_estimada }\OtherTok{\textless{}{-}}\NormalTok{ proporcao\_no\_circulo }\SpecialCharTok{*} \DecValTok{4}
+
+\CommentTok{\# Mostrar resultados}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Total de pontos jogados:"}\NormalTok{, n\_pontos, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Total de pontos jogados: 10000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Pontos que caíram dentro do círculo:"}\NormalTok{, pontos\_dentro\_circulo, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Pontos que caíram dentro do círculo: 7894
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Proporção de pontos dentro do círculo:"}\NormalTok{, proporcao\_no\_circulo, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Proporção de pontos dentro do círculo: 0.7894
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Estimativa da Área do Círculo (ou Pi):"}\NormalTok{, area\_circulo\_estimada, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Estimativa da Área do Círculo (ou Pi): 3.1576
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Valor real de Pi (Área do Círculo de raio 1):"}\NormalTok{, pi, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Valor real de Pi (Área do Círculo de raio 1): 3.141593
+\end{verbatim}
+
+No código acima, geramos dois vetores, com coordenadas x e y uniformemente distribuídas dentro do quadrado que vai de -1 a 1 nos dois eixos. Depois cointamos quantos pontos estão dentro do círculo (a soma dos quadrados das coordenadas seja menor ou igual a 1). E por fim, multiplicamos a proporção de pontos dentro do círculo pela área total do quadrado para obter a estimativa da área do círculo.
+
+Vendo isso de forma visual:
+
+\begin{center}\includegraphics{AED_files/figure-latex/circulo-1} \end{center}
+
+Nesse gráfico, temos o círculo, com os pontos azuis (dentro) e vermelhos (fora), além do contorno do círculo verdadeiro para comparação visual.
 
 \chapter{Respostas dos exercícios}\label{respostas-dos-exercuxedcios}
 
