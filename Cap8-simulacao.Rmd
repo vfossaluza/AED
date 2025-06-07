@@ -1,0 +1,129 @@
+# Simulação 
+
+A *simulação computacional* é uma ferramenta que permite o estudo de fenômenos complexos, que seriam difíceis ou inviáveis de analisar em contextos reais. Por meio dela, criamos modelos matemáticos que imitam o comportamento de sistemas verdadeiros. 
+
+Ou seja, em vez de observar o mundo real diretamente (o que pode ser caro, demorado ou impossível), geramos artificialmente observações que seguem uma determinada distribuição de probabilidade e que se comportam de forma semelhante aos dados reais. Dessa forma, podemos estudar suas propriedades, prever resultados ou testar hipóteses.
+
+---
+
+## Lei dos Grandes Números
+
+A *Lei dos Grandes Números* é a base teórica para a simulação ser algo tão confiável. Em termos simples, ela afirma que, à medida que o número de repetições de um experimento aleatório aumenta, a *média* dos resultados *observados* tende a se aproximar cada vez mais do *valor esperado* (média teórica) desse experimento. Ou seja, essa convergência garante que, com um número suficientemente grande de simulações, podemos calcular estimativas precisas para probabilidades e valores médios.
+
+Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme de 1 a 6).
+
+De forma semelhante, podemos usar a simulação para observar o que acontece com uma moeda honesta. Se lançarmos  10 vezes, pode dar 7 caras e 3 coroas, mas ao repetir o experimento 10 mil vezes, a proporção de caras de aproxima de 0,5. 
+
+```{r simulacao1, echo = TRUE}
+set.seed(123)
+
+# Número de lançamentos
+n_lancamentos <- 10000
+
+# Simular lançamentos de moeda (0 = coroa, 1 = cara)
+resultados <- sample(c(0, 1), size = n_lancamentos, replace = TRUE)
+
+# Calcular a proporção de caras
+proporcao_caras <- sum(resultados) / n_lancamentos
+
+cat("Número de lançamentos:", n_lancamentos, "\n")
+cat("Proporção de caras simulada:", proporcao_caras, "\n")
+
+# Para ver a convergência ao longo do tempo (Lei dos Grandes Números)
+proporcoes_acumuladas <- cumsum(resultados) / (1:n_lancamentos)
+
+plot(proporcoes_acumuladas, type = "l",
+     main = "Convergência da Proporção de Caras",
+     xlab = "Número de Lançamentos",
+     ylab = "Proporção de Caras",
+     ylim = c(0, 1))
+abline(h = 0.5, col = "deeppink", lty = 2)
+```
+
+No código acima, primeiro definimos a semente do gerador de números aleatórios *set.seed(123)*, para garantir que os resultados da simulação sejam possíveis de reproduzir, ou seja, toda vez que o código for executado com essa seed, os mesmos números aleatórios serão gerados.
+
+Depois, simulamos os lançamentos da moeda, com 10 mil lançamentos. A função *sample()* escolhe aleatoriamente entre os valores 0 (coroa) e 1 (cara), com reposição (*replace = TRUE*). Sendo assim, cada lançamento é independente dos anteriores. O *resultados* é um vetor com 10 mil resultados de zeros e uns.
+
+Com esses dados, criamos um gráfico da proporção acumulada de caras ao longo dos lançamentos. E por fim, adicionamos uma linha horizontal pontilhada no valor de 0,5 (o valor esperado de caras de uma moeda justa). Dessa forma, conseguimos visualizar como a média de caras observadas se aproximam do valor esperado (0,5). 
+
+Observe que no início, com poucos lançamentos, a proporção de caras varia bastante, mas conforme o número de lançamentos aumenta, a linha da proporção acumulada se aproxima cada vez mais de 0,5, confirmando o que a Lei dos Grandes Números nos diz.
+
+---
+
+## Método de Monte Carlo
+
+O *Método de Monte Carlo* é uma técnica de simulação, baseada na amostragem aleatória para obter resultados numéricos. Esse método funciona gerando um grande número de amostras aleatórias de uma distribuição de probabilidade e, com isso, estimando uma quantidade de interesse. 
+
+Como exemplo, imagine que queremos estimar a área de uma forma irregular. Podemos fazer isso gerando pontos aleatórios dentro de um quadrado que a contém e contar a proporção de pontos que caem dentro da forma irregular. 
+
+Utilizando essa ideia, aplicaremos o método de Monte Carlo para  para estimar a área de um círculo, a ideia é "jogar" pontos aleatoriamente dentro de um quadrado conhecido e ver quantos desses pontos caem dentro do círculo inscrito nesse quadrado.
+
+Pense em um círculo centrado na origem (ponto (0, 0)) e de raio 1. Ou seja, ele ocupa a região: $x^2 + y^2 \leq 1$. Esse círculo está inteiramente contido dentro de um quadrado que vai de [-1, 1] tanto no eixo $x$, quanto no eixo $y$, isto é, o quadrado tem lado 2.
+
+Sabemos que a área real de um círculo é:
+
+$$
+\text{Área real} = \pi \cdot r^2 = \pi \cdot 1^2 = \pi \approx 3,1416
+$$
+
+Estimando isso pelo metódo de Monte Carlo, vamos gerar aleatoriamente pontos dentro do quadrado e contar quantos desses pontos caem dentro do círculo (satisfazem $x^2 + y^2 \leq 1$). A fração de pontos dentro do círculo multiplicada pela área do quadrado (que é 4) nos dá uma estimativa para $\pi$.
+
+```{r}
+# Define a semente para garantir reprodutibilidade dos resultados
+set.seed(123)
+
+# Definir o número de pontos 
+n_pontos <- 10000
+
+# Gerar coordenadas X e Y aleatórias para os pontos dentro do quadrado [-1, 1] x [-1, 1]
+x_coords <- runif(n_pontos, min = -1, max = 1)
+y_coords <- runif(n_pontos, min = -1, max = 1)
+
+# Calcular a distância ao quadrado até a origem para cada ponto
+distancia_ao_quadrado <- x_coords^2 + y_coords^2
+
+# Contar quantos pontos caem dentro do círculo de raio 1
+pontos_dentro_circulo <- sum(distancia_ao_quadrado <= 1)
+
+# Calcular a proporção de pontos dentro do círculo
+proporcao_no_circulo <- pontos_dentro_circulo / n_pontos
+
+# Estimar a área do círculo (área do quadrado é 4)
+area_circulo_estimada <- proporcao_no_circulo * 4
+
+# Mostrar resultados
+cat("Total de pontos jogados:", n_pontos, "\n")
+cat("Pontos que caíram dentro do círculo:", pontos_dentro_circulo, "\n")
+cat("Proporção de pontos dentro do círculo:", proporcao_no_circulo, "\n")
+cat("Estimativa da Área do Círculo (ou Pi):", area_circulo_estimada, "\n")
+cat("Valor real de Pi (Área do Círculo de raio 1):", pi, "\n")
+```
+
+No código acima, geramos dois vetores, com coordenadas x e y uniformemente distribuídas dentro do quadrado que vai de -1 a 1 nos dois eixos. Depois cointamos quantos pontos estão dentro do círculo (a soma dos quadrados das coordenadas seja menor ou igual a 1). E por fim, multiplicamos a proporção de pontos dentro do círculo pela área total do quadrado para obter a estimativa da área do círculo.
+
+Vendo isso de forma visual:
+
+```{r circulo, echo = FALSE, warning=FALSE}
+# Para visualização, limitar a quantidade de pontos no gráfico (ex: 2000)
+indices_para_plot <- sample(1:n_pontos, min(n_pontos, 2000))
+
+# Plotar os pontos: azul se dentro do círculo, vermelho se fora
+plot(x_coords[indices_para_plot], y_coords[indices_para_plot],
+     pch = 20, cex = 0.8,
+     col = ifelse(distancia_ao_quadrado[indices_para_plot] <= 1, "royalblue", "deeppink"),
+     main = "Estimativa de Área do Círculo por Monte Carlo",
+     xlab = "Coordenada X", ylab = "Coordenada Y",
+     xlim = c(-1, 1), ylim = c(-1, 1),
+     asp = 1)  # asp=1 para eixos com mesma escala
+
+# Adicionar o contorno do círculo real
+symbols(x = 0, y = 0, circles = 1, add = TRUE, inches = FALSE,
+        col = NA, border = "black", lty = 2, lwd = 2)
+
+# Legenda
+legend("topright", c("Dentro do Círculo", "Fora do Círculo", "Círculo Real"),
+       fill = c("royalblue", "deeppink", NA), border = c(NA, NA, "black"),
+       bty = "n", cex = 0.8)
+```
+
+Nesse gráfico, temos o círculo, com os pontos azuis (dentro ) e vermelhos (fora), além do contorno do círculo verdadeiro para comparação visual.
