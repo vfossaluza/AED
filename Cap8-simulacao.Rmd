@@ -126,4 +126,4 @@ legend("topright", c("Dentro do Círculo", "Fora do Círculo", "Círculo Real"),
        bty = "n", cex = 0.8)
 ```
 
-Nesse gráfico, temos o círculo, com os pontos azuis (dentro ) e vermelhos (fora), além do contorno do círculo verdadeiro para comparação visual.
+Nesse gráfico, temos o círculo, com os pontos azuis (dentro) e vermelhos (fora), além do contorno do círculo verdadeiro para comparação visual.
