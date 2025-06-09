@@ -465,3 +465,119 @@ $$
 AC = \frac{\text{vp + vn}}{\text{total}} = \frac{50 +75}{200} = 0,625
 $$
 
+---
+
+## Capítulo 8 
+
+- **Exercício 1**
+
+**item (a)**
+
+Simular os lançamentos de um dado honesto:
+
+```{r cap8_ex1a}
+set.seed(123)
+
+n <- 10000
+
+lancamentos <- sample(1:6, size = n, replace = TRUE)
+```
+
+**item (b)**
+
+Calcular a média acumulada depois de cada lançamento:
+
+```{r cap8_ex1b}
+somas <- cumsum(lancamentos)
+
+# Divide cada soma pelo número de lançamentos até aquele ponto
+medias <- somas / (1:n)
+```
+
+**item (c)**
+
+```{r cap8_ex1c}
+plot(medias, type = "l",
+     main = "Convergência da Média dos Lançamentos de um Dado",
+     xlab = "Número de Lançamentos",
+     ylab = "Média Acumulada",
+     col = "black")
+
+# Adicionar linha horizontal com o valor esperado (3,5)
+abline(h = 3.5, col = "deeppink", lty = 2, lwd = 2)
+
+# Legenda
+legend("topright", legend = c("Média acumulada", "Valor esperado (3,5)"),
+       col = c("black", "deeppink"), lty = c(1, 2), bty = "n")
+```
+
+
+- **Exercício 2**
+
+**item (a)**
+
+```{r cap8_ex2a}
+set.seed(123)
+
+n_simulacoes <- 10000
+
+n_questoes <- 10
+
+# A probabilidade de acerto ao chutar uma questão é 1 em 4 (0,25)
+p_acerto <- 1 / 4
+
+acertos <- rbinom(n_simulacoes, size = n_questoes, prob = p_acerto)
+```
+
+**item (b)**
+
+```{r cap8_ex2b}
+sucessos <- sum(acertos >= 4)
+
+prob_estimada <- sucessos / n_simulacoes
+
+cat("Estimativa de P(acertar pelo menos 4 questões):", prob_estimada, "\n")
+```
+
+**item (c)**
+
+```{r cap8_ex2c}
+acertos <- rbinom(n_simulacoes, size = n_questoes, prob = p_acerto)
+```
+
+- ** Exercício 3**
+
+**item (a)**
+
+```{r cap8_ex3a}
+set.seed(123)
+
+n_simulacoes <- 10000
+
+dado1 <- sample(1:6, size = n_simulacoes, replace = TRUE)
+dado2 <- sample(1:6, size = n_simulacoes, replace = TRUE)
+```
+
+**item (b)**
+
+```{r cap8_ex3b}
+somas <- dado1 + dado2
+
+# Verificar se soma > 8 OU soma == 5
+condicao_satisfeita <- (somas > 8) | (somas == 5)
+
+# Contar quantas vezes a condição foi satisfeita
+numero_condicao_satisfeita <- sum(condicao_satisfeita)
+
+cat("Número de vezes que a condição foi satisfeita:", numero_condicao_satisfeita, "\n")
+```
+
+**item (c)**
+
+```{r cap8_ex3c}
+# Estimar a Probabilidade
+probabilidade_estimada <- numero_condicao_satisfeita / n_simulacoes
+
+cat("Probabilidade estimada:", probabilidade_estimada, "\n")
+```
+

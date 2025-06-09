@@ -10,7 +10,7 @@ Ou seja, em vez de observar o mundo real diretamente (o que pode ser caro, demor
 
 A *Lei dos Grandes Números* é a base teórica para a simulação ser algo tão confiável. Em termos simples, ela afirma que, à medida que o número de repetições de um experimento aleatório aumenta, a *média* dos resultados *observados* tende a se aproximar cada vez mais do *valor esperado* (média teórica) desse experimento. Ou seja, essa convergência garante que, com um número suficientemente grande de simulações, podemos calcular estimativas precisas para probabilidades e valores médios.
 
-Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme de 1 a 6).
+Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme discreta de 1 a 6).
 
 De forma semelhante, podemos usar a simulação para observar o que acontece com uma moeda honesta. Se lançarmos  10 vezes, pode dar 7 caras e 3 coroas, mas ao repetir o experimento 10 mil vezes, a proporção de caras de aproxima de 0,5. 
 
@@ -56,7 +56,7 @@ O *Método de Monte Carlo* é uma técnica de simulação, baseada na amostragem
 
 Como exemplo, imagine que queremos estimar a área de uma forma irregular. Podemos fazer isso gerando pontos aleatórios dentro de um quadrado que a contém e contar a proporção de pontos que caem dentro da forma irregular. 
 
-Utilizando essa ideia, aplicaremos o método de Monte Carlo para  para estimar a área de um círculo, a ideia é "jogar" pontos aleatoriamente dentro de um quadrado conhecido e ver quantos desses pontos caem dentro do círculo inscrito nesse quadrado.
+Utilizando essa ideia, aplicaremos o método de Monte Carlo para estimar a área de um círculo, a ideia é "jogar" pontos aleatoriamente dentro de um quadrado conhecido e ver quantos desses pontos caem dentro do círculo inscrito nesse quadrado.
 
 Pense em um círculo centrado na origem (ponto (0, 0)) e de raio 1. Ou seja, ele ocupa a região: $x^2 + y^2 \leq 1$. Esse círculo está inteiramente contido dentro de um quadrado que vai de [-1, 1] tanto no eixo $x$, quanto no eixo $y$, isto é, o quadrado tem lado 2.
 
@@ -127,3 +127,100 @@ legend("topright", c("Dentro do Círculo", "Fora do Círculo", "Círculo Real"),
 ```
 
 Nesse gráfico, temos o círculo, com os pontos azuis (dentro) e vermelhos (fora), além do contorno do círculo verdadeiro para comparação visual.
+
+---
+
+## Simulando no R
+
+Vimos como a simulação computacional pode ser usada para estudar fenômenos aleatórios e visualizar resultados teóricos. Agora veremos como simular usando o R.
+
+Primeiro, como já citamos anteriormente, sempre comece as suas simulações com *set.seed()*, isso garante que, se você ou outra pessoa executar o mesmo código com a *mesma semente*, os resultados aleatórios serão *idênticos*, tornando suas simulações reproduzíveis.
+
+```{r seed, eval = FALSE}
+set.seed(123) # escolha qualquer número inteiro
+```
+
+### Principais funções para simulação no R
+
+O R possui um conjunto de funções para trabalhar com uma determinada distribuição de probabilidade (como a binomial, uniforme, poisson, etc.). Para cada distribuição, existem geralmente quatro funções, prefixadas por letras que indicam sua finalidade.
+
+- *r* (random): Geração de números aleatórios, a mais utilizada em simulações.
+- *d* (density):  função de massa de probabilidade, no caso discreto, ou seja, $P(X = x)$ e função densidade de probabilidade, no caso contínuo.
+- *p* (probability): Função de distribuição acumulada, ou seja, $P(X \leq x)$.
+- *q* (quantile): Função quantil, recebe um valor $p$ e fornece o valor $q$ que satisfaz $P(X \leq q) = p$.
+
+**Exemplos de funções random:**
+
+- *rbinom(n, size, prob)*: distribuição binomial, onde *n* é o número de simulações (dados gerados), *size* é a quantidade de ensaios ($m$ da binomial($m, p$)) e *p* a probabilidade de sucesso de cada ensaio. Note que, para *size=1* temos uma distribuição de Bernoulli.
+- *sample(x, size, replace, prob)*: amostragem discreta aleatória, onde *x* é o conjunto de números de onde se quer sortear dados, *size* é a qunatidade de tentativas, *replace* é se tem repetição (=TRUE) ou não (=FALSE), ou seja, se tem reposição ou não e *prob* é um vetor opcional, que corresponde a probabilidade de sucesso de cada elemento do vetor *x*.
+
+Para distribuições contínuas temos *rnorm()*, *runif()*, etc.
+
+
+**Exemplo prático, utilizando a distribuição Binomial**
+
+Sabemos que a distribuição binomial modela o número de sucessos em $n$ tentativas independentes, com probabilidade de sucesso $p$. 
+
+Vamos pegar como exemplo o caso em que jogamos uma moeda honesta 10 vezes e contamos quantas vezes deu cara. Ou seja, temos uma binomial com $n=10$ e $p=0,5$. Repetiremos o experimento 100 vezes.
+
+$$
+X \sim \mathrm{Binomial}(n = 10, p = 0,5)
+$$
+
+```{r exbin1}
+# Definindo parâmetros
+n_tentativas <- 10
+prob_sucesso <- 0.5
+n_experimentos <- 100
+```
+
+Agora, geraremos os valores aleatórios usando *rbinom()*:
+
+```{r exbin2}
+# Simula 100 experimentos da binomial(n = 10, p = 0.5)
+resultados <- rbinom(n_experimentos, size = n_tentativas, prob = prob_sucesso)
+```
+
+Para saber a probabilidade de termos exatamente $x$ sucessos, usamos a *dbinom()*, no caso de $P(X=5)$:
+
+```{r exbin3}
+# Probabilidade de sair exatamente 5 caras em 10 lançamentos
+dbinom(5, size = 10, prob = 0.5)
+```
+
+Para saber a probabilidade acumulada, usamos *pbinom()*, no caso de $P(X \leq 5)$:
+
+```{r}
+# Probabilidade de sair 5 ou menos caras em 10 lançamentos
+pbinom(5, size = 10, prob = 0.5)
+```
+
+Para saber o quantil, usando *qbinom()*, no caso de $P(X \leq x) = 0,8$
+
+```{r}
+# Qual o menor número de sucessos tal que a probabilidade acumulada seja ao menos 0.8?
+qbinom(0.8, size = 10, prob = 0.5)
+```
+
+---
+
+## Exercícios
+
+Obs. Caso queira comparar seu resultado com o gabarito (capítulo 9) use *set.seed(123)*.
+
+1. Simule o lançamento de um dado honesto (com faces de 1 a 6), um grande número de vezes. A cada novo lançamento, calcule a média dos valores obtidos. Em seguida, faça um gráfico que mostre como essa média se aproxima do valor esperado.
+  (a) Simule 10 mil lançamentos de um dado honesto.
+  (b) Calcule a média acumulada depois de cada lançamento simulado.
+  (c) Faça um gráfico com a média acumulada em função do número de lançamentos. Por fim, adicione uma linha horizontal indicando o valor esperado de um dado uniforme.
+
+2. Caso um aluno chute aleatoriamente as respostas de uma prova com 10 questões, cada uma com 4 alternativas. Estime, por simulação, a probabilidade dele acertar pelo menos 4 questões.
+  (a) Simule esse experimento 10.000 vezes. E em cada simulação, gere 10 respostas com probabilidade de acerto = 0,25.
+  (b) Conte em quantas simulações o número de acertos foi maior ou igual a 4 e estime essa probabilidade.
+  (c) calcule o resultado teórico usando a função *pbinom()*.
+  
+3. Suponha que você tenha dois dados justos de seis faces. Qual é a probabilidade de que a soma dos números nos dois dados seja maior que 8 ou igual a 5?
+  (a) Simule 10 mil lançamentos. Em cada simulação gere dois números aleatórios inteiros entre 1 e 6.
+  (b)  Calcule a soma de cada par de lançamentos e conte quantas vezes a soma é maior que 8 ou igual a 5. 
+  (c) Calcule a probabilidade estimada.
+
+

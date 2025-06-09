@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-06-06}
+\date{2025-06-08}
 
 \begin{document}
 \maketitle
@@ -3901,7 +3901,7 @@ Ou seja, em vez de observar o mundo real diretamente (o que pode ser caro, demor
 
 A \emph{Lei dos Grandes Números} é a base teórica para a simulação ser algo tão confiável. Em termos simples, ela afirma que, à medida que o número de repetições de um experimento aleatório aumenta, a \emph{média} dos resultados \emph{observados} tende a se aproximar cada vez mais do \emph{valor esperado} (média teórica) desse experimento. Ou seja, essa convergência garante que, com um número suficientemente grande de simulações, podemos calcular estimativas precisas para probabilidades e valores médios.
 
-Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme de 1 a 6).
+Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme discreta de 1 a 6).
 
 De forma semelhante, podemos usar a simulação para observar o que acontece com uma moeda honesta. Se lançarmos 10 vezes, pode dar 7 caras e 3 coroas, mas ao repetir o experimento 10 mil vezes, a proporção de caras de aproxima de 0,5.
 
@@ -3968,7 +3968,7 @@ O \emph{Método de Monte Carlo} é uma técnica de simulação, baseada na amost
 
 Como exemplo, imagine que queremos estimar a área de uma forma irregular. Podemos fazer isso gerando pontos aleatórios dentro de um quadrado que a contém e contar a proporção de pontos que caem dentro da forma irregular.
 
-Utilizando essa ideia, aplicaremos o método de Monte Carlo para para estimar a área de um círculo, a ideia é ``jogar'' pontos aleatoriamente dentro de um quadrado conhecido e ver quantos desses pontos caem dentro do círculo inscrito nesse quadrado.
+Utilizando essa ideia, aplicaremos o método de Monte Carlo para estimar a área de um círculo, a ideia é ``jogar'' pontos aleatoriamente dentro de um quadrado conhecido e ver quantos desses pontos caem dentro do círculo inscrito nesse quadrado.
 
 Pense em um círculo centrado na origem (ponto (0, 0)) e de raio 1. Ou seja, ele ocupa a região: \(x^2 + y^2 \leq 1\). Esse círculo está inteiramente contido dentro de um quadrado que vai de {[}-1, 1{]} tanto no eixo \(x\), quanto no eixo \(y\), isto é, o quadrado tem lado 2.
 
@@ -4060,6 +4060,177 @@ Vendo isso de forma visual:
 \begin{center}\includegraphics{AED_files/figure-latex/circulo-1} \end{center}
 
 Nesse gráfico, temos o círculo, com os pontos azuis (dentro) e vermelhos (fora), além do contorno do círculo verdadeiro para comparação visual.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Simulando no R}\label{simulando-no-r}
+
+Vimos como a simulação computacional pode ser usada para estudar fenômenos aleatórios e visualizar resultados teóricos. Agora veremos como simular usando o R.
+
+Primeiro, como já citamos anteriormente, sempre comece as suas simulações com \emph{set.seed()}, isso garante que, se você ou outra pessoa executar o mesmo código com a \emph{mesma semente}, os resultados aleatórios serão \emph{idênticos}, tornando suas simulações reproduzíveis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{) }\CommentTok{\# escolha qualquer número inteiro}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Principais funções para simulação no R}\label{principais-funuxe7uxf5es-para-simulauxe7uxe3o-no-r}
+
+O R possui um conjunto de funções para trabalhar com uma determinada distribuição de probabilidade (como a binomial, uniforme, poisson, etc.). Para cada distribuição, existem geralmente quatro funções, prefixadas por letras que indicam sua finalidade.
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{r} (random): Geração de números aleatórios, a mais utilizada em simulações.
+\item
+  \emph{d} (density): função de massa de probabilidade, no caso discreto, ou seja, \(P(X = x)\) e função densidade de probabilidade, no caso contínuo.
+\item
+  \emph{p} (probability): Função de distribuição acumulada, ou seja, \(P(X \leq x)\).
+\item
+  \emph{q} (quantile): Função quantil, recebe um valor \(p\) e fornece o valor \(q\) que satisfaz \(P(X \leq q) = p\).
+\end{itemize}
+
+\textbf{Exemplos de funções random:}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{rbinom(n, size, prob)}: distribuição binomial, onde \emph{n} é o número de simulações (dados gerados), \emph{size} é a quantidade de ensaios (\(m\) da binomial(\(m, p\))) e \emph{p} a probabilidade de sucesso de cada ensaio. Note que, para \emph{size=1} temos uma distribuição de Bernoulli.
+\item
+  \emph{sample(x, size, replace, prob)}: amostragem discreta aleatória, onde \emph{x} é o conjunto de números de onde se quer sortear dados, \emph{size} é a qunatidade de tentativas, \emph{replace} é se tem repetição (=TRUE) ou não (=FALSE), ou seja, se tem reposição ou não e \emph{prob} é um vetor opcional, que corresponde a probabilidade de sucesso de cada elemento do vetor \emph{x}.
+\end{itemize}
+
+Para distribuições contínuas temos \emph{rnorm()}, \emph{runif()}, etc.
+
+\textbf{Exemplo prático, utilizando a distribuição Binomial}
+
+Sabemos que a distribuição binomial modela o número de sucessos em \(n\) tentativas independentes, com probabilidade de sucesso \(p\).
+
+Vamos pegar como exemplo o caso em que jogamos uma moeda honesta 10 vezes e contamos quantas vezes deu cara. Ou seja, temos uma binomial com \(n=10\) e \(p=0,5\). Repetiremos o experimento 100 vezes.
+
+\[
+X \sim \mathrm{Binomial}(n = 10, p = 0,5)
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Definindo parâmetros}
+\NormalTok{n\_tentativas }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{prob\_sucesso }\OtherTok{\textless{}{-}} \FloatTok{0.5}
+\NormalTok{n\_experimentos }\OtherTok{\textless{}{-}} \DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+
+Agora, geraremos os valores aleatórios usando \emph{rbinom()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simula 100 experimentos da binomial(n = 10, p = 0.5)}
+\NormalTok{resultados }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(n\_experimentos, }\AttributeTok{size =}\NormalTok{ n\_tentativas, }\AttributeTok{prob =}\NormalTok{ prob\_sucesso)}
+\end{Highlighting}
+\end{Shaded}
+
+Para saber a probabilidade de termos exatamente \(x\) sucessos, usamos a \emph{dbinom()}, no caso de \(P(X=5)\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Probabilidade de sair exatamente 5 caras em 10 lançamentos}
+\FunctionTok{dbinom}\NormalTok{(}\DecValTok{5}\NormalTok{, }\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2460938
+\end{verbatim}
+
+Para saber a probabilidade acumulada, usamos \emph{pbinom()}, no caso de \(P(X \leq 5)\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Probabilidade de sair 5 ou menos caras em 10 lançamentos}
+\FunctionTok{pbinom}\NormalTok{(}\DecValTok{5}\NormalTok{, }\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6230469
+\end{verbatim}
+
+Para saber o quantil, usando \emph{qbinom()}, no caso de \(P(X \leq x) = 0,8\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Qual o menor número de sucessos tal que a probabilidade acumulada seja ao menos 0.8?}
+\FunctionTok{qbinom}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Exercícios}\label{exercuxedcios-5}
+
+Obs. Caso queira comparar seu resultado com o gabarito (capítulo 9) use \emph{set.seed(123)}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Simule o lançamento de um dado honesto (com faces de 1 a 6), um grande número de vezes. A cada novo lançamento, calcule a média dos valores obtidos. Em seguida, faça um gráfico que mostre como essa média se aproxima do valor esperado.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Simule 10 mil lançamentos de um dado honesto.
+\item
+  Calcule a média acumulada depois de cada lançamento simulado.
+\item
+  Faça um gráfico com a média acumulada em função do número de lançamentos. Por fim, adicione uma linha horizontal indicando o valor esperado de um dado uniforme.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Caso um aluno chute aleatoriamente as respostas de uma prova com 10 questões, cada uma com 4 alternativas. Estime, por simulação, a probabilidade dele acertar pelo menos 4 questões.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Simule esse experimento 10.000 vezes. E em cada simulação, gere 10 respostas com probabilidade de acerto = 0,25.
+\item
+  Conte em quantas simulações o número de acertos foi maior ou igual a 4 e estime essa probabilidade.
+\item
+  calcule o resultado teórico usando a função \emph{pbinom()}.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Suponha que você tenha dois dados justos de seis faces. Qual é a probabilidade de que a soma dos números nos dois dados seja maior que 8 ou igual a 5?
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\tightlist
+\item
+  Simule 10 mil lançamentos. Em cada simulação gere dois números aleatórios inteiros entre 1 e 6.
+\item
+  Calcule a soma de cada par de lançamentos e conte quantas vezes a soma é maior que 8 ou igual a 5.
+\item
+  Calcule a probabilidade estimada.
+\end{enumerate}
 
 \chapter{Respostas dos exercícios}\label{respostas-dos-exercuxedcios}
 
@@ -4799,6 +4970,165 @@ A \emph{acúracia} é a probabilidade do teste fornecer resultados corretos, ou 
 \[
 AC = \frac{\text{vp + vn}}{\text{total}} = \frac{50 +75}{200} = 0,625
 \]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Capítulo 8}\label{capuxedtulo-8}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 1}
+\end{itemize}
+
+\textbf{item (a)}
+
+Simular os lançamentos de um dado honesto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\NormalTok{lancamentos }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\AttributeTok{size =}\NormalTok{ n, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{item (b)}
+
+Calcular a média acumulada depois de cada lançamento:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{somas }\OtherTok{\textless{}{-}} \FunctionTok{cumsum}\NormalTok{(lancamentos)}
+
+\CommentTok{\# Divide cada soma pelo número de lançamentos até aquele ponto}
+\NormalTok{medias }\OtherTok{\textless{}{-}}\NormalTok{ somas }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{:}\NormalTok{n)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{item (c)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(medias, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Convergência da Média dos Lançamentos de um Dado"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Número de Lançamentos"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Média Acumulada"}\NormalTok{,}
+     \AttributeTok{col =} \StringTok{"black"}\NormalTok{)}
+
+\CommentTok{\# Adicionar linha horizontal com o valor esperado (3,5)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \FloatTok{3.5}\NormalTok{, }\AttributeTok{col =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{lty =} \DecValTok{2}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+
+\CommentTok{\# Legenda}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Média acumulada"}\NormalTok{, }\StringTok{"Valor esperado (3,5)"}\NormalTok{),}
+       \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, }\StringTok{"deeppink"}\NormalTok{), }\AttributeTok{lty =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{), }\AttributeTok{bty =} \StringTok{"n"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap8_ex1c-1} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 2}
+\end{itemize}
+
+\textbf{item (a)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{n\_simulacoes }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\NormalTok{n\_questoes }\OtherTok{\textless{}{-}} \DecValTok{10}
+
+\CommentTok{\# A probabilidade de acerto ao chutar uma questão é 1 em 4 (0,25)}
+\NormalTok{p\_acerto }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{/} \DecValTok{4}
+
+\NormalTok{acertos }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(n\_simulacoes, }\AttributeTok{size =}\NormalTok{ n\_questoes, }\AttributeTok{prob =}\NormalTok{ p\_acerto)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{item (b)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sucessos }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(acertos }\SpecialCharTok{\textgreater{}=} \DecValTok{4}\NormalTok{)}
+
+\NormalTok{prob\_estimada }\OtherTok{\textless{}{-}}\NormalTok{ sucessos }\SpecialCharTok{/}\NormalTok{ n\_simulacoes}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Estimativa de P(acertar pelo menos 4 questões):"}\NormalTok{, prob\_estimada, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Estimativa de P(acertar pelo menos 4 questões): 0.2183
+\end{verbatim}
+
+\textbf{item (c)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{acertos }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(n\_simulacoes, }\AttributeTok{size =}\NormalTok{ n\_questoes, }\AttributeTok{prob =}\NormalTok{ p\_acerto)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  ** Exercício 3**
+\end{itemize}
+
+\textbf{item (a)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{n\_simulacoes }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\NormalTok{dado1 }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\AttributeTok{size =}\NormalTok{ n\_simulacoes, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{dado2 }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }\AttributeTok{size =}\NormalTok{ n\_simulacoes, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{item (b)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{somas }\OtherTok{\textless{}{-}}\NormalTok{ dado1 }\SpecialCharTok{+}\NormalTok{ dado2}
+
+\CommentTok{\# Verificar se soma \textgreater{} 8 OU soma == 5}
+\NormalTok{condicao\_satisfeita }\OtherTok{\textless{}{-}}\NormalTok{ (somas }\SpecialCharTok{\textgreater{}} \DecValTok{8}\NormalTok{) }\SpecialCharTok{|}\NormalTok{ (somas }\SpecialCharTok{==} \DecValTok{5}\NormalTok{)}
+
+\CommentTok{\# Contar quantas vezes a condição foi satisfeita}
+\NormalTok{numero\_condicao\_satisfeita }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(condicao\_satisfeita)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Número de vezes que a condição foi satisfeita:"}\NormalTok{, numero\_condicao\_satisfeita, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Número de vezes que a condição foi satisfeita: 3812
+\end{verbatim}
+
+\textbf{item (c)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Estimar a Probabilidade}
+\NormalTok{probabilidade\_estimada }\OtherTok{\textless{}{-}}\NormalTok{ numero\_condicao\_satisfeita }\SpecialCharTok{/}\NormalTok{ n\_simulacoes}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Probabilidade estimada:"}\NormalTok{, probabilidade\_estimada, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Probabilidade estimada: 0.3812
+\end{verbatim}
 
 \chapter{Regressão linear (incompleto)}\label{regressuxe3o-linear-incompleto}
 

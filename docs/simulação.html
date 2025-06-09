@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-06-06" />
+<meta name="date" content="2025-06-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,6 +269,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="8.1" data-path="simulação.html"><a href="simulação.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>8.1</b> Lei dos Grandes Números</a></li>
 <li class="chapter" data-level="8.2" data-path="simulação.html"><a href="simulação.html#método-de-monte-carlo"><i class="fa fa-check"></i><b>8.2</b> Método de Monte Carlo</a></li>
+<li class="chapter" data-level="8.3" data-path="simulação.html"><a href="simulação.html#simulando-no-r"><i class="fa fa-check"></i><b>8.3</b> Simulando no R</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="simulação.html"><a href="simulação.html#principais-funções-para-simulação-no-r"><i class="fa fa-check"></i><b>8.3.1</b> Principais funções para simulação no R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="simulação.html"><a href="simulação.html#exercícios-5"><i class="fa fa-check"></i><b>8.4</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>9</b> Respostas dos exercícios</a>
 <ul>
@@ -277,6 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-5"><i class="fa fa-check"></i><b>9.3</b> Capítulo 5</a></li>
 <li class="chapter" data-level="9.4" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-6"><i class="fa fa-check"></i><b>9.4</b> Capítulo 6</a></li>
 <li class="chapter" data-level="9.5" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-7"><i class="fa fa-check"></i><b>9.5</b> Capítulo 7</a></li>
+<li class="chapter" data-level="9.6" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-8"><i class="fa fa-check"></i><b>9.6</b> Capítulo 8</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html"><i class="fa fa-check"></i><b>10</b> Regressão linear (incompleto)</a>
 <ul>
@@ -310,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="lei-dos-grandes-números" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> Lei dos Grandes Números<a href="simulação.html#lei-dos-grandes-números" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A <em>Lei dos Grandes Números</em> é a base teórica para a simulação ser algo tão confiável. Em termos simples, ela afirma que, à medida que o número de repetições de um experimento aleatório aumenta, a <em>média</em> dos resultados <em>observados</em> tende a se aproximar cada vez mais do <em>valor esperado</em> (média teórica) desse experimento. Ou seja, essa convergência garante que, com um número suficientemente grande de simulações, podemos calcular estimativas precisas para probabilidades e valores médios.</p>
-<p>Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme de 1 a 6).</p>
+<p>Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme discreta de 1 a 6).</p>
 <p>De forma semelhante, podemos usar a simulação para observar o que acontece com uma moeda honesta. Se lançarmos 10 vezes, pode dar 7 caras e 3 coroas, mas ao repetir o experimento 10 mil vezes, a proporção de caras de aproxima de 0,5.</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="simulação.html#cb197-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb197-2"><a href="simulação.html#cb197-2" tabindex="-1"></a></span>
@@ -347,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.2</span> Método de Monte Carlo<a href="simulação.html#método-de-monte-carlo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>O <em>Método de Monte Carlo</em> é uma técnica de simulação, baseada na amostragem aleatória para obter resultados numéricos. Esse método funciona gerando um grande número de amostras aleatórias de uma distribuição de probabilidade e, com isso, estimando uma quantidade de interesse.</p>
 <p>Como exemplo, imagine que queremos estimar a área de uma forma irregular. Podemos fazer isso gerando pontos aleatórios dentro de um quadrado que a contém e contar a proporção de pontos que caem dentro da forma irregular.</p>
-<p>Utilizando essa ideia, aplicaremos o método de Monte Carlo para para estimar a área de um círculo, a ideia é “jogar” pontos aleatoriamente dentro de um quadrado conhecido e ver quantos desses pontos caem dentro do círculo inscrito nesse quadrado.</p>
+<p>Utilizando essa ideia, aplicaremos o método de Monte Carlo para estimar a área de um círculo, a ideia é “jogar” pontos aleatoriamente dentro de um quadrado conhecido e ver quantos desses pontos caem dentro do círculo inscrito nesse quadrado.</p>
 <p>Pense em um círculo centrado na origem (ponto (0, 0)) e de raio 1. Ou seja, ele ocupa a região: <span class="math inline">\(x^2 + y^2 \leq 1\)</span>. Esse círculo está inteiramente contido dentro de um quadrado que vai de [-1, 1] tanto no eixo <span class="math inline">\(x\)</span>, quanto no eixo <span class="math inline">\(y\)</span>, isto é, o quadrado tem lado 2.</p>
 <p>Sabemos que a área real de um círculo é:</p>
 <p><span class="math display">\[
@@ -391,6 +397,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Vendo isso de forma visual:</p>
 <p><img src="AED_files/figure-html/circulo-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Nesse gráfico, temos o círculo, com os pontos azuis (dentro) e vermelhos (fora), além do contorno do círculo verdadeiro para comparação visual.</p>
+<hr />
+</div>
+<div id="simulando-no-r" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Simulando no R<a href="simulação.html#simulando-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vimos como a simulação computacional pode ser usada para estudar fenômenos aleatórios e visualizar resultados teóricos. Agora veremos como simular usando o R.</p>
+<p>Primeiro, como já citamos anteriormente, sempre comece as suas simulações com <em>set.seed()</em>, isso garante que, se você ou outra pessoa executar o mesmo código com a <em>mesma semente</em>, os resultados aleatórios serão <em>idênticos</em>, tornando suas simulações reproduzíveis.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="simulação.html#cb212-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># escolha qualquer número inteiro</span></span></code></pre></div>
+<div id="principais-funções-para-simulação-no-r" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Principais funções para simulação no R<a href="simulação.html#principais-funções-para-simulação-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>O R possui um conjunto de funções para trabalhar com uma determinada distribuição de probabilidade (como a binomial, uniforme, poisson, etc.). Para cada distribuição, existem geralmente quatro funções, prefixadas por letras que indicam sua finalidade.</p>
+<ul>
+<li><em>r</em> (random): Geração de números aleatórios, a mais utilizada em simulações.</li>
+<li><em>d</em> (density): função de massa de probabilidade, no caso discreto, ou seja, <span class="math inline">\(P(X = x)\)</span> e função densidade de probabilidade, no caso contínuo.</li>
+<li><em>p</em> (probability): Função de distribuição acumulada, ou seja, <span class="math inline">\(P(X \leq x)\)</span>.</li>
+<li><em>q</em> (quantile): Função quantil, recebe um valor <span class="math inline">\(p\)</span> e fornece o valor <span class="math inline">\(q\)</span> que satisfaz <span class="math inline">\(P(X \leq q) = p\)</span>.</li>
+</ul>
+<p><strong>Exemplos de funções random:</strong></p>
+<ul>
+<li><em>rbinom(n, size, prob)</em>: distribuição binomial, onde <em>n</em> é o número de simulações (dados gerados), <em>size</em> é a quantidade de ensaios (<span class="math inline">\(m\)</span> da binomial(<span class="math inline">\(m, p\)</span>)) e <em>p</em> a probabilidade de sucesso de cada ensaio. Note que, para <em>size=1</em> temos uma distribuição de Bernoulli.</li>
+<li><em>sample(x, size, replace, prob)</em>: amostragem discreta aleatória, onde <em>x</em> é o conjunto de números de onde se quer sortear dados, <em>size</em> é a qunatidade de tentativas, <em>replace</em> é se tem repetição (=TRUE) ou não (=FALSE), ou seja, se tem reposição ou não e <em>prob</em> é um vetor opcional, que corresponde a probabilidade de sucesso de cada elemento do vetor <em>x</em>.</li>
+</ul>
+<p>Para distribuições contínuas temos <em>rnorm()</em>, <em>runif()</em>, etc.</p>
+<p><strong>Exemplo prático, utilizando a distribuição Binomial</strong></p>
+<p>Sabemos que a distribuição binomial modela o número de sucessos em <span class="math inline">\(n\)</span> tentativas independentes, com probabilidade de sucesso <span class="math inline">\(p\)</span>.</p>
+<p>Vamos pegar como exemplo o caso em que jogamos uma moeda honesta 10 vezes e contamos quantas vezes deu cara. Ou seja, temos uma binomial com <span class="math inline">\(n=10\)</span> e <span class="math inline">\(p=0,5\)</span>. Repetiremos o experimento 100 vezes.</p>
+<p><span class="math display">\[
+X \sim \mathrm{Binomial}(n = 10, p = 0,5)
+\]</span></p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="simulação.html#cb213-1" tabindex="-1"></a><span class="co"># Definindo parâmetros</span></span>
+<span id="cb213-2"><a href="simulação.html#cb213-2" tabindex="-1"></a>n_tentativas <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb213-3"><a href="simulação.html#cb213-3" tabindex="-1"></a>prob_sucesso <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb213-4"><a href="simulação.html#cb213-4" tabindex="-1"></a>n_experimentos <span class="ot">&lt;-</span> <span class="dv">100</span></span></code></pre></div>
+<p>Agora, geraremos os valores aleatórios usando <em>rbinom()</em>:</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="simulação.html#cb214-1" tabindex="-1"></a><span class="co"># Simula 100 experimentos da binomial(n = 10, p = 0.5)</span></span>
+<span id="cb214-2"><a href="simulação.html#cb214-2" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n_experimentos, <span class="at">size =</span> n_tentativas, <span class="at">prob =</span> prob_sucesso)</span></code></pre></div>
+<p>Para saber a probabilidade de termos exatamente <span class="math inline">\(x\)</span> sucessos, usamos a <em>dbinom()</em>, no caso de <span class="math inline">\(P(X=5)\)</span>:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="simulação.html#cb215-1" tabindex="-1"></a><span class="co"># Probabilidade de sair exatamente 5 caras em 10 lançamentos</span></span>
+<span id="cb215-2"><a href="simulação.html#cb215-2" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.2460938</code></pre>
+<p>Para saber a probabilidade acumulada, usamos <em>pbinom()</em>, no caso de <span class="math inline">\(P(X \leq 5)\)</span>:</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="simulação.html#cb217-1" tabindex="-1"></a><span class="co"># Probabilidade de sair 5 ou menos caras em 10 lançamentos</span></span>
+<span id="cb217-2"><a href="simulação.html#cb217-2" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6230469</code></pre>
+<p>Para saber o quantil, usando <em>qbinom()</em>, no caso de <span class="math inline">\(P(X \leq x) = 0,8\)</span></p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="simulação.html#cb219-1" tabindex="-1"></a><span class="co"># Qual o menor número de sucessos tal que a probabilidade acumulada seja ao menos 0.8?</span></span>
+<span id="cb219-2"><a href="simulação.html#cb219-2" tabindex="-1"></a><span class="fu">qbinom</span>(<span class="fl">0.8</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<hr />
+</div>
+</div>
+<div id="exercícios-5" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Exercícios<a href="simulação.html#exercícios-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Obs. Caso queira comparar seu resultado com o gabarito (capítulo 9) use <em>set.seed(123)</em>.</p>
+<ol style="list-style-type: decimal">
+<li>Simule o lançamento de um dado honesto (com faces de 1 a 6), um grande número de vezes. A cada novo lançamento, calcule a média dos valores obtidos. Em seguida, faça um gráfico que mostre como essa média se aproxima do valor esperado.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Simule 10 mil lançamentos de um dado honesto.</li>
+<li>Calcule a média acumulada depois de cada lançamento simulado.</li>
+<li>Faça um gráfico com a média acumulada em função do número de lançamentos. Por fim, adicione uma linha horizontal indicando o valor esperado de um dado uniforme.</li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Caso um aluno chute aleatoriamente as respostas de uma prova com 10 questões, cada uma com 4 alternativas. Estime, por simulação, a probabilidade dele acertar pelo menos 4 questões.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Simule esse experimento 10.000 vezes. E em cada simulação, gere 10 respostas com probabilidade de acerto = 0,25.</li>
+<li>Conte em quantas simulações o número de acertos foi maior ou igual a 4 e estime essa probabilidade.</li>
+<li>calcule o resultado teórico usando a função <em>pbinom()</em>.</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Suponha que você tenha dois dados justos de seis faces. Qual é a probabilidade de que a soma dos números nos dois dados seja maior que 8 ou igual a 5?</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Simule 10 mil lançamentos. Em cada simulação gere dois números aleatórios inteiros entre 1 e 6.</li>
+<li>Calcule a soma de cada par de lançamentos e conte quantas vezes a soma é maior que 8 ou igual a 5.</li>
+<li>Calcule a probabilidade estimada.</li>
+</ol>
 
 </div>
 </div>
