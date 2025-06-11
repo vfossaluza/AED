@@ -8,6 +8,7 @@ bookdown::gitbook:
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     download: ["pdf"] 
+    number_sections: true
 bookdown::pdf_book:
    includes:
      in_header: preamble.tex
@@ -15,5 +16,7 @@ bookdown::pdf_book:
    keep_tex: yes
    webshot: true
    latex_engine: pdflatex
+  
+
 # bookdown::epub_book: default
 

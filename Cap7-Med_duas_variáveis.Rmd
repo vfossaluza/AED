@@ -39,19 +39,7 @@ dados_cap7 %>% tbl_cross(Camisa,Basquete,percent = "row") %>%
   bold_labels()
 ```
 
-##	Correlação amostral
-
-- Podemos estimar a $E[xY]$ como $\displaystyle \frac{1}{n}\sum_{i=1}^n x_i~y_i$.
-
-- Assim, a $COV(X,Y)$ pode ser estimada por $\displaystyle cov = \frac{1}{n}\sum_{i=1}^n x_i~y_i - \bar{x}~\bar{y}$.
-
-- Analogamente, a correção amostral é $$cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.$$
-
-- No exemplo:
-
-```{r cor}
-cor(dados_cap7$Camisa, dados_cap7$Basquete)
-```
+---
 
 ##	Qui-Quadrado de Pearson
 
@@ -194,6 +182,22 @@ $VPN = P(Doente=0~|~Teste=0)$
 $AC = P\left[(\text{Teste}=0, \text{Doente} = 0) \cup (\text{Teste}=1, \text{Doente} = 1)\right]$
   - estimativa: $ac = \dfrac{o_{11}+o_{22}}{n}$  
   - no exemplo: $ac = \dfrac{3+4}{10} = \dfrac{7}{10}$ 
+
+---
+
+##	Correlação amostral
+
+- Podemos estimar a $E[xY]$ como $\displaystyle \frac{1}{n}\sum_{i=1}^n x_i~y_i$.
+
+- Assim, a $COV(X,Y)$ pode ser estimada por $\displaystyle cov = \frac{1}{n}\sum_{i=1}^n x_i~y_i - \bar{x}~\bar{y}$.
+
+- Analogamente, a correção amostral é $$cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.$$
+
+- No exemplo:
+
+```{r cor}
+cor(dados_cap7$Camisa, dados_cap7$Basquete)
+```
 
 ---
 

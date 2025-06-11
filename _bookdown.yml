@@ -24,3 +24,17 @@ language:
     appendix_name: 'Apêndice '
 
 always_allow_html: true
+
+rmd_files: [
+  "index.Rmd",
+  "Cap2-conceitos.Rmd",
+  "Cap3-R.Rmd",
+  "Cap4-Dados.Rmd",
+  "Cap5-Med_uma_variável.Rmd",
+  "Cap6-Gráficos.Rmd",
+  "Cap7-Med_duas_variáveis.Rmd",
+  "Cap8-grafico2.Rmd",
+  "Cap9-simulacao.Rmd",
+  "Cap10-gabarito.Rmd",
+  "reg_linear.Rmd"
+]

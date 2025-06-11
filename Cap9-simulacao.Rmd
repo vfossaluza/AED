@@ -206,7 +206,7 @@ qbinom(0.8, size = 10, prob = 0.5)
 
 ## Exercícios
 
-Obs. Caso queira comparar seu resultado com o gabarito (capítulo 9) use *set.seed(123)*.
+Obs. Caso queira comparar seu resultado com o gabarito (capítulo 10) use *set.seed(123)*.
 
 1. Simule o lançamento de um dado honesto (com faces de 1 a 6), um grande número de vezes. A cada novo lançamento, calcule a média dos valores obtidos. Em seguida, faça um gráfico que mostre como essa média se aproxima do valor esperado.
   (a) Simule 10 mil lançamentos de um dado honesto.

@@ -467,7 +467,65 @@ $$
 
 ---
 
-## Capítulo 8 
+## Capítulo 8
+
+- **Exercício 1**
+
+```{r cap8_ex1}
+library(ggplot2)
+
+# Carregar o dataset mtcars (já está disponível no R)
+data("mtcars")
+
+ggplot(mtcars, aes(x = factor(cyl), y = mpg, fill = factor(cyl))) +
+  geom_boxplot() +
+  labs(
+    title = "Eficiência de Combustível (MPG) por Número de Cilindros",
+    x = "Número de Cilindros",
+    y = "Milhas por Galão (MPG)",
+    fill = "Cilindros" 
+  ) +
+  theme_minimal() 
+```
+
+O boxplot mostra uma associação negativa entre o número de cilindros e a eficiência de combustível (MPG).
+
+Podemos observar que para carros com 4 cilindros (4-cyl) mediana de MPG mais alta e uma dispersão relativamente grande, indicando maior eficiência. Já em carros com 6 cilindros (6-cyl) a mediana de MPG é menor do que os de 4 cilindros e com menor dispersão. Por fim, carros com 8 cilindros (8-cyl) possuem a mediana de MPG mais baixa, sugerindo que, em média, são os menos eficientes em termos de combustível.
+
+Ou seja, o gráfico sugere que, à medida que o número de cilindros aumenta, a eficiência de combustível tende a diminuir.
+
+
+- **Exercício 2**
+
+```{r cap8_ex2}
+# Carregar o pacote ggplot2
+library(ggplot2)
+
+# Carregar o dataset iris (já está disponível no R)
+data("iris")
+
+# Opcional, definir as cores para cada espécie, similar ao seu modelo
+cores_especies <- c("setosa" = "hotpink",
+                    "versicolor" = "darkturquoise",  
+                    "virginica" = "orchid") 
+
+
+ggplot(iris, aes(x = Sepal.Width, fill = Species)) +
+  geom_histogram(alpha = 0.8, color = "black", binwidth = 0.2) + 
+  scale_fill_manual(values = cores_especies) +
+  facet_wrap(~Species, ncol = 1) + 
+  labs(
+    title = "Distribuição da Largura da Sépala por Espécie de Íris",
+    x = "Largura da Sépala (cm)",
+    y = "Frequência"
+  ) +
+  theme_bw() + 
+  theme(legend.position = "none") 
+```
+
+---
+
+## Capítulo 9
 
 - **Exercício 1**
 
@@ -475,7 +533,7 @@ $$
 
 Simular os lançamentos de um dado honesto:
 
-```{r cap8_ex1a}
+```{r cap9_ex1a}
 set.seed(123)
 
 n <- 10000
@@ -487,7 +545,7 @@ lancamentos <- sample(1:6, size = n, replace = TRUE)
 
 Calcular a média acumulada depois de cada lançamento:
 
-```{r cap8_ex1b}
+```{r cap9_ex1b}
 somas <- cumsum(lancamentos)
 
 # Divide cada soma pelo número de lançamentos até aquele ponto
@@ -496,7 +554,7 @@ medias <- somas / (1:n)
 
 **item (c)**
 
-```{r cap8_ex1c}
+```{r cap9_ex1c}
 plot(medias, type = "l",
      main = "Convergência da Média dos Lançamentos de um Dado",
      xlab = "Número de Lançamentos",
@@ -516,7 +574,7 @@ legend("topright", legend = c("Média acumulada", "Valor esperado (3,5)"),
 
 **item (a)**
 
-```{r cap8_ex2a}
+```{r cap9_ex2a}
 set.seed(123)
 
 n_simulacoes <- 10000
@@ -531,7 +589,7 @@ acertos <- rbinom(n_simulacoes, size = n_questoes, prob = p_acerto)
 
 **item (b)**
 
-```{r cap8_ex2b}
+```{r cap9_ex2b}
 sucessos <- sum(acertos >= 4)
 
 prob_estimada <- sucessos / n_simulacoes
@@ -541,15 +599,15 @@ cat("Estimativa de P(acertar pelo menos 4 questões):", prob_estimada, "\n")
 
 **item (c)**
 
-```{r cap8_ex2c}
+```{r cap9_ex2c}
 acertos <- rbinom(n_simulacoes, size = n_questoes, prob = p_acerto)
 ```
 
-- ** Exercício 3**
+- **Exercício 3**
 
 **item (a)**
 
-```{r cap8_ex3a}
+```{r cap9_ex3a}
 set.seed(123)
 
 n_simulacoes <- 10000
@@ -560,7 +618,7 @@ dado2 <- sample(1:6, size = n_simulacoes, replace = TRUE)
 
 **item (b)**
 
-```{r cap8_ex3b}
+```{r cap9_ex3b}
 somas <- dado1 + dado2
 
 # Verificar se soma > 8 OU soma == 5
@@ -574,7 +632,7 @@ cat("Número de vezes que a condição foi satisfeita:", numero_condicao_satisfe
 
 **item (c)**
 
-```{r cap8_ex3c}
+```{r cap9_ex3c}
 # Estimar a Probabilidade
 probabilidade_estimada <- numero_condicao_satisfeita / n_simulacoes
 

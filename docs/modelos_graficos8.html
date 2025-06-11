@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Modelos Gráficos de Associação entre Duas Variáveis | Análise Exploratória de Dados</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Modelos Gráficos de Associação entre Duas Variáveis | Análise Exploratória de Dados" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Modelos Gráficos de Associação entre Duas Variáveis | Análise Exploratória de Dados" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
+
+
+<meta name="date" content="2025-06-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="medidas_duas_va.html"/>
+<link rel="next" href="simulação.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introdução</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#apresentação"><i class="fa fa-check"></i><b>1.1</b> Apresentação</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#programa"><i class="fa fa-check"></i><b>1.2</b> Programa</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#bibliografia"><i class="fa fa-check"></i><b>1.3</b> Bibliografia</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#bibliografia-jupiterweb"><i class="fa fa-check"></i><b>1.4</b> Bibliografia Jupiterweb</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#bibliografia-complementar"><i class="fa fa-check"></i><b>1.5</b> Bibliografia Complementar</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html"><i class="fa fa-check"></i><b>2</b> Conceitos básicos de Análise Exploratória de Dados</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-significa-algo-ser-aleatório"><i class="fa fa-check"></i><b>2.1</b> O que significa algo ser “aleatório”?</a></li>
+<li class="chapter" data-level="2.2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-é-probabilidade"><i class="fa fa-check"></i><b>2.2</b> O que é Probabilidade?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#interpretações-de-probabilidade"><i class="fa fa-check"></i><b>2.2.1</b> Interpretações de Probabilidade</a></li>
+<li class="chapter" data-level="2.2.2" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#comentários-sobre-probabilidade-e-aleatoriedade"><i class="fa fa-check"></i><b>2.2.2</b> Comentários sobre Probabilidade e Aleatoriedade</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#o-que-é-estatística"><i class="fa fa-check"></i><b>2.3</b> O que é Estatística?</a></li>
+<li class="chapter" data-level="2.4" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#método-científico"><i class="fa fa-check"></i><b>2.4</b> Método Científico</a></li>
+<li class="chapter" data-level="2.5" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#população-x-amostra-probabilidade-x-estatística"><i class="fa fa-check"></i><b>2.5</b> População X Amostra, Probabilidade X Estatística</a></li>
+<li class="chapter" data-level="2.6" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#estatística-descritiva"><i class="fa fa-check"></i><b>2.6</b> Estatística Descritiva</a></li>
+<li class="chapter" data-level="2.7" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#inferência-estatística"><i class="fa fa-check"></i><b>2.7</b> Inferência Estatística</a></li>
+<li class="chapter" data-level="2.8" data-path="conceitos_aed1.html"><a href="conceitos_aed1.html#aprendizado-estatístico"><i class="fa fa-check"></i><b>2.8</b> Aprendizado Estatístico</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="apresentacao_r.html"><a href="apresentacao_r.html"><i class="fa fa-check"></i><b>3</b> Apresentação à linguagem R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="apresentacao_r.html"><a href="apresentacao_r.html#como-instalar"><i class="fa fa-check"></i><b>3.1</b> Como instalar</a></li>
+<li class="chapter" data-level="3.2" data-path="apresentacao_r.html"><a href="apresentacao_r.html#comparação-com-outras-linguagens-estatísticas"><i class="fa fa-check"></i><b>3.2</b> Comparação com outras linguagens estatísticas</a></li>
+<li class="chapter" data-level="3.3" data-path="apresentacao_r.html"><a href="apresentacao_r.html#introdução-ao-rmarkdown"><i class="fa fa-check"></i><b>3.3</b> Introdução ao RMarkdown</a></li>
+<li class="chapter" data-level="3.4" data-path="apresentacao_r.html"><a href="apresentacao_r.html#operadores-básicos"><i class="fa fa-check"></i><b>3.4</b> Operadores Básicos</a></li>
+<li class="chapter" data-level="3.5" data-path="apresentacao_r.html"><a href="apresentacao_r.html#estrutura-de-dados-em-r"><i class="fa fa-check"></i><b>3.5</b> Estrutura de Dados em R</a></li>
+<li class="chapter" data-level="3.6" data-path="apresentacao_r.html"><a href="apresentacao_r.html#estruturas-de-controle"><i class="fa fa-check"></i><b>3.6</b> Estruturas de controle</a></li>
+<li class="chapter" data-level="3.7" data-path="apresentacao_r.html"><a href="apresentacao_r.html#funções"><i class="fa fa-check"></i><b>3.7</b> Funções</a></li>
+<li class="chapter" data-level="3.8" data-path="apresentacao_r.html"><a href="apresentacao_r.html#funções-básicas-e-pacotes"><i class="fa fa-check"></i><b>3.8</b> Funções Básicas e Pacotes</a></li>
+<li class="chapter" data-level="3.9" data-path="apresentacao_r.html"><a href="apresentacao_r.html#exercícios"><i class="fa fa-check"></i><b>3.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dados_4.html"><a href="dados_4.html"><i class="fa fa-check"></i><b>4</b> Dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="dados_4.html"><a href="dados_4.html#processos-de-obtenção-importação-organização-e-transformação"><i class="fa fa-check"></i><b>4.1</b> Processos de obtenção, importação, organização e transformação</a></li>
+<li class="chapter" data-level="4.2" data-path="dados_4.html"><a href="dados_4.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>4.2</b> Tipos de Variáveis</a></li>
+<li class="chapter" data-level="4.3" data-path="dados_4.html"><a href="dados_4.html#tabelas-de-frequências"><i class="fa fa-check"></i><b>4.3</b> Tabelas de Frequências</a></li>
+<li class="chapter" data-level="4.4" data-path="dados_4.html"><a href="dados_4.html#manipulação-de-dados-usando-o-tidyverse"><i class="fa fa-check"></i><b>4.4</b> Manipulação de Dados usando o tidyverse</a></li>
+<li class="chapter" data-level="4.5" data-path="dados_4.html"><a href="dados_4.html#exercícios-1"><i class="fa fa-check"></i><b>4.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html"><i class="fa fa-check"></i><b>5</b> Medidas de uma variável</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-posição-ou-de-tendência-central"><i class="fa fa-check"></i><b>5.1</b> Medidas de posição ou de Tendência Central</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#média-aritmética"><i class="fa fa-check"></i><b>5.1.1</b> Média (Aritmética)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#mediana"><i class="fa fa-check"></i><b>5.1.2</b> Mediana</a></li>
+<li class="chapter" data-level="5.1.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#moda"><i class="fa fa-check"></i><b>5.1.3</b> Moda</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>5.2</b> Medidas de Dispersão</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#variância"><i class="fa fa-check"></i><b>5.2.1</b> Variância</a></li>
+<li class="chapter" data-level="5.2.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-padrão"><i class="fa fa-check"></i><b>5.2.2</b> Desvio padrão</a></li>
+<li class="chapter" data-level="5.2.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-médio-ou-absoluto"><i class="fa fa-check"></i><b>5.2.3</b> Desvio médio ou absoluto</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#medidas-de-ordem"><i class="fa fa-check"></i><b>5.3</b> Medidas de ordem</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#quartis-e-quantis"><i class="fa fa-check"></i><b>5.3.1</b> Quartis e quantis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#distância-ou-amplitude-interquartis"><i class="fa fa-check"></i><b>5.3.2</b> Distância (ou Amplitude) Interquartis</a></li>
+<li class="chapter" data-level="5.3.3" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#desvio-mediano-absoluto"><i class="fa fa-check"></i><b>5.3.3</b> Desvio Mediano Absoluto</a></li>
+<li class="chapter" data-level="5.3.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#amplitude"><i class="fa fa-check"></i><b>5.3.4</b> Amplitude</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#calculo-de-medidas-no-r"><i class="fa fa-check"></i><b>5.4</b> Calculo de medidas no R</a></li>
+<li class="chapter" data-level="5.5" data-path="medidas_uma_variavel_5.html"><a href="medidas_uma_variavel_5.html#exercícios-2"><i class="fa fa-check"></i><b>5.5</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html"><i class="fa fa-check"></i><b>6</b> Modelos Gráficos</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-barras"><i class="fa fa-check"></i><b>6.1</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="6.2" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráfico-de-setores-pizza"><i class="fa fa-check"></i><b>6.2</b> Gráfico de Setores (Pizza)</a></li>
+<li class="chapter" data-level="6.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#histograma"><i class="fa fa-check"></i><b>6.3</b> Histograma</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#números-de-faixas-e-largura"><i class="fa fa-check"></i><b>6.3.1</b> Números de faixas e largura</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#ramos-e-folhas"><i class="fa fa-check"></i><b>6.4</b> Ramos e Folhas</a></li>
+<li class="chapter" data-level="6.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#box-plot"><i class="fa fa-check"></i><b>6.5</b> Box-Plot</a></li>
+<li class="chapter" data-level="6.6" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#gráficos-e-simetria"><i class="fa fa-check"></i><b>6.6</b> Gráficos e simetria</a></li>
+<li class="chapter" data-level="6.7" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#medidas-de-assimetria"><i class="fa fa-check"></i><b>6.7</b> Medidas de assimetria</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#coeficiente-de-assimetria-de-bowley"><i class="fa fa-check"></i><b>6.7.1</b> Coeficiente de Assimetria de Bowley</a></li>
+<li class="chapter" data-level="6.7.2" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#coeficiente-de-assimetria-de-pearson-1"><i class="fa fa-check"></i><b>6.7.2</b> Coeficiente de Assimetria de Pearson 1</a></li>
+<li class="chapter" data-level="6.7.3" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#coeficiente-de-assimetria-de-pearson-2"><i class="fa fa-check"></i><b>6.7.3</b> Coeficiente de Assimetria de Pearson 2</a></li>
+<li class="chapter" data-level="6.7.4" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#coeficiente-de-assimetria-de-fisher-pearson"><i class="fa fa-check"></i><b>6.7.4</b> Coeficiente de Assimetria de Fisher-Pearson</a></li>
+<li class="chapter" data-level="6.7.5" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#coeficiente-de-assimetria-de-fisher-pearson-ajustado"><i class="fa fa-check"></i><b>6.7.5</b> Coeficiente de Assimetria de Fisher-Pearson ajustado</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#função-de-distribuição-empírica-fde"><i class="fa fa-check"></i><b>6.8</b> Função de distribuição empírica (FDE)</a></li>
+<li class="chapter" data-level="6.9" data-path="modelos_graficos6.html"><a href="modelos_graficos6.html#exercícios-3"><i class="fa fa-check"></i><b>6.9</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html"><i class="fa fa-check"></i><b>7</b> Medidas de duas variáveis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#tabela-de-contingência-de-frequências"><i class="fa fa-check"></i><b>7.1</b> Tabela de Contingência (de Frequências)</a></li>
+<li class="chapter" data-level="7.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#qui-quadrado-de-pearson"><i class="fa fa-check"></i><b>7.2</b> Qui-Quadrado de Pearson</a></li>
+<li class="chapter" data-level="7.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-de-associação-baseadas-no-qui-quadrado"><i class="fa fa-check"></i><b>7.3</b> Medidas de Associação baseadas no Qui-Quadrado</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-contingência-de-pearson"><i class="fa fa-check"></i><b>7.3.1</b> Coeficiente de Contingência de Pearson</a></li>
+<li class="chapter" data-level="7.3.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-tcschupov"><i class="fa fa-check"></i><b>7.3.2</b> Coeficiente de Tcschupov</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#outras-medidas-de-associação"><i class="fa fa-check"></i><b>7.4</b> Outras Medidas de Associação</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#risco-atribuível"><i class="fa fa-check"></i><b>7.4.1</b> Risco Atribuível</a></li>
+<li class="chapter" data-level="7.4.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#risco-relativo"><i class="fa fa-check"></i><b>7.4.2</b> Risco Relativo</a></li>
+<li class="chapter" data-level="7.4.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#razão-de-chances-odds-ratio"><i class="fa fa-check"></i><b>7.4.3</b> Razão de Chances (“Odds Ratio”)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-para-testes-de-diagnóstico"><i class="fa fa-check"></i><b>7.5</b> Medidas para Testes de Diagnóstico</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#sensibilidade"><i class="fa fa-check"></i><b>7.5.1</b> Sensibilidade</a></li>
+<li class="chapter" data-level="7.5.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#especificidade"><i class="fa fa-check"></i><b>7.5.2</b> Especificidade</a></li>
+<li class="chapter" data-level="7.5.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#falso-positivo"><i class="fa fa-check"></i><b>7.5.3</b> Falso Positivo</a></li>
+<li class="chapter" data-level="7.5.4" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#falso-negativo"><i class="fa fa-check"></i><b>7.5.4</b> Falso Negativo</a></li>
+<li class="chapter" data-level="7.5.5" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#valor-preditivo-positivo"><i class="fa fa-check"></i><b>7.5.5</b> Valor Preditivo Positivo</a></li>
+<li class="chapter" data-level="7.5.6" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#valor-preditivo-negativo"><i class="fa fa-check"></i><b>7.5.6</b> Valor Preditivo Negativo</a></li>
+<li class="chapter" data-level="7.5.7" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#acurácia"><i class="fa fa-check"></i><b>7.5.7</b> Acurácia</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#correlação-amostral"><i class="fa fa-check"></i><b>7.6</b> Correlação amostral</a></li>
+<li class="chapter" data-level="7.7" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#exercícios-4"><i class="fa fa-check"></i><b>7.7</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelos_graficos8.html"><a href="modelos_graficos8.html"><i class="fa fa-check"></i><b>8</b> Modelos Gráficos de Associação entre Duas Variáveis</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="modelos_graficos8.html"><a href="modelos_graficos8.html#gráfico-de-barras-1"><i class="fa fa-check"></i><b>8.1</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="8.2" data-path="modelos_graficos8.html"><a href="modelos_graficos8.html#histograma-1"><i class="fa fa-check"></i><b>8.2</b> Histograma</a></li>
+<li class="chapter" data-level="8.3" data-path="modelos_graficos8.html"><a href="modelos_graficos8.html#boxplot"><i class="fa fa-check"></i><b>8.3</b> Boxplot</a></li>
+<li class="chapter" data-level="8.4" data-path="modelos_graficos8.html"><a href="modelos_graficos8.html#gráfico-de-dispersão"><i class="fa fa-check"></i><b>8.4</b> Gráfico de dispersão</a></li>
+<li class="chapter" data-level="8.5" data-path="modelos_graficos8.html"><a href="modelos_graficos8.html#matriz-de-gráficos-ggally"><i class="fa fa-check"></i><b>8.5</b> Matriz de gráficos (ggally)</a></li>
+<li class="chapter" data-level="8.6" data-path="modelos_graficos8.html"><a href="modelos_graficos8.html#exercícios-5"><i class="fa fa-check"></i><b>8.6</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="simulação.html"><a href="simulação.html"><i class="fa fa-check"></i><b>9</b> Simulação</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="simulação.html"><a href="simulação.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>9.1</b> Lei dos Grandes Números</a></li>
+<li class="chapter" data-level="9.2" data-path="simulação.html"><a href="simulação.html#método-de-monte-carlo"><i class="fa fa-check"></i><b>9.2</b> Método de Monte Carlo</a></li>
+<li class="chapter" data-level="9.3" data-path="simulação.html"><a href="simulação.html#simulando-no-r"><i class="fa fa-check"></i><b>9.3</b> Simulando no R</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="simulação.html"><a href="simulação.html#principais-funções-para-simulação-no-r"><i class="fa fa-check"></i><b>9.3.1</b> Principais funções para simulação no R</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="simulação.html"><a href="simulação.html#exercícios-6"><i class="fa fa-check"></i><b>9.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>10</b> Respostas dos exercícios</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-3"><i class="fa fa-check"></i><b>10.1</b> Capítulo 3</a></li>
+<li class="chapter" data-level="10.2" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-4"><i class="fa fa-check"></i><b>10.2</b> Capítulo 4</a></li>
+<li class="chapter" data-level="10.3" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-5"><i class="fa fa-check"></i><b>10.3</b> Capítulo 5</a></li>
+<li class="chapter" data-level="10.4" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-6"><i class="fa fa-check"></i><b>10.4</b> Capítulo 6</a></li>
+<li class="chapter" data-level="10.5" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-7"><i class="fa fa-check"></i><b>10.5</b> Capítulo 7</a></li>
+<li class="chapter" data-level="10.6" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-8"><i class="fa fa-check"></i><b>10.6</b> Capítulo 8</a></li>
+<li class="chapter" data-level="10.7" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html#capítulo-9"><i class="fa fa-check"></i><b>10.7</b> Capítulo 9</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html"><i class="fa fa-check"></i><b>11</b> Regressão linear (incompleto)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="regressão-linear-incompleto.html"><a href="regressão-linear-incompleto.html#estimar-a-e-b"><i class="fa fa-check"></i><b>11.1</b> Estimar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise Exploratória de Dados</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelos_graficos8" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Modelos Gráficos de Associação entre Duas Variáveis<a href="modelos_graficos8.html#modelos_graficos8" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Além das medidas númericas que quantificam a associação entre duas variáveis, como as vistas no capitulo anterior, também é possível analisar essa relação de forma mais visual, através de gráficos.</p>
+<hr />
+<div id="gráfico-de-barras-1" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Gráfico de barras<a href="modelos_graficos8.html#gráfico-de-barras-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>É adequado quando ambas variáveis são categóricas (qualitativas nominais ou ordinais). Trás um ótimo comparativo entre as frequências absolutas.</p></li>
+<li><p><strong>Exemplo:</strong> explorar a relação entre gênero e preferencia por um tipo de filme.</p></li>
+</ul>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="modelos_graficos8.html#cb197-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados1, <span class="fu">aes</span>(<span class="at">x =</span> filme, <span class="at">fill =</span> gênero)) <span class="sc">+</span></span>
+<span id="cb197-2"><a href="modelos_graficos8.html#cb197-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb197-3"><a href="modelos_graficos8.html#cb197-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,   </span>
+<span id="cb197-4"><a href="modelos_graficos8.html#cb197-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb197-5"><a href="modelos_graficos8.html#cb197-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Preferência por gênero de filme segundo o sexo&quot;</span>,</span>
+<span id="cb197-6"><a href="modelos_graficos8.html#cb197-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Gênero do Filme&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb197-7"><a href="modelos_graficos8.html#cb197-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/graf_barras2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="histograma-1" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Histograma<a href="modelos_graficos8.html#histograma-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Outra opção para comparar distribuições de uma variável quantitativa por grupo categórico são os histogramas sobrepostos ou lado a lado.</p></li>
+<li><p>Adequado para uma variável que é quantitativa e queremos observar a distribuição da variável contínua separada por grupos definidos por uma variável categórica.</p></li>
+<li><p><strong>Exemplo:</strong> Relação de altura (quantitativo) entre de homens e mulheres (qualitativo).</p></li>
+</ul>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="modelos_graficos8.html#cb198-1" tabindex="-1"></a><span class="co"># Definindo intervalos personalizados para o eixo x</span></span>
+<span id="cb198-2"><a href="modelos_graficos8.html#cb198-2" tabindex="-1"></a>intervalos <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">1.45</span>, <span class="fl">1.95</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb198-3"><a href="modelos_graficos8.html#cb198-3" tabindex="-1"></a></span>
+<span id="cb198-4"><a href="modelos_graficos8.html#cb198-4" tabindex="-1"></a><span class="fu">ggplot</span>(dados2, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb198-5"><a href="modelos_graficos8.html#cb198-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb198-6"><a href="modelos_graficos8.html#cb198-6" tabindex="-1"></a>                 <span class="at">breaks =</span> intervalos) <span class="sc">+</span></span>
+<span id="cb198-7"><a href="modelos_graficos8.html#cb198-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
+<span id="cb198-8"><a href="modelos_graficos8.html#cb198-8" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb198-9"><a href="modelos_graficos8.html#cb198-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Altura (m)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb198-10"><a href="modelos_graficos8.html#cb198-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/histograma2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Com o mesmo exemplo, mas sem ser sobreposto:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="modelos_graficos8.html#cb199-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados2, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb199-2"><a href="modelos_graficos8.html#cb199-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">breaks =</span> intervalos) <span class="sc">+</span></span>
+<span id="cb199-3"><a href="modelos_graficos8.html#cb199-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
+<span id="cb199-4"><a href="modelos_graficos8.html#cb199-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb199-5"><a href="modelos_graficos8.html#cb199-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sexo, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span>  </span>
+<span id="cb199-6"><a href="modelos_graficos8.html#cb199-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>,</span>
+<span id="cb199-7"><a href="modelos_graficos8.html#cb199-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Altura (m)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb199-8"><a href="modelos_graficos8.html#cb199-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb199-9"><a href="modelos_graficos8.html#cb199-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="AED_files/figure-html/histograma2b-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="boxplot" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Boxplot<a href="modelos_graficos8.html#boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Útil quando se deseja comparar a distribuição de uma variável quantitativa entre diferentes grupos definidos por uma variável categórica.</p></li>
+<li><p>Ele mostra a mediana (linha central da caixa), o primeiro e terceiro quartis (bordas da caixa), valores mínimos e máximos (sem considerar outliers), outliers (pontos individuais fora dos limites).</p></li>
+<li><p><strong>Exemplo:</strong> Relação de altura (quantitativo) entre de homens e mulheres (qualitativo).</p></li>
+</ul>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="modelos_graficos8.html#cb200-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados3, <span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb200-2"><a href="modelos_graficos8.html#cb200-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb200-3"><a href="modelos_graficos8.html#cb200-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
+<span id="cb200-4"><a href="modelos_graficos8.html#cb200-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb200-5"><a href="modelos_graficos8.html#cb200-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>,</span>
+<span id="cb200-6"><a href="modelos_graficos8.html#cb200-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Sexo&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Altura (m)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb200-7"><a href="modelos_graficos8.html#cb200-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/boxplot2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="gráfico-de-dispersão" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Gráfico de dispersão<a href="modelos_graficos8.html#gráfico-de-dispersão" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>É útil quando ambas variáveis são quantitativas.</p></li>
+<li><p>Esse gráfico permite identificar padrões de correlação linear ou não linear (que será explicado posteriormente), além de possíveis agrupamentos por categoria.</p></li>
+<li><p><strong>Exemplo 1:</strong> Com relação linear clara entre altura e peso.</p></li>
+</ul>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="modelos_graficos8.html#cb201-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_linear, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
+<span id="cb201-2"><a href="modelos_graficos8.html#cb201-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb201-3"><a href="modelos_graficos8.html#cb201-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb201-4"><a href="modelos_graficos8.html#cb201-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Altura e Peso&quot;</span>,</span>
+<span id="cb201-5"><a href="modelos_graficos8.html#cb201-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Altura (cm)&quot;</span>,</span>
+<span id="cb201-6"><a href="modelos_graficos8.html#cb201-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Peso (kg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb201-7"><a href="modelos_graficos8.html#cb201-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/graf_dispersao1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>O gráfico acima mostra uma relação de linear positiva entre a altura e o peso. Isso indica que à medida que a altura aumenta, o peso também tende a aumentar proporcionalmente, com isso, podemos concluir que a uma correlação forte e direta entre as duas variáveis.</p>
+<ul>
+<li><strong>Exemplo 2:</strong> Com relação não linear, entre rendimento esportivo e idade.</li>
+</ul>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="modelos_graficos8.html#cb202-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_naolinear, <span class="fu">aes</span>(<span class="at">x =</span> idade, <span class="at">y =</span> rendimento)) <span class="sc">+</span></span>
+<span id="cb202-2"><a href="modelos_graficos8.html#cb202-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb202-3"><a href="modelos_graficos8.html#cb202-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb202-4"><a href="modelos_graficos8.html#cb202-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Idade e Rendimento em Esportes&quot;</span>,</span>
+<span id="cb202-5"><a href="modelos_graficos8.html#cb202-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Idade (anos)&quot;</span>,</span>
+<span id="cb202-6"><a href="modelos_graficos8.html#cb202-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Rendimento Esportivo&quot;</span>) <span class="sc">+</span></span>
+<span id="cb202-7"><a href="modelos_graficos8.html#cb202-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/graf_dispersao2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>O gráfico acima mostra uma relação não linear entre a idade e o rendimento esportivo. No início, o rendimento (eixo Y) tende a aumentar com a idade (eixo X), mas após um certo ponto (o pico), o rendimento começa a diminuir à medida que a idade avança.</p>
+<ul>
+<li><strong>Exemplo 3:</strong> Sem relação linear, entre renda (em reais) e altura (em cm).</li>
+</ul>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="modelos_graficos8.html#cb203-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_semrelacao, <span class="fu">aes</span>(<span class="at">x =</span> renda, <span class="at">y =</span> altura)) <span class="sc">+</span></span>
+<span id="cb203-2"><a href="modelos_graficos8.html#cb203-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb203-3"><a href="modelos_graficos8.html#cb203-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb203-4"><a href="modelos_graficos8.html#cb203-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Renda de Dinheiro e Altura&quot;</span>,</span>
+<span id="cb203-5"><a href="modelos_graficos8.html#cb203-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Renda (R$)&quot;</span>,</span>
+<span id="cb203-6"><a href="modelos_graficos8.html#cb203-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Altura (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb203-7"><a href="modelos_graficos8.html#cb203-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="AED_files/figure-html/graf_dispersao3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>O gráfico acima mostra a falta de relação entre renda e altura de uma pessoa. Podemos observar que os pontos estão dispersos aleatóriamente pelo gráfico, sem qualquer padrão aparente. A linha de tendência ajustada é praticamente horizontal, indicando que a altura de uma pessoa não é um bom preditor de sua renda, e vice-versa. Ou seja, não há uma correlação linear entre as duas variáveis.</p>
+<hr />
+</div>
+<div id="matriz-de-gráficos-ggally" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Matriz de gráficos (ggally)<a href="modelos_graficos8.html#matriz-de-gráficos-ggally" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Quando lidamos com análises mais abrangenres, especialmente para casos que temos muitas variáveis e queremos visualizar todas as associações par a par, podemos usar o pacote <em>ggally</em> do R, que é uma extensão do <em>ggplot2</em>. O pacote cria matrizes de gráficos, combinando diferentes tipos (histogramas, boxplots, densidades, etc.) dentro de uma única matriz onde cada cécula da matriz representa uma visualização da associação entre duas variáveis.</p>
+<p><strong>Função ggpairs():</strong></p>
+<p>A função <em>ggpairs()</em> é a principal do pacote. Ela gera uma matriz de gráficos de dispersão generalizada, onde cada célula da matriz é um gráfico que representa a relação entre duas variáveis. A matriz gerada por <em>ggpairs()</em> é dividida em três regiões principais:</p>
+<ul>
+<li>Diagonal: Mostra a distribuição de cada variável igualmente. Dependendo do tipo de variável a funçao apresenta diferentes tipos de gráficos.</li>
+<li>Triângulo inferior: Mostra as relações entre os pares de variáveis, através de graficos de dispersão, boxplot, graficos de frequência, entre outros, dependendo do tipo de variável.</li>
+<li>Triângulo superior: Mostra medidas de associação númerica, como as vistas no capítulo anterior.</li>
+</ul>
+<p>O exemplo abaixo usa o banco de dados disponível para download <strong><a href="./arquivos/dados_cap8.csv">aqui</a></strong>.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="modelos_graficos8.html#cb204-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb204-2"><a href="modelos_graficos8.html#cb204-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb204-3"><a href="modelos_graficos8.html#cb204-3" tabindex="-1"></a></span>
+<span id="cb204-4"><a href="modelos_graficos8.html#cb204-4" tabindex="-1"></a><span class="fu">ggpairs</span>(dados4, <span class="fu">aes</span>(<span class="at">color =</span> sexo))</span></code></pre></div>
+<p><img src="AED_files/figure-html/matriz_graficos-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Embora <em>ggpairs()</em> seja a principal, o <em>ggally</em> oferece outras funções para visualizações mais específicas, como <em>ggcorr()</em>, <em>ggsurv()</em>, etc.</p>
+<hr />
+</div>
+<div id="exercícios-5" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Exercícios<a href="modelos_graficos8.html#exercícios-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Usando o banco de dados <em>mtcars</em> do R, crie um boxplot para entender a associação entre o número de cilindros de um carro (<em>cyl</em>) e sua eficiência de combustível (<em>mpg</em>). Usa a vcariável cyl como eixo X e mpg como eixo Y. Interprete os resultados.</p></li>
+<li><p>Usando o banco de dados <em>iris</em> do R, crie um histograma (sem ser sobreposto, como no segundo exemplo da seção de histograma desse capítulo), que associe a largura da sépala (<em>Sepal.Width</em>) para cada espécie (<em>Species</em>). Interprete os resultados.
+Dica: Use <em>facet_wrap(~ Species)</em> para criar um painel separado para cada espécie, permitindo uma comparação lado a lado.</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="medidas_duas_va.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simulação.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/Cap8-grafico2.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["AED.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "number_sections": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

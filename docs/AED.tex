@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-06-08}
+\date{2025-06-10}
 
 \begin{document}
 \maketitle
@@ -3617,28 +3617,7 @@ Exemplo: suponha que deseja-se estudar se a cor da roupa (1: clara, 0: escura) e
 \end{tabular*}
 \end{table}
 
-\section{Correlação amostral}\label{correlauxe7uxe3o-amostral}
-
-\begin{itemize}
-\item
-  Podemos estimar a \(E[xY]\) como \(\displaystyle \frac{1}{n}\sum_{i=1}^n x_i~y_i\).
-\item
-  Assim, a \(COV(X,Y)\) pode ser estimada por \(\displaystyle cov = \frac{1}{n}\sum_{i=1}^n x_i~y_i - \bar{x}~\bar{y}\).
-\item
-  Analogamente, a correção amostral é \[cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.\]
-\item
-  No exemplo:
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{cor}\NormalTok{(dados\_cap7}\SpecialCharTok{$}\NormalTok{Camisa, dados\_cap7}\SpecialCharTok{$}\NormalTok{Basquete)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.4082483
-\end{verbatim}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \section{Qui-Quadrado de Pearson}\label{qui-quadrado-de-pearson}
 
@@ -3867,6 +3846,31 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{Correlação amostral}\label{correlauxe7uxe3o-amostral}
+
+\begin{itemize}
+\item
+  Podemos estimar a \(E[xY]\) como \(\displaystyle \frac{1}{n}\sum_{i=1}^n x_i~y_i\).
+\item
+  Assim, a \(COV(X,Y)\) pode ser estimada por \(\displaystyle cov = \frac{1}{n}\sum_{i=1}^n x_i~y_i - \bar{x}~\bar{y}\).
+\item
+  Analogamente, a correção amostral é \[cor = \dfrac{cov}{\sqrt{var(x)var(y)}} = \dfrac{\displaystyle \sum_{i=1}^n x_i~y_i - n~\bar{x}~\bar{y}}{\displaystyle \sqrt{\sum_{i=1}^n (x_i-\bar{x})^2\sum_{j=1}^n(y_j-\bar{y})^2}}~.\]
+\item
+  No exemplo:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(dados\_cap7}\SpecialCharTok{$}\NormalTok{Camisa, dados\_cap7}\SpecialCharTok{$}\NormalTok{Basquete)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4082483
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \section{Exercícios}\label{exercuxedcios-4}
 
 \begin{enumerate}
@@ -3887,6 +3891,231 @@ As medidas a seguir são bastante utilizadas no contexto de testes de diagnósti
   Calcule os valores preditivos positivo e negativo.
 \item
   Qual é a acúracia do teste?
+\end{enumerate}
+
+\chapter{Modelos Gráficos de Associação entre Duas Variáveis}\label{modelos_graficos8}
+
+Além das medidas númericas que quantificam a associação entre duas variáveis, como as vistas no capitulo anterior, também é possível analisar essa relação de forma mais visual, através de gráficos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Gráfico de barras}\label{gruxe1fico-de-barras-1}
+
+\begin{itemize}
+\item
+  É adequado quando ambas variáveis são categóricas (qualitativas nominais ou ordinais). Trás um ótimo comparativo entre as frequências absolutas.
+\item
+  \textbf{Exemplo:} explorar a relação entre gênero e preferencia por um tipo de filme.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados1, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ filme, }\AttributeTok{fill =}\NormalTok{ gênero)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Feminino"} \OtherTok{=} \StringTok{"hotpink"}\NormalTok{,   }
+                               \StringTok{"Masculino"} \OtherTok{=} \StringTok{"darkturquoise"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Preferência por gênero de filme segundo o sexo"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Gênero do Filme"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frequência"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/graf_barras2-1} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Histograma}\label{histograma-1}
+
+\begin{itemize}
+\item
+  Outra opção para comparar distribuições de uma variável quantitativa por grupo categórico são os histogramas sobrepostos ou lado a lado.
+\item
+  Adequado para uma variável que é quantitativa e queremos observar a distribuição da variável contínua separada por grupos definidos por uma variável categórica.
+\item
+  \textbf{Exemplo:} Relação de altura (quantitativo) entre de homens e mulheres (qualitativo).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Definindo intervalos personalizados para o eixo x}
+\NormalTok{intervalos }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\FloatTok{1.45}\NormalTok{, }\FloatTok{1.95}\NormalTok{, }\AttributeTok{by =} \FloatTok{0.05}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(dados2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ altura, }\AttributeTok{fill =}\NormalTok{ sexo)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{position =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }
+                 \AttributeTok{breaks =}\NormalTok{ intervalos) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Feminino"} \OtherTok{=} \StringTok{"hotpink"}\NormalTok{,  }
+                               \StringTok{"Masculino"} \OtherTok{=} \StringTok{"darkturquoise"}\NormalTok{)) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribuição da altura por sexo"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Altura (m)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frequência"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/histograma2-1} \end{center}
+
+Com o mesmo exemplo, mas sem ser sobreposto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ altura, }\AttributeTok{fill =}\NormalTok{ sexo)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{breaks =}\NormalTok{ intervalos) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Feminino"} \OtherTok{=} \StringTok{"hotpink"}\NormalTok{,  }
+                               \StringTok{"Masculino"} \OtherTok{=} \StringTok{"darkturquoise"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{sexo, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribuição da altura por sexo"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Altura (m)"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frequência"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/histograma2b-1} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Boxplot}\label{boxplot}
+
+\begin{itemize}
+\item
+  Útil quando se deseja comparar a distribuição de uma variável quantitativa entre diferentes grupos definidos por uma variável categórica.
+\item
+  Ele mostra a mediana (linha central da caixa), o primeiro e terceiro quartis (bordas da caixa), valores mínimos e máximos (sem considerar outliers), outliers (pontos individuais fora dos limites).
+\item
+  \textbf{Exemplo:} Relação de altura (quantitativo) entre de homens e mulheres (qualitativo).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados3, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ sexo, }\AttributeTok{y =}\NormalTok{ altura, }\AttributeTok{fill =}\NormalTok{ sexo)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Feminino"} \OtherTok{=} \StringTok{"hotpink"}\NormalTok{,  }
+                               \StringTok{"Masculino"} \OtherTok{=} \StringTok{"darkturquoise"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribuição da altura por sexo"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Sexo"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Altura (m)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/boxplot2-1} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Gráfico de dispersão}\label{gruxe1fico-de-dispersuxe3o}
+
+\begin{itemize}
+\item
+  É útil quando ambas variáveis são quantitativas.
+\item
+  Esse gráfico permite identificar padrões de correlação linear ou não linear (que será explicado posteriormente), além de possíveis agrupamentos por categoria.
+\item
+  \textbf{Exemplo 1:} Com relação linear clara entre altura e peso.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados\_linear, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ altura, }\AttributeTok{y =}\NormalTok{ peso)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"darkturquoise"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{color =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Altura e Peso"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Altura (cm)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Peso (kg)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/graf_dispersao1-1} \end{center}
+
+O gráfico acima mostra uma relação de linear positiva entre a altura e o peso. Isso indica que à medida que a altura aumenta, o peso também tende a aumentar proporcionalmente, com isso, podemos concluir que a uma correlação forte e direta entre as duas variáveis.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exemplo 2:} Com relação não linear, entre rendimento esportivo e idade.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados\_naolinear, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ idade, }\AttributeTok{y =}\NormalTok{ rendimento)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"darkturquoise"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"loess"}\NormalTok{, }\AttributeTok{color =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Idade e Rendimento em Esportes"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Idade (anos)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Rendimento Esportivo"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/graf_dispersao2-1} \end{center}
+
+O gráfico acima mostra uma relação não linear entre a idade e o rendimento esportivo. No início, o rendimento (eixo Y) tende a aumentar com a idade (eixo X), mas após um certo ponto (o pico), o rendimento começa a diminuir à medida que a idade avança.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exemplo 3:} Sem relação linear, entre renda (em reais) e altura (em cm).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(dados\_semrelacao, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ renda, }\AttributeTok{y =}\NormalTok{ altura)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{color =} \StringTok{"darkturquoise"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{color =} \StringTok{"deeppink"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{size =} \FloatTok{1.5}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Renda de Dinheiro e Altura"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Renda (R$)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Altura (cm)"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/graf_dispersao3-1} \end{center}
+
+O gráfico acima mostra a falta de relação entre renda e altura de uma pessoa. Podemos observar que os pontos estão dispersos aleatóriamente pelo gráfico, sem qualquer padrão aparente. A linha de tendência ajustada é praticamente horizontal, indicando que a altura de uma pessoa não é um bom preditor de sua renda, e vice-versa. Ou seja, não há uma correlação linear entre as duas variáveis.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Matriz de gráficos (ggally)}\label{matriz-de-gruxe1ficos-ggally}
+
+Quando lidamos com análises mais abrangenres, especialmente para casos que temos muitas variáveis e queremos visualizar todas as associações par a par, podemos usar o pacote \emph{ggally} do R, que é uma extensão do \emph{ggplot2}. O pacote cria matrizes de gráficos, combinando diferentes tipos (histogramas, boxplots, densidades, etc.) dentro de uma única matriz onde cada cécula da matriz representa uma visualização da associação entre duas variáveis.
+
+\textbf{Função ggpairs():}
+
+A função \emph{ggpairs()} é a principal do pacote. Ela gera uma matriz de gráficos de dispersão generalizada, onde cada célula da matriz é um gráfico que representa a relação entre duas variáveis. A matriz gerada por \emph{ggpairs()} é dividida em três regiões principais:
+
+\begin{itemize}
+\tightlist
+\item
+  Diagonal: Mostra a distribuição de cada variável igualmente. Dependendo do tipo de variável a funçao apresenta diferentes tipos de gráficos.
+\item
+  Triângulo inferior: Mostra as relações entre os pares de variáveis, através de graficos de dispersão, boxplot, graficos de frequência, entre outros, dependendo do tipo de variável.
+\item
+  Triângulo superior: Mostra medidas de associação númerica, como as vistas no capítulo anterior.
+\end{itemize}
+
+O exemplo abaixo usa o banco de dados disponível para download \textbf{\href{./arquivos/dados_cap8.csv}{aqui}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(GGally)}
+\FunctionTok{library}\NormalTok{(readr)}
+
+\FunctionTok{ggpairs}\NormalTok{(dados4, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ sexo))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/matriz_graficos-1} \end{center}
+
+Embora \emph{ggpairs()} seja a principal, o \emph{ggally} oferece outras funções para visualizações mais específicas, como \emph{ggcorr()}, \emph{ggsurv()}, etc.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Exercícios}\label{exercuxedcios-5}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Usando o banco de dados \emph{mtcars} do R, crie um boxplot para entender a associação entre o número de cilindros de um carro (\emph{cyl}) e sua eficiência de combustível (\emph{mpg}). Usa a vcariável cyl como eixo X e mpg como eixo Y. Interprete os resultados.
+\item
+  Usando o banco de dados \emph{iris} do R, crie um histograma (sem ser sobreposto, como no segundo exemplo da seção de histograma desse capítulo), que associe a largura da sépala (\emph{Sepal.Width}) para cada espécie (\emph{Species}). Interprete os resultados.
+  Dica: Use \emph{facet\_wrap(\textasciitilde{} Species)} para criar um painel separado para cada espécie, permitindo uma comparação lado a lado.
 \end{enumerate}
 
 \chapter{Simulação}\label{simulauxe7uxe3o}
@@ -4172,9 +4401,9 @@ Para saber o quantil, usando \emph{qbinom()}, no caso de \(P(X \leq x) = 0,8\)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\section{Exercícios}\label{exercuxedcios-5}
+\section{Exercícios}\label{exercuxedcios-6}
 
-Obs. Caso queira comparar seu resultado com o gabarito (capítulo 9) use \emph{set.seed(123)}.
+Obs. Caso queira comparar seu resultado com o gabarito (capítulo 10) use \emph{set.seed(123)}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4981,6 +5210,79 @@ AC = \frac{\text{vp + vn}}{\text{total}} = \frac{50 +75}{200} = 0,625
   \textbf{Exercício 1}
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Carregar o dataset mtcars (já está disponível no R)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"mtcars"}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(cyl), }\AttributeTok{y =}\NormalTok{ mpg, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(cyl))) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Eficiência de Combustível (MPG) por Número de Cilindros"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Número de Cilindros"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Milhas por Galão (MPG)"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Cilindros"} 
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap8_ex1-1} \end{center}
+
+O boxplot mostra uma associação negativa entre o número de cilindros e a eficiência de combustível (MPG).
+
+Podemos observar que para carros com 4 cilindros (4-cyl) mediana de MPG mais alta e uma dispersão relativamente grande, indicando maior eficiência. Já em carros com 6 cilindros (6-cyl) a mediana de MPG é menor do que os de 4 cilindros e com menor dispersão. Por fim, carros com 8 cilindros (8-cyl) possuem a mediana de MPG mais baixa, sugerindo que, em média, são os menos eficientes em termos de combustível.
+
+Ou seja, o gráfico sugere que, à medida que o número de cilindros aumenta, a eficiência de combustível tende a diminuir.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 2}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Carregar o pacote ggplot2}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Carregar o dataset iris (já está disponível no R)}
+\FunctionTok{data}\NormalTok{(}\StringTok{"iris"}\NormalTok{)}
+
+\CommentTok{\# Opcional, definir as cores para cada espécie, similar ao seu modelo}
+\NormalTok{cores\_especies }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"setosa"} \OtherTok{=} \StringTok{"hotpink"}\NormalTok{,}
+                    \StringTok{"versicolor"} \OtherTok{=} \StringTok{"darkturquoise"}\NormalTok{,  }
+                    \StringTok{"virginica"} \OtherTok{=} \StringTok{"orchid"}\NormalTok{) }
+
+
+\FunctionTok{ggplot}\NormalTok{(iris, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sepal.Width, }\AttributeTok{fill =}\NormalTok{ Species)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.8}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{binwidth =} \FloatTok{0.2}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ cores\_especies) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Species, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Distribuição da Largura da Sépala por Espécie de Íris"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Largura da Sépala (cm)"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Frequência"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/cap8_ex2-1} \end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Capítulo 9}\label{capuxedtulo-9}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exercício 1}
+\end{itemize}
+
 \textbf{item (a)}
 
 Simular os lançamentos de um dado honesto:
@@ -5027,7 +5329,7 @@ Calcular a média acumulada depois de cada lançamento:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{AED_files/figure-latex/cap8_ex1c-1} \end{center}
+\begin{center}\includegraphics{AED_files/figure-latex/cap9_ex1c-1} \end{center}
 
 \begin{itemize}
 \tightlist
@@ -5079,7 +5381,7 @@ Calcular a média acumulada depois de cada lançamento:
 \begin{itemize}
 \tightlist
 \item
-  ** Exercício 3**
+  \textbf{Exercício 3}
 \end{itemize}
 
 \textbf{item (a)}

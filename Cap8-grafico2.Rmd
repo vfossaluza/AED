@@ -1,0 +1,252 @@
+# Modelos Gráficos de Associação entre Duas Variáveis {#modelos_graficos8}
+
+Além das medidas númericas que quantificam a associação entre duas variáveis, como as vistas no capitulo anterior, também é possível analisar essa relação de forma mais visual, através de gráficos.
+
+---
+
+## Gráfico de barras
+
+- É adequado quando ambas variáveis são categóricas (qualitativas nominais ou ordinais). Trás um ótimo comparativo entre as frequências absolutas.
+
+- **Exemplo:** explorar a relação entre gênero e preferencia por um tipo de filme.
+
+```{r dados1_cap8, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+set.seed(123)
+
+dados1 <- data.frame(
+  gênero = sample(c("Feminino", "Masculino"), 200, replace = TRUE),
+  filme = sample(c("Comédia", "Drama", "Ação", "Suspense", "Romance", "Terror"), 
+                 200, replace = TRUE,
+                 prob = c(0.2, 0.15, 0.2, 0.15, 0.2, 0.1)))
+```
+
+```{r graf_barras2, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
+ggplot(dados1, aes(x = filme, fill = gênero)) +
+  geom_bar(position = "dodge") +
+  scale_fill_manual(values = c("Feminino" = "hotpink",   
+                               "Masculino" = "darkturquoise")) +
+  labs(title = "Preferência por gênero de filme segundo o sexo",
+       x = "Gênero do Filme", y = "Frequência") +
+  theme_bw()
+```
+
+---
+
+## Histograma
+
+- Outra opção para comparar distribuições de uma variável quantitativa por grupo categórico são os histogramas sobrepostos ou lado a lado.
+- Adequado para uma variável que é quantitativa e queremos observar a distribuição da variável contínua separada por grupos definidos por uma variável categórica.
+
+- **Exemplo:** Relação de altura (quantitativo) entre de homens e mulheres (qualitativo).
+
+```{r dados2_cap8, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+set.seed(123)
+
+dados2 <- data.frame(
+  sexo = rep(c("Feminino", "Masculino"), each = 100),
+  altura = c(rnorm(100, mean = 1.62, sd = 0.06), 
+             rnorm(100, mean = 1.75, sd = 0.07)))
+```
+
+
+```{r histograma2, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
+# Definindo intervalos personalizados para o eixo x
+intervalos <- seq(1.45, 1.95, by = 0.05)
+
+ggplot(dados2, aes(x = altura, fill = sexo)) +
+  geom_histogram(position = "identity", alpha = 0.6, color = "black", 
+                 breaks = intervalos) +
+  scale_fill_manual(values = c("Feminino" = "hotpink",  
+                               "Masculino" = "darkturquoise")) + 
+  labs(title = "Distribuição da altura por sexo", x = "Altura (m)", y = "Frequência") +
+  theme_bw()
+```
+
+Com o mesmo exemplo, mas sem ser sobreposto:
+
+```{r histograma2b, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
+ggplot(dados2, aes(x = altura, fill = sexo)) +
+  geom_histogram(alpha = 0.8, color = "black", breaks = intervalos) +
+  scale_fill_manual(values = c("Feminino" = "hotpink",  
+                               "Masculino" = "darkturquoise")) +
+  facet_wrap(~sexo, ncol = 1) +  
+  labs(title = "Distribuição da altura por sexo",
+       x = "Altura (m)", y = "Frequência") +
+  theme_bw() +
+  theme(legend.position = "none")
+```
+
+
+---
+
+## Boxplot
+
+- Útil quando se deseja comparar a distribuição de uma variável quantitativa entre diferentes grupos definidos por uma variável categórica. 
+- Ele mostra a mediana (linha central da caixa), o primeiro e terceiro quartis (bordas da caixa), valores mínimos e máximos (sem considerar outliers), outliers (pontos individuais fora dos limites).
+
+- **Exemplo:** Relação de altura (quantitativo) entre de homens e mulheres (qualitativo).
+
+```{r dados3_cap8, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+set.seed(123)
+
+dados3 <- data.frame(
+  sexo = rep(c("Feminino", "Masculino"), each = 100),
+  altura = c(rnorm(100, mean = 1.62, sd = 0.06), rnorm(100, mean = 1.75, sd = 0.07)))
+```
+
+```{r boxplot2, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
+ggplot(dados3, aes(x = sexo, y = altura, fill = sexo)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("Feminino" = "hotpink",  
+                               "Masculino" = "darkturquoise")) +
+  labs(title = "Distribuição da altura por sexo",
+       x = "Sexo", y = "Altura (m)") +
+  theme_bw()
+```
+
+---
+
+## Gráfico de dispersão
+
+- É útil quando ambas variáveis são quantitativas.
+- Esse gráfico permite identificar padrões de correlação linear ou não linear (que será explicado posteriormente), além de possíveis agrupamentos por categoria.
+
+- **Exemplo 1:** Com relação linear clara entre altura e peso.
+
+```{r dadoslinear1, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+set.seed(123)
+
+altura_linear <- runif(100, 150, 190) 
+peso_linear <- 0.6 * altura_linear - 30 + rnorm(100, 0, 5) 
+
+dados_linear <- data.frame(altura = altura_linear, peso = peso_linear)
+```
+
+```{r graf_dispersao1, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
+ggplot(dados_linear, aes(x = altura, y = peso)) +
+  geom_point(color = "darkturquoise", size = 3) +
+  geom_smooth(method = "lm", color = "deeppink", se = FALSE, size = 1.5) +
+  labs(title = "Altura e Peso",
+       x = "Altura (cm)",
+       y = "Peso (kg)") +
+  theme_bw()
+```
+
+O gráfico acima mostra uma relação de linear positiva entre a altura e o peso. Isso indica que à medida que a altura aumenta, o peso também tende a aumentar proporcionalmente, com isso, podemos concluir que a uma correlação forte e direta entre as duas variáveis.
+
+
+- **Exemplo 2:** Com relação não linear, entre rendimento esportivo e idade.
+
+```{r dadoslinear2, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+set.seed(123)
+
+idade_nlinear <- c(sample(15:30, 70, replace = TRUE), sample(31:60, 30, replace = TRUE))
+rendimento_nlinear <- -0.05 * (idade_nlinear - 30)^2 + 100 + rnorm(100, 0, 5)  
+
+dados_naolinear <- data.frame(idade = idade_nlinear, rendimento = rendimento_nlinear)
+```
+
+```{r graf_dispersao2, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
+ggplot(dados_naolinear, aes(x = idade, y = rendimento)) +
+  geom_point(color = "darkturquoise", size = 3) +
+  geom_smooth(method = "loess", color = "deeppink", se = FALSE, size = 1.5) + 
+  labs(title = "Idade e Rendimento em Esportes",
+       x = "Idade (anos)",
+       y = "Rendimento Esportivo") +
+  theme_bw()
+```
+
+
+O gráfico acima mostra uma relação não linear entre a idade e o rendimento esportivo. No início, o rendimento (eixo Y) tende a aumentar com a idade (eixo X), mas após um certo ponto (o pico), o rendimento começa a diminuir à medida que a idade avança.
+
+
+- **Exemplo 3:** Sem relação linear, entre renda (em reais) e altura (em cm).
+
+```{r dadoslinear3, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+set.seed(123)
+
+renda_semrelacao <- runif(100, 1000, 10000) 
+altura_semrelacao <- runif(100, 150, 190) 
+
+dados_semrelacao <- data.frame(renda = renda_semrelacao, altura = altura_semrelacao)
+```
+
+```{r graf_dispersao3, echo = TRUE, include = TRUE, message=FALSE, warning=FALSE}
+ggplot(dados_semrelacao, aes(x = renda, y = altura)) +
+  geom_point(color = "darkturquoise", size = 3) +
+  geom_smooth(method = "lm", color = "deeppink", se = FALSE, size = 1.5) + 
+  labs(title = "Renda de Dinheiro e Altura",
+       x = "Renda (R$)",
+       y = "Altura (cm)") +
+  theme_bw()
+```
+
+O gráfico acima mostra a falta de relação entre renda e altura de uma pessoa. Podemos observar que os pontos estão dispersos aleatóriamente pelo gráfico, sem qualquer padrão aparente. A linha de tendência ajustada é praticamente horizontal, indicando que a altura de uma pessoa não é um bom preditor de sua renda, e vice-versa. Ou seja, não há uma correlação linear entre as duas variáveis.
+
+---
+
+## Matriz de gráficos (ggally)
+
+Quando lidamos com análises mais abrangenres, especialmente para casos que temos muitas variáveis e queremos visualizar todas as associações par a par, podemos usar o pacote *ggally* do R, que é uma extensão do *ggplot2*. O pacote cria matrizes de gráficos, combinando diferentes tipos (histogramas, boxplots, densidades, etc.) dentro de uma única matriz onde cada cécula da matriz representa uma visualização da associação entre duas variáveis.
+
+
+**Função ggpairs():**
+
+A função *ggpairs()* é a principal do pacote. Ela gera uma matriz de gráficos de dispersão generalizada, onde cada célula da matriz é um gráfico que representa a relação entre duas variáveis. A matriz gerada por *ggpairs()* é dividida em três regiões principais:
+
+- Diagonal: Mostra a distribuição de cada variável igualmente. Dependendo do tipo de variável a funçao apresenta diferentes tipos de gráficos.
+- Triângulo inferior: Mostra as relações entre os pares de variáveis, através de graficos de dispersão, boxplot, graficos de frequência, entre outros, dependendo do tipo de variável.
+- Triângulo superior: Mostra medidas de associação númerica, como as vistas no capítulo anterior.
+
+O exemplo abaixo usa o banco de dados disponível para download **[aqui](./arquivos/dados_cap8.csv)**.
+
+```{r dados4_cap8, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+# Ler o arquivo CSV
+dados4 <- read_csv("./arquivos/dados_cap8.csv")
+
+# Converter sexo para fator, se necessário
+dados4$sexo <- as.factor(dados4$sexo)
+```
+
+
+```{r matriz_fake, echo = TRUE, eval = FALSE, message=FALSE, warning=FALSE}
+library(GGally)
+library(readr)
+
+ggpairs(dados4, aes(color = sexo))
+```
+```{r matriz_graficos, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+library(GGally)
+library(readr)
+
+dados4 <- dados4 %>%
+  mutate(sexo = factor(sexo, levels = c("feminino", "masculino")))
+
+p <- ggpairs(
+  dados4,
+  mapping = aes(color = sexo),
+  progress = FALSE
+)
+
+for(i in 1:p$nrow) {
+  for(j in 1:p$ncol) {
+    p[i, j] <- p[i, j] + 
+      scale_color_manual(values = c("feminino" = "hotpink", "masculino" = "darkturquoise")) +
+      scale_fill_manual(values = c("feminino" = "hotpink", "masculino" = "darkturquoise"))}}
+
+print(p)
+```
+
+Embora *ggpairs()* seja a principal, o *ggally* oferece outras funções para visualizações mais específicas, como *ggcorr()*, *ggsurv()*, etc.
+
+---
+
+## Exercícios
+
+1. Usando o banco de dados *mtcars* do R, crie um boxplot para entender a associação entre o número de cilindros de um carro (*cyl*) e sua eficiência de combustível (*mpg*). Usa a vcariável cyl como eixo X e mpg como eixo Y. Interprete os resultados.
+
+2. Usando o banco de dados *iris* do R, crie um histograma (sem ser sobreposto, como no segundo exemplo da seção de histograma desse capítulo), que associe a largura da sépala (*Sepal.Width*) para cada espécie (*Species*). Interprete os resultados.
+Dica: Use *facet_wrap(~ Species)* para criar um painel separado para cada espécie, permitindo uma comparação lado a lado.
+
