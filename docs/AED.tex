@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-06-10}
+\date{2025-06-18}
 
 \begin{document}
 \maketitle
@@ -3619,11 +3619,11 @@ Exemplo: suponha que deseja-se estudar se a cor da roupa (1: clara, 0: escura) e
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\section{Qui-Quadrado de Pearson}\label{qui-quadrado-de-pearson}
+\section{Qui-Quadrado de Pearson}\label{qui_quadrado7}
 
 \begin{itemize}
 \item
-  Sejam \(o_{ij}\) as frequências observadas na \emph{i}-ésima linha e \emph{j}-ésima coluna da tabela, \(o_{i.}\) o total observado na linha \emph{i} e \(o_{.j}\) o total observado na coluna \emph{j}. Sob a hipótese de independência, espera que o valor observado em cada casela da tabela seja \(\displaystyle e_{ij} = \frac{o_{i.}~o_{.j}}{n}\).
+  Sejam \(o_{ij}\) as frequências observadas na \emph{i}-ésima linha e \emph{j}-ésima coluna da tabela, \(o_{i.}\) o total observado na linha \emph{i} e \(o_{j}\) o total observado na coluna \emph{j}. Sob a hipótese de independência, espera que o valor observado em cada casela da tabela seja \(\displaystyle e_{ij} = \frac{o_{i.}~o_{.j}}{n}\).
 \item
   A estatística de Qui-Quadrado é dada por:
   \[Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}~.\]
@@ -4398,6 +4398,178 @@ Para saber o quantil, usando \emph{qbinom()}, no caso de \(P(X \leq x) = 0,8\)
 \begin{verbatim}
 ## [1] 6
 \end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Uma aplicação de simulação em inferência estatística}\label{uma-aplicauxe7uxe3o-de-simulauxe7uxe3o-em-inferuxeancia-estatuxedstica}
+
+Uma das aplicações mais importantes da estatística é testar se duas variáveis são ou não independentes. Diferente da probabilidade, na inferência estatística, apenas os dados observados não são o suficiente pra afirmar independência. Além disso, variáveis aparentemente não correlacionadas têm correlação.
+
+Por isso, tradicionalmente usamos testes formais, como o teste do Qui-quadrado (visto no capítulo 7) e comparamos o valor calculado com os valores críticos teóricos, obtidos da ditribuição Qui-quadrado.
+
+No entanto, como ainda não vimos esse tipo de cálculo no curso, vamos simular esse comportamento do teste sob a hipotese de independência com um exemplo prático.
+
+Imgine que você possui dois dados honestos, um de 4 faces e outro com 6 faces. Para cada rodada, você escolhe qual dado vai jogar (ambos com igual probabilidade) e anota o valor da face que saiu. Esse processo é repetido 23 vezes.
+
+Esse experimento gera dois tipos de observações, que chamaremos de
+-\(X:\) o tipo de dado usado em cada jogada, \(x = {4, 6}\)
+-\(Y:\) o valor da face observada, \(y = 1, 2, \cdots, x\)
+
+A tabela a seguir mostra os resultados obtidos ao final das 23 jogadas, com o número de vezes que cada face apareceu, para cada tipo de dado:
+
+\begin{table}[!h]
+\centering
+\begin{tabular}[t]{cccccccc}
+\toprule
+\cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{X / Y}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 1}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 2}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 3}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 4}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 5}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 6}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Total}}}\\
+\midrule
+\cellcolor{gray!10}{Dado de 4 faces} & \cellcolor{gray!10}{2} & \cellcolor{gray!10}{3} & \cellcolor{gray!10}{3} & \cellcolor{gray!10}{4} & \cellcolor{gray!10}{0} & \cellcolor{gray!10}{0} & \cellcolor{gray!10}{12}\\
+Dado de 6 faces & 2 & 1 & 2 & 3 & 2 & 1 & 11\\
+\cellcolor{gray!10}{Total} & \cellcolor{gray!10}{4} & \cellcolor{gray!10}{4} & \cellcolor{gray!10}{5} & \cellcolor{gray!10}{7} & \cellcolor{gray!10}{2} & \cellcolor{gray!10}{1} & \cellcolor{gray!10}{23}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Após o experimento, queremos responder à seguinte pergunta: O valor da face (\(Y\)) depende do tipo de dado escolhido (\(X\))? Ou seja, \(X\) e \(Y\) são variáveis independentes? Se \(X\) e \(Y\) forem independentes, a face sorteada não influência o tipo de dado que foi lançado.
+
+A maneira clássica de testar isso é usando o teste Qui-quadrado, que compara os valores observados com os valores esperados sob suposição de independência.
+
+Faremos uma tabela com os valores esperados, que representa a conjunta de \(X\), \(Y\), caso eles fossem independêntes. Calculamos esses valores esperados usando as proporções totais de cada linha e coluna. Ou seja, o valor esperado da linha \(i\) e coluna \(j\) é:
+
+\[
+e_{ij} = \frac{\text{(soma da linha i)} \cdot \text{(soma da linha i)}}{n}
+\]
+
+Onde \(n\) é o total de valores observados (23).
+
+Por exemplo, para o valor observado na primeira linha (\(x=4\)) e primeira coluna (\(Y=1\)), temos:
+
+\[
+e_{11} = \frac{\text{(soma da linha 1)} \cdot \text{(soma da linha 1)}}{n} = \frac{12 \cdot 4}{23}
+\approx 2,087
+\]
+
+\begin{table}[!h]
+\centering
+\begin{tabular}[t]{cccccccc}
+\toprule
+\cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{X / Y}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 1}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 2}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 3}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 4}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 5}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Face 6}}} & \cellcolor[HTML]{D3D3D3}{\textcolor{black}{\textbf{Total}}}\\
+\midrule
+\cellcolor{gray!10}{Dado de 4 faces} & \cellcolor{gray!10}{2.09} & \cellcolor{gray!10}{2.09} & \cellcolor{gray!10}{2.61} & \cellcolor{gray!10}{3.65} & \cellcolor{gray!10}{1.04} & \cellcolor{gray!10}{0.52} & \cellcolor{gray!10}{12}\\
+Dado de 6 faces & 1.91 & 1.91 & 2.39 & 3.35 & 0.96 & 0.48 & 11\\
+\cellcolor{gray!10}{Total} & \cellcolor{gray!10}{4.00} & \cellcolor{gray!10}{4.00} & \cellcolor{gray!10}{5.00} & \cellcolor{gray!10}{7.00} & \cellcolor{gray!10}{2.00} & \cellcolor{gray!10}{1.00} & \cellcolor{gray!10}{23}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Agora, conseguimos calcular o Qui-quadrado,
+
+\[
+Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}
+\]
+Onde
+-\(o_{ij}\) é o valor observado na linha \(i\) e coluna \(j\).
+-\(e_{ij}\) é o valor esperado na linha \(i\) e coluna \(j\).
+
+Calculando pelo R, com:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qui\_obs }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((observado }\SpecialCharTok{{-}}\NormalTok{ esperado)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/}\NormalTok{ esperado)}
+\NormalTok{qui\_obs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.279942
+\end{verbatim}
+
+Temos então que o Qui-quadrado observado (\(Q_{obs}^2\)) é aproximadamente 4,28. Precisamos descobrir se esse valor representa variáveis independentes ou não.
+
+Em vez de apenas comparar o Qui-quadrado observado, vamos construir nossa própria ``distribuição'' de Qui-quadrados, simulando amostras sob a hipótese de independência e e verificando se o valor observado é compatível com o que esperaríamos por acaso.
+
+Vamos gerar 100 amostras de 23 pares (\(X_i, Y_i\)), com \(X_i \sim U\{4, 6\}\) e \(Y_i \sim U\{1, 2, \cdots, X_i\}\), sendo \(U\) a distribuição uniforme discreta.
+
+Para cada uma dessas 100 simulações, calculamos um Qui-quadrado. Ao final, teremos 100 valores de Qui-quadrado esperados sob independência e ordenaremos todos, caso o nosso Qui-quadrado \emph{observado} for muito alto (maior que o Qui-quadrado simulado de posição 95), teremos fortes indícios de dependência.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{simular\_qui }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{n\_sim =} \DecValTok{100}\NormalTok{, }\AttributeTok{n\_obs =} \DecValTok{23}\NormalTok{) \{}
+\NormalTok{  qui\_sim }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n\_sim)}
+  
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n\_sim) \{}
+    \CommentTok{\# Gerando X \textasciitilde{} unif\{4, 6\}}
+\NormalTok{    x }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{), }\AttributeTok{size =}\NormalTok{ n\_obs, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+    
+    \CommentTok{\# Para cada xi, gerar y \textasciitilde{} unif\{1, ..., xi\}}
+\NormalTok{    y }\OtherTok{\textless{}{-}} \FunctionTok{mapply}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(xi) }\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{xi, }\DecValTok{1}\NormalTok{), }\AttributeTok{xi =}\NormalTok{ x)}
+    
+    \CommentTok{\# Tabela com valores simulados}
+\NormalTok{    tabela\_sim }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(}\FunctionTok{factor}\NormalTok{(x, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)), }\FunctionTok{factor}\NormalTok{(y, }\AttributeTok{levels =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{))}
+    
+    \CommentTok{\# Totais marginais e esperados (para o cálculo de valor esperado)}
+\NormalTok{    linha\_totais }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(tabela\_sim)}
+\NormalTok{    coluna\_totais }\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{(tabela\_sim)}
+\NormalTok{    total }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(tabela\_sim)}
+    
+\NormalTok{    esperado\_sim }\OtherTok{\textless{}{-}} \FunctionTok{outer}\NormalTok{(linha\_totais, coluna\_totais, }\AttributeTok{FUN =} \ControlFlowTok{function}\NormalTok{(r, c) r }\SpecialCharTok{*}\NormalTok{ c }\SpecialCharTok{/}\NormalTok{ total)}
+    
+    \CommentTok{\# Calcular Q² apenas nas células com esperado \textgreater{} 0}
+\NormalTok{    valido }\OtherTok{\textless{}{-}}\NormalTok{ esperado\_sim }\SpecialCharTok{\textgreater{}} \DecValTok{0}
+\NormalTok{    Q2 }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((tabela\_sim[valido] }\SpecialCharTok{{-}}\NormalTok{ esperado\_sim[valido])}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{/}\NormalTok{ esperado\_sim[valido])}
+    
+\NormalTok{    qui\_sim[i] }\OtherTok{\textless{}{-}}\NormalTok{ Q2\}}
+  
+  \FunctionTok{return}\NormalTok{(qui\_sim)\}}
+
+\NormalTok{qui\_simulados }\OtherTok{\textless{}{-}} \FunctionTok{simular\_qui}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+No código acima criamos uma função \emph{simular\_qui()}, com 100 simulações e 23 observações para cada simulação. Criamos também um vetor vazio \emph{qui\_sim} com \emph{n\_sim = 100} posições, para armazenarmos nossos qui-quadrados.
+
+Em seguida, iniciamos um looping com 100 iterações. Para cada simulação, geramos um vetor \(x\) com \emph{n\_obs = 23} valores escolhidos aleatoriamente no conjunto \(\{ 4, 6\}\) (representando os dois tipos de dado). A escolha é feita com reposição, e a distribuição é uniforme (probabilidade 0,5 para cada elemento). Depois, para cada valor de \(x_i\), geramos outro vetor \(y\), que sorteia uma face aleatoriamente de 1 até \(x_i\).
+
+Criamos uma tabela de contingência \(X / Y\), com os nossos valores simulados e geramos uma matriz \emph{esperado\_sim} com cada valor esperado \(e_{ij}\). Com isso, aplicamos a fórmula do teste Qui-quadrado apenas nas células com valor esperado \textgreater{} 0 (evita divisões por zero).
+
+Logo depois, armazenamos o valor do teste da simulação atual no vetor \emph{qui\_sim} e retornamos esse vetor. Por fim, chamamos a função \emph{simular\_qui()} para o novo vetor \emph{qui\_simulados}, que conterá 100 valores de Qui-quadrado simulados sob a hipótese de independência.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{quantil\_95 }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(qui\_simulados, }\FloatTok{0.95}\NormalTok{)}
+\NormalTok{quantil\_95}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      95% 
+## 14.60973
+\end{verbatim}
+
+Com todos os 100 Qui-quadrados simulados, calculamos o quantil 95\% da distribuição empírica. É comumente usado o quantil 95\% nesse tipo de análise, por isso, ele foi o escolhido. Vendo essa distribuição simulada, de forma visual:
+
+\begin{center}\includegraphics{AED_files/figure-latex/hist_qui-1} \end{center}
+
+Finalmente, comparando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qui\_obs }\SpecialCharTok{\textgreater{}}\NormalTok{ quantil\_95}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   95% 
+## FALSE
+\end{verbatim}
+
+A estatística \(Q^2\) pode ser vista como uma distância entre os valores observados e esperados, sob hipótese de independencia. Então, para valores grandes de \(Q^2\), tem-se mais indícios de independencia nos dados observados. Logo, comparamos o valor \(Q_{obs}^2\) com o quantil 95\% da distribuição empírica (\(q_{(95)}\)): se o \(Q_{obs}^2 \leq q_{(95)}\), então, temos indícios de independência; caso contrário, não temos.
+
+Nesse sentido, anteriormente, calculamos o Qui-quadrado dos nossos valores observados, tendo \(Q_{obs}^2 = 4,28\). Comparando esse valor com a distribuição empírica de Qui-quadrados gerada a partir de 100 simulações sob hipótese de independência entre as variáveis \(X\) e \(Y\), ou então, comparando com o valor \(q_{(95)} = 14,6\) gerado, vemos que \(Q_{obs}^2  q_{(95)}\).
+
+Sendo assim, como nosso Qui-quadrado observado é \emph{menor} do que o quantil obtido, através das simulações concluímos que os dados não fornecem evidência contra a hipótese de independência. Ou seja, valores de Qui-quadrado maiores que 14,6 seriam considerados incompatíveis com a independência.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 

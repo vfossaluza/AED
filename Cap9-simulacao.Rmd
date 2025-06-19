@@ -204,6 +204,202 @@ qbinom(0.8, size = 10, prob = 0.5)
 
 ---
 
+## Uma aplicação de simulação em inferência estatística
+
+Uma das aplicações mais importantes da estatística é testar se duas variáveis são ou não independentes. Diferente da probabilidade, na inferência estatística, apenas os dados observados não são o suficiente pra afirmar independência. Além disso, variáveis aparentemente não correlacionadas têm correlação.
+
+Por isso, tradicionalmente usamos testes formais, como o teste do Qui-quadrado (visto no capítulo 7) e comparamos o valor calculado com os valores críticos teóricos, obtidos da ditribuição Qui-quadrado.
+
+No entanto, como ainda não vimos esse tipo de cálculo no curso, vamos simular esse comportamento do teste sob a hipotese de independência com um exemplo prático.
+
+Imgine que você possui dois dados honestos, um de 4 faces e outro com 6 faces. Para cada rodada, você escolhe qual dado vai jogar (ambos com igual probabilidade) e anota o valor da face que saiu. Esse processo é repetido 23 vezes.
+
+Esse experimento gera dois tipos de observações, que chamaremos de
+-$X:$ o tipo de dado usado em cada jogada, $x = {4, 6}$
+-$Y:$ o valor da face observada, $y = 1, 2, \cdots, x$
+
+A tabela a seguir mostra os resultados obtidos ao final das 23 jogadas, com o número de vezes que cada face apareceu, para cada tipo de dado:
+
+```{r tab_observado, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+observado <- matrix(c(
+  2, 3, 3, 4, 0, 0,   # Dado de 4 faces
+  2, 1, 2, 3, 2, 1    # Dado de 6 faces
+), nrow = 2, byrow = TRUE)
+
+rownames(observado) <- c("Dado de 4 faces", "Dado de 6 faces")
+colnames(observado) <- paste0("Face ", 1:6)
+
+observado_df <- as.data.frame(observado) %>%
+  rownames_to_column("X / Y") %>%
+  mutate(Total = rowSums(select(., starts_with("Face"))))
+
+totais_colunas <- colSums(observado_df[,-1])  
+linha_total <- c("Total", as.numeric(totais_colunas))
+observado_df <- rbind(observado_df, linha_total)
+
+observado_df %>%
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+    bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) c("striped", "hold_position") 
+    else NULL) %>% 
+  row_spec(0, bold = TRUE,
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
+
+Após o experimento, queremos responder à seguinte pergunta: O valor da face ($Y$) depende do tipo de dado escolhido ($X$)? Ou seja, $X$ e $Y$ são variáveis independentes? Se $X$ e $Y$ forem independentes, a face sorteada não influência o tipo de dado que foi lançado.
+
+A maneira clássica de testar isso é usando o teste Qui-quadrado, que compara os valores observados com os valores esperados sob suposição de independência.
+
+Faremos uma tabela com os valores esperados, que representa a conjunta de $X$, $Y$, caso eles fossem independêntes. Calculamos esses valores esperados usando as proporções totais de cada linha e coluna. Ou seja, o valor esperado da linha $i$ e coluna $j$ é:
+
+$$
+e_{ij} = \frac{\text{(soma da linha i)} \cdot \text{(soma da linha i)}}{n}
+$$
+
+Onde $n$ é o total de valores observados (23).
+
+Por exemplo, para o valor observado na primeira linha ($x=4$) e primeira coluna ($Y=1$), temos:
+
+$$
+e_{11} = \frac{\text{(soma da linha 1)} \cdot \text{(soma da linha 1)}}{n} = \frac{12 \cdot 4}{23}
+\approx 2,087
+$$
+
+```{r tab_esperado,  echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+n <- sum(observado)
+linha_totais <- rowSums(observado)
+coluna_totais <- colSums(observado)
+
+esperado <- outer(linha_totais, coluna_totais, FUN = function(r, c) r * c / n)
+rownames(esperado) <- rownames(observado)
+colnames(esperado) <- colnames(observado)
+esperado <- round(esperado, 2)
+
+esperado_df <- as.data.frame(esperado) %>%
+  rownames_to_column("X / Y") %>%
+  mutate(Total = rowSums(across(where(is.numeric))))
+
+totais_colunas <- colSums(select(esperado_df, where(is.numeric)))
+
+# Criar linha total com os mesmos tipos de dados
+linha_total <- tibble(
+  `X / Y` = "Total",
+  !!!as.list(totais_colunas)
+)
+
+esperado_df <- bind_rows(esperado_df, linha_total)
+
+esperado_df %>%
+  kbl(align = 'c', format = knitr::opts_knit$get("rmarkdown.pandoc.to"), 
+      booktabs = TRUE) %>% 
+  kable_styling(
+    bootstrap_options = if (knitr::is_html_output()) c("striped","hover", 
+                            "bordered", "condensed") else NULL, 
+    latex_options = if (knitr::is_latex_output()) c("striped", "hold_position") 
+    else NULL) %>% 
+  row_spec(0, bold = TRUE,
+           color = if (knitr::is_latex_output()) "black" else "white", 
+           background = if (knitr::is_latex_output()) "#D3D3D3" else "firebrick")
+```
+
+Agora, conseguimos calcular o Qui-quadrado,
+
+$$
+Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}
+$$
+Onde
+-$o_{ij}$ é o valor observado na linha $i$ e coluna $j$.
+-$e_{ij}$ é o valor esperado na linha $i$ e coluna $j$.
+
+Calculando pelo R, com:
+
+```{r qui_quad}
+qui_obs <- sum((observado - esperado)^2 / esperado)
+qui_obs
+```
+
+Temos então que o Qui-quadrado observado ($Q_{obs}^2$) é aproximadamente 4,28. Precisamos descobrir se esse valor representa variáveis independentes ou não.
+
+
+Em vez de apenas comparar o Qui-quadrado observado, vamos construir nossa própria "distribuição" de Qui-quadrados, simulando amostras sob a hipótese de independência e e verificando se o valor observado é compatível com o que esperaríamos por acaso.
+
+Vamos gerar 100 amostras de 23 pares ($X_i, Y_i$), com $X_i \sim U\{4, 6\}$ e $Y_i \sim U\{1, 2, \cdots, X_i\}$, sendo $U$ a distribuição uniforme discreta. 
+
+Para cada uma dessas 100 simulações, calculamos um Qui-quadrado. Ao final, teremos 100 valores de Qui-quadrado esperados sob independência e ordenaremos todos, caso o nosso Qui-quadrado *observado* for muito alto (maior que o Qui-quadrado simulado de posição 95), teremos fortes indícios de dependência.
+
+```{r qui_simulado}
+set.seed(123)
+
+simular_qui <- function(n_sim = 100, n_obs = 23) {
+  qui_sim <- numeric(n_sim)
+  
+  for (i in 1:n_sim) {
+    # Gerando X ~ unif{4, 6}
+    x <- sample(c(4, 6), size = n_obs, replace = TRUE)
+    
+    # Para cada xi, gerar y ~ unif{1, ..., xi}
+    y <- mapply(function(xi) sample(1:xi, 1), xi = x)
+    
+    # Tabela com valores simulados
+    tabela_sim <- table(factor(x, levels = c(4, 6)), factor(y, levels = 1:6))
+    
+    # Totais marginais e esperados (para o cálculo de valor esperado)
+    linha_totais <- rowSums(tabela_sim)
+    coluna_totais <- colSums(tabela_sim)
+    total <- sum(tabela_sim)
+    
+    esperado_sim <- outer(linha_totais, coluna_totais, FUN = function(r, c) r * c / total)
+    
+    # Calcular Q² apenas nas células com esperado > 0
+    valido <- esperado_sim > 0
+    Q2 <- sum((tabela_sim[valido] - esperado_sim[valido])^2 / esperado_sim[valido])
+    
+    qui_sim[i] <- Q2}
+  
+  return(qui_sim)}
+
+qui_simulados <- simular_qui()
+```
+
+No código acima criamos uma função *simular_qui()*, com 100 simulações e 23 observações para cada simulação. Criamos também um vetor vazio *qui_sim* com *n_sim = 100* posições, para armazenarmos nossos qui-quadrados.
+
+Em seguida, iniciamos um looping com 100 iterações. Para cada simulação, geramos um vetor $x$ com *n_obs = 23* valores escolhidos aleatoriamente no conjunto $\{ 4, 6\}$ (representando os dois tipos de dado). A escolha é feita com reposição, e a distribuição é uniforme (probabilidade 0,5 para cada elemento). Depois, para cada valor de $x_i$, geramos outro vetor $y$, que sorteia uma face aleatoriamente de 1 até $x_i$.
+
+Criamos uma tabela de contingência $X / Y$, com os nossos valores simulados e geramos uma matriz *esperado_sim* com cada valor esperado $e_{ij}$. Com isso, aplicamos a fórmula do teste Qui-quadrado apenas nas células com valor esperado > 0 (evita divisões por zero).
+
+Logo depois, armazenamos o valor do teste da simulação atual no vetor *qui_sim* e retornamos esse vetor. Por fim, chamamos a função *simular_qui()* para o novo vetor *qui_simulados*, que conterá 100 valores de Qui-quadrado simulados sob a hipótese de independência.
+  
+
+```{r qui_95}
+quantil_95 <- quantile(qui_simulados, 0.95)
+quantil_95
+```
+
+Com todos os 100 Qui-quadrados simulados, calculamos o quantil 95% da distribuição empírica. É comumente usado o quantil 95% nesse tipo de análise, por isso, ele foi o escolhido. Vendo essa distribuição simulada, de forma visual:
+
+```{r hist_qui, echo = FALSE, include = TRUE, message=FALSE, warning=FALSE}
+hist(qui_simulados)
+```
+
+Finalmente, comparando:
+
+```{r comparacao}
+qui_obs > quantil_95
+```
+
+
+A estatística $Q^2$ pode ser vista como uma distância entre os valores observados e esperados, sob hipótese de independencia. Então, para valores grandes de $Q^2$, tem-se mais indícios de independencia nos dados observados. Logo, comparamos o valor $Q_{obs}^2$ com o quantil 95% da distribuição empírica ($q_{(95)}$): se o $Q_{obs}^2 \leq q_{(95)}$, então, temos indícios de independência; caso contrário, não temos.
+
+Nesse sentido, anteriormente, calculamos o Qui-quadrado dos nossos valores observados, tendo $Q_{obs}^2 = 4,28$. Comparando esse valor com a distribuição empírica de Qui-quadrados gerada a partir de 100 simulações sob hipótese de independência entre as variáveis $X$ e $Y$, ou então, comparando com o valor $q_{(95)} = 14,6$ gerado, vemos que $Q_{obs}^2  q_{(95)}$.
+
+Sendo assim, como nosso Qui-quadrado observado é *menor* do que o quantil obtido, através das simulações concluímos que os dados não fornecem evidência contra a hipótese de independência. Ou seja, valores de Qui-quadrado maiores que 14,6 seriam considerados incompatíveis com a independência.
+
+---
+
 ## Exercícios
 
 Obs. Caso queira comparar seu resultado com o gabarito (capítulo 10) use *set.seed(123)*.

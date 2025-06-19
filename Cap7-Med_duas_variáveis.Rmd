@@ -41,9 +41,9 @@ dados_cap7 %>% tbl_cross(Camisa,Basquete,percent = "row") %>%
 
 ---
 
-##	Qui-Quadrado de Pearson
+##	Qui-Quadrado de Pearson {#qui_quadrado7}
 
-- Sejam $o_{ij}$ as frequências observadas na *i*-ésima linha e *j*-ésima coluna da tabela, $o_{i.}$ o total observado na linha *i* e $o_{.j}$ o total observado na coluna *j*. Sob a hipótese de independência, espera que o valor observado em cada casela da tabela seja $\displaystyle e_{ij} = \frac{o_{i.}~o_{.j}}{n}$.
+- Sejam $o_{ij}$ as frequências observadas na *i*-ésima linha e *j*-ésima coluna da tabela, $o_{i.}$ o total observado na linha *i* e $o_{j}$ o total observado na coluna *j*. Sob a hipótese de independência, espera que o valor observado em cada casela da tabela seja $\displaystyle e_{ij} = \frac{o_{i.}~o_{.j}}{n}$.
 
 - A estatística de Qui-Quadrado é dada por:
 $$Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}~.$$

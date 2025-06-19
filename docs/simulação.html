@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-06-10" />
+<meta name="date" content="2025-06-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html"><i class="fa fa-check"></i><b>7</b> Medidas de duas variáveis</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#tabela-de-contingência-de-frequências"><i class="fa fa-check"></i><b>7.1</b> Tabela de Contingência (de Frequências)</a></li>
-<li class="chapter" data-level="7.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#qui-quadrado-de-pearson"><i class="fa fa-check"></i><b>7.2</b> Qui-Quadrado de Pearson</a></li>
+<li class="chapter" data-level="7.2" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#qui_quadrado7"><i class="fa fa-check"></i><b>7.2</b> Qui-Quadrado de Pearson</a></li>
 <li class="chapter" data-level="7.3" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#medidas-de-associação-baseadas-no-qui-quadrado"><i class="fa fa-check"></i><b>7.3</b> Medidas de Associação baseadas no Qui-Quadrado</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="medidas_duas_va.html"><a href="medidas_duas_va.html#coeficiente-de-contingência-de-pearson"><i class="fa fa-check"></i><b>7.3.1</b> Coeficiente de Contingência de Pearson</a></li>
@@ -282,7 +282,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="simulação.html"><a href="simulação.html#principais-funções-para-simulação-no-r"><i class="fa fa-check"></i><b>9.3.1</b> Principais funções para simulação no R</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="simulação.html"><a href="simulação.html#exercícios-6"><i class="fa fa-check"></i><b>9.4</b> Exercícios</a></li>
+<li class="chapter" data-level="9.4" data-path="simulação.html"><a href="simulação.html#uma-aplicação-de-simulação-em-inferência-estatística"><i class="fa fa-check"></i><b>9.4</b> Uma aplicação de simulação em inferência estatística</a></li>
+<li class="chapter" data-level="9.5" data-path="simulação.html"><a href="simulação.html#exercícios-6"><i class="fa fa-check"></i><b>9.5</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="respostas-dos-exercícios.html"><a href="respostas-dos-exercícios.html"><i class="fa fa-check"></i><b>10</b> Respostas dos exercícios</a>
 <ul>
@@ -457,8 +458,315 @@ X \sim \mathrm{Binomial}(n = 10, p = 0,5)
 <hr />
 </div>
 </div>
-<div id="exercícios-6" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Exercícios<a href="simulação.html#exercícios-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="uma-aplicação-de-simulação-em-inferência-estatística" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Uma aplicação de simulação em inferência estatística<a href="simulação.html#uma-aplicação-de-simulação-em-inferência-estatística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Uma das aplicações mais importantes da estatística é testar se duas variáveis são ou não independentes. Diferente da probabilidade, na inferência estatística, apenas os dados observados não são o suficiente pra afirmar independência. Além disso, variáveis aparentemente não correlacionadas têm correlação.</p>
+<p>Por isso, tradicionalmente usamos testes formais, como o teste do Qui-quadrado (visto no capítulo 7) e comparamos o valor calculado com os valores críticos teóricos, obtidos da ditribuição Qui-quadrado.</p>
+<p>No entanto, como ainda não vimos esse tipo de cálculo no curso, vamos simular esse comportamento do teste sob a hipotese de independência com um exemplo prático.</p>
+<p>Imgine que você possui dois dados honestos, um de 4 faces e outro com 6 faces. Para cada rodada, você escolhe qual dado vai jogar (ambos com igual probabilidade) e anota o valor da face que saiu. Esse processo é repetido 23 vezes.</p>
+<p>Esse experimento gera dois tipos de observações, que chamaremos de
+-<span class="math inline">\(X:\)</span> o tipo de dado usado em cada jogada, <span class="math inline">\(x = {4, 6}\)</span>
+-<span class="math inline">\(Y:\)</span> o valor da face observada, <span class="math inline">\(y = 1, 2, \cdots, x\)</span></p>
+<p>A tabela a seguir mostra os resultados obtidos ao final das 23 jogadas, com o número de vezes que cada face apareceu, para cada tipo de dado:</p>
+<table class="table table-striped table-hover table-bordered table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+X / Y
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 1
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 2
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 3
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 4
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 5
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 6
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Dado de 4 faces
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Dado de 6 faces
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Total
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+23
+</td>
+</tr>
+</tbody>
+</table>
+<p>Após o experimento, queremos responder à seguinte pergunta: O valor da face (<span class="math inline">\(Y\)</span>) depende do tipo de dado escolhido (<span class="math inline">\(X\)</span>)? Ou seja, <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> são variáveis independentes? Se <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> forem independentes, a face sorteada não influência o tipo de dado que foi lançado.</p>
+<p>A maneira clássica de testar isso é usando o teste Qui-quadrado, que compara os valores observados com os valores esperados sob suposição de independência.</p>
+<p>Faremos uma tabela com os valores esperados, que representa a conjunta de <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, caso eles fossem independêntes. Calculamos esses valores esperados usando as proporções totais de cada linha e coluna. Ou seja, o valor esperado da linha <span class="math inline">\(i\)</span> e coluna <span class="math inline">\(j\)</span> é:</p>
+<p><span class="math display">\[
+e_{ij} = \frac{\text{(soma da linha i)} \cdot \text{(soma da linha i)}}{n}
+\]</span></p>
+<p>Onde <span class="math inline">\(n\)</span> é o total de valores observados (23).</p>
+<p>Por exemplo, para o valor observado na primeira linha (<span class="math inline">\(x=4\)</span>) e primeira coluna (<span class="math inline">\(Y=1\)</span>), temos:</p>
+<p><span class="math display">\[
+e_{11} = \frac{\text{(soma da linha 1)} \cdot \text{(soma da linha 1)}}{n} = \frac{12 \cdot 4}{23}
+\approx 2,087
+\]</span></p>
+<table class="table table-striped table-hover table-bordered table-condensed" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+X / Y
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 1
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 2
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 3
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 4
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 5
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Face 6
+</th>
+<th style="text-align:center;font-weight: bold;color: white !important;background-color: firebrick !important;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+Dado de 4 faces
+</td>
+<td style="text-align:center;">
+2.09
+</td>
+<td style="text-align:center;">
+2.09
+</td>
+<td style="text-align:center;">
+2.61
+</td>
+<td style="text-align:center;">
+3.65
+</td>
+<td style="text-align:center;">
+1.04
+</td>
+<td style="text-align:center;">
+0.52
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Dado de 6 faces
+</td>
+<td style="text-align:center;">
+1.91
+</td>
+<td style="text-align:center;">
+1.91
+</td>
+<td style="text-align:center;">
+2.39
+</td>
+<td style="text-align:center;">
+3.35
+</td>
+<td style="text-align:center;">
+0.96
+</td>
+<td style="text-align:center;">
+0.48
+</td>
+<td style="text-align:center;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Total
+</td>
+<td style="text-align:center;">
+4.00
+</td>
+<td style="text-align:center;">
+4.00
+</td>
+<td style="text-align:center;">
+5.00
+</td>
+<td style="text-align:center;">
+7.00
+</td>
+<td style="text-align:center;">
+2.00
+</td>
+<td style="text-align:center;">
+1.00
+</td>
+<td style="text-align:center;">
+23
+</td>
+</tr>
+</tbody>
+</table>
+<p>Agora, conseguimos calcular o Qui-quadrado,</p>
+<p><span class="math display">\[
+Q^2 = \sum_i \sum_j \frac{(o_{ij}-e_{ij})^2}{e_{ij}}
+\]</span>
+Onde
+-<span class="math inline">\(o_{ij}\)</span> é o valor observado na linha <span class="math inline">\(i\)</span> e coluna <span class="math inline">\(j\)</span>.
+-<span class="math inline">\(e_{ij}\)</span> é o valor esperado na linha <span class="math inline">\(i\)</span> e coluna <span class="math inline">\(j\)</span>.</p>
+<p>Calculando pelo R, com:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="simulação.html#cb229-1" tabindex="-1"></a>qui_obs <span class="ot">&lt;-</span> <span class="fu">sum</span>((observado <span class="sc">-</span> esperado)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperado)</span>
+<span id="cb229-2"><a href="simulação.html#cb229-2" tabindex="-1"></a>qui_obs</span></code></pre></div>
+<pre><code>## [1] 4.279942</code></pre>
+<p>Temos então que o Qui-quadrado observado (<span class="math inline">\(Q_{obs}^2\)</span>) é aproximadamente 4,28. Precisamos descobrir se esse valor representa variáveis independentes ou não.</p>
+<p>Em vez de apenas comparar o Qui-quadrado observado, vamos construir nossa própria “distribuição” de Qui-quadrados, simulando amostras sob a hipótese de independência e e verificando se o valor observado é compatível com o que esperaríamos por acaso.</p>
+<p>Vamos gerar 100 amostras de 23 pares (<span class="math inline">\(X_i, Y_i\)</span>), com <span class="math inline">\(X_i \sim U\{4, 6\}\)</span> e <span class="math inline">\(Y_i \sim U\{1, 2, \cdots, X_i\}\)</span>, sendo <span class="math inline">\(U\)</span> a distribuição uniforme discreta.</p>
+<p>Para cada uma dessas 100 simulações, calculamos um Qui-quadrado. Ao final, teremos 100 valores de Qui-quadrado esperados sob independência e ordenaremos todos, caso o nosso Qui-quadrado <em>observado</em> for muito alto (maior que o Qui-quadrado simulado de posição 95), teremos fortes indícios de dependência.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="simulação.html#cb231-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb231-2"><a href="simulação.html#cb231-2" tabindex="-1"></a></span>
+<span id="cb231-3"><a href="simulação.html#cb231-3" tabindex="-1"></a>simular_qui <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n_sim =</span> <span class="dv">100</span>, <span class="at">n_obs =</span> <span class="dv">23</span>) {</span>
+<span id="cb231-4"><a href="simulação.html#cb231-4" tabindex="-1"></a>  qui_sim <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
+<span id="cb231-5"><a href="simulação.html#cb231-5" tabindex="-1"></a>  </span>
+<span id="cb231-6"><a href="simulação.html#cb231-6" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim) {</span>
+<span id="cb231-7"><a href="simulação.html#cb231-7" tabindex="-1"></a>    <span class="co"># Gerando X ~ unif{4, 6}</span></span>
+<span id="cb231-8"><a href="simulação.html#cb231-8" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>), <span class="at">size =</span> n_obs, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb231-9"><a href="simulação.html#cb231-9" tabindex="-1"></a>    </span>
+<span id="cb231-10"><a href="simulação.html#cb231-10" tabindex="-1"></a>    <span class="co"># Para cada xi, gerar y ~ unif{1, ..., xi}</span></span>
+<span id="cb231-11"><a href="simulação.html#cb231-11" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">mapply</span>(<span class="cf">function</span>(xi) <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>xi, <span class="dv">1</span>), <span class="at">xi =</span> x)</span>
+<span id="cb231-12"><a href="simulação.html#cb231-12" tabindex="-1"></a>    </span>
+<span id="cb231-13"><a href="simulação.html#cb231-13" tabindex="-1"></a>    <span class="co"># Tabela com valores simulados</span></span>
+<span id="cb231-14"><a href="simulação.html#cb231-14" tabindex="-1"></a>    tabela_sim <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)), <span class="fu">factor</span>(y, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>))</span>
+<span id="cb231-15"><a href="simulação.html#cb231-15" tabindex="-1"></a>    </span>
+<span id="cb231-16"><a href="simulação.html#cb231-16" tabindex="-1"></a>    <span class="co"># Totais marginais e esperados (para o cálculo de valor esperado)</span></span>
+<span id="cb231-17"><a href="simulação.html#cb231-17" tabindex="-1"></a>    linha_totais <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(tabela_sim)</span>
+<span id="cb231-18"><a href="simulação.html#cb231-18" tabindex="-1"></a>    coluna_totais <span class="ot">&lt;-</span> <span class="fu">colSums</span>(tabela_sim)</span>
+<span id="cb231-19"><a href="simulação.html#cb231-19" tabindex="-1"></a>    total <span class="ot">&lt;-</span> <span class="fu">sum</span>(tabela_sim)</span>
+<span id="cb231-20"><a href="simulação.html#cb231-20" tabindex="-1"></a>    </span>
+<span id="cb231-21"><a href="simulação.html#cb231-21" tabindex="-1"></a>    esperado_sim <span class="ot">&lt;-</span> <span class="fu">outer</span>(linha_totais, coluna_totais, <span class="at">FUN =</span> <span class="cf">function</span>(r, c) r <span class="sc">*</span> c <span class="sc">/</span> total)</span>
+<span id="cb231-22"><a href="simulação.html#cb231-22" tabindex="-1"></a>    </span>
+<span id="cb231-23"><a href="simulação.html#cb231-23" tabindex="-1"></a>    <span class="co"># Calcular Q² apenas nas células com esperado &gt; 0</span></span>
+<span id="cb231-24"><a href="simulação.html#cb231-24" tabindex="-1"></a>    valido <span class="ot">&lt;-</span> esperado_sim <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb231-25"><a href="simulação.html#cb231-25" tabindex="-1"></a>    Q2 <span class="ot">&lt;-</span> <span class="fu">sum</span>((tabela_sim[valido] <span class="sc">-</span> esperado_sim[valido])<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperado_sim[valido])</span>
+<span id="cb231-26"><a href="simulação.html#cb231-26" tabindex="-1"></a>    </span>
+<span id="cb231-27"><a href="simulação.html#cb231-27" tabindex="-1"></a>    qui_sim[i] <span class="ot">&lt;-</span> Q2}</span>
+<span id="cb231-28"><a href="simulação.html#cb231-28" tabindex="-1"></a>  </span>
+<span id="cb231-29"><a href="simulação.html#cb231-29" tabindex="-1"></a>  <span class="fu">return</span>(qui_sim)}</span>
+<span id="cb231-30"><a href="simulação.html#cb231-30" tabindex="-1"></a></span>
+<span id="cb231-31"><a href="simulação.html#cb231-31" tabindex="-1"></a>qui_simulados <span class="ot">&lt;-</span> <span class="fu">simular_qui</span>()</span></code></pre></div>
+<p>No código acima criamos uma função <em>simular_qui()</em>, com 100 simulações e 23 observações para cada simulação. Criamos também um vetor vazio <em>qui_sim</em> com <em>n_sim = 100</em> posições, para armazenarmos nossos qui-quadrados.</p>
+<p>Em seguida, iniciamos um looping com 100 iterações. Para cada simulação, geramos um vetor <span class="math inline">\(x\)</span> com <em>n_obs = 23</em> valores escolhidos aleatoriamente no conjunto <span class="math inline">\(\{ 4, 6\}\)</span> (representando os dois tipos de dado). A escolha é feita com reposição, e a distribuição é uniforme (probabilidade 0,5 para cada elemento). Depois, para cada valor de <span class="math inline">\(x_i\)</span>, geramos outro vetor <span class="math inline">\(y\)</span>, que sorteia uma face aleatoriamente de 1 até <span class="math inline">\(x_i\)</span>.</p>
+<p>Criamos uma tabela de contingência <span class="math inline">\(X / Y\)</span>, com os nossos valores simulados e geramos uma matriz <em>esperado_sim</em> com cada valor esperado <span class="math inline">\(e_{ij}\)</span>. Com isso, aplicamos a fórmula do teste Qui-quadrado apenas nas células com valor esperado &gt; 0 (evita divisões por zero).</p>
+<p>Logo depois, armazenamos o valor do teste da simulação atual no vetor <em>qui_sim</em> e retornamos esse vetor. Por fim, chamamos a função <em>simular_qui()</em> para o novo vetor <em>qui_simulados</em>, que conterá 100 valores de Qui-quadrado simulados sob a hipótese de independência.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="simulação.html#cb232-1" tabindex="-1"></a>quantil_95 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(qui_simulados, <span class="fl">0.95</span>)</span>
+<span id="cb232-2"><a href="simulação.html#cb232-2" tabindex="-1"></a>quantil_95</span></code></pre></div>
+<pre><code>##      95% 
+## 14.60973</code></pre>
+<p>Com todos os 100 Qui-quadrados simulados, calculamos o quantil 95% da distribuição empírica. É comumente usado o quantil 95% nesse tipo de análise, por isso, ele foi o escolhido. Vendo essa distribuição simulada, de forma visual:</p>
+<p><img src="AED_files/figure-html/hist_qui-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Finalmente, comparando:</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="simulação.html#cb234-1" tabindex="-1"></a>qui_obs <span class="sc">&gt;</span> quantil_95</span></code></pre></div>
+<pre><code>##   95% 
+## FALSE</code></pre>
+<p>A estatística <span class="math inline">\(Q^2\)</span> pode ser vista como uma distância entre os valores observados e esperados, sob hipótese de independencia. Então, para valores grandes de <span class="math inline">\(Q^2\)</span>, tem-se mais indícios de independencia nos dados observados. Logo, comparamos o valor <span class="math inline">\(Q_{obs}^2\)</span> com o quantil 95% da distribuição empírica (<span class="math inline">\(q_{(95)}\)</span>): se o <span class="math inline">\(Q_{obs}^2 \leq q_{(95)}\)</span>, então, temos indícios de independência; caso contrário, não temos.</p>
+<p>Nesse sentido, anteriormente, calculamos o Qui-quadrado dos nossos valores observados, tendo <span class="math inline">\(Q_{obs}^2 = 4,28\)</span>. Comparando esse valor com a distribuição empírica de Qui-quadrados gerada a partir de 100 simulações sob hipótese de independência entre as variáveis <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>, ou então, comparando com o valor <span class="math inline">\(q_{(95)} = 14,6\)</span> gerado, vemos que <span class="math inline">\(Q_{obs}^2  q_{(95)}\)</span>.</p>
+<p>Sendo assim, como nosso Qui-quadrado observado é <em>menor</em> do que o quantil obtido, através das simulações concluímos que os dados não fornecem evidência contra a hipótese de independência. Ou seja, valores de Qui-quadrado maiores que 14,6 seriam considerados incompatíveis com a independência.</p>
+<hr />
+</div>
+<div id="exercícios-6" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Exercícios<a href="simulação.html#exercícios-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Obs. Caso queira comparar seu resultado com o gabarito (capítulo 10) use <em>set.seed(123)</em>.</p>
 <ol style="list-style-type: decimal">
 <li>Simule o lançamento de um dado honesto (com faces de 1 a 6), um grande número de vezes. A cada novo lançamento, calcule a média dos valores obtidos. Em seguida, faça um gráfico que mostre como essa média se aproxima do valor esperado.</li>
