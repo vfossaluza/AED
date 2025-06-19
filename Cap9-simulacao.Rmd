@@ -215,8 +215,8 @@ No entanto, como ainda não vimos esse tipo de cálculo no curso, vamos simular 
 Imgine que você possui dois dados honestos, um de 4 faces e outro com 6 faces. Para cada rodada, você escolhe qual dado vai jogar (ambos com igual probabilidade) e anota o valor da face que saiu. Esse processo é repetido 23 vezes.
 
 Esse experimento gera dois tipos de observações, que chamaremos de
--$X:$ o tipo de dado usado em cada jogada, $x = {4, 6}$
--$Y:$ o valor da face observada, $y = 1, 2, \cdots, x$
+-$X:$ o tipo de dado usado em cada jogada, $x = {4, 6}$.
+-$Y:$ o valor da face observada, $y = 1, 2, \cdots, x$.
 
 A tabela a seguir mostra os resultados obtidos ao final das 23 jogadas, com o número de vezes que cada face apareceu, para cada tipo de dado:
 
