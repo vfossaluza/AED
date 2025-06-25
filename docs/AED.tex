@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-06-18}
+\date{2025-06-25}
 
 \begin{document}
 \maketitle
@@ -4401,6 +4401,64 @@ Para saber o quantil, usando \emph{qbinom()}, no caso de \(P(X \leq x) = 0,8\)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{Teorema Central do Limite (TCL)}\label{teorema-central-do-limite-tcl}
+
+O Teorema Central do Limite afirma que a soma (ou média) de um grande número de variáveis aleatórias independentes e identicamente distribuidas (i.i.d), com média e variância finitas, tende a seguir uma distribuição normal, independente da distribuição original dessas variáveis.
+
+Sendo assim, seja \(X_1, X_2, \cdots, X_m\) uma sequência de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.), com \(E[X_1]=\mu\) e \(Var(X_1)=\sigma^2<+\infty\). Considere \(\bar{X}_m = \frac{1}{m}\sum_{i=1}^mX_i\). Então,
+
+\[
+\frac{\bar{X}_m-\mu}{\sigma/\sqrt{m}} ~~\xrightarrow[m\rightarrow\infty]{\mathcal{D}}~~ Normal(0,1)~.
+\]
+
+Usamos essa formula para a padronização da média amostral, ou seja, transformamos a variável \(\bar{X}_m\) para que tenha média 0 e variância 1, permitindo compará-la com a normal padrão. E afirmamos que a distribuição da expressão à esquerda se aproxima da distribuição normal padrão à medida que \(m\) se aproxima de \(\infty\).
+
+Então, quando \(m\) é ``grande'', pode-se dizer que \(\bar{X}_m\) tem distribuição aproximadamente \(Normal\left(\mu,\frac{\sigma^2}{m}\right)\).
+
+O TCL pode ser visualizado claramente por meio de simulações computacionais, a ideia é repetir um experimento aleatório várias vezes e observar o comportamento da média das amostras.
+
+Para exemplificar, pense em um tetraedo (um dado de 4 faces) honesto, com valores de 1 a 4, com mesma probabilidade. A distribuição original é uniforme discreta, e não se parece com uma normal.
+
+Vamos denotar \(X\) como o valor da face do dado, ou seja, \(X \sim Unif\{1,2,3,4\}\), com esperança = \(\mu = 2,5\), variância = \(\sigma^2 = 1,25\) e desvio padrão \(\sigma = \sqrt{1,25}\).
+
+Sortearemos variás amostras aleatórias de tamanho 30 (\(n=30\)) e simularemos esse experimento 10.000 vezes. Depois, calcularemos a média de cada amostra e por fim faremos um histograma das médias, junto com a curva de distribuição normal esperada, usando a média e o desvio padrão teóricos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{30}      \CommentTok{\# tamanho da amostra}
+\NormalTok{m }\OtherTok{\textless{}{-}} \DecValTok{10000}   \CommentTok{\# número de repetições}
+
+\CommentTok{\# Gerar N médias amostrais de amostras de tamanho n com valores de 1 a 4}
+\NormalTok{medias }\OtherTok{\textless{}{-}} \FunctionTok{replicate}\NormalTok{(m, }\FunctionTok{mean}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{, n, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)))}
+
+\CommentTok{\# Parâmetros teóricos}
+\NormalTok{media\_teorica }\OtherTok{\textless{}{-}} \FloatTok{2.5}
+\NormalTok{desvio\_padrao }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(}\FloatTok{1.25} \SpecialCharTok{/}\NormalTok{ n)}
+
+\FunctionTok{hist}\NormalTok{(medias, }\AttributeTok{freq =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{col =} \StringTok{"darkturquoise"}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"TCL com Dado Honesto de 4 Faces (n = 30)"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Média da amostra"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Densidade"}\NormalTok{)}
+
+\CommentTok{\# Adicionando a curva normal teórica}
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{dnorm}\NormalTok{(x, }\AttributeTok{mean =}\NormalTok{ media\_teorica, }\AttributeTok{sd =}\NormalTok{ desvio\_padrao),}
+      \AttributeTok{col =} \StringTok{"deeppink2"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{, }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \StringTok{"Normal teórica"}\NormalTok{, }\AttributeTok{col =} \StringTok{"deeppink2"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/simulacao_tcl-1} \end{center}
+
+O histograma acima mostra a distribuição das médias amostrais do nosso experimento simulado. A linha rosa (curva normal) mostra a aproximação prevista pelo Teorema Central do Limite. Perceba que mesmo com uma distribuição discreta e com poucos valores possíveis, a média se aproxima de uma distribuição normal, como afirma o TCL.
+
+Apesar de ainda não termos visto a distribuição normal na graduação, saiba que ela é a mais importante em toda a estatística; um dos motivos para isso é o resultado que vimos acima do TCL.
+
+Além dele, a normal é uma distribuição com dois parâmetros: sua média e variância. Ela é simétrica em torno da sua média e com duas caudas (iguais, por conta da simetria), muito conhecida e com boas propriedades. E isso tudo facilita a inferência (triar conclusões sobre os parâmetros) nela.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \section{Uma aplicação de simulação em inferência estatística}\label{uma-aplicauxe7uxe3o-de-simulauxe7uxe3o-em-inferuxeancia-estatuxedstica}
 
 Uma das aplicações mais importantes da estatística é testar se duas variáveis são ou não independentes. Diferente da probabilidade, na inferência estatística, apenas os dados observados não são o suficiente pra afirmar independência. Além disso, variáveis aparentemente não correlacionadas têm correlação.
@@ -4632,6 +4690,157 @@ Obs. Caso queira comparar seu resultado com o gabarito (capítulo 10) use \emph{
 \item
   Calcule a probabilidade estimada.
 \end{enumerate}
+
+\chapter{Regressão linear}\label{regressuxe3o-linear}
+
+A regressão linear modela a relação entre duas variáveis quantitativas, onde uma variável é considerada dependente e a outra é independente. O objetivo principal é estabelecer uma equação linear que descreva como a variável dependente \(Y\) se comporta em função da variável independente \(X\).
+
+A equação da regressão linear simples é \(Y = a + b X + \varepsilon\).
+
+Onde:
+- \(Y\) é a variável resposta (dependente)
+- \(X\) é a variável explicativa (independente)
+- \(a\) é o intercepto (valor de \(Y\) quando \(X = 0\))
+- \(b\) é o coeficiente angular (indica a variação de \(Y\) para cada unidade de \(X\))
+- \(\varepsilon\)é um erro aleatório.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Suponha que temos interesse em estudar o valor esperado do peso de uma pessoa (\(Y\), em kg), com base em sua altura (\(X\), em cm). Para isso, coletamos dados de várias pessoas e ajustamos um modelo de regressão linear.
+
+\begin{center}\includegraphics{AED_files/figure-latex/graf_regrecao-1} \end{center}
+
+Temos então, que a esperança de \(Y\), dado um valor \(X\) é,
+
+\[
+E[Y \mid X = x] = a + bx
+\]
+
+Agora, para conseguir estimar esse valor esperado do peso de uma pessoa, com base em sua altura, precisamos obter o valor \(a\) e \(b\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{\texorpdfstring{Estimar \(a\) e \(b\)}{Estimar a e b}}\label{estimar-a-e-b}
+
+Para estimar os coeficientes usamos o método dos mínimos quadrados:
+
+\[
+S = \sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n} (y_i - (a + bx_i))^2 = \sum_{i=1}^{n} (y_i - a - bx_i)^2\\
+\]
+
+\[
+\left\{
+  \begin{array}{l}
+    \frac{\partial S(a, b)}{\partial a} = 0 \\
+    \frac{\partial S(a, b)}{\partial b} = 0
+  \end{array}
+\right.
+\Longrightarrow
+\left\{
+  \begin{array}{l}
+    \frac{\partial S(a, b)}{\partial a} = - \sum_{i=1}^{n} 2(y_i - a - b x_i) = 0 \\
+    \frac{\partial S(a, b)}{\partial b} = - \sum_{i=1}^{n} x_i \cdot 2(y_i - a - b x_i) = 0
+  \end{array}
+\right.
+\]
+
+Isolando \(a\):
+
+\[
+\Longrightarrow 
+- \sum_{i=1}^{n} y_i + n a + b \sum_{i=1}^{n} x_i = 0
+\Longrightarrow
+a = \frac{\sum_{i=1}^{n} y_i}{n} - b \frac{\sum_{i=1}^{n} x_i}{n}
+\]
+\[
+\Longrightarrow
+a = \bar{y} - b\bar{x}
+\]
+
+Isolando \(b\):
+
+\[
+b = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{x})^2}
+\]
+
+Como os valores de \(a\) e \(b\) calculados acima são estimados, chamaremos de \(\hat{a}\) e \(\hat{b}\).
+
+Para o nosso exemplo de altura e peso, vamos estimar \(a\) e \(b\) usando a função \emph{ln()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regressao }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(dados\_linear)}
+\NormalTok{regressao}\SpecialCharTok{$}\NormalTok{coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (Intercept)        peso 
+##   89.623253    1.120262
+\end{verbatim}
+
+Com isso, temos que \(\hat{a} \approx 89,62\) e \(\hat{b} \approx 1,12\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Resíduos}\label{resuxedduos}
+
+Em regressão linear, os resíduos são as diferenças entre os valores observados e os valores estimados pela reta de regressão. Ou seja:
+
+\[
+\varepsilon = y - \hat{y} = y - (a + b x)
+\]
+
+Obtendo os resíduos do exemplo de altura e peso:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{residuos }\OtherTok{\textless{}{-}} \FunctionTok{residuals}\NormalTok{(regressao)}
+\end{Highlighting}
+\end{Shaded}
+
+Quando fazemos uma análise dos resíduos, nosso objetivo é verificar se os resíduos (diferenças entre valores observados e valores previstos pelo modelo) se aproximam de uma distribuição normal. Temos duas formas mais comuns de fazer isso, sendo através de um histograma ou de um QQ-plot.
+
+\subsection{Analisando resíduos através de um histograma}\label{analisando-resuxedduos-atravuxe9s-de-um-histograma}
+
+O histograma mostra a distribuição dos resíduos. Com ele, podemos verificar se os resíduos têm uma distribuição aproximadamente simétrica com um formato próximo da distribuição normal.
+
+Se o histograma mostrar uma distribuição assimétrica, com caudas muito longas ou picos incomuns, pode indicar que os resíduos não são normais.
+
+Fazendo o histograma com o exemplo de altura e peso:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(residuos, }
+     \AttributeTok{main =} \StringTok{"Histograma dos Resíduos"}\NormalTok{, }
+     \AttributeTok{xlab =} \StringTok{"Resíduo"}\NormalTok{, }
+     \AttributeTok{col =} \StringTok{"hotpink"}\NormalTok{, }
+     \AttributeTok{border =} \StringTok{"black"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/hist_residuos-1} \end{center}
+
+A forma do histograma acima se assemelha ao de uma distribuição normal, é unimodal (tem apenas um pico) e é razoavelmente simétrica. Então, embora não seja uma curva perfeita (o que é raro em dados reais), a distribuição não apresenta uma assimetria severa ou múltiplos picos. Sendo assim, nosso modelo de regressão linear parece ser adequado.
+
+\subsection{Analisando resíduos através de um QQ-plot}\label{analisando-resuxedduos-atravuxe9s-de-um-qq-plot}
+
+O QQ-plot compara os quantis dos resíduos com os quantis teóricos de uma distribuição normal. Se os pontos do gráfico ficarem aproximadamente numa linha reta, significa que os resíduos seguem bem a distribuição normal. Se os pontos se afastam da linha (curvando para cima ou para baixo, ou formando um ``S''), indica desvio da normalidade.
+
+Fazendo um QQ-plot com o exemplo de altura e peso:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqnorm}\NormalTok{(residuos, }\AttributeTok{main =} \StringTok{"Q{-}Q Plot dos Resíduos"}\NormalTok{)}
+\FunctionTok{qqline}\NormalTok{(residuos, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{AED_files/figure-latex/qqplot-1} \end{center}
+
+No gráfico acima, a linha vermelha representa a situação ideal, onde os seus resíduos seriam perfeitamente normais. Os pontos pretos (círculos) são os seus dados de resíduos.
+
+O fato de os pontos estarem muito próximos da linha vermelha ao longo de quase toda a sua extensão é um excelente sinal. Isso indica que a distribuição dos seus resíduos se alinha de forma muito consistente com uma distribuição normal.
 
 \chapter{Respostas dos exercícios}\label{respostas-dos-exercuxedcios}
 
@@ -5603,85 +5812,6 @@ Calcular a média acumulada depois de cada lançamento:
 \begin{verbatim}
 ## Probabilidade estimada: 0.3812
 \end{verbatim}
-
-\chapter{Regressão linear (incompleto)}\label{regressuxe3o-linear-incompleto}
-
-A regressão linear modela a relação entre duas variáveis quantitativas, onde uma variável é considerada dependente e a outra é independente. O objetivo principal é estabelecer uma equação linear que descreva como a variável dependente (\(Y\)) se comporta em função da variável independente.
-
-A equação da regressão linear simples é \(Y = a + b X + \varepsilon\).
-
-Onde:
-- \(Y\) é a variável resposta (dependente)
-- \(X\) é a variável explicativa (independente)
-- \(a\) é o intercepto (valor de \(Y\) quando \(X = 0\))
-- \(b\) é o coeficiente angular (indica a variação de \(Y\) para cada unidade de \(X\))
-- \(\varepsilon\)é um erro aleatório.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-Suponha que temos interesse em estudar o valor esperado do peso de uma pessoa (\(Y\), em kg), com base em sua altura (\(X\), em cm). Para isso, coletamos dados de várias pessoas e ajustamos um modelo de regressão linear.
-
-\begin{verbatim}
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## i Please use `linewidth` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-\end{verbatim}
-
-\begin{verbatim}
-## `geom_smooth()` using formula = 'y ~ x'
-\end{verbatim}
-
-\begin{center}\includegraphics{AED_files/figure-latex/graf_regrecao-1} \end{center}
-
-\(Y\): Variável resposta (dependente)
-\(X\): Variável explicativa (independente)
-
-Com isso, temos que,
-
-\[
-E[Y \mid X = x] = a + bx
-\]
-
-Agora, para conseguir estimar esse valor esperado do peso de uma pessoa, com base em sua altura, precisamos obter o valor \(a\) e \(b\).
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section{\texorpdfstring{Estimar \(a\) e \(b\)}{Estimar a e b}}\label{estimar-a-e-b}
-
-Para estimar os coeficientes usamos o método dos mínimos quadrados
-
-\[
-S = \sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n} (y_i - (a + bx_i))^2 = \sum_{i=1}^{n} (y_i - a - bx_i)^2\\
-\]
-
-\[
-\left\{
-  \begin{array}{l}
-    \frac{\partial S(a, b)}{\partial a} = 0 \\
-    \frac{\partial S(a, b)}{\partial b} = 0
-  \end{array}
-\right.
-\Longrightarrow
-\left\{
-  \begin{array}{l}
-    \frac{\partial S(a, b)}{\partial a} = - \sum_{i=1}^{n} 2(y_i - a - b x_i) = 0 \\
-    \frac{\partial S(a, b)}{\partial b} = - \sum_{i=1}^{n} x_i \cdot 2(y_i - a - b x_i) = 0
-  \end{array}
-\right.
-\]
-
-\[
-\Longrightarrow 
-- \sum_{i=1}^{n} y_i + n a + b \sum_{i=1}^{n} x_i = 0
-\Longrightarrow
-a = \frac{\sum_{i=1}^{n} y_i}{n} - b \frac{\sum_{i=1}^{n} x_i}{n}
-\]
-\[
-\Longrightarrow
-a = \bar{y} - b\bar{x}
-\]
 
   \bibliography{book.bib,packages.bib}
 

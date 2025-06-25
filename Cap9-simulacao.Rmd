@@ -204,6 +204,60 @@ qbinom(0.8, size = 10, prob = 0.5)
 
 ---
 
+## Teorema Central do Limite (TCL)
+
+O Teorema Central do Limite afirma que a soma (ou média) de um grande número de variáveis aleatórias independentes e identicamente distribuidas (i.i.d), com média e variância finitas, tende a seguir uma distribuição normal, independente da distribuição original dessas variáveis.
+
+Sendo assim, seja $X_1, X_2, \cdots, X_m$ uma sequência de variáveis aleatórias independentes e identicamente distribuídas (i.i.d.), com $E[X_1]=\mu$ e $Var(X_1)=\sigma^2<+\infty$. Considere $\bar{X}_m = \frac{1}{m}\sum_{i=1}^mX_i$. Então,
+
+$$
+\frac{\bar{X}_m-\mu}{\sigma/\sqrt{m}} ~~\xrightarrow[m\rightarrow\infty]{\mathcal{D}}~~ Normal(0,1)~.
+$$
+
+Usamos essa formula para a padronização da média amostral, ou seja, transformamos a variável $\bar{X}_m$ para que tenha média 0 e variância 1, permitindo compará-la com a normal padrão. E afirmamos que a distribuição da expressão à esquerda se aproxima da distribuição normal padrão à medida que $m$ se aproxima de $\infty$.
+
+Então, quando $m$ é "grande", pode-se dizer que $\bar{X}_m$ tem distribuição aproximadamente $Normal\left(\mu,\frac{\sigma^2}{m}\right)$.
+
+O TCL pode ser visualizado claramente por meio de simulações computacionais, a ideia é repetir um experimento aleatório várias vezes e observar o comportamento da média das amostras. 
+
+Para exemplificar, pense em um tetraedo (um dado de 4 faces) honesto, com valores de 1 a 4, com mesma probabilidade. A distribuição original é uniforme discreta, e não se parece com uma normal.
+
+Vamos denotar $X$ como o valor da face do dado, ou seja, $X \sim Unif\{1,2,3,4\}$, com esperança = $\mu = 2,5$, variância = $\sigma^2 = 1,25$ e desvio padrão $\sigma = \sqrt{1,25}$.
+
+Sortearemos variás amostras aleatórias de tamanho 30 ($n=30$) e simularemos esse experimento 10.000 vezes. Depois, calcularemos a média de cada amostra e por fim faremos um histograma das médias, junto com a curva de distribuição normal esperada, usando a média e o desvio padrão teóricos.
+
+```{r simulacao_tcl}
+set.seed(123)
+
+n <- 30      # tamanho da amostra
+m <- 10000   # número de repetições
+
+# Gerar N médias amostrais de amostras de tamanho n com valores de 1 a 4
+medias <- replicate(m, mean(sample(1:4, n, replace = TRUE)))
+
+# Parâmetros teóricos
+media_teorica <- 2.5
+desvio_padrao <- sqrt(1.25 / n)
+
+hist(medias, freq = FALSE, col = "darkturquoise",
+     main = "TCL com Dado Honesto de 4 Faces (n = 30)",
+     xlab = "Média da amostra", ylab = "Densidade")
+
+# Adicionando a curva normal teórica
+curve(dnorm(x, mean = media_teorica, sd = desvio_padrao),
+      col = "deeppink2", lwd = 2, add = TRUE)
+
+legend("topright", legend = "Normal teórica", col = "deeppink2", lwd = 2)
+```
+
+O histograma acima mostra a distribuição das médias amostrais do nosso experimento simulado. A linha rosa (curva normal) mostra a aproximação prevista pelo Teorema Central do Limite. Perceba que mesmo com uma distribuição discreta e com poucos valores possíveis, a média se aproxima de uma distribuição normal, como afirma o TCL.
+
+Apesar de ainda não termos visto a distribuição normal na graduação, saiba que ela é a mais importante em toda a estatística; um dos motivos para isso é o resultado que vimos acima do TCL.
+
+Além dele, a normal é uma distribuição com dois parâmetros: sua média e variância. Ela é simétrica em torno da sua média e com duas caudas (iguais, por conta da simetria), muito conhecida e com boas propriedades. E isso tudo facilita a inferência (triar conclusões sobre os parâmetros) nela.
+
+---
+
 ## Uma aplicação de simulação em inferência estatística
 
 Uma das aplicações mais importantes da estatística é testar se duas variáveis são ou não independentes. Diferente da probabilidade, na inferência estatística, apenas os dados observados não são o suficiente pra afirmar independência. Além disso, variáveis aparentemente não correlacionadas têm correlação.
