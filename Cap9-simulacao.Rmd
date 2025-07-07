@@ -258,6 +258,56 @@ Além dele, a normal é uma distribuição com dois parâmetros: sua média e va
 
 ---
 
+## Reamostragem
+
+Usado para estimar a distribuição amostral de estatísticas de interesse, a técnica de reamostragem nos ajuda a inferir sobre as propriedades de uma população a partir de uma única amostra observada.
+
+Imagine que temos um conjuntos de dados e desejamos entender a variabilidade de alguma estatística calculada a partir dessa amostra, como a média ou variância. Para que não seja necessário coletar múltiplas amostras da população (o que nem sempre é viável), podemos usar a reamostragem.
+
+A reamostragem consiste em gerar, a partir da nossa amostra original de tamanho $m$, um grande número $M$ de novas amostras, também de tamanho $m$, com reposição. Com isso, conseguimos estimar a distribuição amostral de estatísticas de interesse, uma vez que, à medida que o tamanho da amostra original aumenta, a distribuição obtida por reamostragem se aproxima da distribuição teórica da estatística.
+
+- **Exemplo:**
+
+Pense que queremos entender como a variância de uma variável aleatória binomial se comporta em diferentes amostras, usando a reamostragem para produzir esse comportamento, mesmo com uma única amostra disponível.
+
+Vamos analisar o número de sucessos em 10 tentativas de um experimento com probabilidade de sucesso $p=0,6$. E o nosso interesse está em estudar como a variância do número de acertos se comporta em diferentes amostras. Para isso:
+
+```{r reamostragem}
+set.seed(666) 
+
+# Parâmetros da simulação
+m = 200     # tamanho da amostra original
+p = 0.6     # probabilidade de sucesso 
+n = 10      # número de tentativas em cada experimento 
+M = 1000    # número de repetições da simulação
+
+# Simulando várias amostras independentes da distribuição binomial
+S=matrix(rbinom(m*M,n,p),ncol=M)
+variancias = apply(S,2,var)
+b=c(min(variancias),max(variancias),nclass.Sturges(variancias))
+
+hist1 <- tibble(variancias) %>% ggplot() + theme_bw() +
+  ggtitle("Várias Amostras") +  xlim(b[1],b[2]) +
+  geom_histogram(aes(x=variancias,y=..density..),
+      bins=b[3],col="black",fill="deeppink")
+
+# Fazendo reamostragem da primeira amostra
+B <- apply(matrix(rep(1,M)),1,
+           function(y){sample(S[,1],length(S[,1]),replace=TRUE)})
+variancias = apply(B,2,var)
+
+hist2 <- tibble(variancias) %>% ggplot() + theme_bw() + 
+  ggtitle("Reamostragem") + xlim(b[1],b[2]) +
+  geom_histogram(aes(x=variancias,y=..density..),
+      bins=b[3],col="black",fill="darkturquoise")
+
+ggpubr::ggarrange(hist1,hist2,ncol=1)
+```
+
+Mesmo usando apenas uma única amostra, com o método de reamostragem conseguimos gerar uma distribuição da estatística (variância) muito próxima àquela obtida por várias amostras independentes. 
+
+---
+
 ## Uma aplicação de simulação em inferência estatística
 
 Uma das aplicações mais importantes da estatística é testar se duas variáveis são ou não independentes. Diferente da probabilidade, na inferência estatística, apenas os dados observados não são o suficiente pra afirmar independência. Além disso, variáveis aparentemente não correlacionadas têm correlação.

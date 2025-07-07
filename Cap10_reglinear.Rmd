@@ -139,6 +139,11 @@ A forma do histograma acima se assemelha ao de uma distribuição normal, é uni
 
 O QQ-plot compara os quantis dos resíduos com os quantis teóricos de uma distribuição normal. Se os pontos do gráfico ficarem aproximadamente numa linha reta, significa que os resíduos seguem bem a distribuição normal. Se os pontos se afastam da linha (curvando para cima ou para baixo, ou formando um “S”), indica desvio da normalidade.
 
+Neste gráfico, ao invés das probabilidades acumuladas da Normal, são plotados os resíduos e os quantis teóricos $(x_{(i)} ~,~ Q(p_i))$, em que $x_{(i)}$ são os valores observados ordenados, $Q(p)$  é o quantil teórico de ordem $p$ e as probabilidades $p_i$ usualmente são calculadas como:
+$$
+p_i = \frac{i - 0,5}{n} ~ \text{ ou } ~ p_i = \frac{i}{n-1}
+$$
+
 Fazendo um QQ-plot com o exemplo de altura e peso:
 
 ```{r qqplot}

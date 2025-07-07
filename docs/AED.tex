@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-06-25}
+\date{2025-07-07}
 
 \begin{document}
 \maketitle
@@ -4459,6 +4459,87 @@ Além dele, a normal é uma distribuição com dois parâmetros: sua média e va
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{Reamostragem}\label{reamostragem}
+
+Usado para estimar a distribuição amostral de estatísticas de interesse, a técnica de reamostragem nos ajuda a inferir sobre as propriedades de uma população a partir de uma única amostra observada.
+
+Imagine que temos um conjuntos de dados e desejamos entender a variabilidade de alguma estatística calculada a partir dessa amostra, como a média ou variância. Para que não seja necessário coletar múltiplas amostras da população (o que nem sempre é viável), podemos usar a reamostragem.
+
+A reamostragem consiste em gerar, a partir da nossa amostra original de tamanho \(m\), um grande número \(M\) de novas amostras, também de tamanho \(m\), com reposição. Com isso, conseguimos estimar a distribuição amostral de estatísticas de interesse, uma vez que, à medida que o tamanho da amostra original aumenta, a distribuição obtida por reamostragem se aproxima da distribuição teórica da estatística.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Exemplo:}
+\end{itemize}
+
+Pense que queremos entender como a variância de uma variável aleatória binomial se comporta em diferentes amostras, usando a reamostragem para produzir esse comportamento, mesmo com uma única amostra disponível.
+
+Vamos analisar o número de sucessos em 10 tentativas de um experimento com probabilidade de sucesso \(p=0,6\). E o nosso interesse está em estudar como a variância do número de acertos se comporta em diferentes amostras. Para isso:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{666}\NormalTok{) }
+
+\CommentTok{\# Parâmetros da simulação}
+\NormalTok{m }\OtherTok{=} \DecValTok{200}     \CommentTok{\# tamanho da amostra original}
+\NormalTok{p }\OtherTok{=} \FloatTok{0.6}     \CommentTok{\# probabilidade de sucesso }
+\NormalTok{n }\OtherTok{=} \DecValTok{10}      \CommentTok{\# número de tentativas em cada experimento }
+\NormalTok{M }\OtherTok{=} \DecValTok{1000}    \CommentTok{\# número de repetições da simulação}
+
+\CommentTok{\# Simulando várias amostras independentes da distribuição binomial}
+\NormalTok{S}\OtherTok{=}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{rbinom}\NormalTok{(m}\SpecialCharTok{*}\NormalTok{M,n,p),}\AttributeTok{ncol=}\NormalTok{M)}
+\NormalTok{variancias }\OtherTok{=} \FunctionTok{apply}\NormalTok{(S,}\DecValTok{2}\NormalTok{,var)}
+\NormalTok{b}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(variancias),}\FunctionTok{max}\NormalTok{(variancias),}\FunctionTok{nclass.Sturges}\NormalTok{(variancias))}
+
+\NormalTok{hist1 }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(variancias) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Várias Amostras"}\NormalTok{) }\SpecialCharTok{+}  \FunctionTok{xlim}\NormalTok{(b[}\DecValTok{1}\NormalTok{],b[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{variancias,}\AttributeTok{y=}\NormalTok{..density..),}
+      \AttributeTok{bins=}\NormalTok{b[}\DecValTok{3}\NormalTok{],}\AttributeTok{col=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"deeppink"}\NormalTok{)}
+
+\CommentTok{\# Fazendo reamostragem da primeira amostra}
+\NormalTok{B }\OtherTok{\textless{}{-}} \FunctionTok{apply}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,M)),}\DecValTok{1}\NormalTok{,}
+           \ControlFlowTok{function}\NormalTok{(y)\{}\FunctionTok{sample}\NormalTok{(S[,}\DecValTok{1}\NormalTok{],}\FunctionTok{length}\NormalTok{(S[,}\DecValTok{1}\NormalTok{]),}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{)\})}
+\NormalTok{variancias }\OtherTok{=} \FunctionTok{apply}\NormalTok{(B,}\DecValTok{2}\NormalTok{,var)}
+
+\NormalTok{hist2 }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(variancias) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} 
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Reamostragem"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(b[}\DecValTok{1}\NormalTok{],b[}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{variancias,}\AttributeTok{y=}\NormalTok{..density..),}
+      \AttributeTok{bins=}\NormalTok{b[}\DecValTok{3}\NormalTok{],}\AttributeTok{col=}\StringTok{"black"}\NormalTok{,}\AttributeTok{fill=}\StringTok{"darkturquoise"}\NormalTok{)}
+
+\NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(hist1,hist2,}\AttributeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+## i Please use `after_stat(density)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_bar()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing non-finite outside the scale range
+## (`stat_bin()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values or values outside the scale range
+## (`geom_bar()`).
+\end{verbatim}
+
+\begin{center}\includegraphics{AED_files/figure-latex/reamostragem-1} \end{center}
+
+Mesmo usando apenas uma única amostra, com o método de reamostragem conseguimos gerar uma distribuição da estatística (variância) muito próxima àquela obtida por várias amostras independentes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \section{Uma aplicação de simulação em inferência estatística}\label{uma-aplicauxe7uxe3o-de-simulauxe7uxe3o-em-inferuxeancia-estatuxedstica}
 
 Uma das aplicações mais importantes da estatística é testar se duas variáveis são ou não independentes. Diferente da probabilidade, na inferência estatística, apenas os dados observados não são o suficiente pra afirmar independência. Além disso, variáveis aparentemente não correlacionadas têm correlação.
@@ -4826,6 +4907,11 @@ A forma do histograma acima se assemelha ao de uma distribuição normal, é uni
 \subsection{Analisando resíduos através de um QQ-plot}\label{analisando-resuxedduos-atravuxe9s-de-um-qq-plot}
 
 O QQ-plot compara os quantis dos resíduos com os quantis teóricos de uma distribuição normal. Se os pontos do gráfico ficarem aproximadamente numa linha reta, significa que os resíduos seguem bem a distribuição normal. Se os pontos se afastam da linha (curvando para cima ou para baixo, ou formando um ``S''), indica desvio da normalidade.
+
+Neste gráfico, ao invés das probabilidades acumuladas da Normal, são plotados os resíduos e os quantis teóricos \((x_{(i)} ~,~ Q(p_i))\), em que \(x_{(i)}\) são os valores observados ordenados, \(Q(p)\) é o quantil teórico de ordem \(p\) e as probabilidades \(p_i\) usualmente são calculadas como:
+\[
+p_i = \frac{i - 0,5}{n} ~ \text{ ou } ~ p_i = \frac{i}{n-1}
+\]
 
 Fazendo um QQ-plot com o exemplo de altura e peso:
 
