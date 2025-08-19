@@ -68,17 +68,17 @@ graf_genero_f <- filmes_pixar %>%
   ggplot() + theme_bw() + xlab("genero") + ylab("Freqûencia") +
   geom_bar(aes(x = genero, fill= genero)) + 
   scale_fill_manual("genero", values = c("Aventura" = "deeppink", 
-                   "Comédia" = "magenta", "Ação" = "coral2", 
-                   "Esporte" = "seagreen1", "Drama" = "turquoise3", 
-                   "Musical" = "maroon3", "Ficção Científica" = "royalblue"))
+              "Comédia" = "magenta", "Ação" = "coral2", 
+              "Esporte" = "seagreen1", "Drama" = "turquoise3", 
+              "Musical" = "maroon3", "Ficção Científica" = "royalblue"))
 
 graf_genero_p <- tab_genero %>% 
   ggplot() + theme_bw() + xlab("genero") + ylab("Proporção") +
   geom_bar(aes(x= Gênero, fill= Gênero, y=FreqRel), stat="identity") + 
   scale_fill_manual("genero", values = c("Aventura" = "deeppink", 
-                    "Comédia" = "magenta", "Ação" = "coral2", 
-                    "Esporte" = "seagreen1", "Drama" = "turquoise3", 
-                    "Musical" = "maroon3", "Ficção Científica" = "royalblue"))
+              "Comédia" = "magenta", "Ação" = "coral2", 
+              "Esporte" = "seagreen1", "Drama" = "turquoise3", 
+              "Musical" = "maroon3", "Ficção Científica" = "royalblue"))
 
 # ggpubr::ggarrange(graf_genero_f,graf_genero_p, legend="none")
 ggpubr::ggarrange(graf_genero_f, graf_genero_p, legend = "none", ncol = 1)
@@ -333,8 +333,6 @@ filmes_pixar %>% ggplot() + theme_bw() +
 filmes_pixar %>% ggplot(aes(x="",y=duracao)) + theme_bw() + 
   geom_boxplot(color="black", fill="royalblue") + 
   ggbeeswarm::geom_beeswarm(cex=3,size=3,method = "center")
-  #geom_dotplot(binaxis= "y",stackdir = "center",fill = 1,dotsize = 0.8,stackratio=2)
-  #geom_jitter(color="black", size=1, alpha=0.9)
 ```
 
 ---

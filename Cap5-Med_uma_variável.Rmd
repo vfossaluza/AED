@@ -10,7 +10,10 @@
 ### Média (Aritmética)
 
 - A medida mais utilizada é a **média**, definida por $$\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^n x_i = \dfrac{x_1+x_2+\ldots+x_n}{n}~.$$  
-  *Exemplo - Duração dos filmes da pixar: $\bar{x} = \frac{81+95+92+92+100+115+117+111+98+96+103+106+93+104+95+93+97+102+105+118+100+102+100}{23}=100.65$
+  *Exemplo - Duração dos filmes da pixar: 
+$$
+  \bar{x} = \frac{81+95+92+92+100+115+117+111+98+96+103+106+93+104+95+93+97+102+105+118+100+102+100}{23}=100.65
+$$
 
 - Alternativamente, quando há empates (isto é, $n_1$ observações do valor $x_1$, $n_2$ observações do valor $x_2$, e assim por diante), podemos calcular a média por $$\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^k n_i~x_i = \sum_{i=1}^k f_i~x_i = \frac{n_1~x_1+n_2~x_2+\ldots+n_k~x_k}{n}~,$$ em que $k\leq n$ é a quantidade de valores diferentes assumidos pela variável $X$ e $\sum n_i = n$. Ainda pode-se considerar para o cálculo da média a frequência relativa $f_i = n_i/n$.  
 
@@ -102,7 +105,10 @@ Q(p) =
 \right.
 $$
 
-          em que $f_i = \dfrac{p-p_i}{p_{i+1}-p_i}$.
+Em que
+$$
+f_i = \dfrac{p-p_i}{p_{i+1}-p_i}
+$$
 
 - Quando houver empates (valores iguais) na amostra, vamos considerar o maior $p_i$ entre as observações empatadas.
           

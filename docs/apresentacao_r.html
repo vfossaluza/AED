@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-07-07" />
+<meta name="date" content="2025-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -631,8 +631,8 @@ Usamos normalmente para iniciar variáveis ou para remover elementos de listas.<
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="apresentacao_r.html#cb90-1" tabindex="-1"></a>nivel_educacional <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;Fundamental&quot;</span>, <span class="st">&quot;Médio&quot;</span>, <span class="st">&quot;Superior&quot;</span>))</span>
 <span id="cb90-2"><a href="apresentacao_r.html#cb90-2" tabindex="-1"></a></span>
 <span id="cb90-3"><a href="apresentacao_r.html#cb90-3" tabindex="-1"></a>satisfacao <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;alta&quot;</span>, <span class="st">&quot;média&quot;</span>),</span>
-<span id="cb90-4"><a href="apresentacao_r.html#cb90-4" tabindex="-1"></a>                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;média&quot;</span>, <span class="st">&quot;alta&quot;</span>), <span class="co"># indica os níveis</span></span>
-<span id="cb90-5"><a href="apresentacao_r.html#cb90-5" tabindex="-1"></a>                     <span class="at">ordered =</span> <span class="cn">TRUE</span>) <span class="co"># indica que a ordem dos níveis importa</span></span></code></pre></div>
+<span id="cb90-4"><a href="apresentacao_r.html#cb90-4" tabindex="-1"></a>              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;baixa&quot;</span>, <span class="st">&quot;média&quot;</span>, <span class="st">&quot;alta&quot;</span>), <span class="co"># indica os níveis</span></span>
+<span id="cb90-5"><a href="apresentacao_r.html#cb90-5" tabindex="-1"></a>              <span class="at">ordered =</span> <span class="cn">TRUE</span>) <span class="co"># indica que a ordem dos níveis importa</span></span></code></pre></div>
 <p>Para trabalhar com fatores podemos usar o pacote forcats, que nos fornece funções para criar, modificar e organizar fatores de forma eficiente, sendo possível reordenar níveis com base em valores associados, agrupar categorias raras, ordenar níveis com base em suas frequências e trabalhar com dados categóricos de forma mais eficaz. Ainda nesse capítulo, falaremos mais sobre a instalação e o uso de pacotes dentro do RMarkdown.</p>
 <hr />
 <ul>
@@ -649,8 +649,10 @@ Cada coluna é um vetor de mesmo tamanho e pode ter tipos diferentes (números, 
 <span id="cb91-7"><a href="apresentacao_r.html#cb91-7" tabindex="-1"></a><span class="co"># Acessando colunas</span></span>
 <span id="cb91-8"><a href="apresentacao_r.html#cb91-8" tabindex="-1"></a>df<span class="sc">$</span>nome</span></code></pre></div>
 <pre><code>## [1] &quot;Mariana&quot; &quot;Juliana&quot; &quot;Isabela&quot;</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="apresentacao_r.html#cb93-1" tabindex="-1"></a><span class="co"># Acessando elementos usando colchetes - o primeiro indíce refere-se as linhas e o segundo a # as colunas</span></span>
-<span id="cb93-2"><a href="apresentacao_r.html#cb93-2" tabindex="-1"></a>df[, <span class="st">&quot;idade&quot;</span>]  </span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="apresentacao_r.html#cb93-1" tabindex="-1"></a><span class="co"># Acessando elementos usando colchetes:</span></span>
+<span id="cb93-2"><a href="apresentacao_r.html#cb93-2" tabindex="-1"></a><span class="co"># o primeiro indíce refere-se as linhas </span></span>
+<span id="cb93-3"><a href="apresentacao_r.html#cb93-3" tabindex="-1"></a><span class="co"># e o segundo as colunas</span></span>
+<span id="cb93-4"><a href="apresentacao_r.html#cb93-4" tabindex="-1"></a>df[, <span class="st">&quot;idade&quot;</span>]  </span></code></pre></div>
 <pre><code>## [1] 19  8 14</code></pre>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="apresentacao_r.html#cb95-1" tabindex="-1"></a>df[<span class="dv">1</span>, ]        </span></code></pre></div>
 <pre><code>##      nome idade altura

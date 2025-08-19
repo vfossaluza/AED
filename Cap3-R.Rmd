@@ -315,8 +315,8 @@ No R, a estrutura de dados fatores podem ser usadas para representar os dados ca
 nivel_educacional <- factor(c("Fundamental", "Médio", "Superior"))
 
 satisfacao <- factor(c("baixa", "alta", "média"),
-                     levels = c("baixa", "média", "alta"), # indica os níveis
-                     ordered = TRUE) # indica que a ordem dos níveis importa
+              levels = c("baixa", "média", "alta"), # indica os níveis
+              ordered = TRUE) # indica que a ordem dos níveis importa
 ```
 
 Para trabalhar com fatores podemos usar o pacote forcats, que nos fornece funções para criar, modificar e organizar fatores de forma eficiente, sendo possível reordenar níveis com base em valores associados, agrupar categorias raras, ordenar níveis com base em suas frequências e trabalhar com dados categóricos de forma mais eficaz. Ainda nesse capítulo, falaremos mais sobre a instalação e o uso de pacotes dentro do RMarkdown.
@@ -338,11 +338,12 @@ df <- data.frame(
 # Acessando colunas
 df$nome
 
-# Acessando elementos usando colchetes - o primeiro indíce refere-se as linhas e o segundo a # as colunas
+# Acessando elementos usando colchetes:
+# o primeiro indíce refere-se as linhas 
+# e o segundo as colunas
 df[, "idade"]  
 df[1, ]        
 df[1, "altura"] 
-
 ```
 
 Por mais que possa parecer com a estrutura de listas, o data frame é uma tabela de dados em formato de linhas e colunas. Diferente de uma lista, as suas colunas devem ter o mesmo número de elementos.

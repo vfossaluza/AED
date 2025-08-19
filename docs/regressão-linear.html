@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-07-07" />
+<meta name="date" content="2025-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -383,8 +383,8 @@ b = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{
 \]</span></p>
 <p>Como os valores de <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> calculados acima são estimados, chamaremos de <span class="math inline">\(\hat{a}\)</span> e <span class="math inline">\(\hat{b}\)</span>.</p>
 <p>Para o nosso exemplo de altura e peso, vamos estimar <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> usando a função <em>ln()</em>:</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="regressão-linear.html#cb242-1" tabindex="-1"></a>regressao <span class="ot">&lt;-</span> <span class="fu">lm</span>(dados_linear)</span>
-<span id="cb242-2"><a href="regressão-linear.html#cb242-2" tabindex="-1"></a>regressao<span class="sc">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="regressão-linear.html#cb236-1" tabindex="-1"></a>regressao <span class="ot">&lt;-</span> <span class="fu">lm</span>(dados_linear)</span>
+<span id="cb236-2"><a href="regressão-linear.html#cb236-2" tabindex="-1"></a>regressao<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>## (Intercept)        peso 
 ##   89.623253    1.120262</code></pre>
 <p>Com isso, temos que <span class="math inline">\(\hat{a} \approx 89,62\)</span> e <span class="math inline">\(\hat{b} \approx 1,12\)</span>.</p>
@@ -397,18 +397,18 @@ b = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{
 \varepsilon = y - \hat{y} = y - (a + b x)
 \]</span></p>
 <p>Obtendo os resíduos do exemplo de altura e peso:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="regressão-linear.html#cb244-1" tabindex="-1"></a>residuos <span class="ot">&lt;-</span> <span class="fu">residuals</span>(regressao)</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="regressão-linear.html#cb238-1" tabindex="-1"></a>residuos <span class="ot">&lt;-</span> <span class="fu">residuals</span>(regressao)</span></code></pre></div>
 <p>Quando fazemos uma análise dos resíduos, nosso objetivo é verificar se os resíduos (diferenças entre valores observados e valores previstos pelo modelo) se aproximam de uma distribuição normal. Temos duas formas mais comuns de fazer isso, sendo através de um histograma ou de um QQ-plot.</p>
 <div id="analisando-resíduos-através-de-um-histograma" class="section level3 hasAnchor" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> Analisando resíduos através de um histograma<a href="regressão-linear.html#analisando-resíduos-através-de-um-histograma" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>O histograma mostra a distribuição dos resíduos. Com ele, podemos verificar se os resíduos têm uma distribuição aproximadamente simétrica com um formato próximo da distribuição normal.</p>
 <p>Se o histograma mostrar uma distribuição assimétrica, com caudas muito longas ou picos incomuns, pode indicar que os resíduos não são normais.</p>
 <p>Fazendo o histograma com o exemplo de altura e peso:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="regressão-linear.html#cb245-1" tabindex="-1"></a><span class="fu">hist</span>(residuos, </span>
-<span id="cb245-2"><a href="regressão-linear.html#cb245-2" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histograma dos Resíduos&quot;</span>, </span>
-<span id="cb245-3"><a href="regressão-linear.html#cb245-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Resíduo&quot;</span>, </span>
-<span id="cb245-4"><a href="regressão-linear.html#cb245-4" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;hotpink&quot;</span>, </span>
-<span id="cb245-5"><a href="regressão-linear.html#cb245-5" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="regressão-linear.html#cb239-1" tabindex="-1"></a><span class="fu">hist</span>(residuos, </span>
+<span id="cb239-2"><a href="regressão-linear.html#cb239-2" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Histograma dos Resíduos&quot;</span>, </span>
+<span id="cb239-3"><a href="regressão-linear.html#cb239-3" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Resíduo&quot;</span>, </span>
+<span id="cb239-4"><a href="regressão-linear.html#cb239-4" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;hotpink&quot;</span>, </span>
+<span id="cb239-5"><a href="regressão-linear.html#cb239-5" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/hist_residuos-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>A forma do histograma acima se assemelha ao de uma distribuição normal, é unimodal (tem apenas um pico) e é razoavelmente simétrica. Então, embora não seja uma curva perfeita (o que é raro em dados reais), a distribuição não apresenta uma assimetria severa ou múltiplos picos. Sendo assim, nosso modelo de regressão linear parece ser adequado.</p>
 </div>
@@ -420,8 +420,8 @@ b = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^n (x_i - \bar{
 p_i = \frac{i - 0,5}{n} ~ \text{ ou } ~ p_i = \frac{i}{n-1}
 \]</span></p>
 <p>Fazendo um QQ-plot com o exemplo de altura e peso:</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="regressão-linear.html#cb246-1" tabindex="-1"></a><span class="fu">qqnorm</span>(residuos, <span class="at">main =</span> <span class="st">&quot;Q-Q Plot dos Resíduos&quot;</span>)</span>
-<span id="cb246-2"><a href="regressão-linear.html#cb246-2" tabindex="-1"></a><span class="fu">qqline</span>(residuos, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="regressão-linear.html#cb240-1" tabindex="-1"></a><span class="fu">qqnorm</span>(residuos, <span class="at">main =</span> <span class="st">&quot;Q-Q Plot dos Resíduos&quot;</span>)</span>
+<span id="cb240-2"><a href="regressão-linear.html#cb240-2" tabindex="-1"></a><span class="fu">qqline</span>(residuos, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/qqplot-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>No gráfico acima, a linha vermelha representa a situação ideal, onde os seus resíduos seriam perfeitamente normais. Os pontos pretos (círculos) são os seus dados de resíduos.</p>
 <p>O fato de os pontos estarem muito próximos da linha vermelha ao longo de quase toda a sua extensão é um excelente sinal. Isso indica que a distribuição dos seus resíduos se alinha de forma muito consistente com uma distribuição normal.</p>

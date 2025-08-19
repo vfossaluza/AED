@@ -151,7 +151,7 @@
 
 \title{Análise Exploratória de Dados}
 \author{Gabriela Scarpini e Victor Fossaluza}
-\date{2025-07-07}
+\date{2025-08-19}
 
 \begin{document}
 \maketitle
@@ -1345,8 +1345,8 @@ No R, a estrutura de dados fatores podem ser usadas para representar os dados ca
 \NormalTok{nivel\_educacional }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Fundamental"}\NormalTok{, }\StringTok{"Médio"}\NormalTok{, }\StringTok{"Superior"}\NormalTok{))}
 
 \NormalTok{satisfacao }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"baixa"}\NormalTok{, }\StringTok{"alta"}\NormalTok{, }\StringTok{"média"}\NormalTok{),}
-                     \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"baixa"}\NormalTok{, }\StringTok{"média"}\NormalTok{, }\StringTok{"alta"}\NormalTok{), }\CommentTok{\# indica os níveis}
-                     \AttributeTok{ordered =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# indica que a ordem dos níveis importa}
+              \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"baixa"}\NormalTok{, }\StringTok{"média"}\NormalTok{, }\StringTok{"alta"}\NormalTok{), }\CommentTok{\# indica os níveis}
+              \AttributeTok{ordered =} \ConstantTok{TRUE}\NormalTok{) }\CommentTok{\# indica que a ordem dos níveis importa}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1382,7 +1382,9 @@ Cada coluna é um vetor de mesmo tamanho e pode ter tipos diferentes (números, 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Acessando elementos usando colchetes {-} o primeiro indíce refere{-}se as linhas e o segundo a \# as colunas}
+\CommentTok{\# Acessando elementos usando colchetes:}
+\CommentTok{\# o primeiro indíce refere{-}se as linhas }
+\CommentTok{\# e o segundo as colunas}
 \NormalTok{df[, }\StringTok{"idade"}\NormalTok{]  }
 \end{Highlighting}
 \end{Shaded}
@@ -2357,7 +2359,8 @@ O código acima reordena os fatores por frequência.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{cores }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"rosa"}\NormalTok{, }\StringTok{"vermelho"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"amarelo"}\NormalTok{, }\StringTok{"rosa"}\NormalTok{, }\StringTok{"verde"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"rosa"}\NormalTok{))}
+\NormalTok{cores }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"rosa"}\NormalTok{, }\StringTok{"vermelho"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"amarelo"}\NormalTok{, }\StringTok{"rosa"}\NormalTok{, }
+                  \StringTok{"verde"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"rosa"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2382,7 +2385,10 @@ A partir disso:
 \begin{itemize}
 \item
   A medida mais utilizada é a \textbf{média}, definida por \[\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^n x_i = \dfrac{x_1+x_2+\ldots+x_n}{n}~.\]\\
-  *Exemplo - Duração dos filmes da pixar: \(\bar{x} = \frac{81+95+92+92+100+115+117+111+98+96+103+106+93+104+95+93+97+102+105+118+100+102+100}{23}=100.65\)
+  *Exemplo - Duração dos filmes da pixar:
+  \[
+  \bar{x} = \frac{81+95+92+92+100+115+117+111+98+96+103+106+93+104+95+93+97+102+105+118+100+102+100}{23}=100.65
+  \]
 \item
   Alternativamente, quando há empates (isto é, \(n_1\) observações do valor \(x_1\), \(n_2\) observações do valor \(x_2\), e assim por diante), podemos calcular a média por \[\displaystyle \bar{x} = \frac{1}{n}\sum_{i=1}^k n_i~x_i = \sum_{i=1}^k f_i~x_i = \frac{n_1~x_1+n_2~x_2+\ldots+n_k~x_k}{n}~,\] em que \(k\leq n\) é a quantidade de valores diferentes assumidos pela variável \(X\) e \(\sum n_i = n\). Ainda pode-se considerar para o cálculo da média a frequência relativa \(f_i = n_i/n\).
 \item
@@ -2554,10 +2560,14 @@ em que \(x_{(1)}\leq x_{(2)}\leq \ldots \leq x_{(n)}\), \(x_{(1)}\) é o menor v
   \end{array}
   \right.
   \]
+\end{itemize}
 
-\begin{verbatim}
-    em que $f_i = \dfrac{p-p_i}{p_{i+1}-p_i}$.
-\end{verbatim}
+Em que
+\[
+f_i = \dfrac{p-p_i}{p_{i+1}-p_i}
+\]
+
+\begin{itemize}
 \item
   Quando houver empates (valores iguais) na amostra, vamos considerar o maior \(p_i\) entre as observações empatadas.
 \item
@@ -2762,17 +2772,17 @@ Ficção Científica & 1 & 0.0434783\\
   \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"genero"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Freqûencia"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ genero, }\AttributeTok{fill=}\NormalTok{ genero)) }\SpecialCharTok{+} 
   \FunctionTok{scale\_fill\_manual}\NormalTok{(}\StringTok{"genero"}\NormalTok{, }\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Aventura"} \OtherTok{=} \StringTok{"deeppink"}\NormalTok{, }
-                   \StringTok{"Comédia"} \OtherTok{=} \StringTok{"magenta"}\NormalTok{, }\StringTok{"Ação"} \OtherTok{=} \StringTok{"coral2"}\NormalTok{, }
-                   \StringTok{"Esporte"} \OtherTok{=} \StringTok{"seagreen1"}\NormalTok{, }\StringTok{"Drama"} \OtherTok{=} \StringTok{"turquoise3"}\NormalTok{, }
-                   \StringTok{"Musical"} \OtherTok{=} \StringTok{"maroon3"}\NormalTok{, }\StringTok{"Ficção Científica"} \OtherTok{=} \StringTok{"royalblue"}\NormalTok{))}
+              \StringTok{"Comédia"} \OtherTok{=} \StringTok{"magenta"}\NormalTok{, }\StringTok{"Ação"} \OtherTok{=} \StringTok{"coral2"}\NormalTok{, }
+              \StringTok{"Esporte"} \OtherTok{=} \StringTok{"seagreen1"}\NormalTok{, }\StringTok{"Drama"} \OtherTok{=} \StringTok{"turquoise3"}\NormalTok{, }
+              \StringTok{"Musical"} \OtherTok{=} \StringTok{"maroon3"}\NormalTok{, }\StringTok{"Ficção Científica"} \OtherTok{=} \StringTok{"royalblue"}\NormalTok{))}
 
 \NormalTok{graf\_genero\_p }\OtherTok{\textless{}{-}}\NormalTok{ tab\_genero }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{theme\_bw}\NormalTok{() }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"genero"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{(}\StringTok{"Proporção"}\NormalTok{) }\SpecialCharTok{+}
   \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ Gênero, }\AttributeTok{fill=}\NormalTok{ Gênero, }\AttributeTok{y=}\NormalTok{FreqRel), }\AttributeTok{stat=}\StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+} 
   \FunctionTok{scale\_fill\_manual}\NormalTok{(}\StringTok{"genero"}\NormalTok{, }\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Aventura"} \OtherTok{=} \StringTok{"deeppink"}\NormalTok{, }
-                    \StringTok{"Comédia"} \OtherTok{=} \StringTok{"magenta"}\NormalTok{, }\StringTok{"Ação"} \OtherTok{=} \StringTok{"coral2"}\NormalTok{, }
-                    \StringTok{"Esporte"} \OtherTok{=} \StringTok{"seagreen1"}\NormalTok{, }\StringTok{"Drama"} \OtherTok{=} \StringTok{"turquoise3"}\NormalTok{, }
-                    \StringTok{"Musical"} \OtherTok{=} \StringTok{"maroon3"}\NormalTok{, }\StringTok{"Ficção Científica"} \OtherTok{=} \StringTok{"royalblue"}\NormalTok{))}
+              \StringTok{"Comédia"} \OtherTok{=} \StringTok{"magenta"}\NormalTok{, }\StringTok{"Ação"} \OtherTok{=} \StringTok{"coral2"}\NormalTok{, }
+              \StringTok{"Esporte"} \OtherTok{=} \StringTok{"seagreen1"}\NormalTok{, }\StringTok{"Drama"} \OtherTok{=} \StringTok{"turquoise3"}\NormalTok{, }
+              \StringTok{"Musical"} \OtherTok{=} \StringTok{"maroon3"}\NormalTok{, }\StringTok{"Ficção Científica"} \OtherTok{=} \StringTok{"royalblue"}\NormalTok{))}
 
 \CommentTok{\# ggpubr::ggarrange(graf\_genero\_f,graf\_genero\_p, legend="none")}
 \NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(graf\_genero\_f, graf\_genero\_p, }\AttributeTok{legend =} \StringTok{"none"}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{1}\NormalTok{)}
@@ -3172,13 +3182,6 @@ Assim, dependendo do tipo de dado e do objetivo da análise, podemos escolher o 
 \end{Shaded}
 
 \begin{center}\includegraphics{AED_files/figure-latex/boxplot_P_duracao-1} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-  \CommentTok{\#geom\_dotplot(binaxis= "y",stackdir = "center",fill = 1,dotsize = 0.8,stackratio=2)}
-  \CommentTok{\#geom\_jitter(color="black", size=1, alpha=0.9)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -4217,7 +4220,8 @@ Estimando isso pelo metódo de Monte Carlo, vamos gerar aleatoriamente pontos de
 \CommentTok{\# Definir o número de pontos }
 \NormalTok{n\_pontos }\OtherTok{\textless{}{-}} \DecValTok{10000}
 
-\CommentTok{\# Gerar coordenadas X e Y aleatórias para os pontos dentro do quadrado [{-}1, 1] x [{-}1, 1]}
+\CommentTok{\# Gerar coordenadas X e Y aleatórias para os pontos }
+\CommentTok{\# dentro do quadrado [{-}1, 1] x [{-}1, 1]}
 \NormalTok{x\_coords }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n\_pontos, }\AttributeTok{min =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)}
 \NormalTok{y\_coords }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n\_pontos, }\AttributeTok{min =} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{max =} \DecValTok{1}\NormalTok{)}
 
@@ -4390,7 +4394,7 @@ Para saber o quantil, usando \emph{qbinom()}, no caso de \(P(X \leq x) = 0,8\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Qual o menor número de sucessos tal que a probabilidade acumulada seja ao menos 0.8?}
+\CommentTok{\# Qual o menor n de sucessos tal que a prob acumulada seja ao menos 0.8?}
 \FunctionTok{qbinom}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -4510,29 +4514,6 @@ Vamos analisar o número de sucessos em 10 tentativas de um experimento com prob
 \NormalTok{ggpubr}\SpecialCharTok{::}\FunctionTok{ggarrange}\NormalTok{(hist1,hist2,}\AttributeTok{ncol=}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-## i Please use `after_stat(density)` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 2 rows containing missing values or values outside the scale range
-## (`geom_bar()`).
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 2 rows containing non-finite outside the scale range
-## (`stat_bin()`).
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: Removed 2 rows containing missing values or values outside the scale range
-## (`geom_bar()`).
-\end{verbatim}
 
 \begin{center}\includegraphics{AED_files/figure-latex/reamostragem-1} \end{center}
 

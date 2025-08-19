@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-07-07" />
+<meta name="date" content="2025-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -336,13 +336,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>É adequado quando ambas variáveis são categóricas (qualitativas nominais ou ordinais). Trás um ótimo comparativo entre as frequências absolutas.</p></li>
 <li><p><strong>Exemplo:</strong> explorar a relação entre gênero e preferencia por um tipo de filme.</p></li>
 </ul>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="modelos_graficos8.html#cb197-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados1, <span class="fu">aes</span>(<span class="at">x =</span> filme, <span class="at">fill =</span> gênero)) <span class="sc">+</span></span>
-<span id="cb197-2"><a href="modelos_graficos8.html#cb197-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb197-3"><a href="modelos_graficos8.html#cb197-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,   </span>
-<span id="cb197-4"><a href="modelos_graficos8.html#cb197-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb197-5"><a href="modelos_graficos8.html#cb197-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Preferência por gênero de filme segundo o sexo&quot;</span>,</span>
-<span id="cb197-6"><a href="modelos_graficos8.html#cb197-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Gênero do Filme&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
-<span id="cb197-7"><a href="modelos_graficos8.html#cb197-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="modelos_graficos8.html#cb195-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados1, <span class="fu">aes</span>(<span class="at">x =</span> filme, <span class="at">fill =</span> gênero)) <span class="sc">+</span></span>
+<span id="cb195-2"><a href="modelos_graficos8.html#cb195-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb195-3"><a href="modelos_graficos8.html#cb195-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,   </span>
+<span id="cb195-4"><a href="modelos_graficos8.html#cb195-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb195-5"><a href="modelos_graficos8.html#cb195-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Preferência por gênero de filme segundo o sexo&quot;</span>,</span>
+<span id="cb195-6"><a href="modelos_graficos8.html#cb195-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Gênero do Filme&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb195-7"><a href="modelos_graficos8.html#cb195-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="AED_files/figure-html/graf_barras2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
@@ -353,27 +353,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Adequado para uma variável que é quantitativa e queremos observar a distribuição da variável contínua separada por grupos definidos por uma variável categórica.</p></li>
 <li><p><strong>Exemplo:</strong> Relação de altura (quantitativo) entre de homens e mulheres (qualitativo).</p></li>
 </ul>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="modelos_graficos8.html#cb198-1" tabindex="-1"></a><span class="co"># Definindo intervalos personalizados para o eixo x</span></span>
-<span id="cb198-2"><a href="modelos_graficos8.html#cb198-2" tabindex="-1"></a>intervalos <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">1.45</span>, <span class="fl">1.95</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
-<span id="cb198-3"><a href="modelos_graficos8.html#cb198-3" tabindex="-1"></a></span>
-<span id="cb198-4"><a href="modelos_graficos8.html#cb198-4" tabindex="-1"></a><span class="fu">ggplot</span>(dados2, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
-<span id="cb198-5"><a href="modelos_graficos8.html#cb198-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb198-6"><a href="modelos_graficos8.html#cb198-6" tabindex="-1"></a>                 <span class="at">breaks =</span> intervalos) <span class="sc">+</span></span>
-<span id="cb198-7"><a href="modelos_graficos8.html#cb198-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
-<span id="cb198-8"><a href="modelos_graficos8.html#cb198-8" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb198-9"><a href="modelos_graficos8.html#cb198-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Altura (m)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
-<span id="cb198-10"><a href="modelos_graficos8.html#cb198-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="modelos_graficos8.html#cb196-1" tabindex="-1"></a><span class="co"># Definindo intervalos personalizados para o eixo x</span></span>
+<span id="cb196-2"><a href="modelos_graficos8.html#cb196-2" tabindex="-1"></a>intervalos <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">1.45</span>, <span class="fl">1.95</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb196-3"><a href="modelos_graficos8.html#cb196-3" tabindex="-1"></a></span>
+<span id="cb196-4"><a href="modelos_graficos8.html#cb196-4" tabindex="-1"></a><span class="fu">ggplot</span>(dados2, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb196-5"><a href="modelos_graficos8.html#cb196-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
+<span id="cb196-6"><a href="modelos_graficos8.html#cb196-6" tabindex="-1"></a>                 <span class="at">breaks =</span> intervalos) <span class="sc">+</span></span>
+<span id="cb196-7"><a href="modelos_graficos8.html#cb196-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
+<span id="cb196-8"><a href="modelos_graficos8.html#cb196-8" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb196-9"><a href="modelos_graficos8.html#cb196-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Altura (m)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb196-10"><a href="modelos_graficos8.html#cb196-10" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="AED_files/figure-html/histograma2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Com o mesmo exemplo, mas sem ser sobreposto:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="modelos_graficos8.html#cb199-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados2, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
-<span id="cb199-2"><a href="modelos_graficos8.html#cb199-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">breaks =</span> intervalos) <span class="sc">+</span></span>
-<span id="cb199-3"><a href="modelos_graficos8.html#cb199-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
-<span id="cb199-4"><a href="modelos_graficos8.html#cb199-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb199-5"><a href="modelos_graficos8.html#cb199-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sexo, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span>  </span>
-<span id="cb199-6"><a href="modelos_graficos8.html#cb199-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>,</span>
-<span id="cb199-7"><a href="modelos_graficos8.html#cb199-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Altura (m)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
-<span id="cb199-8"><a href="modelos_graficos8.html#cb199-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb199-9"><a href="modelos_graficos8.html#cb199-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="modelos_graficos8.html#cb197-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados2, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb197-2"><a href="modelos_graficos8.html#cb197-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">breaks =</span> intervalos) <span class="sc">+</span></span>
+<span id="cb197-3"><a href="modelos_graficos8.html#cb197-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
+<span id="cb197-4"><a href="modelos_graficos8.html#cb197-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb197-5"><a href="modelos_graficos8.html#cb197-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>sexo, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span>  </span>
+<span id="cb197-6"><a href="modelos_graficos8.html#cb197-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>,</span>
+<span id="cb197-7"><a href="modelos_graficos8.html#cb197-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Altura (m)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequência&quot;</span>) <span class="sc">+</span></span>
+<span id="cb197-8"><a href="modelos_graficos8.html#cb197-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb197-9"><a href="modelos_graficos8.html#cb197-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/histograma2b-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
@@ -384,13 +384,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Ele mostra a mediana (linha central da caixa), o primeiro e terceiro quartis (bordas da caixa), valores mínimos e máximos (sem considerar outliers), outliers (pontos individuais fora dos limites).</p></li>
 <li><p><strong>Exemplo:</strong> Relação de altura (quantitativo) entre de homens e mulheres (qualitativo).</p></li>
 </ul>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="modelos_graficos8.html#cb200-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados3, <span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
-<span id="cb200-2"><a href="modelos_graficos8.html#cb200-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb200-3"><a href="modelos_graficos8.html#cb200-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
-<span id="cb200-4"><a href="modelos_graficos8.html#cb200-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb200-5"><a href="modelos_graficos8.html#cb200-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>,</span>
-<span id="cb200-6"><a href="modelos_graficos8.html#cb200-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Sexo&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Altura (m)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb200-7"><a href="modelos_graficos8.html#cb200-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="modelos_graficos8.html#cb198-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados3, <span class="fu">aes</span>(<span class="at">x =</span> sexo, <span class="at">y =</span> altura, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb198-2"><a href="modelos_graficos8.html#cb198-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb198-3"><a href="modelos_graficos8.html#cb198-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Feminino&quot;</span> <span class="ot">=</span> <span class="st">&quot;hotpink&quot;</span>,  </span>
+<span id="cb198-4"><a href="modelos_graficos8.html#cb198-4" tabindex="-1"></a>                               <span class="st">&quot;Masculino&quot;</span> <span class="ot">=</span> <span class="st">&quot;darkturquoise&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb198-5"><a href="modelos_graficos8.html#cb198-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribuição da altura por sexo&quot;</span>,</span>
+<span id="cb198-6"><a href="modelos_graficos8.html#cb198-6" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Sexo&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Altura (m)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb198-7"><a href="modelos_graficos8.html#cb198-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="AED_files/figure-html/boxplot2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 </div>
@@ -401,37 +401,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Esse gráfico permite identificar padrões de correlação linear ou não linear (que será explicado posteriormente), além de possíveis agrupamentos por categoria.</p></li>
 <li><p><strong>Exemplo 1:</strong> Com relação linear clara entre altura e peso.</p></li>
 </ul>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="modelos_graficos8.html#cb201-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_linear, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
-<span id="cb201-2"><a href="modelos_graficos8.html#cb201-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb201-3"><a href="modelos_graficos8.html#cb201-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb201-4"><a href="modelos_graficos8.html#cb201-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Altura e Peso&quot;</span>,</span>
-<span id="cb201-5"><a href="modelos_graficos8.html#cb201-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Altura (cm)&quot;</span>,</span>
-<span id="cb201-6"><a href="modelos_graficos8.html#cb201-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Peso (kg)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb201-7"><a href="modelos_graficos8.html#cb201-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="modelos_graficos8.html#cb199-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_linear, <span class="fu">aes</span>(<span class="at">x =</span> altura, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
+<span id="cb199-2"><a href="modelos_graficos8.html#cb199-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb199-3"><a href="modelos_graficos8.html#cb199-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb199-4"><a href="modelos_graficos8.html#cb199-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Altura e Peso&quot;</span>,</span>
+<span id="cb199-5"><a href="modelos_graficos8.html#cb199-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Altura (cm)&quot;</span>,</span>
+<span id="cb199-6"><a href="modelos_graficos8.html#cb199-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Peso (kg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb199-7"><a href="modelos_graficos8.html#cb199-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="AED_files/figure-html/graf_dispersao1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>O gráfico acima mostra uma relação de linear positiva entre a altura e o peso. Isso indica que à medida que a altura aumenta, o peso também tende a aumentar proporcionalmente, com isso, podemos concluir que a uma correlação forte e direta entre as duas variáveis.</p>
 <ul>
 <li><strong>Exemplo 2:</strong> Com relação não linear, entre rendimento esportivo e idade.</li>
 </ul>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="modelos_graficos8.html#cb202-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_naolinear, <span class="fu">aes</span>(<span class="at">x =</span> idade, <span class="at">y =</span> rendimento)) <span class="sc">+</span></span>
-<span id="cb202-2"><a href="modelos_graficos8.html#cb202-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb202-3"><a href="modelos_graficos8.html#cb202-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb202-4"><a href="modelos_graficos8.html#cb202-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Idade e Rendimento em Esportes&quot;</span>,</span>
-<span id="cb202-5"><a href="modelos_graficos8.html#cb202-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Idade (anos)&quot;</span>,</span>
-<span id="cb202-6"><a href="modelos_graficos8.html#cb202-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Rendimento Esportivo&quot;</span>) <span class="sc">+</span></span>
-<span id="cb202-7"><a href="modelos_graficos8.html#cb202-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="modelos_graficos8.html#cb200-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_naolinear, <span class="fu">aes</span>(<span class="at">x =</span> idade, <span class="at">y =</span> rendimento)) <span class="sc">+</span></span>
+<span id="cb200-2"><a href="modelos_graficos8.html#cb200-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb200-3"><a href="modelos_graficos8.html#cb200-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb200-4"><a href="modelos_graficos8.html#cb200-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Idade e Rendimento em Esportes&quot;</span>,</span>
+<span id="cb200-5"><a href="modelos_graficos8.html#cb200-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Idade (anos)&quot;</span>,</span>
+<span id="cb200-6"><a href="modelos_graficos8.html#cb200-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Rendimento Esportivo&quot;</span>) <span class="sc">+</span></span>
+<span id="cb200-7"><a href="modelos_graficos8.html#cb200-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="AED_files/figure-html/graf_dispersao2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>O gráfico acima mostra uma relação não linear entre a idade e o rendimento esportivo. No início, o rendimento (eixo Y) tende a aumentar com a idade (eixo X), mas após um certo ponto (o pico), o rendimento começa a diminuir à medida que a idade avança.</p>
 <ul>
 <li><strong>Exemplo 3:</strong> Sem relação linear, entre renda (em reais) e altura (em cm).</li>
 </ul>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="modelos_graficos8.html#cb203-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_semrelacao, <span class="fu">aes</span>(<span class="at">x =</span> renda, <span class="at">y =</span> altura)) <span class="sc">+</span></span>
-<span id="cb203-2"><a href="modelos_graficos8.html#cb203-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb203-3"><a href="modelos_graficos8.html#cb203-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
-<span id="cb203-4"><a href="modelos_graficos8.html#cb203-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Renda de Dinheiro e Altura&quot;</span>,</span>
-<span id="cb203-5"><a href="modelos_graficos8.html#cb203-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Renda (R$)&quot;</span>,</span>
-<span id="cb203-6"><a href="modelos_graficos8.html#cb203-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Altura (cm)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb203-7"><a href="modelos_graficos8.html#cb203-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="modelos_graficos8.html#cb201-1" tabindex="-1"></a><span class="fu">ggplot</span>(dados_semrelacao, <span class="fu">aes</span>(<span class="at">x =</span> renda, <span class="at">y =</span> altura)) <span class="sc">+</span></span>
+<span id="cb201-2"><a href="modelos_graficos8.html#cb201-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;darkturquoise&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb201-3"><a href="modelos_graficos8.html#cb201-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span> </span>
+<span id="cb201-4"><a href="modelos_graficos8.html#cb201-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Renda de Dinheiro e Altura&quot;</span>,</span>
+<span id="cb201-5"><a href="modelos_graficos8.html#cb201-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Renda (R$)&quot;</span>,</span>
+<span id="cb201-6"><a href="modelos_graficos8.html#cb201-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Altura (cm)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb201-7"><a href="modelos_graficos8.html#cb201-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <p><img src="AED_files/figure-html/graf_dispersao3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>O gráfico acima mostra a falta de relação entre renda e altura de uma pessoa. Podemos observar que os pontos estão dispersos aleatóriamente pelo gráfico, sem qualquer padrão aparente. A linha de tendência ajustada é praticamente horizontal, indicando que a altura de uma pessoa não é um bom preditor de sua renda, e vice-versa. Ou seja, não há uma correlação linear entre as duas variáveis.</p>
 <hr />
@@ -447,10 +447,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Triângulo superior: Mostra medidas de associação númerica, como as vistas no capítulo anterior.</li>
 </ul>
 <p>O exemplo abaixo usa o banco de dados disponível para download <strong><a href="./arquivos/dados_cap8.csv">aqui</a></strong>.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="modelos_graficos8.html#cb204-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb204-2"><a href="modelos_graficos8.html#cb204-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb204-3"><a href="modelos_graficos8.html#cb204-3" tabindex="-1"></a></span>
-<span id="cb204-4"><a href="modelos_graficos8.html#cb204-4" tabindex="-1"></a><span class="fu">ggpairs</span>(dados4, <span class="fu">aes</span>(<span class="at">color =</span> sexo))</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="modelos_graficos8.html#cb202-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb202-2"><a href="modelos_graficos8.html#cb202-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb202-3"><a href="modelos_graficos8.html#cb202-3" tabindex="-1"></a></span>
+<span id="cb202-4"><a href="modelos_graficos8.html#cb202-4" tabindex="-1"></a><span class="fu">ggpairs</span>(dados4, <span class="fu">aes</span>(<span class="at">color =</span> sexo))</span></code></pre></div>
 <p><img src="AED_files/figure-html/matriz_graficos-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Embora <em>ggpairs()</em> seja a principal, o <em>ggally</em> oferece outras funções para visualizações mais específicas, como <em>ggcorr()</em>, <em>ggsurv()</em>, etc.</p>
 <hr />

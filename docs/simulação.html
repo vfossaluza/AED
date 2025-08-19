@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Gabriela Scarpini e Victor Fossaluza" />
 
 
-<meta name="date" content="2025-07-07" />
+<meta name="date" content="2025-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -336,30 +336,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A <em>Lei dos Grandes Números</em> é a base teórica para a simulação ser algo tão confiável. Em termos simples, ela afirma que, à medida que o número de repetições de um experimento aleatório aumenta, a <em>média</em> dos resultados <em>observados</em> tende a se aproximar cada vez mais do <em>valor esperado</em> (média teórica) desse experimento. Ou seja, essa convergência garante que, com um número suficientemente grande de simulações, podemos calcular estimativas precisas para probabilidades e valores médios.</p>
 <p>Por exemplo, a Lei dos Grandes Números nos diz que ao lançarmos um dado muitas vezes e calcularmos a média dos resultados, essa média se aproximará de 3,5 (o valor esperado de um dado uniforme discreta de 1 a 6).</p>
 <p>De forma semelhante, podemos usar a simulação para observar o que acontece com uma moeda honesta. Se lançarmos 10 vezes, pode dar 7 caras e 3 coroas, mas ao repetir o experimento 10 mil vezes, a proporção de caras de aproxima de 0,5.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="simulação.html#cb205-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb205-2"><a href="simulação.html#cb205-2" tabindex="-1"></a></span>
-<span id="cb205-3"><a href="simulação.html#cb205-3" tabindex="-1"></a><span class="co"># Número de lançamentos</span></span>
-<span id="cb205-4"><a href="simulação.html#cb205-4" tabindex="-1"></a>n_lancamentos <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb205-5"><a href="simulação.html#cb205-5" tabindex="-1"></a></span>
-<span id="cb205-6"><a href="simulação.html#cb205-6" tabindex="-1"></a><span class="co"># Simular lançamentos de moeda (0 = coroa, 1 = cara)</span></span>
-<span id="cb205-7"><a href="simulação.html#cb205-7" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> n_lancamentos, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb205-8"><a href="simulação.html#cb205-8" tabindex="-1"></a></span>
-<span id="cb205-9"><a href="simulação.html#cb205-9" tabindex="-1"></a><span class="co"># Calcular a proporção de caras</span></span>
-<span id="cb205-10"><a href="simulação.html#cb205-10" tabindex="-1"></a>proporcao_caras <span class="ot">&lt;-</span> <span class="fu">sum</span>(resultados) <span class="sc">/</span> n_lancamentos</span>
-<span id="cb205-11"><a href="simulação.html#cb205-11" tabindex="-1"></a></span>
-<span id="cb205-12"><a href="simulação.html#cb205-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de lançamentos:&quot;</span>, n_lancamentos, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="simulação.html#cb203-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb203-2"><a href="simulação.html#cb203-2" tabindex="-1"></a></span>
+<span id="cb203-3"><a href="simulação.html#cb203-3" tabindex="-1"></a><span class="co"># Número de lançamentos</span></span>
+<span id="cb203-4"><a href="simulação.html#cb203-4" tabindex="-1"></a>n_lancamentos <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb203-5"><a href="simulação.html#cb203-5" tabindex="-1"></a></span>
+<span id="cb203-6"><a href="simulação.html#cb203-6" tabindex="-1"></a><span class="co"># Simular lançamentos de moeda (0 = coroa, 1 = cara)</span></span>
+<span id="cb203-7"><a href="simulação.html#cb203-7" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">size =</span> n_lancamentos, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb203-8"><a href="simulação.html#cb203-8" tabindex="-1"></a></span>
+<span id="cb203-9"><a href="simulação.html#cb203-9" tabindex="-1"></a><span class="co"># Calcular a proporção de caras</span></span>
+<span id="cb203-10"><a href="simulação.html#cb203-10" tabindex="-1"></a>proporcao_caras <span class="ot">&lt;-</span> <span class="fu">sum</span>(resultados) <span class="sc">/</span> n_lancamentos</span>
+<span id="cb203-11"><a href="simulação.html#cb203-11" tabindex="-1"></a></span>
+<span id="cb203-12"><a href="simulação.html#cb203-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de lançamentos:&quot;</span>, n_lancamentos, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Número de lançamentos: 10000</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="simulação.html#cb207-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção de caras simulada:&quot;</span>, proporcao_caras, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="simulação.html#cb205-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção de caras simulada:&quot;</span>, proporcao_caras, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Proporção de caras simulada: 0.4983</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="simulação.html#cb209-1" tabindex="-1"></a><span class="co"># Para ver a convergência ao longo do tempo (Lei dos Grandes Números)</span></span>
-<span id="cb209-2"><a href="simulação.html#cb209-2" tabindex="-1"></a>proporcoes_acumuladas <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(resultados) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">:</span>n_lancamentos)</span>
-<span id="cb209-3"><a href="simulação.html#cb209-3" tabindex="-1"></a></span>
-<span id="cb209-4"><a href="simulação.html#cb209-4" tabindex="-1"></a><span class="fu">plot</span>(proporcoes_acumuladas, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
-<span id="cb209-5"><a href="simulação.html#cb209-5" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Convergência da Proporção de Caras&quot;</span>,</span>
-<span id="cb209-6"><a href="simulação.html#cb209-6" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Número de Lançamentos&quot;</span>,</span>
-<span id="cb209-7"><a href="simulação.html#cb209-7" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Proporção de Caras&quot;</span>,</span>
-<span id="cb209-8"><a href="simulação.html#cb209-8" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb209-9"><a href="simulação.html#cb209-9" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="simulação.html#cb207-1" tabindex="-1"></a><span class="co"># Para ver a convergência ao longo do tempo (Lei dos Grandes Números)</span></span>
+<span id="cb207-2"><a href="simulação.html#cb207-2" tabindex="-1"></a>proporcoes_acumuladas <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(resultados) <span class="sc">/</span> (<span class="dv">1</span><span class="sc">:</span>n_lancamentos)</span>
+<span id="cb207-3"><a href="simulação.html#cb207-3" tabindex="-1"></a></span>
+<span id="cb207-4"><a href="simulação.html#cb207-4" tabindex="-1"></a><span class="fu">plot</span>(proporcoes_acumuladas, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb207-5"><a href="simulação.html#cb207-5" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Convergência da Proporção de Caras&quot;</span>,</span>
+<span id="cb207-6"><a href="simulação.html#cb207-6" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Número de Lançamentos&quot;</span>,</span>
+<span id="cb207-7"><a href="simulação.html#cb207-7" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Proporção de Caras&quot;</span>,</span>
+<span id="cb207-8"><a href="simulação.html#cb207-8" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb207-9"><a href="simulação.html#cb207-9" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;deeppink&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/simulacao1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>No código acima, primeiro definimos a semente do gerador de números aleatórios <em>set.seed(123)</em>, para garantir que os resultados da simulação sejam possíveis de reproduzir, ou seja, toda vez que o código for executado com essa seed, os mesmos números aleatórios serão gerados.</p>
 <p>Depois, simulamos os lançamentos da moeda, com 10 mil lançamentos. A função <em>sample()</em> escolhe aleatoriamente entre os valores 0 (coroa) e 1 (cara), com reposição (<em>replace = TRUE</em>). Sendo assim, cada lançamento é independente dos anteriores. O <em>resultados</em> é um vetor com 10 mil resultados de zeros e uns.</p>
@@ -378,38 +378,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \text{Área real} = \pi \cdot r^2 = \pi \cdot 1^2 = \pi \approx 3,1416
 \]</span></p>
 <p>Estimando isso pelo metódo de Monte Carlo, vamos gerar aleatoriamente pontos dentro do quadrado e contar quantos desses pontos caem dentro do círculo (satisfazem <span class="math inline">\(x^2 + y^2 \leq 1\)</span>). A fração de pontos dentro do círculo multiplicada pela área do quadrado (que é 4) nos dá uma estimativa para <span class="math inline">\(\pi\)</span>.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="simulação.html#cb210-1" tabindex="-1"></a><span class="co"># Define a semente para garantir reprodutibilidade dos resultados</span></span>
-<span id="cb210-2"><a href="simulação.html#cb210-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb210-3"><a href="simulação.html#cb210-3" tabindex="-1"></a></span>
-<span id="cb210-4"><a href="simulação.html#cb210-4" tabindex="-1"></a><span class="co"># Definir o número de pontos </span></span>
-<span id="cb210-5"><a href="simulação.html#cb210-5" tabindex="-1"></a>n_pontos <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb210-6"><a href="simulação.html#cb210-6" tabindex="-1"></a></span>
-<span id="cb210-7"><a href="simulação.html#cb210-7" tabindex="-1"></a><span class="co"># Gerar coordenadas X e Y aleatórias para os pontos dentro do quadrado [-1, 1] x [-1, 1]</span></span>
-<span id="cb210-8"><a href="simulação.html#cb210-8" tabindex="-1"></a>x_coords <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_pontos, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb210-9"><a href="simulação.html#cb210-9" tabindex="-1"></a>y_coords <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_pontos, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
-<span id="cb210-10"><a href="simulação.html#cb210-10" tabindex="-1"></a></span>
-<span id="cb210-11"><a href="simulação.html#cb210-11" tabindex="-1"></a><span class="co"># Calcular a distância ao quadrado até a origem para cada ponto</span></span>
-<span id="cb210-12"><a href="simulação.html#cb210-12" tabindex="-1"></a>distancia_ao_quadrado <span class="ot">&lt;-</span> x_coords<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y_coords<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb210-13"><a href="simulação.html#cb210-13" tabindex="-1"></a></span>
-<span id="cb210-14"><a href="simulação.html#cb210-14" tabindex="-1"></a><span class="co"># Contar quantos pontos caem dentro do círculo de raio 1</span></span>
-<span id="cb210-15"><a href="simulação.html#cb210-15" tabindex="-1"></a>pontos_dentro_circulo <span class="ot">&lt;-</span> <span class="fu">sum</span>(distancia_ao_quadrado <span class="sc">&lt;=</span> <span class="dv">1</span>)</span>
-<span id="cb210-16"><a href="simulação.html#cb210-16" tabindex="-1"></a></span>
-<span id="cb210-17"><a href="simulação.html#cb210-17" tabindex="-1"></a><span class="co"># Calcular a proporção de pontos dentro do círculo</span></span>
-<span id="cb210-18"><a href="simulação.html#cb210-18" tabindex="-1"></a>proporcao_no_circulo <span class="ot">&lt;-</span> pontos_dentro_circulo <span class="sc">/</span> n_pontos</span>
-<span id="cb210-19"><a href="simulação.html#cb210-19" tabindex="-1"></a></span>
-<span id="cb210-20"><a href="simulação.html#cb210-20" tabindex="-1"></a><span class="co"># Estimar a área do círculo (área do quadrado é 4)</span></span>
-<span id="cb210-21"><a href="simulação.html#cb210-21" tabindex="-1"></a>area_circulo_estimada <span class="ot">&lt;-</span> proporcao_no_circulo <span class="sc">*</span> <span class="dv">4</span></span>
-<span id="cb210-22"><a href="simulação.html#cb210-22" tabindex="-1"></a></span>
-<span id="cb210-23"><a href="simulação.html#cb210-23" tabindex="-1"></a><span class="co"># Mostrar resultados</span></span>
-<span id="cb210-24"><a href="simulação.html#cb210-24" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total de pontos jogados:&quot;</span>, n_pontos, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="simulação.html#cb208-1" tabindex="-1"></a><span class="co"># Define a semente para garantir reprodutibilidade dos resultados</span></span>
+<span id="cb208-2"><a href="simulação.html#cb208-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb208-3"><a href="simulação.html#cb208-3" tabindex="-1"></a></span>
+<span id="cb208-4"><a href="simulação.html#cb208-4" tabindex="-1"></a><span class="co"># Definir o número de pontos </span></span>
+<span id="cb208-5"><a href="simulação.html#cb208-5" tabindex="-1"></a>n_pontos <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb208-6"><a href="simulação.html#cb208-6" tabindex="-1"></a></span>
+<span id="cb208-7"><a href="simulação.html#cb208-7" tabindex="-1"></a><span class="co"># Gerar coordenadas X e Y aleatórias para os pontos </span></span>
+<span id="cb208-8"><a href="simulação.html#cb208-8" tabindex="-1"></a><span class="co"># dentro do quadrado [-1, 1] x [-1, 1]</span></span>
+<span id="cb208-9"><a href="simulação.html#cb208-9" tabindex="-1"></a>x_coords <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_pontos, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb208-10"><a href="simulação.html#cb208-10" tabindex="-1"></a>y_coords <span class="ot">&lt;-</span> <span class="fu">runif</span>(n_pontos, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb208-11"><a href="simulação.html#cb208-11" tabindex="-1"></a></span>
+<span id="cb208-12"><a href="simulação.html#cb208-12" tabindex="-1"></a><span class="co"># Calcular a distância ao quadrado até a origem para cada ponto</span></span>
+<span id="cb208-13"><a href="simulação.html#cb208-13" tabindex="-1"></a>distancia_ao_quadrado <span class="ot">&lt;-</span> x_coords<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> y_coords<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb208-14"><a href="simulação.html#cb208-14" tabindex="-1"></a></span>
+<span id="cb208-15"><a href="simulação.html#cb208-15" tabindex="-1"></a><span class="co"># Contar quantos pontos caem dentro do círculo de raio 1</span></span>
+<span id="cb208-16"><a href="simulação.html#cb208-16" tabindex="-1"></a>pontos_dentro_circulo <span class="ot">&lt;-</span> <span class="fu">sum</span>(distancia_ao_quadrado <span class="sc">&lt;=</span> <span class="dv">1</span>)</span>
+<span id="cb208-17"><a href="simulação.html#cb208-17" tabindex="-1"></a></span>
+<span id="cb208-18"><a href="simulação.html#cb208-18" tabindex="-1"></a><span class="co"># Calcular a proporção de pontos dentro do círculo</span></span>
+<span id="cb208-19"><a href="simulação.html#cb208-19" tabindex="-1"></a>proporcao_no_circulo <span class="ot">&lt;-</span> pontos_dentro_circulo <span class="sc">/</span> n_pontos</span>
+<span id="cb208-20"><a href="simulação.html#cb208-20" tabindex="-1"></a></span>
+<span id="cb208-21"><a href="simulação.html#cb208-21" tabindex="-1"></a><span class="co"># Estimar a área do círculo (área do quadrado é 4)</span></span>
+<span id="cb208-22"><a href="simulação.html#cb208-22" tabindex="-1"></a>area_circulo_estimada <span class="ot">&lt;-</span> proporcao_no_circulo <span class="sc">*</span> <span class="dv">4</span></span>
+<span id="cb208-23"><a href="simulação.html#cb208-23" tabindex="-1"></a></span>
+<span id="cb208-24"><a href="simulação.html#cb208-24" tabindex="-1"></a><span class="co"># Mostrar resultados</span></span>
+<span id="cb208-25"><a href="simulação.html#cb208-25" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Total de pontos jogados:&quot;</span>, n_pontos, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Total de pontos jogados: 10000</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="simulação.html#cb212-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Pontos que caíram dentro do círculo:&quot;</span>, pontos_dentro_circulo, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="simulação.html#cb210-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Pontos que caíram dentro do círculo:&quot;</span>, pontos_dentro_circulo, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Pontos que caíram dentro do círculo: 7894</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="simulação.html#cb214-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção de pontos dentro do círculo:&quot;</span>, proporcao_no_circulo, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="simulação.html#cb212-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Proporção de pontos dentro do círculo:&quot;</span>, proporcao_no_circulo, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Proporção de pontos dentro do círculo: 0.7894</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="simulação.html#cb216-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Estimativa da Área do Círculo (ou Pi):&quot;</span>, area_circulo_estimada, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="simulação.html#cb214-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Estimativa da Área do Círculo (ou Pi):&quot;</span>, area_circulo_estimada, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Estimativa da Área do Círculo (ou Pi): 3.1576</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="simulação.html#cb218-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Valor real de Pi (Área do Círculo de raio 1):&quot;</span>, pi, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="simulação.html#cb216-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Valor real de Pi (Área do Círculo de raio 1):&quot;</span>, pi, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Valor real de Pi (Área do Círculo de raio 1): 3.141593</code></pre>
 <p>No código acima, geramos dois vetores, com coordenadas x e y uniformemente distribuídas dentro do quadrado que vai de -1 a 1 nos dois eixos. Depois cointamos quantos pontos estão dentro do círculo (a soma dos quadrados das coordenadas seja menor ou igual a 1). E por fim, multiplicamos a proporção de pontos dentro do círculo pela área total do quadrado para obter a estimativa da área do círculo.</p>
 <p>Vendo isso de forma visual:</p>
@@ -421,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.3</span> Simulando no R<a href="simulação.html#simulando-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Vimos como a simulação computacional pode ser usada para estudar fenômenos aleatórios e visualizar resultados teóricos. Agora veremos como simular usando o R.</p>
 <p>Primeiro, como já citamos anteriormente, sempre comece as suas simulações com <em>set.seed()</em>, isso garante que, se você ou outra pessoa executar o mesmo código com a <em>mesma semente</em>, os resultados aleatórios serão <em>idênticos</em>, tornando suas simulações reproduzíveis.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="simulação.html#cb220-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># escolha qualquer número inteiro</span></span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="simulação.html#cb218-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># escolha qualquer número inteiro</span></span></code></pre></div>
 <div id="principais-funções-para-simulação-no-r" class="section level3 hasAnchor" number="9.3.1">
 <h3><span class="header-section-number">9.3.1</span> Principais funções para simulação no R<a href="simulação.html#principais-funções-para-simulação-no-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>O R possui um conjunto de funções para trabalhar com uma determinada distribuição de probabilidade (como a binomial, uniforme, poisson, etc.). Para cada distribuição, existem geralmente quatro funções, prefixadas por letras que indicam sua finalidade.</p>
@@ -443,24 +444,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 X \sim \mathrm{Binomial}(n = 10, p = 0,5)
 \]</span></p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="simulação.html#cb221-1" tabindex="-1"></a><span class="co"># Definindo parâmetros</span></span>
-<span id="cb221-2"><a href="simulação.html#cb221-2" tabindex="-1"></a>n_tentativas <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb221-3"><a href="simulação.html#cb221-3" tabindex="-1"></a>prob_sucesso <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb221-4"><a href="simulação.html#cb221-4" tabindex="-1"></a>n_experimentos <span class="ot">&lt;-</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="simulação.html#cb219-1" tabindex="-1"></a><span class="co"># Definindo parâmetros</span></span>
+<span id="cb219-2"><a href="simulação.html#cb219-2" tabindex="-1"></a>n_tentativas <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb219-3"><a href="simulação.html#cb219-3" tabindex="-1"></a>prob_sucesso <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb219-4"><a href="simulação.html#cb219-4" tabindex="-1"></a>n_experimentos <span class="ot">&lt;-</span> <span class="dv">100</span></span></code></pre></div>
 <p>Agora, geraremos os valores aleatórios usando <em>rbinom()</em>:</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="simulação.html#cb222-1" tabindex="-1"></a><span class="co"># Simula 100 experimentos da binomial(n = 10, p = 0.5)</span></span>
-<span id="cb222-2"><a href="simulação.html#cb222-2" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n_experimentos, <span class="at">size =</span> n_tentativas, <span class="at">prob =</span> prob_sucesso)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="simulação.html#cb220-1" tabindex="-1"></a><span class="co"># Simula 100 experimentos da binomial(n = 10, p = 0.5)</span></span>
+<span id="cb220-2"><a href="simulação.html#cb220-2" tabindex="-1"></a>resultados <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n_experimentos, <span class="at">size =</span> n_tentativas, <span class="at">prob =</span> prob_sucesso)</span></code></pre></div>
 <p>Para saber a probabilidade de termos exatamente <span class="math inline">\(x\)</span> sucessos, usamos a <em>dbinom()</em>, no caso de <span class="math inline">\(P(X=5)\)</span>:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="simulação.html#cb223-1" tabindex="-1"></a><span class="co"># Probabilidade de sair exatamente 5 caras em 10 lançamentos</span></span>
-<span id="cb223-2"><a href="simulação.html#cb223-2" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="simulação.html#cb221-1" tabindex="-1"></a><span class="co"># Probabilidade de sair exatamente 5 caras em 10 lançamentos</span></span>
+<span id="cb221-2"><a href="simulação.html#cb221-2" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2460938</code></pre>
 <p>Para saber a probabilidade acumulada, usamos <em>pbinom()</em>, no caso de <span class="math inline">\(P(X \leq 5)\)</span>:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="simulação.html#cb225-1" tabindex="-1"></a><span class="co"># Probabilidade de sair 5 ou menos caras em 10 lançamentos</span></span>
-<span id="cb225-2"><a href="simulação.html#cb225-2" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="simulação.html#cb223-1" tabindex="-1"></a><span class="co"># Probabilidade de sair 5 ou menos caras em 10 lançamentos</span></span>
+<span id="cb223-2"><a href="simulação.html#cb223-2" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6230469</code></pre>
 <p>Para saber o quantil, usando <em>qbinom()</em>, no caso de <span class="math inline">\(P(X \leq x) = 0,8\)</span></p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="simulação.html#cb227-1" tabindex="-1"></a><span class="co"># Qual o menor número de sucessos tal que a probabilidade acumulada seja ao menos 0.8?</span></span>
-<span id="cb227-2"><a href="simulação.html#cb227-2" tabindex="-1"></a><span class="fu">qbinom</span>(<span class="fl">0.8</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="simulação.html#cb225-1" tabindex="-1"></a><span class="co"># Qual o menor n de sucessos tal que a prob acumulada seja ao menos 0.8?</span></span>
+<span id="cb225-2"><a href="simulação.html#cb225-2" tabindex="-1"></a><span class="fu">qbinom</span>(<span class="fl">0.8</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <hr />
 </div>
@@ -478,27 +479,27 @@ X \sim \mathrm{Binomial}(n = 10, p = 0,5)
 <p>Para exemplificar, pense em um tetraedo (um dado de 4 faces) honesto, com valores de 1 a 4, com mesma probabilidade. A distribuição original é uniforme discreta, e não se parece com uma normal.</p>
 <p>Vamos denotar <span class="math inline">\(X\)</span> como o valor da face do dado, ou seja, <span class="math inline">\(X \sim Unif\{1,2,3,4\}\)</span>, com esperança = <span class="math inline">\(\mu = 2,5\)</span>, variância = <span class="math inline">\(\sigma^2 = 1,25\)</span> e desvio padrão <span class="math inline">\(\sigma = \sqrt{1,25}\)</span>.</p>
 <p>Sortearemos variás amostras aleatórias de tamanho 30 (<span class="math inline">\(n=30\)</span>) e simularemos esse experimento 10.000 vezes. Depois, calcularemos a média de cada amostra e por fim faremos um histograma das médias, junto com a curva de distribuição normal esperada, usando a média e o desvio padrão teóricos.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="simulação.html#cb229-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb229-2"><a href="simulação.html#cb229-2" tabindex="-1"></a></span>
-<span id="cb229-3"><a href="simulação.html#cb229-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span>      <span class="co"># tamanho da amostra</span></span>
-<span id="cb229-4"><a href="simulação.html#cb229-4" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">10000</span>   <span class="co"># número de repetições</span></span>
-<span id="cb229-5"><a href="simulação.html#cb229-5" tabindex="-1"></a></span>
-<span id="cb229-6"><a href="simulação.html#cb229-6" tabindex="-1"></a><span class="co"># Gerar N médias amostrais de amostras de tamanho n com valores de 1 a 4</span></span>
-<span id="cb229-7"><a href="simulação.html#cb229-7" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">replicate</span>(m, <span class="fu">mean</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)))</span>
-<span id="cb229-8"><a href="simulação.html#cb229-8" tabindex="-1"></a></span>
-<span id="cb229-9"><a href="simulação.html#cb229-9" tabindex="-1"></a><span class="co"># Parâmetros teóricos</span></span>
-<span id="cb229-10"><a href="simulação.html#cb229-10" tabindex="-1"></a>media_teorica <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
-<span id="cb229-11"><a href="simulação.html#cb229-11" tabindex="-1"></a>desvio_padrao <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fl">1.25</span> <span class="sc">/</span> n)</span>
-<span id="cb229-12"><a href="simulação.html#cb229-12" tabindex="-1"></a></span>
-<span id="cb229-13"><a href="simulação.html#cb229-13" tabindex="-1"></a><span class="fu">hist</span>(medias, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;darkturquoise&quot;</span>,</span>
-<span id="cb229-14"><a href="simulação.html#cb229-14" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;TCL com Dado Honesto de 4 Faces (n = 30)&quot;</span>,</span>
-<span id="cb229-15"><a href="simulação.html#cb229-15" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Média da amostra&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span>
-<span id="cb229-16"><a href="simulação.html#cb229-16" tabindex="-1"></a></span>
-<span id="cb229-17"><a href="simulação.html#cb229-17" tabindex="-1"></a><span class="co"># Adicionando a curva normal teórica</span></span>
-<span id="cb229-18"><a href="simulação.html#cb229-18" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> media_teorica, <span class="at">sd =</span> desvio_padrao),</span>
-<span id="cb229-19"><a href="simulação.html#cb229-19" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;deeppink2&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb229-20"><a href="simulação.html#cb229-20" tabindex="-1"></a></span>
-<span id="cb229-21"><a href="simulação.html#cb229-21" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;Normal teórica&quot;</span>, <span class="at">col =</span> <span class="st">&quot;deeppink2&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="simulação.html#cb227-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb227-2"><a href="simulação.html#cb227-2" tabindex="-1"></a></span>
+<span id="cb227-3"><a href="simulação.html#cb227-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">30</span>      <span class="co"># tamanho da amostra</span></span>
+<span id="cb227-4"><a href="simulação.html#cb227-4" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">10000</span>   <span class="co"># número de repetições</span></span>
+<span id="cb227-5"><a href="simulação.html#cb227-5" tabindex="-1"></a></span>
+<span id="cb227-6"><a href="simulação.html#cb227-6" tabindex="-1"></a><span class="co"># Gerar N médias amostrais de amostras de tamanho n com valores de 1 a 4</span></span>
+<span id="cb227-7"><a href="simulação.html#cb227-7" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">replicate</span>(m, <span class="fu">mean</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb227-8"><a href="simulação.html#cb227-8" tabindex="-1"></a></span>
+<span id="cb227-9"><a href="simulação.html#cb227-9" tabindex="-1"></a><span class="co"># Parâmetros teóricos</span></span>
+<span id="cb227-10"><a href="simulação.html#cb227-10" tabindex="-1"></a>media_teorica <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
+<span id="cb227-11"><a href="simulação.html#cb227-11" tabindex="-1"></a>desvio_padrao <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fl">1.25</span> <span class="sc">/</span> n)</span>
+<span id="cb227-12"><a href="simulação.html#cb227-12" tabindex="-1"></a></span>
+<span id="cb227-13"><a href="simulação.html#cb227-13" tabindex="-1"></a><span class="fu">hist</span>(medias, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;darkturquoise&quot;</span>,</span>
+<span id="cb227-14"><a href="simulação.html#cb227-14" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;TCL com Dado Honesto de 4 Faces (n = 30)&quot;</span>,</span>
+<span id="cb227-15"><a href="simulação.html#cb227-15" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Média da amostra&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densidade&quot;</span>)</span>
+<span id="cb227-16"><a href="simulação.html#cb227-16" tabindex="-1"></a></span>
+<span id="cb227-17"><a href="simulação.html#cb227-17" tabindex="-1"></a><span class="co"># Adicionando a curva normal teórica</span></span>
+<span id="cb227-18"><a href="simulação.html#cb227-18" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> media_teorica, <span class="at">sd =</span> desvio_padrao),</span>
+<span id="cb227-19"><a href="simulação.html#cb227-19" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;deeppink2&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb227-20"><a href="simulação.html#cb227-20" tabindex="-1"></a></span>
+<span id="cb227-21"><a href="simulação.html#cb227-21" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="st">&quot;Normal teórica&quot;</span>, <span class="at">col =</span> <span class="st">&quot;deeppink2&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/simulacao_tcl-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>O histograma acima mostra a distribuição das médias amostrais do nosso experimento simulado. A linha rosa (curva normal) mostra a aproximação prevista pelo Teorema Central do Limite. Perceba que mesmo com uma distribuição discreta e com poucos valores possíveis, a média se aproxima de uma distribuição normal, como afirma o TCL.</p>
 <p>Apesar de ainda não termos visto a distribuição normal na graduação, saiba que ela é a mais importante em toda a estatística; um dos motivos para isso é o resultado que vimos acima do TCL.</p>
@@ -515,46 +516,35 @@ X \sim \mathrm{Binomial}(n = 10, p = 0,5)
 </ul>
 <p>Pense que queremos entender como a variância de uma variável aleatória binomial se comporta em diferentes amostras, usando a reamostragem para produzir esse comportamento, mesmo com uma única amostra disponível.</p>
 <p>Vamos analisar o número de sucessos em 10 tentativas de um experimento com probabilidade de sucesso <span class="math inline">\(p=0,6\)</span>. E o nosso interesse está em estudar como a variância do número de acertos se comporta em diferentes amostras. Para isso:</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="simulação.html#cb230-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">666</span>) </span>
-<span id="cb230-2"><a href="simulação.html#cb230-2" tabindex="-1"></a></span>
-<span id="cb230-3"><a href="simulação.html#cb230-3" tabindex="-1"></a><span class="co"># Parâmetros da simulação</span></span>
-<span id="cb230-4"><a href="simulação.html#cb230-4" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">200</span>     <span class="co"># tamanho da amostra original</span></span>
-<span id="cb230-5"><a href="simulação.html#cb230-5" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.6</span>     <span class="co"># probabilidade de sucesso </span></span>
-<span id="cb230-6"><a href="simulação.html#cb230-6" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span>      <span class="co"># número de tentativas em cada experimento </span></span>
-<span id="cb230-7"><a href="simulação.html#cb230-7" tabindex="-1"></a>M <span class="ot">=</span> <span class="dv">1000</span>    <span class="co"># número de repetições da simulação</span></span>
-<span id="cb230-8"><a href="simulação.html#cb230-8" tabindex="-1"></a></span>
-<span id="cb230-9"><a href="simulação.html#cb230-9" tabindex="-1"></a><span class="co"># Simulando várias amostras independentes da distribuição binomial</span></span>
-<span id="cb230-10"><a href="simulação.html#cb230-10" tabindex="-1"></a>S<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">rbinom</span>(m<span class="sc">*</span>M,n,p),<span class="at">ncol=</span>M)</span>
-<span id="cb230-11"><a href="simulação.html#cb230-11" tabindex="-1"></a>variancias <span class="ot">=</span> <span class="fu">apply</span>(S,<span class="dv">2</span>,var)</span>
-<span id="cb230-12"><a href="simulação.html#cb230-12" tabindex="-1"></a>b<span class="ot">=</span><span class="fu">c</span>(<span class="fu">min</span>(variancias),<span class="fu">max</span>(variancias),<span class="fu">nclass.Sturges</span>(variancias))</span>
-<span id="cb230-13"><a href="simulação.html#cb230-13" tabindex="-1"></a></span>
-<span id="cb230-14"><a href="simulação.html#cb230-14" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(variancias) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb230-15"><a href="simulação.html#cb230-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Várias Amostras&quot;</span>) <span class="sc">+</span>  <span class="fu">xlim</span>(b[<span class="dv">1</span>],b[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb230-16"><a href="simulação.html#cb230-16" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>variancias,<span class="at">y=</span>..density..),</span>
-<span id="cb230-17"><a href="simulação.html#cb230-17" tabindex="-1"></a>      <span class="at">bins=</span>b[<span class="dv">3</span>],<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;deeppink&quot;</span>)</span>
-<span id="cb230-18"><a href="simulação.html#cb230-18" tabindex="-1"></a></span>
-<span id="cb230-19"><a href="simulação.html#cb230-19" tabindex="-1"></a><span class="co"># Fazendo reamostragem da primeira amostra</span></span>
-<span id="cb230-20"><a href="simulação.html#cb230-20" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>,M)),<span class="dv">1</span>,</span>
-<span id="cb230-21"><a href="simulação.html#cb230-21" tabindex="-1"></a>           <span class="cf">function</span>(y){<span class="fu">sample</span>(S[,<span class="dv">1</span>],<span class="fu">length</span>(S[,<span class="dv">1</span>]),<span class="at">replace=</span><span class="cn">TRUE</span>)})</span>
-<span id="cb230-22"><a href="simulação.html#cb230-22" tabindex="-1"></a>variancias <span class="ot">=</span> <span class="fu">apply</span>(B,<span class="dv">2</span>,var)</span>
-<span id="cb230-23"><a href="simulação.html#cb230-23" tabindex="-1"></a></span>
-<span id="cb230-24"><a href="simulação.html#cb230-24" tabindex="-1"></a>hist2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(variancias) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb230-25"><a href="simulação.html#cb230-25" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Reamostragem&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(b[<span class="dv">1</span>],b[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb230-26"><a href="simulação.html#cb230-26" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>variancias,<span class="at">y=</span>..density..),</span>
-<span id="cb230-27"><a href="simulação.html#cb230-27" tabindex="-1"></a>      <span class="at">bins=</span>b[<span class="dv">3</span>],<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;darkturquoise&quot;</span>)</span>
-<span id="cb230-28"><a href="simulação.html#cb230-28" tabindex="-1"></a></span>
-<span id="cb230-29"><a href="simulação.html#cb230-29" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(hist1,hist2,<span class="at">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-## ℹ Please use `after_stat(density)` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
-## (`geom_bar()`).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing non-finite outside the scale range
-## (`stat_bin()`).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values or values outside the scale range
-## (`geom_bar()`).</code></pre>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="simulação.html#cb228-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">666</span>) </span>
+<span id="cb228-2"><a href="simulação.html#cb228-2" tabindex="-1"></a></span>
+<span id="cb228-3"><a href="simulação.html#cb228-3" tabindex="-1"></a><span class="co"># Parâmetros da simulação</span></span>
+<span id="cb228-4"><a href="simulação.html#cb228-4" tabindex="-1"></a>m <span class="ot">=</span> <span class="dv">200</span>     <span class="co"># tamanho da amostra original</span></span>
+<span id="cb228-5"><a href="simulação.html#cb228-5" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.6</span>     <span class="co"># probabilidade de sucesso </span></span>
+<span id="cb228-6"><a href="simulação.html#cb228-6" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span>      <span class="co"># número de tentativas em cada experimento </span></span>
+<span id="cb228-7"><a href="simulação.html#cb228-7" tabindex="-1"></a>M <span class="ot">=</span> <span class="dv">1000</span>    <span class="co"># número de repetições da simulação</span></span>
+<span id="cb228-8"><a href="simulação.html#cb228-8" tabindex="-1"></a></span>
+<span id="cb228-9"><a href="simulação.html#cb228-9" tabindex="-1"></a><span class="co"># Simulando várias amostras independentes da distribuição binomial</span></span>
+<span id="cb228-10"><a href="simulação.html#cb228-10" tabindex="-1"></a>S<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">rbinom</span>(m<span class="sc">*</span>M,n,p),<span class="at">ncol=</span>M)</span>
+<span id="cb228-11"><a href="simulação.html#cb228-11" tabindex="-1"></a>variancias <span class="ot">=</span> <span class="fu">apply</span>(S,<span class="dv">2</span>,var)</span>
+<span id="cb228-12"><a href="simulação.html#cb228-12" tabindex="-1"></a>b<span class="ot">=</span><span class="fu">c</span>(<span class="fu">min</span>(variancias),<span class="fu">max</span>(variancias),<span class="fu">nclass.Sturges</span>(variancias))</span>
+<span id="cb228-13"><a href="simulação.html#cb228-13" tabindex="-1"></a></span>
+<span id="cb228-14"><a href="simulação.html#cb228-14" tabindex="-1"></a>hist1 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(variancias) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb228-15"><a href="simulação.html#cb228-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Várias Amostras&quot;</span>) <span class="sc">+</span>  <span class="fu">xlim</span>(b[<span class="dv">1</span>],b[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb228-16"><a href="simulação.html#cb228-16" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>variancias,<span class="at">y=</span>..density..),</span>
+<span id="cb228-17"><a href="simulação.html#cb228-17" tabindex="-1"></a>      <span class="at">bins=</span>b[<span class="dv">3</span>],<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;deeppink&quot;</span>)</span>
+<span id="cb228-18"><a href="simulação.html#cb228-18" tabindex="-1"></a></span>
+<span id="cb228-19"><a href="simulação.html#cb228-19" tabindex="-1"></a><span class="co"># Fazendo reamostragem da primeira amostra</span></span>
+<span id="cb228-20"><a href="simulação.html#cb228-20" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>,M)),<span class="dv">1</span>,</span>
+<span id="cb228-21"><a href="simulação.html#cb228-21" tabindex="-1"></a>           <span class="cf">function</span>(y){<span class="fu">sample</span>(S[,<span class="dv">1</span>],<span class="fu">length</span>(S[,<span class="dv">1</span>]),<span class="at">replace=</span><span class="cn">TRUE</span>)})</span>
+<span id="cb228-22"><a href="simulação.html#cb228-22" tabindex="-1"></a>variancias <span class="ot">=</span> <span class="fu">apply</span>(B,<span class="dv">2</span>,var)</span>
+<span id="cb228-23"><a href="simulação.html#cb228-23" tabindex="-1"></a></span>
+<span id="cb228-24"><a href="simulação.html#cb228-24" tabindex="-1"></a>hist2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(variancias) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb228-25"><a href="simulação.html#cb228-25" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Reamostragem&quot;</span>) <span class="sc">+</span> <span class="fu">xlim</span>(b[<span class="dv">1</span>],b[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb228-26"><a href="simulação.html#cb228-26" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x=</span>variancias,<span class="at">y=</span>..density..),</span>
+<span id="cb228-27"><a href="simulação.html#cb228-27" tabindex="-1"></a>      <span class="at">bins=</span>b[<span class="dv">3</span>],<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;darkturquoise&quot;</span>)</span>
+<span id="cb228-28"><a href="simulação.html#cb228-28" tabindex="-1"></a></span>
+<span id="cb228-29"><a href="simulação.html#cb228-29" tabindex="-1"></a>ggpubr<span class="sc">::</span><span class="fu">ggarrange</span>(hist1,hist2,<span class="at">ncol=</span><span class="dv">1</span>)</span></code></pre></div>
 <p><img src="AED_files/figure-html/reamostragem-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Mesmo usando apenas uma única amostra, com o método de reamostragem conseguimos gerar uma distribuição da estatística (variância) muito próxima àquela obtida por várias amostras independentes.</p>
 <hr />
@@ -809,56 +799,56 @@ Onde
 -<span class="math inline">\(o_{ij}\)</span> é o valor observado na linha <span class="math inline">\(i\)</span> e coluna <span class="math inline">\(j\)</span>.
 -<span class="math inline">\(e_{ij}\)</span> é o valor esperado na linha <span class="math inline">\(i\)</span> e coluna <span class="math inline">\(j\)</span>.</p>
 <p>Calculando pelo R, com:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="simulação.html#cb235-1" tabindex="-1"></a>qui_obs <span class="ot">&lt;-</span> <span class="fu">sum</span>((observado <span class="sc">-</span> esperado)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperado)</span>
-<span id="cb235-2"><a href="simulação.html#cb235-2" tabindex="-1"></a>qui_obs</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="simulação.html#cb229-1" tabindex="-1"></a>qui_obs <span class="ot">&lt;-</span> <span class="fu">sum</span>((observado <span class="sc">-</span> esperado)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperado)</span>
+<span id="cb229-2"><a href="simulação.html#cb229-2" tabindex="-1"></a>qui_obs</span></code></pre></div>
 <pre><code>## [1] 4.279942</code></pre>
 <p>Temos então que o Qui-quadrado observado (<span class="math inline">\(Q_{obs}^2\)</span>) é aproximadamente 4,28. Precisamos descobrir se esse valor representa variáveis independentes ou não.</p>
 <p>Em vez de apenas comparar o Qui-quadrado observado, vamos construir nossa própria “distribuição” de Qui-quadrados, simulando amostras sob a hipótese de independência e e verificando se o valor observado é compatível com o que esperaríamos por acaso.</p>
 <p>Vamos gerar 100 amostras de 23 pares (<span class="math inline">\(X_i, Y_i\)</span>), com <span class="math inline">\(X_i \sim U\{4, 6\}\)</span> e <span class="math inline">\(Y_i \sim U\{1, 2, \cdots, X_i\}\)</span>, sendo <span class="math inline">\(U\)</span> a distribuição uniforme discreta.</p>
 <p>Para cada uma dessas 100 simulações, calculamos um Qui-quadrado. Ao final, teremos 100 valores de Qui-quadrado esperados sob independência e ordenaremos todos, caso o nosso Qui-quadrado <em>observado</em> for muito alto (maior que o Qui-quadrado simulado de posição 95), teremos fortes indícios de dependência.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="simulação.html#cb237-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb237-2"><a href="simulação.html#cb237-2" tabindex="-1"></a></span>
-<span id="cb237-3"><a href="simulação.html#cb237-3" tabindex="-1"></a>simular_qui <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n_sim =</span> <span class="dv">100</span>, <span class="at">n_obs =</span> <span class="dv">23</span>) {</span>
-<span id="cb237-4"><a href="simulação.html#cb237-4" tabindex="-1"></a>  qui_sim <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
-<span id="cb237-5"><a href="simulação.html#cb237-5" tabindex="-1"></a>  </span>
-<span id="cb237-6"><a href="simulação.html#cb237-6" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim) {</span>
-<span id="cb237-7"><a href="simulação.html#cb237-7" tabindex="-1"></a>    <span class="co"># Gerando X ~ unif{4, 6}</span></span>
-<span id="cb237-8"><a href="simulação.html#cb237-8" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>), <span class="at">size =</span> n_obs, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb237-9"><a href="simulação.html#cb237-9" tabindex="-1"></a>    </span>
-<span id="cb237-10"><a href="simulação.html#cb237-10" tabindex="-1"></a>    <span class="co"># Para cada xi, gerar y ~ unif{1, ..., xi}</span></span>
-<span id="cb237-11"><a href="simulação.html#cb237-11" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">mapply</span>(<span class="cf">function</span>(xi) <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>xi, <span class="dv">1</span>), <span class="at">xi =</span> x)</span>
-<span id="cb237-12"><a href="simulação.html#cb237-12" tabindex="-1"></a>    </span>
-<span id="cb237-13"><a href="simulação.html#cb237-13" tabindex="-1"></a>    <span class="co"># Tabela com valores simulados</span></span>
-<span id="cb237-14"><a href="simulação.html#cb237-14" tabindex="-1"></a>    tabela_sim <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)), <span class="fu">factor</span>(y, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>))</span>
-<span id="cb237-15"><a href="simulação.html#cb237-15" tabindex="-1"></a>    </span>
-<span id="cb237-16"><a href="simulação.html#cb237-16" tabindex="-1"></a>    <span class="co"># Totais marginais e esperados (para o cálculo de valor esperado)</span></span>
-<span id="cb237-17"><a href="simulação.html#cb237-17" tabindex="-1"></a>    linha_totais <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(tabela_sim)</span>
-<span id="cb237-18"><a href="simulação.html#cb237-18" tabindex="-1"></a>    coluna_totais <span class="ot">&lt;-</span> <span class="fu">colSums</span>(tabela_sim)</span>
-<span id="cb237-19"><a href="simulação.html#cb237-19" tabindex="-1"></a>    total <span class="ot">&lt;-</span> <span class="fu">sum</span>(tabela_sim)</span>
-<span id="cb237-20"><a href="simulação.html#cb237-20" tabindex="-1"></a>    </span>
-<span id="cb237-21"><a href="simulação.html#cb237-21" tabindex="-1"></a>    esperado_sim <span class="ot">&lt;-</span> <span class="fu">outer</span>(linha_totais, coluna_totais, <span class="at">FUN =</span> <span class="cf">function</span>(r, c) r <span class="sc">*</span> c <span class="sc">/</span> total)</span>
-<span id="cb237-22"><a href="simulação.html#cb237-22" tabindex="-1"></a>    </span>
-<span id="cb237-23"><a href="simulação.html#cb237-23" tabindex="-1"></a>    <span class="co"># Calcular Q² apenas nas células com esperado &gt; 0</span></span>
-<span id="cb237-24"><a href="simulação.html#cb237-24" tabindex="-1"></a>    valido <span class="ot">&lt;-</span> esperado_sim <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb237-25"><a href="simulação.html#cb237-25" tabindex="-1"></a>    Q2 <span class="ot">&lt;-</span> <span class="fu">sum</span>((tabela_sim[valido] <span class="sc">-</span> esperado_sim[valido])<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperado_sim[valido])</span>
-<span id="cb237-26"><a href="simulação.html#cb237-26" tabindex="-1"></a>    </span>
-<span id="cb237-27"><a href="simulação.html#cb237-27" tabindex="-1"></a>    qui_sim[i] <span class="ot">&lt;-</span> Q2}</span>
-<span id="cb237-28"><a href="simulação.html#cb237-28" tabindex="-1"></a>  </span>
-<span id="cb237-29"><a href="simulação.html#cb237-29" tabindex="-1"></a>  <span class="fu">return</span>(qui_sim)}</span>
-<span id="cb237-30"><a href="simulação.html#cb237-30" tabindex="-1"></a></span>
-<span id="cb237-31"><a href="simulação.html#cb237-31" tabindex="-1"></a>qui_simulados <span class="ot">&lt;-</span> <span class="fu">simular_qui</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="simulação.html#cb231-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb231-2"><a href="simulação.html#cb231-2" tabindex="-1"></a></span>
+<span id="cb231-3"><a href="simulação.html#cb231-3" tabindex="-1"></a>simular_qui <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n_sim =</span> <span class="dv">100</span>, <span class="at">n_obs =</span> <span class="dv">23</span>) {</span>
+<span id="cb231-4"><a href="simulação.html#cb231-4" tabindex="-1"></a>  qui_sim <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n_sim)</span>
+<span id="cb231-5"><a href="simulação.html#cb231-5" tabindex="-1"></a>  </span>
+<span id="cb231-6"><a href="simulação.html#cb231-6" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim) {</span>
+<span id="cb231-7"><a href="simulação.html#cb231-7" tabindex="-1"></a>    <span class="co"># Gerando X ~ unif{4, 6}</span></span>
+<span id="cb231-8"><a href="simulação.html#cb231-8" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>), <span class="at">size =</span> n_obs, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb231-9"><a href="simulação.html#cb231-9" tabindex="-1"></a>    </span>
+<span id="cb231-10"><a href="simulação.html#cb231-10" tabindex="-1"></a>    <span class="co"># Para cada xi, gerar y ~ unif{1, ..., xi}</span></span>
+<span id="cb231-11"><a href="simulação.html#cb231-11" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">mapply</span>(<span class="cf">function</span>(xi) <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>xi, <span class="dv">1</span>), <span class="at">xi =</span> x)</span>
+<span id="cb231-12"><a href="simulação.html#cb231-12" tabindex="-1"></a>    </span>
+<span id="cb231-13"><a href="simulação.html#cb231-13" tabindex="-1"></a>    <span class="co"># Tabela com valores simulados</span></span>
+<span id="cb231-14"><a href="simulação.html#cb231-14" tabindex="-1"></a>    tabela_sim <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">factor</span>(x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>)), <span class="fu">factor</span>(y, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>))</span>
+<span id="cb231-15"><a href="simulação.html#cb231-15" tabindex="-1"></a>    </span>
+<span id="cb231-16"><a href="simulação.html#cb231-16" tabindex="-1"></a>    <span class="co"># Totais marginais e esperados (para o cálculo de valor esperado)</span></span>
+<span id="cb231-17"><a href="simulação.html#cb231-17" tabindex="-1"></a>    linha_totais <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(tabela_sim)</span>
+<span id="cb231-18"><a href="simulação.html#cb231-18" tabindex="-1"></a>    coluna_totais <span class="ot">&lt;-</span> <span class="fu">colSums</span>(tabela_sim)</span>
+<span id="cb231-19"><a href="simulação.html#cb231-19" tabindex="-1"></a>    total <span class="ot">&lt;-</span> <span class="fu">sum</span>(tabela_sim)</span>
+<span id="cb231-20"><a href="simulação.html#cb231-20" tabindex="-1"></a>    </span>
+<span id="cb231-21"><a href="simulação.html#cb231-21" tabindex="-1"></a>    esperado_sim <span class="ot">&lt;-</span> <span class="fu">outer</span>(linha_totais, coluna_totais, <span class="at">FUN =</span> <span class="cf">function</span>(r, c) r <span class="sc">*</span> c <span class="sc">/</span> total)</span>
+<span id="cb231-22"><a href="simulação.html#cb231-22" tabindex="-1"></a>    </span>
+<span id="cb231-23"><a href="simulação.html#cb231-23" tabindex="-1"></a>    <span class="co"># Calcular Q² apenas nas células com esperado &gt; 0</span></span>
+<span id="cb231-24"><a href="simulação.html#cb231-24" tabindex="-1"></a>    valido <span class="ot">&lt;-</span> esperado_sim <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb231-25"><a href="simulação.html#cb231-25" tabindex="-1"></a>    Q2 <span class="ot">&lt;-</span> <span class="fu">sum</span>((tabela_sim[valido] <span class="sc">-</span> esperado_sim[valido])<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> esperado_sim[valido])</span>
+<span id="cb231-26"><a href="simulação.html#cb231-26" tabindex="-1"></a>    </span>
+<span id="cb231-27"><a href="simulação.html#cb231-27" tabindex="-1"></a>    qui_sim[i] <span class="ot">&lt;-</span> Q2}</span>
+<span id="cb231-28"><a href="simulação.html#cb231-28" tabindex="-1"></a>  </span>
+<span id="cb231-29"><a href="simulação.html#cb231-29" tabindex="-1"></a>  <span class="fu">return</span>(qui_sim)}</span>
+<span id="cb231-30"><a href="simulação.html#cb231-30" tabindex="-1"></a></span>
+<span id="cb231-31"><a href="simulação.html#cb231-31" tabindex="-1"></a>qui_simulados <span class="ot">&lt;-</span> <span class="fu">simular_qui</span>()</span></code></pre></div>
 <p>No código acima criamos uma função <em>simular_qui()</em>, com 100 simulações e 23 observações para cada simulação. Criamos também um vetor vazio <em>qui_sim</em> com <em>n_sim = 100</em> posições, para armazenarmos nossos qui-quadrados.</p>
 <p>Em seguida, iniciamos um looping com 100 iterações. Para cada simulação, geramos um vetor <span class="math inline">\(x\)</span> com <em>n_obs = 23</em> valores escolhidos aleatoriamente no conjunto <span class="math inline">\(\{ 4, 6\}\)</span> (representando os dois tipos de dado). A escolha é feita com reposição, e a distribuição é uniforme (probabilidade 0,5 para cada elemento). Depois, para cada valor de <span class="math inline">\(x_i\)</span>, geramos outro vetor <span class="math inline">\(y\)</span>, que sorteia uma face aleatoriamente de 1 até <span class="math inline">\(x_i\)</span>.</p>
 <p>Criamos uma tabela de contingência <span class="math inline">\(X / Y\)</span>, com os nossos valores simulados e geramos uma matriz <em>esperado_sim</em> com cada valor esperado <span class="math inline">\(e_{ij}\)</span>. Com isso, aplicamos a fórmula do teste Qui-quadrado apenas nas células com valor esperado &gt; 0 (evita divisões por zero).</p>
 <p>Logo depois, armazenamos o valor do teste da simulação atual no vetor <em>qui_sim</em> e retornamos esse vetor. Por fim, chamamos a função <em>simular_qui()</em> para o novo vetor <em>qui_simulados</em>, que conterá 100 valores de Qui-quadrado simulados sob a hipótese de independência.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="simulação.html#cb238-1" tabindex="-1"></a>quantil_95 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(qui_simulados, <span class="fl">0.95</span>)</span>
-<span id="cb238-2"><a href="simulação.html#cb238-2" tabindex="-1"></a>quantil_95</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="simulação.html#cb232-1" tabindex="-1"></a>quantil_95 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(qui_simulados, <span class="fl">0.95</span>)</span>
+<span id="cb232-2"><a href="simulação.html#cb232-2" tabindex="-1"></a>quantil_95</span></code></pre></div>
 <pre><code>##      95% 
 ## 14.60973</code></pre>
 <p>Com todos os 100 Qui-quadrados simulados, calculamos o quantil 95% da distribuição empírica. É comumente usado o quantil 95% nesse tipo de análise, por isso, ele foi o escolhido. Vendo essa distribuição simulada, de forma visual:</p>
 <p><img src="AED_files/figure-html/hist_qui-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Finalmente, comparando:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="simulação.html#cb240-1" tabindex="-1"></a>qui_obs <span class="sc">&gt;</span> quantil_95</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="simulação.html#cb234-1" tabindex="-1"></a>qui_obs <span class="sc">&gt;</span> quantil_95</span></code></pre></div>
 <pre><code>##   95% 
 ## FALSE</code></pre>
 <p>A estatística <span class="math inline">\(Q^2\)</span> pode ser vista como uma distância entre os valores observados e esperados, sob hipótese de independencia. Então, para valores grandes de <span class="math inline">\(Q^2\)</span>, tem-se mais indícios de independencia nos dados observados. Logo, comparamos o valor <span class="math inline">\(Q_{obs}^2\)</span> com o quantil 95% da distribuição empírica (<span class="math inline">\(q_{(95)}\)</span>): se o <span class="math inline">\(Q_{obs}^2 \leq q_{(95)}\)</span>, então, temos indícios de independência; caso contrário, não temos.</p>

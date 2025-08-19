@@ -342,7 +342,8 @@ O código acima reordena os fatores por frequência.
 
 3. Crie o fator:
 ```{r ex3_fator}
-cores <- factor(c("rosa", "vermelho", "azul", "amarelo", "rosa", "verde", "azul", "rosa"))
+cores <- factor(c("rosa", "vermelho", "azul", "amarelo", "rosa", 
+                  "verde", "azul", "rosa"))
 ```
 
 A partir disso:

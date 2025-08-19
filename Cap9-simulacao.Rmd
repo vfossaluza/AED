@@ -75,7 +75,8 @@ set.seed(123)
 # Definir o número de pontos 
 n_pontos <- 10000
 
-# Gerar coordenadas X e Y aleatórias para os pontos dentro do quadrado [-1, 1] x [-1, 1]
+# Gerar coordenadas X e Y aleatórias para os pontos 
+# dentro do quadrado [-1, 1] x [-1, 1]
 x_coords <- runif(n_pontos, min = -1, max = 1)
 y_coords <- runif(n_pontos, min = -1, max = 1)
 
@@ -198,7 +199,7 @@ pbinom(5, size = 10, prob = 0.5)
 Para saber o quantil, usando *qbinom()*, no caso de $P(X \leq x) = 0,8$
 
 ```{r}
-# Qual o menor número de sucessos tal que a probabilidade acumulada seja ao menos 0.8?
+# Qual o menor n de sucessos tal que a prob acumulada seja ao menos 0.8?
 qbinom(0.8, size = 10, prob = 0.5)
 ```
 
@@ -272,7 +273,7 @@ Pense que queremos entender como a variância de uma variável aleatória binomi
 
 Vamos analisar o número de sucessos em 10 tentativas de um experimento com probabilidade de sucesso $p=0,6$. E o nosso interesse está em estudar como a variância do número de acertos se comporta em diferentes amostras. Para isso:
 
-```{r reamostragem}
+```{r reamostragem, message=FALSE, warning=FALSE}
 set.seed(666) 
 
 # Parâmetros da simulação
